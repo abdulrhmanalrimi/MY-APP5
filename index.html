@@ -1,62 +1,49 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ar" dir="rtl">
-
   <head>
     <meta charset="UTF-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0, maximum-scale=1" />
-    <!-- Favicon and Icons -->
-    <link rel="icon" type="image/png" href="/icon-192.png" />
-    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-    <link rel="manifest" href="/manifest.json" />
-    
-    <!-- Theme and Display -->
-    <meta name="theme-color" content="#10b981" />
-    <meta name="theme-color" media="(prefers-color-scheme: light)" content="#10b981" />
-    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#059669" />
-    
-    <!-- SEO and Description -->
-    <meta name="description" content="تطبيق تعليمي تفاعلي لتعلم قواعد النحو العربي بطريقة سهلة وممتعة مع اختبارات تفاعلية ونظام تتبع التقدم" />
-    <meta name="keywords" content="النحو, العربية, تعليم, قواعد, اللغة العربية, تطبيق تعليمي" />
-    <meta name="author" content="عبدالرحمن الضبيبي" />
-    
-    <!-- Apple iOS Meta Tags -->
-    <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-    <meta name="apple-mobile-web-app-title" content="النحو ببساطة" />
-    
-    <!-- Microsoft Tiles -->
-    <meta name="msapplication-TileColor" content="#10b981" />
-    <meta name="msapplication-TileImage" content="/icon-512.png" />
-    <meta name="msapplication-config" content="/browserconfig.xml" />
-    
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website" />
-    <meta property="og:title" content="النحو ببساطة - تعلم قواعد النحو العربي" />
-    <meta property="og:description" content="تطبيق تعليمي تفاعلي لتعلم قواعد النحو العربي" />
-    <meta property="og:image" content="/icon-512.png" />
-    
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:title" content="النحو ببساطة" />
-    <meta property="twitter:description" content="تعلم قواعد النحو العربي بطريقة سهلة وممتعة" />
-    <meta property="twitter:image" content="/icon-512.png" />
-    <title>%VITE_APP_TITLE%</title>
-    <!-- Add Google Fonts here, example:
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
-    -->
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>تطبيق النحو التعليمي</title>
+
+    <!-- ربط ملف الـ PWA manifest -->
+    <link rel="manifest" href="manifest.json" />
+    <meta name="theme-color" content="#0f766e" />
+
+    <!-- أيقونة الموقع -->
+    <link rel="icon" type="image/png" href="public/icon-192.png" />
+
+    <!-- التنسيقات -->
+    <link rel="stylesheet" href="style.css" />
   </head>
-
   <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-    <script
-      defer
-      src="%VITE_ANALYTICS_ENDPOINT%/umami"
-      data-website-id="%VITE_ANALYTICS_WEBSITE_ID%"></script>
-  </body>
+    <header class="app-header">
+      <h1>تطبيق النحو التعليمي</h1>
+    </header>
 
+    <main class="app-main">
+      <p>
+        إذا كنت ترى هذا النص، فالتطبيق يعمل من GitHub Pages ✅
+      </p>
+
+      <div id="app-root"></div>
+    </main>
+
+    <footer class="app-footer">
+      <p>نسخة تجريبية من تطبيق النحو كـ PWA.</p>
+    </footer>
+
+    <!-- كود التطبيق -->
+    <script src="app.js"></script>
+
+    <!-- تسجيل الـ Service Worker -->
+    <script>
+      if ("serviceWorker" in navigator) {
+        window.addEventListener("load", () => {
+          navigator.serviceWorker
+            .register("sw.js")
+            .catch((err) => console.log("SW registration failed", err));
+        });
+      }
+    </script>
+  </body>
 </html>
