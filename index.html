@@ -3,39 +3,58 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>تطبيق النحو التعليمي</title>
+    <title>النحو ببساطة</title>
 
-    <!-- ربط ملف الـ PWA manifest -->
     <link rel="manifest" href="manifest.json" />
-    <meta name="theme-color" content="#0f766e" />
-
-    <!-- أيقونة الموقع -->
+    <meta name="theme-color" content="#16a34a" />
     <link rel="icon" type="image/png" href="public/icon-192.png" />
 
-    <!-- التنسيقات -->
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <header class="app-header">
-      <h1>تطبيق النحو التعليمي</h1>
-    </header>
+    <!-- شاشة الترحيب (Landing) -->
+    <main id="landing" class="landing">
+      <div class="landing-inner">
+        <div class="landing-icon">📘</div>
 
-    <main class="app-main">
-      <p>
-        إذا كنت ترى هذا النص، فالتطبيق يعمل من GitHub Pages ✅
-      </p>
+        <h1 class="landing-title">النحو ببساطة</h1>
 
-      <div id="app-root"></div>
+        <p class="landing-subtitle">
+          ✨ مرحبًا بك في تطبيق <strong>النحو ببساطة</strong> …
+        </p>
+
+        <p class="landing-text">
+          هنا تصبح القواعد فكرة واضحة، والمعنى أقرب، والفهم أخف وأجمل.  
+          اجعل النحو جزءًا من متعتك اليومية في التعلّم؛ كل تفاعل يفتح لك بابًا من الإتقان
+          ويقودك إلى نحو أسهل ولغة أمتن.
+        </p>
+
+        <button id="start-learning" class="primary-btn">
+          ✨ ابدأ التعلّم
+        </button>
+
+        <p class="landing-footnote">
+          كل قاعدة تفهمها تقرّبك من فصاحة التعبير.
+        </p>
+      </div>
+
+      <!-- دوائر وزخارف بسيطة -->
+      <span class="orb orb-1"></span>
+      <span class="orb orb-2"></span>
+      <span class="orb orb-3"></span>
+      <span class="orb orb-4"></span>
     </main>
 
+    <!-- واجهة التطبيق بعد الضغط على ابدأ التعلم -->
+    <div id="app-root" class="app-root hidden">
+      <!-- سيتم تعبئته من app.js -->
+    </div>
+
     <footer class="app-footer">
-      <p>نسخة تجريبية من تطبيق النحو كـ PWA.</p>
+      نسخة تجريبية من تطبيق النحو كـ PWA.
     </footer>
 
-    <!-- كود التطبيق -->
     <script src="app.js"></script>
-
-    <!-- تسجيل الـ Service Worker -->
     <script>
       if ("serviceWorker" in navigator) {
         window.addEventListener("load", () => {
