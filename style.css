@@ -1,5 +1,196 @@
+/* أساسيات عامة */
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background: #f0fdf9;
+  color: #111827;
+  display: flex;
+  flex-direction: column;
+}
+
+/* لإخفاء العناصر مثل app-root في البداية */
+.hidden {
+  display: none;
+}
+
+/* شاشة الترحيب */
+
+.landing {
+  position: relative;
+  flex: 1;
+  padding: 2rem 1rem 1.5rem;
+  background: radial-gradient(circle at top, #e0fdf4, #f0fdf9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.landing-inner {
+  position: relative;
+  max-width: 720px;
+  text-align: center;
+  z-index: 1;
+}
+
+.landing-icon {
+  font-size: 3.2rem;
+  margin-bottom: 0.8rem;
+}
+
+.landing-title {
+  margin: 0 0 0.7rem;
+  font-size: 2.3rem;
+  color: #047857;
+}
+
+.landing-subtitle {
+  margin: 0 0 0.7rem;
+  font-size: 1.1rem;
+  color: #166534;
+}
+
+.landing-subtitle strong {
+  font-weight: 700;
+}
+
+.landing-text {
+  margin: 0 auto 1.4rem;
+  max-width: 620px;
+  line-height: 1.7;
+  color: #374151;
+}
+
+.primary-btn {
+  border: none;
+  border-radius: 999px;
+  padding: 0.7rem 1.6rem;
+  background: #22c55e;
+  color: #f9fafb;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 10px 20px rgba(22, 163, 74, 0.25);
+}
+
+.primary-btn:active {
+  transform: scale(0.97);
+  box-shadow: 0 4px 12px rgba(22, 163, 74, 0.3);
+}
+
+.landing-footnote {
+  margin-top: 1rem;
+  font-size: 0.9rem;
+  color: #6b7280;
+}
+
+/* الدوائر والزخارف في الخلفية */
+
+.orb {
+  position: absolute;
+  border-radius: 999px;
+  background: rgba(34, 197, 94, 0.12);
+}
+
+.orb-1 {
+  width: 180px;
+  height: 180px;
+  top: -40px;
+  right: 12%;
+}
+
+.orb-2 {
+  width: 130px;
+  height: 130px;
+  bottom: -30px;
+  left: 20%;
+}
+
+.orb-3 {
+  width: 90px;
+  height: 90px;
+  top: 20%;
+  left: 8%;
+}
+
+.orb-4 {
+  width: 70px;
+  height: 70px;
+  bottom: 18%;
+  right: 10%;
+}
+
+/* واجهة التطبيق بعد الضغط على "ابدأ التعلم" */
+
+.app-root {
+  flex: 1;
+  padding: 1rem;
+  max-width: 960px;
+  margin: 0 auto;
+  width: 100%;
+  background: #f9fafb;
+  color: #111827;
+}
+
+.app-header {
+  margin-bottom: 0.8rem;
+}
+
+.app-header h2 {
+  margin: 0 0 0.2rem;
+}
+
+.app-header p {
+  margin: 0;
+  color: #6b7280;
+}
+
+/* الكروت العامة */
+
+.card {
+  background: #ffffff;
+  border-radius: 0.8rem;
+  border: 1px solid #e5e7eb;
+  padding: 0.9rem;
+  margin-bottom: 0.8rem;
+}
+
+/* الفوتر */
+
+.app-footer {
+  padding: 0.6rem 1rem;
+  text-align: center;
+  font-size: 0.8rem;
+  background: #f9fafb;
+  color: #6b7280;
+  border-top: 1px solid #e5e7eb;
+}
+
+/* استجابة على الشاشات الصغيرة */
+
+@media (max-width: 600px) {
+  .landing {
+    padding-top: 2.5rem;
+  }
+
+  .landing-title {
+    font-size: 1.9rem;
+  }
+}
+
+/* ========================= */
+/*  الجزء الخاص بالـ Accordion  */
+/* ========================= */
+
 .category-card {
   margin-top: 0.7rem;
+  color: #111827; /* مهم عشان النص يبان على الخلفية الفاتحة */
 }
 
 .category-header {
@@ -47,6 +238,7 @@
 
 .lesson-title {
   font-size: 0.95rem;
+  color: #111827;
 }
 
 .lesson-status {
@@ -55,7 +247,7 @@
 
 .lesson-row-meta {
   font-size: 0.8rem;
-  color: #9ca3af;
+  color: #4b5563;
   margin-top: 0.1rem;
 }
 
