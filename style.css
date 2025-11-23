@@ -267,3 +267,6 @@ body {
 .videos-list li {
   margin-bottom: 0.4rem;
 }
+.hidden {
+  display: none;
+}
