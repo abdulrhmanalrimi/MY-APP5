@@ -1,91 +1,74 @@
 // =============================
-// 1) بيانات الدروس + روابط الفيديوهات الصحيحة
+// 1) بيانات الدروس
 // =============================
 
 const LESSONS = {
   'types-of-word': {
+    id: 'types-of-word',
     title: 'أنواع الكلمة',
-    categoryId: 'basics',
+    categoryId: 'intro',
     videos: [
       {
         title: 'أنواع الكلمة',
         url: 'https://youtu.be/46MwuNDrdlo?si=yHVbvc0IS1QbtRft'
       }
     ],
-    // عدّل المسارات حسب أسماء الصور عندك في public/lessons
-    images: ['public/lessons/أنواع الكلمة.jpg'],
-    contentHtml: '' // أَنْوَاعُ الكَلِمَةِ
-تَنْقَسِمُ الكَلِمَةُ إِلَى ثَلاَثَةِ أَنْوَاعِ اسْمِ وَفِعْلٍ وَحَرْفٍ.
-
-الاسْمُ: كَلِمَةٌ دَلَّتْ عَلَى مَعنِّى فِي نَفْسِهَا، وَلَمْ تقترن بزمن وينقسم إلى: -
-إنسان: مثل محمد عُمَرُ، طَالِبٌ، عَائِشَةُ عَبْدُ الله، رَجُلٌ
-حيوان: مثل: اسد، كَلْبٌ، بَقَرَة، ذِئْبٌ، خَرُوف ،قطة
-نبات: مثل فلفل، عِنَبُ، تَفَاحَ، بِطيخ، نَعْنَاعُ ،فجل
-جماد: مثل: مِسْمَارٌ، سَاعَةً حَائِط مُكْتَبْ، قلَمْ
-
-الفِعْلُ: كَلِمَةٌ دَلَّتْ عَلَى مُعَنِّى فِي نَفْسِهَا، وَاقْتَرَنَتْ بِأَحَدِ الأَزْمِنَةِ الثَّلاثَةِ وَهُوَ يَنْقَسِمُ إِلَى ثَلَاثَةِ أَقْسَامِ:
-ماض: مثل: نَصَرَ، فَهِمْ، عَلِمَ ،جَلَسَ ،اجْتَهَدَ ، أَكل
-مضارع: مثل : يَنْصُرُ، يَنْهَمُ، يَعلَمُ ، يَجْلِسُ ،يَجْتَهِدُ، يَأْكُل
-أمر: مثل : انصُرْ افَهُمْ اعْلَمْ اجْلِس ،كُل
-
-الحَرْفُ: كَلِمَةٌ دَلتْ عَلَى مَعَنِّى فِي غَيْرِهَا مِثْلُ: مِنْ فَإِنَّ هَذَا اللُّفْظَ كَلِمَةٌ دَلَّتْ عَلَى معنى - وَهُوَ الْإِبْتِدَاءُ - وَهَذَا المَعْنَى لا يَتِمُ حَتَّى تَضُمُ إِلَى هَذِهِ الكَلِمَةِ غَيْرَهَا ، فَتَقُولُ مَثَلاً ذَهَبْتُ مِنَ البَيْتِ.
-أَمْثَلَةُ لِلْحَرْفِ: مِنْ، أَنْ، لَنْ، إِلَى، بَلى، مَا ،عَنْ ،بَلْ ،إِنْ ،عَلَىَ، قَدْ، ثُمٌ، إٍلا ،حَتٌى   أًو، لَكِنْ، لَمْ ، فِي ، إٍن، لا (اللام) ،لك (الكافُ)
-
-
-
+    images: [],
+    contentHtml: ''
   },
 
   'kinds-of-noun': {
+    id: 'kinds-of-noun',
     title: 'أقسام الاسم',
-    categoryId: 'basics',
+    categoryId: 'intro',
     videos: [
       {
         title: 'أقسام الاسم',
         url: 'https://youtu.be/gd6oBVpED1U?si=3-PD1pHIJPDtI6uF'
       }
     ],
-    images: [
-      'public/lessons/أقسام الاسم (1).jpg',
-      'public/lessons/أقسام الاسم (2).jpg'
-    ],
+    images: [],
     contentHtml: ''
   },
 
   sentence: {
+    id: 'sentence',
     title: 'الجملة',
-    categoryId: 'basics',
+    categoryId: 'sentences',
     videos: [
       {
         title: 'الجملة',
         url: 'https://youtu.be/9AR0d5IUSSo?si=hr3P7QyUKslCVCh2'
       }
     ],
-    images: ['public/lessons/الجملة.jpg'],
+    images: [],
     contentHtml: ''
   },
 
   'verb-types': {
+    id: 'verb-types',
     title: 'أقسام الفعل',
     categoryId: 'verbs',
     videos: [
       {
-        title: 'أقسام الفعل',
+        title: 'أقسام الفعل (الفعل الصحيح والمعتل)',
         url: 'https://youtu.be/OBPXE1K1NOE?si=Y4VAxXMM0YM4-3RP'
       },
       {
-        title: 'الفعل الصحيح والمعتل',
+        title: 'أقسام الفعل (المجرد والمزيد)',
         url: 'https://youtu.be/dpQz0U4x3t8?si=tkbmy7kR3sQtKWTR'
       },
       {
-        title: 'الفعل المجرد والمزيد / اللازم والمتعدي',
+        title: 'أقسام الفعل (اللازم والمتعدي)',
         url: 'https://youtu.be/GP7z8T5B5_0?si=R5UfITqhPUP0oK67'
       }
     ],
-    images: ['public/lessons/أقسام الفعل.jpg'],
+    images: [],
     contentHtml: ''
   },
 
   'present-raf': {
+    id: 'present-raf',
     title: 'رفع الفعل المضارع',
     categoryId: 'verbs',
     videos: [
@@ -94,11 +77,12 @@ const LESSONS = {
         url: 'https://youtu.be/63dRKoaxLh4?si=zSjX0oOGj0ujR6n7'
       }
     ],
-    images: ['public/lessons/رفع الفعل المضارع.jpg'],
+    images: [],
     contentHtml: ''
   },
 
   'present-nasb': {
+    id: 'present-nasb',
     title: 'نصب الفعل المضارع',
     categoryId: 'verbs',
     videos: [
@@ -107,11 +91,12 @@ const LESSONS = {
         url: 'https://youtu.be/OH8e6y1Elow?si=HAStLo7C7DoK8iTu'
       }
     ],
-    images: ['public/lessons/نصب الفعل المضارع.jpg'],
+    images: [],
     contentHtml: ''
   },
 
   'present-jazm': {
+    id: 'present-jazm',
     title: 'جزم الفعل المضارع',
     categoryId: 'verbs',
     videos: [
@@ -120,62 +105,66 @@ const LESSONS = {
         url: 'https://youtu.be/9CCiiFMsUyU?si=PpRYerP40K8nOwij'
       }
     ],
-    images: ['public/lessons/جزم الفعل المضارع.jpg'],
+    images: [],
     contentHtml: ''
   },
 
   'five-verbs': {
+    id: 'five-verbs',
     title: 'الأفعال الخمسة',
     categoryId: 'verbs',
     videos: [
       {
-        title: 'الأفعال الخمسة (1)',
+        title: 'الأفعال الخمسة (الجزء الأول)',
         url: 'https://youtu.be/GqM1QhxMsK4?si=cObgFffyyQNCVku1'
       },
       {
-        title: 'الأفعال الخمسة (2)',
+        title: 'الأفعال الخمسة (الجزء الثاني)',
         url: 'https://youtu.be/5Dy3vwxvptw?feature=shared'
       }
     ],
-    images: ['public/lessons/الأفعال الخمسة.jpg'],
+    images: [],
     contentHtml: ''
   },
 
   subject: {
+    id: 'subject',
     title: 'الفاعل',
     categoryId: 'fael',
     videos: [
       {
-        title: 'الفاعل (1)',
+        title: 'الفاعل (الجزء الأول)',
         url: 'https://youtu.be/cWs98q2K7sc?feature=shared'
       },
       {
-        title: 'الفاعل (2)',
+        title: 'الفاعل (الجزء الثاني)',
         url: 'https://youtu.be/GeoiDO3Y6ls?si=mkLO2JaER52opXow'
       }
     ],
-    images: ['public/lessons/الفاعل.jpg'],
+    images: [],
     contentHtml: ''
   },
 
   'naib-fael': {
+    id: 'naib-fael',
     title: 'نائب الفاعل',
     categoryId: 'fael',
     videos: [
       {
-        title: 'نائب الفاعل (1)',
+        title: 'نائب الفاعل (الجزء الأول)',
         url: 'https://youtu.be/2tLJA0MfiJA?si=cC5U9tgim3MYx0yR'
       },
       {
-        title: 'نائب الفاعل (2)',
+        title: 'نائب الفاعل (الجزء الثاني)',
         url: 'https://youtu.be/PiAOOQJzi9M?feature=shared'
       }
     ],
-    images: ['public/lessons/نائب الفاعل.jpg'],
+    images: [],
     contentHtml: ''
   },
 
   object: {
+    id: 'object',
     title: 'المفعول به',
     categoryId: 'objects',
     videos: [
@@ -184,11 +173,12 @@ const LESSONS = {
         url: 'https://youtu.be/-sSadKciHjA?si=J7aYxgFml5Pq0fFP'
       }
     ],
-    images: ['public/lessons/المفعول به 1.jpg'],
+    images: [],
     contentHtml: ''
   },
 
   pronoun: {
+    id: 'pronoun',
     title: 'الضمير',
     categoryId: 'pronouns',
     videos: [
@@ -197,11 +187,12 @@ const LESSONS = {
         url: 'https://youtu.be/cGxdW8XgiOs?si=dan-xmlnrHCNMYSG'
       }
     ],
-    images: ['public/lessons/الضمير.jpg'],
+    images: [],
     contentHtml: ''
   },
 
   'address-pronouns': {
+    id: 'address-pronouns',
     title: 'ضمائر الخطاب',
     categoryId: 'pronouns',
     videos: [
@@ -215,6 +206,7 @@ const LESSONS = {
   },
 
   'absent-pronouns': {
+    id: 'absent-pronouns',
     title: 'ضمائر الغائب',
     categoryId: 'pronouns',
     videos: [
@@ -228,6 +220,7 @@ const LESSONS = {
   },
 
   'speaker-pronouns': {
+    id: 'speaker-pronouns',
     title: 'ضمائر المتكلم',
     categoryId: 'pronouns',
     videos: [
@@ -241,6 +234,7 @@ const LESSONS = {
   },
 
   demonstratives: {
+    id: 'demonstratives',
     title: 'أسماء الإشارة',
     categoryId: 'nouns',
     videos: [
@@ -249,11 +243,12 @@ const LESSONS = {
         url: 'https://youtu.be/eO0c3sBP6Zg?si=Up6ALenO0749PGzc'
       }
     ],
-    images: ['public/lessons/أسماء الإشارة.jpg'],
+    images: [],
     contentHtml: ''
   },
 
   'relative-pronouns': {
+    id: 'relative-pronouns',
     title: 'الأسماء الموصولة',
     categoryId: 'nouns',
     videos: [
@@ -262,11 +257,12 @@ const LESSONS = {
         url: 'https://youtu.be/tPIEgfxmDr0?si=t1ed37kxFOR77WRF'
       }
     ],
-    images: ['public/lessons/الأسماء الموصولة.jpg'],
+    images: [],
     contentHtml: ''
   },
 
   'five-nouns': {
+    id: 'five-nouns',
     title: 'الأسماء الخمسة',
     categoryId: 'nouns',
     videos: [
@@ -275,11 +271,12 @@ const LESSONS = {
         url: 'https://youtu.be/Ao6gfEK177o?si=IO3W-EWf7nZHpn41'
       }
     ],
-    images: ['public/lessons/الأسماء الخمسة.jpg'],
+    images: [],
     contentHtml: ''
   },
 
   kana: {
+    id: 'kana',
     title: 'كان وأخواتها',
     categoryId: 'sentence-grammar',
     videos: [
@@ -288,11 +285,12 @@ const LESSONS = {
         url: 'https://youtu.be/ARmVdKlDwxA?si=V2DWQVPL9cPBqnVU'
       }
     ],
-    images: ['public/lessons/كان وأخواتها.jpg'],
+    images: [],
     contentHtml: ''
   },
 
   kada: {
+    id: 'kada',
     title: 'كاد وأخواتها',
     categoryId: 'sentence-grammar',
     videos: [
@@ -301,11 +299,12 @@ const LESSONS = {
         url: 'https://youtu.be/IQL4DXk2vig?feature=shared'
       }
     ],
-    images: ['public/lessons/كاد وأخواتها.jpg'],
+    images: [],
     contentHtml: ''
   },
 
   inna: {
+    id: 'inna',
     title: 'إن وأخواتها',
     categoryId: 'sentence-grammar',
     videos: [
@@ -314,11 +313,12 @@ const LESSONS = {
         url: 'https://youtu.be/6exrOOT9chw?si=-xbF_TblqbNCaXG8'
       }
     ],
-    images: ['public/lessons/إن وأخواتها.jpg'],
+    images: [],
     contentHtml: ''
   },
 
   dhanna: {
+    id: 'dhanna',
     title: 'ظن وأخواتها',
     categoryId: 'sentence-grammar',
     videos: [
@@ -327,11 +327,12 @@ const LESSONS = {
         url: 'https://youtu.be/fVSvZHFsrpI?feature=shared'
       }
     ],
-    images: ['public/lessons/ظن وأخواتها.jpg'],
+    images: [],
     contentHtml: ''
   },
 
   tawabi: {
+    id: 'tawabi',
     title: 'التوابع',
     categoryId: 'tawabi',
     videos: [
@@ -345,6 +346,7 @@ const LESSONS = {
   },
 
   naat: {
+    id: 'naat',
     title: 'النعت (الصفة)',
     categoryId: 'tawabi',
     videos: [
@@ -353,11 +355,12 @@ const LESSONS = {
         url: 'https://youtu.be/Cu6xb3CgW8U?si=KsmLqlNz2oddtzFz'
       }
     ],
-    images: ['public/lessons/النعت.jpg'],
+    images: [],
     contentHtml: ''
   },
 
   atf: {
+    id: 'atf',
     title: 'العطف',
     categoryId: 'tawabi',
     videos: [
@@ -366,11 +369,12 @@ const LESSONS = {
         url: 'https://youtu.be/5V-uGR2ZL4M?si=-rFW0xHc4uhVlqhO'
       }
     ],
-    images: ['public/lessons/العطف.jpg'],
+    images: [],
     contentHtml: ''
   },
 
   tawkeed: {
+    id: 'tawkeed',
     title: 'التوكيد',
     categoryId: 'tawabi',
     videos: [
@@ -379,11 +383,12 @@ const LESSONS = {
         url: 'https://youtu.be/PJJ4dXlYuxw?si=Sqk1UKiN-NJUvSL4'
       }
     ],
-    images: ['public/lessons/التوكيد.jpg'],
+    images: [],
     contentHtml: ''
   },
 
   badal: {
+    id: 'badal',
     title: 'البدل',
     categoryId: 'tawabi',
     videos: [
@@ -392,37 +397,40 @@ const LESSONS = {
         url: 'https://youtu.be/1Qg0zSoIFLg?si=B_rElnDxyXjKCYDn'
       }
     ],
-    images: ['public/lessons/البدل.jpg'],
+    images: [],
     contentHtml: ''
   },
 
   haal: {
+    id: 'haal',
     title: 'الحال',
-    categoryId: 'haal-tamyeez',
+    categoryId: 'tawabi',
     videos: [
       {
         title: 'الحال',
         url: 'https://youtu.be/7JxHhdJGMYE?si=weJ9Hz5R7yappj-8'
       }
     ],
-    images: ['public/lessons/الحال (2).jpg'],
+    images: [],
     contentHtml: ''
   },
 
   tamyeez: {
+    id: 'tamyeez',
     title: 'التمييز',
-    categoryId: 'haal-tamyeez',
+    categoryId: 'tawabi',
     videos: [
       {
         title: 'التمييز',
         url: 'https://youtu.be/Z3VulRoUu1I?si=n_GvQ71SSf6Q6OMa'
       }
     ],
-    images: ['public/lessons/التمييز.jpg'],
+    images: [],
     contentHtml: ''
   },
 
   nakira: {
+    id: 'nakira',
     title: 'النكرة',
     categoryId: 'nouns',
     videos: [
@@ -436,6 +444,7 @@ const LESSONS = {
   },
 
   'jar-ism': {
+    id: 'jar-ism',
     title: 'جر الاسم',
     categoryId: 'nouns',
     videos: [
@@ -449,6 +458,7 @@ const LESSONS = {
   },
 
   'mudaf-ilayh': {
+    id: 'mudaf-ilayh',
     title: 'المضاف إليه',
     categoryId: 'nouns',
     videos: [
@@ -462,6 +472,7 @@ const LESSONS = {
   },
 
   interrogatives: {
+    id: 'interrogatives',
     title: 'أدوات الاستفهام',
     categoryId: 'styles',
     videos: [
@@ -470,8 +481,43 @@ const LESSONS = {
         url: 'https://youtu.be/fY-y8LqX6Bk?si=LU1wqp5iTMB_YQOB'
       }
     ],
-    images: ['public/lessons/أدوات الاستفهام.jpg'],
-    contentHtml: ''
+    images: [
+      // عدّل الاسم حسب ملف الصورة الذي سترفعه
+      //'public/lessons/أدوات الاستفهام.jpg'
+    ],
+    contentHtml: `
+      <section class="lesson-section">
+        <p>
+          أسلوب الاستفهام هو سؤال نستخدم فيه أداة خاصة حتى نطلب معلومة مجهولة
+          عن شخص أو شيء أو زمان أو مكان.
+        </p>
+
+        <p>من أهم أدوات الاستفهام في العربية:</p>
+
+        <ul>
+          <li><strong>مَنْ / مَنْ ذا</strong> للسؤال عن العاقل.</li>
+          <li><strong>ما / ماذا</strong> للسؤال عن غير العاقل أو عن الشيء.</li>
+          <li><strong>متى</strong> للسؤال عن الزمان الحاضر أو الماضي.</li>
+          <li><strong>أيان</strong> للسؤال عن الزمن في المستقبل.</li>
+          <li><strong>أين</strong> للسؤال عن المكان.</li>
+          <li><strong>كيف</strong> للسؤال عن الحال والهيئة.</li>
+          <li><strong>كم</strong> للسؤال عن العدد.</li>
+          <li><strong>أيُّ</strong> للسؤال عن تعيين واحد من بين مجموعة.</li>
+        </ul>
+
+        <p>أمثلة توضيحية:</p>
+        <ul>
+          <li>مَنْ آخر الخلفاء الراشدين؟ (للسؤال عن العاقل)</li>
+          <li>ما أحبُّ العلوم إليك؟ (للسؤال عن غير العاقل)</li>
+          <li>متى رجعت؟ (للسؤال عن الزمان)</li>
+          <li>أيان تسافر؟ (للسؤال عن الزمان المستقبل)</li>
+          <li>كيف حالك؟ (للسؤال عن الحالة)</li>
+          <li>كم كتابًا قرأت؟ (للسؤال عن العدد)</li>
+          <li>أين أخوك؟ (للسؤال عن المكان)</li>
+          <li>أيُّ رجلٍ أتى؟ (للسؤال عن تعيين الشيء)</li>
+        </ul>
+      </section>
+    `
   }
 };
 
@@ -481,26 +527,38 @@ const LESSONS = {
 
 const CATEGORIES = [
   {
-    id: 'basics',
+    id: 'intro',
     title: 'تعريف النحو',
     color: '#dcfce7',
-    lessonIds: ['types-of-word', 'kinds-of-noun', 'sentence']
+    lessonIds: ['types-of-word', 'kinds-of-noun']
+  },
+  {
+    id: 'sentences',
+    title: 'الجمل',
+    color: '#fef3c7',
+    lessonIds: ['sentence']
   },
   {
     id: 'verbs',
     title: 'الأفعال',
     color: '#fee2e2',
-    lessonIds: ['verb-types', 'present-raf', 'present-nasb', 'present-jazm', 'five-verbs']
+    lessonIds: [
+      'verb-types',
+      'present-raf',
+      'present-nasb',
+      'present-jazm',
+      'five-verbs'
+    ]
   },
   {
     id: 'fael',
-    title: 'الفاعل ونائبه',
+    title: 'الفاعل ونائب الفاعل',
     color: '#e0f2fe',
     lessonIds: ['subject', 'naib-fael']
   },
   {
     id: 'objects',
-    title: 'المفعول به',
+    title: 'المفاعيل',
     color: '#fef9c3',
     lessonIds: ['object']
   },
@@ -508,31 +566,37 @@ const CATEGORIES = [
     id: 'pronouns',
     title: 'الضمائر',
     color: '#f3e8ff',
-    lessonIds: ['pronoun', 'address-pronouns', 'absent-pronouns', 'speaker-pronouns']
+    lessonIds: [
+      'pronoun',
+      'address-pronouns',
+      'absent-pronouns',
+      'speaker-pronouns'
+    ]
   },
   {
     id: 'nouns',
     title: 'الأسماء وأنواعها',
     color: '#e0f2fe',
-    lessonIds: ['demonstratives', 'relative-pronouns', 'five-nouns', 'nakira', 'jar-ism', 'mudaf-ilayh']
+    lessonIds: [
+      'demonstratives',
+      'relative-pronouns',
+      'five-nouns',
+      'nakira',
+      'jar-ism',
+      'mudaf-ilayh'
+    ]
   },
   {
     id: 'sentence-grammar',
     title: 'إعراب الجمل والأفعال الناسخة',
-    color: '#fef3c7',
+    color: '#fee2e2',
     lessonIds: ['kana', 'kada', 'inna', 'dhanna']
   },
   {
     id: 'tawabi',
-    title: 'التوابع',
+    title: 'التوابع، الحال، التمييز',
     color: '#fae8ff',
-    lessonIds: ['tawabi', 'naat', 'atf', 'tawkeed', 'badal']
-  },
-  {
-    id: 'haal-tamyeez',
-    title: 'الحال والتمييز',
-    color: '#f5f3ff',
-    lessonIds: ['haal', 'tamyeez']
+    lessonIds: ['tawabi', 'naat', 'atf', 'tawkeed', 'badal', 'haal', 'tamyeez']
   },
   {
     id: 'styles',
@@ -543,14 +607,15 @@ const CATEGORIES = [
 ];
 
 // =============================
-// 3) حالة التطبيق (التقدم + الملاحظات)
+// 3) حالة التطبيق (التقدّم + الملاحظات)
 // =============================
 
 const STORAGE_KEY = 'nahw-bisatate-state-v1';
 
 let appState = {
-  completedLessons: {}, // lessonId: true/false
-  notes: {} // lessonId: 'نص الملاحظات'
+  completedLessons: {}, // lessonId: true
+  notes: {}, // lessonId: 'نص الملاحظات'
+  points: 0
 };
 
 function loadState() {
@@ -560,21 +625,123 @@ function loadState() {
     const parsed = JSON.parse(raw);
     if (parsed.completedLessons) appState.completedLessons = parsed.completedLessons;
     if (parsed.notes) appState.notes = parsed.notes;
-  } catch (e) {
-    console.warn('تعذّر قراءة الحالة من التخزين:', e);
+    if (typeof parsed.points === 'number') appState.points = parsed.points;
+  } catch (err) {
+    console.warn('تعذّر قراءة الحالة من التخزين', err);
   }
 }
 
 function saveState() {
   try {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(appState));
-  } catch (e) {
-    console.warn('تعذّر حفظ الحالة في التخزين:', e);
+  } catch (err) {
+    console.warn('تعذّر حفظ الحالة في التخزين', err);
+  }
+}
+
+function getProgress() {
+  const allIds = Object.keys(LESSONS);
+  let completed = 0;
+  allIds.forEach((id) => {
+    if (appState.completedLessons[id]) completed++;
+  });
+  return { completed, total: allIds.length };
+}
+
+// =============================
+// 4) وظائف الثيم وحجم الخط
+// =============================
+
+let fontScale = 1;
+
+function cycleFontSize() {
+  fontScale += 0.1;
+  if (fontScale > 1.3) fontScale = 0.9;
+  document.documentElement.style.setProperty(
+    '--lesson-font-size',
+    fontScale + 'rem'
+  );
+}
+
+function toggleTheme() {
+  document.body.classList.toggle('dark-theme');
+}
+
+// =============================
+// 5) بناء الـ App Shell (التوب بار + التابات)
+// =============================
+
+function buildAppShell() {
+  const appRoot = document.getElementById('app-root');
+  if (!appRoot) return;
+
+  appRoot.innerHTML = `
+    <div class="app-shell">
+      <header class="topbar">
+        <div class="topbar-left">
+          <button id="btn-text-size" class="icon-btn" title="تغيير حجم الخط">T</button>
+        </div>
+        <div class="topbar-title">النحو ببساطة</div>
+        <div class="topbar-right">
+          <button id="btn-theme" class="icon-btn" title="الوضع الليلي">🌙</button>
+        </div>
+      </header>
+
+      <main id="view-lessons" class="view active"></main>
+      <main id="view-stats" class="view"></main>
+      <main id="view-ask" class="view"></main>
+      <main id="view-leaders" class="view"></main>
+
+      <nav class="bottombar">
+        <button class="tab-btn active" data-view="lessons">الدروس</button>
+        <button class="tab-btn" data-view="stats">الإحصائيات</button>
+        <button class="tab-btn" data-view="ask">اسأل المعلم</button>
+        <button class="tab-btn" data-view="leaders">المتصدرون</button>
+      </nav>
+    </div>
+  `;
+
+  attachShellEvents();
+  renderLessonsHome();
+}
+
+function attachShellEvents() {
+  const btnTextSize = document.getElementById('btn-text-size');
+  const btnTheme = document.getElementById('btn-theme');
+
+  if (btnTextSize) btnTextSize.addEventListener('click', cycleFontSize);
+  if (btnTheme) btnTheme.addEventListener('click', toggleTheme);
+
+  document.querySelectorAll('.bottombar .tab-btn').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const view = btn.dataset.view;
+      switchView(view);
+    });
+  });
+}
+
+function switchView(viewId) {
+  document.querySelectorAll('.view').forEach((view) => {
+    view.classList.toggle('active', view.id === 'view-' + viewId);
+  });
+
+  document.querySelectorAll('.bottombar .tab-btn').forEach((btn) => {
+    btn.classList.toggle('active', btn.dataset.view === viewId);
+  });
+
+  if (viewId === 'lessons') {
+    renderLessonsHome();
+  } else if (viewId === 'stats') {
+    renderStatsView();
+  } else if (viewId === 'ask') {
+    renderAskTeacherView();
+  } else if (viewId === 'leaders') {
+    renderLeadersView();
   }
 }
 
 // =============================
-// 4) رسم واجهة الدروس (القائمة الرئيسية)
+// 6) واجهة الدروس (القائمة الرئيسية)
 // =============================
 
 function renderLessonRow(lessonId) {
@@ -597,14 +764,10 @@ function renderLessonRow(lessonId) {
 }
 
 function renderLessonsHome() {
-  const appRoot = document.getElementById('app-root');
-  if (!appRoot) return;
+  const view = document.getElementById('view-lessons');
+  if (!view) return;
 
-  const totalLessons = Object.keys(LESSONS).length;
-  let completedCount = 0;
-  Object.keys(appState.completedLessons).forEach((id) => {
-    if (appState.completedLessons[id]) completedCount++;
-  });
+  const progress = getProgress();
 
   let html = `
     <header class="app-header">
@@ -613,15 +776,17 @@ function renderLessonsHome() {
     </header>
 
     <section class="card">
-      <strong>تقدّمك:</strong>
-      <p>الدروس المكتملة: ${completedCount} من ${totalLessons}</p>
+      <strong>تقدّمك العام:</strong>
+      <p>الدروس المكتملة: ${progress.completed} من ${progress.total}</p>
     </section>
   `;
 
   CATEGORIES.forEach((cat, index) => {
     const catLessons = cat.lessonIds.filter((id) => LESSONS[id]);
-    const completedInCat = catLessons.filter((id) => appState.completedLessons[id]).length;
-    const bodyClass = index === 0 ? '' : 'hidden';
+    const completedInCat = catLessons.filter(
+      (id) => appState.completedLessons[id]
+    ).length;
+    const bodyHiddenClass = index === 0 ? '' : 'hidden';
 
     html += `
       <article class="card category-card" style="background:${cat.color};">
@@ -632,7 +797,7 @@ function renderLessonsHome() {
           </div>
           <span>▼</span>
         </button>
-        <div class="category-body ${bodyClass}" data-cat-body="${cat.id}">
+        <div class="category-body ${bodyHiddenClass}" data-cat-body="${cat.id}">
           <ul class="lessons-list">
             ${catLessons.map((id) => renderLessonRow(id)).join('')}
           </ul>
@@ -641,19 +806,19 @@ function renderLessonsHome() {
     `;
   });
 
-  appRoot.innerHTML = html;
+  view.innerHTML = html;
 
-  // فتح/طيّ التصنيفات
   document.querySelectorAll('.category-header').forEach((btn) => {
     btn.addEventListener('click', () => {
       const catId = btn.dataset.catId;
-      const body = document.querySelector(`.category-body[data-cat-body="${catId}"]`);
+      const body = document.querySelector(
+        `.category-body[data-cat-body="${catId}"]`
+      );
       if (!body) return;
       body.classList.toggle('hidden');
     });
   });
 
-  // فتح تفاصيل الدرس
   document.querySelectorAll('.lesson-row').forEach((row) => {
     row.addEventListener('click', () => {
       const lessonId = row.dataset.lessonId;
@@ -663,49 +828,57 @@ function renderLessonsHome() {
 }
 
 // =============================
-// 5) صفحة تفاصيل الدرس
+// 7) صفحة تفاصيل الدرس
 // =============================
 
 function renderLessonDetail(lessonId) {
   const lesson = LESSONS[lessonId];
-  const appRoot = document.getElementById('app-root');
-  if (!lesson || !appRoot) return;
+  const view = document.getElementById('view-lessons');
+  if (!lesson || !view) return;
 
   const isCompleted = !!appState.completedLessons[lessonId];
   const notes = appState.notes[lessonId] || '';
 
   let imagesHtml = '';
   if (lesson.images && lesson.images.length) {
-    imagesHtml = lesson.images
-      .map(
-        (src) => `
-        <figure class="lesson-image">
-          <img src="${src}" alt="${lesson.title}" />
-        </figure>
-      `
-      )
-      .join('');
+    imagesHtml = `
+      <section class="card">
+        <h3>صور توضيحية</h3>
+        ${lesson.images
+          .map(
+            (src) => `
+              <figure class="lesson-image">
+                <img src="${src}" alt="${lesson.title}" />
+              </figure>
+            `
+          )
+          .join('')}
+      </section>
+    `;
   }
 
   let videosHtml = '';
   if (lesson.videos && lesson.videos.length) {
     videosHtml = `
-      <ul class="videos-list">
-        ${lesson.videos
-          .map(
-            (v) => `
-          <li>
-            <strong>${v.title}</strong><br />
-            <a href="${v.url}" target="_blank" rel="noopener">مشاهدة على يوتيوب</a>
-          </li>
-        `
-          )
-          .join('')}
-      </ul>
+      <section class="card">
+        <h3>الفيديوهات التوضيحية</h3>
+        <ul class="videos-list">
+          ${lesson.videos
+            .map(
+              (v) => `
+                <li>
+                  <strong>${v.title}</strong><br />
+                  <a href="${v.url}" target="_blank" rel="noopener">مشاهدة على يوتيوب</a>
+                </li>
+              `
+            )
+            .join('')}
+        </ul>
+      </section>
     `;
   }
 
-  appRoot.innerHTML = `
+  view.innerHTML = `
     <button class="primary-btn" id="back-to-lessons" style="margin-bottom:0.8rem;">
       ← العودة إلى الدروس
     </button>
@@ -714,30 +887,25 @@ function renderLessonDetail(lessonId) {
       <h2>${lesson.title}</h2>
     </section>
 
-    ${imagesHtml ? `<section class="card"><h3>صور توضيحية</h3>${imagesHtml}</section>` : ''}
+    ${imagesHtml}
 
-    <section class="card">
+    <section class="card lesson-content">
       <h3>محتوى الدرس</h3>
       ${
         lesson.contentHtml && lesson.contentHtml.trim()
           ? lesson.contentHtml
-          : '<p>سيتم إضافة المحتوى التفصيلي من ملف Word لهذا الدرس لاحقًا.</p>'
+          : '<p>سيتم إضافة المحتوى التفصيلي لهذا الدرس لاحقًا.</p>'
       }
     </section>
 
-    ${
-      videosHtml
-        ? `<section class="card">
-          <h3>الفيديوهات التوضيحية</h3>
-          ${videosHtml}
-        </section>`
-        : ''
-    }
+    ${videosHtml}
 
     <section class="card">
       <h3>ملاحظاتي الشخصية</h3>
       <textarea id="notes-text" rows="4" style="width:100%;">${notes}</textarea>
-      <button class="primary-btn" id="save-notes" style="margin-top:0.4rem;">حفظ الملاحظات</button>
+      <button class="primary-btn" id="save-notes" style="margin-top:0.4rem;">
+        حفظ الملاحظات
+      </button>
     </section>
 
     <section class="card">
@@ -749,24 +917,130 @@ function renderLessonDetail(lessonId) {
     </section>
   `;
 
-  document.getElementById('back-to-lessons').addEventListener('click', renderLessonsHome);
+  document.getElementById('back-to-lessons').addEventListener('click', () => {
+    const ok = window.confirm(
+      'هل أنت متأكد من العودة إلى قائمة الدروس؟\nالعلم يحتاج صبرًا، لا تتعجّل الخروج 😊'
+    );
+    if (!ok) return;
+    renderLessonsHome();
+  });
 
   document.getElementById('save-notes').addEventListener('click', () => {
     const textarea = document.getElementById('notes-text');
     appState.notes[lessonId] = textarea.value;
     saveState();
-    alert('تم حفظ الملاحظات ✅');
+    alert('تم حفظ ملاحظاتك ✅');
   });
 
   document.getElementById('toggle-complete').addEventListener('click', () => {
     appState.completedLessons[lessonId] = !appState.completedLessons[lessonId];
+    if (appState.completedLessons[lessonId]) {
+      appState.points += 10;
+    } else {
+      appState.points = Math.max(0, appState.points - 10);
+    }
     saveState();
     renderLessonDetail(lessonId);
   });
 }
 
 // =============================
-// 6) ربط شاشة الترحيب بالتطبيق
+// 8) صفحة الإحصائيات
+// =============================
+
+function renderStatsView() {
+  const view = document.getElementById('view-stats');
+  if (!view) return;
+
+  const { completed, total } = getProgress();
+  const percent = total ? Math.round((completed / total) * 100) : 0;
+
+  view.innerHTML = `
+    <header class="app-header">
+      <h2>إحصائياتي</h2>
+      <p>تابع تقدّمك في تعلّم النحو.</p>
+    </header>
+
+    <section class="card">
+      <h3>التقدّم العام</h3>
+      <p>الدروس المكتملة: ${completed} من ${total} (${percent}٪)</p>
+      <div class="progress-bar">
+        <span style="width:${percent}%;"></span>
+      </div>
+    </section>
+
+    <section class="card">
+      <h3>النقاط</h3>
+      <p>النقاط الحالية: ${appState.points}</p>
+      <p>تكسب 10 نقاط عن كل درس تضعه مكتملًا.</p>
+    </section>
+  `;
+}
+
+// =============================
+// 9) صفحة "اسأل المعلم"
+// =============================
+
+function renderAskTeacherView() {
+  const view = document.getElementById('view-ask');
+  if (!view) return;
+
+  view.innerHTML = `
+    <header class="app-header">
+      <h2>اسأل المعلم</h2>
+      <p>اكتب سؤالك في النحو أو تواصل مباشرة مع المعلم.</p>
+    </header>
+
+    <section class="card">
+      <h3>سؤال للذكاء الاصطناعي</h3>
+      <p>
+        في النسخة القادمة سيتم ربط هذه الصفحة بنموذج ذكاء اصطناعي للإجابة عن أسئلتك
+        في النحو. حاليًا يمكنك استخدام هذه الخانة لتدوين أسئلتك أو أفكارك.
+      </p>
+      <textarea rows="4" style="width:100%;" placeholder="اكتب سؤالك هنا..."></textarea>
+    </section>
+
+    <section class="card">
+      <h3>التواصل مع الأستاذة سهام غازي</h3>
+      <p>للاستفسار المباشر يمكنك المراسلة عبر واتساب:</p>
+      <a href="https://wa.me/967775392526" target="_blank" rel="noopener">
+        فتح واتساب: ‎+967775392526
+      </a>
+    </section>
+  `;
+}
+
+// =============================
+// 10) صفحة المتصدرين (محلية)
+// =============================
+
+function renderLeadersView() {
+  const view = document.getElementById('view-leaders');
+  if (!view) return;
+
+  const { completed, total } = getProgress();
+  const percent = total ? Math.round((completed / total) * 100) : 0;
+
+  view.innerHTML = `
+    <header class="app-header">
+      <h2>المتصدرون</h2>
+      <p>
+        مستقبلًا يمكن ربط هذه الصفحة بقاعدة بيانات لعرض متعلّمين حقيقيين.
+        حاليًا نعرض تقدّمك أنت كتجربة.
+      </p>
+    </header>
+
+    <section class="card">
+      <h3>مركزك الحالي (محليًا)</h3>
+      <p>نسبة الإكمال: ${percent}٪</p>
+      <p>النقاط: ${appState.points}</p>
+      <p>كلما أكملت دروسًا أكثر ورفعت نقاطك، ارتفع مركزك بين المتعلمين 😊</p>
+    </section>
+  `;
+}
+
+// =============================
+// 11) نقطة البداية
 // =============================
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -781,6 +1055,6 @@ document.addEventListener('DOMContentLoaded', () => {
   startBtn.addEventListener('click', () => {
     landing.classList.add('hidden');
     appRoot.classList.remove('hidden');
-    renderLessonsHome();
+    buildAppShell();
   });
 });
