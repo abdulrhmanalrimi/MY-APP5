@@ -3,16 +3,22 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+
     <title>النحو ببساطة</title>
 
+    <!-- ملف الـ PWA -->
     <link rel="manifest" href="manifest.json" />
     <meta name="theme-color" content="#16a34a" />
+
+    <!-- الأيقونة (عدّل المسار إذا لزم) -->
     <link rel="icon" type="image/png" href="public/icon-192.png" />
 
+    <!-- التنسيقات -->
     <link rel="stylesheet" href="style.css" />
   </head>
+
   <body>
-    <!-- شاشة الترحيب (Landing) -->
+    <!-- شاشة الترحيب الأولى -->
     <main id="landing" class="landing">
       <div class="landing-inner">
         <div class="landing-icon">📘</div>
@@ -25,8 +31,8 @@
 
         <p class="landing-text">
           هنا تصبح القواعد فكرة واضحة، والمعنى أقرب، والفهم أخف وأجمل.  
-          اجعل النحو جزءًا من متعتك اليومية في التعلّم؛ كل تفاعل يفتح لك بابًا من الإتقان
-          ويقودك إلى نحو أسهل ولغة أمتن.
+          اجعل النحو جزءًا من متعتك اليومية في التعلّم؛ كل تفاعل يفتح لك
+          بابًا من الإتقان ويقودك إلى نحو أسهل ولغة أمتن.
         </p>
 
         <button id="start-learning" class="primary-btn">
@@ -38,23 +44,24 @@
         </p>
       </div>
 
-      <!-- دوائر وزخارف بسيطة -->
+      <!-- دوائر وزخارف بسيطة في الخلفية -->
       <span class="orb orb-1"></span>
       <span class="orb orb-2"></span>
       <span class="orb orb-3"></span>
       <span class="orb orb-4"></span>
     </main>
 
-    <!-- واجهة التطبيق بعد الضغط على ابدأ التعلم -->
-    <div id="app-root" class="app-root hidden">
-      <!-- سيتم تعبئته من app.js -->
-    </div>
+    <!-- هنا يرسم app.js واجهة الدروس والدرس الواحد -->
+    <div id="app-root" class="app-root hidden"></div>
 
     <footer class="app-footer">
       نسخة تجريبية من تطبيق النحو كـ PWA.
     </footer>
 
+    <!-- سكربت التطبيق -->
     <script src="app.js"></script>
+
+    <!-- تسجيل الـ Service Worker للـ PWA -->
     <script>
       if ("serviceWorker" in navigator) {
         window.addEventListener("load", () => {
