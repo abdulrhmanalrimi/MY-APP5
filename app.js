@@ -572,7 +572,56 @@ const CATEGORIES = [
 ];
 
 // =============================
-// 3) حالة التطبيق (تقدّم + ملاحظات + مفضلة + نتائج اختبارات)
+// 3) أسئلة نهاية كل درس QUIZZES
+// =============================
+// يمكنك إضافة أو تعديل الأسئلة كما تريد لكل درس
+
+const QUIZZES = {
+  'types-of-word': {
+    questions: [
+      {
+        text: 'الكلمة في اللغة العربية تنقسم إلى:',
+        options: [
+          'اسم وحرف فقط',
+          'اسم وفعل فقط',
+          'اسم وفعل وحرف',
+          'فعل وحرف فقط'
+        ],
+        correctIndex: 2
+      },
+      {
+        text: 'أيّ مما يأتي يُعَدُّ حرفًا؟',
+        options: ['محمد', 'يلعب', 'إلى', 'كتاب'],
+        correctIndex: 2
+      }
+    ]
+  },
+
+  'verb-types': {
+    questions: [
+      {
+        text: 'الفعل الصحيح هو:',
+        options: ['قال', 'مشى', 'كتب', 'دعا'],
+        correctIndex: 2
+      },
+      {
+        text: 'الفعل المعتل هو الفعل الذي:',
+        options: [
+          'يخلو من حروف العلة',
+          'يحتوي على حرف واحد من حروف العلة',
+          'يحتوي على حرفين من حروف العلة فقط',
+          'يحتوي على ثلاثة حروف علة'
+        ],
+        correctIndex: 1
+      }
+    ]
+  }
+
+  // أضف كائنًا جديدًا هنا لأي درس آخر تريد له أسئلة
+};
+
+// =============================
+// 4) حالة التطبيق (تقدّم + ملاحظات + مفضلة + نتائج اختبارات)
 // =============================
 
 const STORAGE_KEY = 'nahw-bisatate-state-v2';
@@ -651,7 +700,7 @@ function toggleFavorite(lessonId) {
 }
 
 // =============================
-// 4) الثيم + حجم الخط
+// 5) الثيم + حجم الخط
 // =============================
 
 let fontScale = 1;
@@ -672,7 +721,7 @@ function toggleTheme() {
 }
 
 // =============================
-// 5) بناء الـ App Shell
+// 6) بناء الـ App Shell
 // =============================
 
 function buildAppShell() {
@@ -745,7 +794,7 @@ function switchView(viewId) {
 }
 
 // =============================
-// 6) واجهة قائمة الدروس
+// 7) واجهة قائمة الدروس
 // =============================
 
 function renderLessonRow(lessonId) {
@@ -791,7 +840,7 @@ function renderLessonsHome() {
       <strong>تقدّمك العام:</strong>
       <p>الدروس المكتملة: ${progress.completed} من ${progress.total}</p>
     </section>
- `;
+  `;
 
   CATEGORIES.forEach((cat, index) => {
     const catLessons = cat.lessonIds.filter((id) => LESSONS[id]);
@@ -852,7 +901,135 @@ function renderLessonsHome() {
 }
 
 // =============================
-// 7) صفحة تفاصيل الدرس
+// 8) HTML قسم الاختبار لكل درس
+// =============================
+
+function getQuizHtmlForLesson(lessonId) {
+  const quiz = QUIZZES[lessonId];
+  if (!quiz || !quiz.questions || !quiz.questions.length) {
+    return `
+      <section class="card">
+        <h3>اختبر نفسك</h3>
+        <p>سيتم إضافة أسئلة تفاعلية لهذا الدرس لاحقًا.</p>
+      </section>
+    `;
+  }
+
+  return `
+    <section class="card" id="quiz-section">
+      <h3>اختبر نفسك</h3>
+      <div id="quiz-container"></div>
+    </section>
+  `;
+}
+
+function setupQuizHandlers(lessonId) {
+  const quiz = QUIZZES[lessonId];
+  if (!quiz || !quiz.questions || !quiz.questions.length) return;
+
+  const container = document.getElementById('quiz-container');
+  if (!container) return;
+
+  let currentIndex = 0;
+  let correctCount = 0;
+  let selectedIndex = null;
+
+  function renderQuestion() {
+    const q = quiz.questions[currentIndex];
+    selectedIndex = null;
+
+    container.innerHTML = `
+      <div class="quiz-header">
+        <p class="quiz-counter">السؤال ${currentIndex + 1} من ${
+      quiz.questions.length
+    }</p>
+        <p class="quiz-text">${q.text}</p>
+      </div>
+      <div class="quiz-options">
+        ${q.options
+          .map(
+            (opt, i) => `
+          <button class="quiz-option" data-index="${i}">${opt}</button>
+        `
+          )
+          .join('')}
+      </div>
+      <button class="primary-btn quiz-confirm" id="quiz-confirm">
+        تأكيد الإجابة
+      </button>
+      <p class="quiz-feedback" id="quiz-feedback"></p>
+    `;
+
+    container.querySelectorAll('.quiz-option').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        selectedIndex = Number(btn.dataset.index);
+        container
+          .querySelectorAll('.quiz-option')
+          .forEach((b) => b.classList.remove('selected'));
+        btn.classList.add('selected');
+      });
+    });
+
+    container.querySelector('#quiz-confirm').addEventListener('click', () => {
+      if (selectedIndex === null) {
+        alert('اختر إجابة أولاً ✋');
+        return;
+      }
+      const feedbackEl = document.getElementById('quiz-feedback');
+      const isCorrect =
+        selectedIndex === quiz.questions[currentIndex].correctIndex;
+
+      if (isCorrect) {
+        correctCount++;
+        feedbackEl.textContent = 'إجابة صحيحة 👏';
+        feedbackEl.className = 'quiz-feedback correct';
+      } else {
+        feedbackEl.textContent = 'إجابة خاطئة، جرّب في السؤال التالي 🙂';
+        feedbackEl.className = 'quiz-feedback wrong';
+      }
+
+      setTimeout(() => {
+        if (currentIndex < quiz.questions.length - 1) {
+          currentIndex++;
+          renderQuestion();
+        } else {
+          finishQuiz();
+        }
+      }, 700);
+    });
+  }
+
+  function finishQuiz() {
+    const total = quiz.questions.length;
+    const percent = Math.round((correctCount / total) * 100);
+
+    container.innerHTML = `
+      <p>انتهى الاختبار! ✨</p>
+      <p>نتيجتك: <strong>${correctCount}</strong> من <strong>${total}</strong> (${percent}٪)</p>
+      <button class="primary-btn" id="quiz-retry">إعادة المحاولة</button>
+    `;
+
+    // حفظ النتيجة في الإحصائيات
+    if (!Array.isArray(appState.quizResults)) appState.quizResults = [];
+    appState.quizResults.push(percent);
+    appState.points += Math.round(percent / 20); // مكافأة بسيطة حسب النتيجة
+    saveState();
+
+    const retryBtn = document.getElementById('quiz-retry');
+    if (retryBtn) {
+      retryBtn.addEventListener('click', () => {
+        currentIndex = 0;
+        correctCount = 0;
+        renderQuestion();
+      });
+    }
+  }
+
+  renderQuestion();
+}
+
+// =============================
+// 9) صفحة تفاصيل الدرس
 // =============================
 
 function renderLessonDetail(lessonId) {
@@ -903,6 +1080,8 @@ function renderLessonDetail(lessonId) {
     `;
   }
 
+  const quizHtml = getQuizHtmlForLesson(lessonId);
+
   view.innerHTML = `
     <button class="primary-btn" id="back-to-lessons" style="margin-bottom:0.8rem;">
       ← العودة إلى الدروس
@@ -933,6 +1112,8 @@ function renderLessonDetail(lessonId) {
 
     ${videosHtml}
 
+    ${quizHtml}
+
     <section class="card">
       <h3>تحميل الدرس</h3>
       <p class="muted">سيتم فتح نافذة الطباعة، ويمكنك اختيار "حفظ كملف PDF" من المتصفح.</p>
@@ -957,6 +1138,9 @@ function renderLessonDetail(lessonId) {
       </button>
     </section>
   `;
+
+  // تفعيل الاختبار
+  setupQuizHandlers(lessonId);
 
   // زر العودة مع مودال جميل
   document
@@ -1064,7 +1248,7 @@ function downloadLessonPdf(lessonId) {
 }
 
 // =============================
-// 8) الشارات والإنجازات
+// 10) الشارات والإنجازات
 // =============================
 
 function getBadges(overall, percent) {
@@ -1118,7 +1302,7 @@ function getBadges(overall, percent) {
 }
 
 // =============================
-// 9) صفحة الإحصائيات المتقدمة
+// 11) صفحة الإحصائيات المتقدمة
 // =============================
 
 function renderStatsView() {
@@ -1339,7 +1523,7 @@ function downloadCertificatePdf(percent) {
 }
 
 // =============================
-// 10) صفحة "اسأل المعلم"
+// 12) صفحة "اسأل المعلم"
 // =============================
 
 function renderAskTeacherView() {
@@ -1408,7 +1592,7 @@ function renderAskTeacherView() {
 }
 
 // =============================
-// 11) صفحة المتصدرين (تجريبية)
+// 13) صفحة المتصدرين (تجريبية)
 // =============================
 
 function renderLeadersView() {
@@ -1439,7 +1623,7 @@ function renderLeadersView() {
 }
 
 // =============================
-// 12) مودال تأكيد الخروج من الدرس
+// 14) مودال تأكيد الخروج من الدرس
 // =============================
 
 function showExitConfirmModal(onExit) {
@@ -1485,7 +1669,7 @@ function showExitConfirmModal(onExit) {
 }
 
 // =============================
-// 13) نقطة البداية
+// 15) نقطة البداية
 // =============================
 
 document.addEventListener('DOMContentLoaded', () => {
