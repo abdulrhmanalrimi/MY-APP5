@@ -14,8 +14,8 @@ const LESSONS = {
       }
     ],
     images: [
-      'lessons/أنواع الكلمة/أنواع الكلمة.jpg',
-      'lessons/أنواع الكلمة/أقسام الكلام.jpg'
+      'public/lessons/أنواع الكلمة/أنواع الكلمة.jpg',
+      'public/lessons/أنواع الكلمة/أقسام الكلام.jpg'
     ],
     contentHtml: `
       <p>
