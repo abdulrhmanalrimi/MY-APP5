@@ -1,5 +1,5 @@
 /* ============================
-   الأساسيات والمتغيّرات
+   1) المتغيّرات العامة والثيم
 ============================ */
 
 :root {
@@ -49,13 +49,12 @@ body {
   flex-direction: column;
 }
 
-/* لإخفاء أي عنصر (landing / app-root / modal / body التصنيفات ...) */
 .hidden {
   display: none !important;
 }
 
 /* ============================
-   شاشة الترحيب (النحو ببساطة)
+   2) شاشة الترحيب (Landing)
 ============================ */
 
 .landing {
@@ -71,58 +70,78 @@ body {
 
 .landing-inner {
   position: relative;
-  max-width: 720px;
+  max-width: 420px;
   width: 100%;
   text-align: center;
-  padding: 1.5rem 1.25rem 1.75rem;
+  padding: 1.9rem 1.4rem 1.7rem;
+  background: rgba(255, 255, 255, 0.92);
+  border-radius: 1.6rem;
+  border: 1px solid rgba(148, 163, 184, 0.25);
+  box-shadow: 0 20px 45px rgba(16, 185, 129, 0.28);
 }
 
 .landing-icon {
-  font-size: 3rem;
-  margin-bottom: 0.5rem;
-}
-
-.landing-title {
-  margin: 0 0 0.6rem;
+  width: 72px;
+  height: 72px;
+  border-radius: 24px;
+  margin: 0 auto 0.8rem;
+  background: var(--accent-soft);
+  display: flex;
+  align-items: center;
+  justify-content: center;
   font-size: 2.4rem;
   color: #047857;
 }
 
+.landing-title {
+  margin: 0 0 0.5rem;
+  font-size: 2.1rem;
+  color: #059669;
+  letter-spacing: -0.03em;
+}
+
 .landing-subtitle {
-  margin: 0 0 0.75rem;
-  font-size: 1.1rem;
-  color: #15803d;
+  margin: 0 0 0.85rem;
+  font-size: 1.02rem;
+  color: #047857;
 }
 
 .landing-subtitle strong {
   font-weight: 700;
+  color: #059669;
 }
 
 .landing-text {
-  margin: 0 auto 1.4rem;
-  max-width: 640px;
-  line-height: 1.8;
-  font-size: 1rem;
+  margin: 0 auto 1.5rem;
+  max-width: 360px;
+  line-height: 1.9;
+  font-size: 0.95rem;
   color: var(--text-main);
 }
 
 .landing-footnote {
-  margin-top: 1rem;
-  font-size: 0.9rem;
+  margin-top: 1.15rem;
+  font-size: 0.82rem;
   color: var(--text-muted);
 }
 
-/* زر رئيسي عام (يُستخدم في شاشة الترحيب وبقية الواجهات) */
+/* زر رئيسي عام (يُستخدم أيضًا داخل التطبيق) */
+
 .primary-btn {
   border: none;
   border-radius: 999px;
-  padding: 0.55rem 1.4rem;
+  padding: 0.7rem 1.7rem;
   background: var(--accent);
   color: #ecfdf5;
-  font-size: 0.95rem;
+  font-size: 0.98rem;
   font-weight: 600;
   cursor: pointer;
   box-shadow: var(--shadow-soft);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  min-width: 190px;
   transition: transform 0.05s ease, box-shadow 0.1s ease,
     background-color 0.12s ease;
 }
@@ -136,7 +155,7 @@ body {
   box-shadow: 0 4px 10px rgba(16, 185, 129, 0.45);
 }
 
-/* دوائر وزخارف الخلفية */
+/* دوائر زخرفية في الخلفية */
 
 .orb {
   position: absolute;
@@ -174,7 +193,7 @@ body {
 }
 
 /* ============================
-   منطقة التطبيق (بعد ابدأ التعلّم)
+   3) منطقة التطبيق (App Shell)
 ============================ */
 
 .app-root {
@@ -184,7 +203,6 @@ body {
   padding: 0 0 0.75rem;
 }
 
-/* هيكل يشبه واجهة الهاتف */
 .app-shell {
   width: 100%;
   max-width: 480px;
@@ -195,7 +213,7 @@ body {
 }
 
 /* ============================
-   الشريط العلوي (Topbar)
+   4) الشريط العلوي (Topbar)
 ============================ */
 
 .topbar {
@@ -205,17 +223,25 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0.65rem 0.9rem;
+  padding: 0.55rem 0.7rem;
   background: var(--bg-topbar);
   color: #ecfdf5;
   border-radius: 0 0 1.25rem 1.25rem;
   box-shadow: 0 6px 18px rgba(15, 118, 110, 0.35);
 }
 
+.topbar-left,
+.topbar-right {
+  display: flex;
+  align-items: center;
+}
+
 .topbar-title {
   font-size: 1.05rem;
   font-weight: 700;
 }
+
+/* أزرار الأيقونات (القمر + T) */
 
 .icon-btn {
   border: none;
@@ -228,30 +254,33 @@ body {
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  font-size: 0.9rem;
+  font-size: 0.95rem;
 }
 
 .icon-btn:hover {
   background: rgba(15, 23, 42, 0.28);
 }
 
+/* زر تغيير الخط يكون أوضح شوي */
+
+#btn-text-size {
+  font-weight: 700;
+  font-size: 1.05rem;
+}
+
 /* ============================
-   الـ Views (الدروس / الإحصائيات / اسأل المعلم / المتصدرون)
+   5) الـ Views والكروت العامة
 ============================ */
 
 .view {
   flex: 1;
-  padding: 0.75rem 0.75rem 3.9rem; /* مساحة للتابات في الأسفل */
+  padding: 0.75rem 0.75rem 3.9rem; /* مساحة للتابات أسفل */
   overflow-y: auto;
 }
 
 .view:not(.active) {
   display: none;
 }
-
-/* ============================
-   الكروت العامة
-============================ */
 
 .card {
   background: var(--bg-card);
@@ -274,7 +303,7 @@ body {
 }
 
 /* ============================
-   Accordion التصنيفات والدروس
+   6) Accordion التصنيفات والدروس
 ============================ */
 
 .category-card {
@@ -345,14 +374,8 @@ body {
 }
 
 /* ============================
-   صفحة الدرس
+   7) صفحة الدرس
 ============================ */
-
-.lesson-number {
-  margin: 0.2rem 0 0;
-  color: var(--text-muted);
-  font-size: 0.85rem;
-}
 
 .lesson-content {
   font-size: calc(1rem * var(--lesson-font-scale));
@@ -387,7 +410,7 @@ body {
 }
 
 /* ============================
-   شريط التابات السفلي
+   8) شريط التابات السفلي
 ============================ */
 
 .bottombar {
@@ -422,7 +445,7 @@ body {
 }
 
 /* ============================
-   الإحصائيات / الشارات / المتصدرون
+   9) الإحصائيات والمتصدرون
 ============================ */
 
 .progress-bar {
@@ -465,8 +488,129 @@ body {
 }
 
 /* ============================
-   المودال (تأكيد الخروج من الدرس)
-   - يمكنك تفعيلها بإضافة HTML مناسب في index.html
+   10) كارت "اسأل المعلم" (واتساب)
+============================ */
+
+.teacher-contact-card {
+  background: #ecfdf5;
+  border-color: #bbf7d0;
+}
+
+.teacher-contact-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.6rem;
+}
+
+.teacher-contact-header h3 {
+  margin: 0;
+  font-size: 1rem;
+  color: #065f46;
+}
+
+.teacher-contact-subtitle {
+  margin: 0.2rem 0 0;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.teacher-contact-icon {
+  font-size: 1.4rem;
+}
+
+.teacher-contact-inner {
+  background: #f0fdf9;
+  border-radius: 0.9rem;
+  border: 1px solid #bbf7d0;
+  padding: 0.85rem 0.9rem 0.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  align-items: flex-start;
+}
+
+.teacher-avatar {
+  width: 52px;
+  height: 52px;
+  border-radius: 999px;
+  background: #dcfce7;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  margin-bottom: 0.3rem;
+}
+
+.teacher-name {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.teacher-role {
+  margin: 0.15rem 0 0.3rem;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.teacher-phone {
+  margin: 0 0 0.35rem;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.phone-icon {
+  font-size: 1rem;
+}
+
+.phone-number {
+  direction: ltr;
+  unicode-bidi: bidi-override;
+}
+
+.teacher-message {
+  margin: 0 0 0.5rem;
+  font-size: 0.86rem;
+  color: var(--text-muted);
+}
+
+.teacher-whatsapp-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.55rem 1.3rem;
+  border-radius: 999px;
+  background: #16a34a;
+  color: #f9fafb;
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 600;
+  box-shadow: 0 10px 18px rgba(22, 163, 74, 0.35);
+  transition: transform 0.05s ease, box-shadow 0.1s ease,
+    background-color 0.12s ease;
+}
+
+.teacher-whatsapp-btn:hover {
+  background: #22c55e;
+}
+
+.teacher-whatsapp-btn:active {
+  transform: translateY(1px);
+  box-shadow: 0 4px 10px rgba(21, 128, 61, 0.5);
+}
+
+.teacher-note {
+  margin: 0.7rem 0 0;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  text-align: center;
+}
+
+/* ============================
+   11) المودال (اختياري)
 ============================ */
 
 .modal {
@@ -506,7 +650,7 @@ body {
 }
 
 /* ============================
-   فوتر التطبيق
+   12) فوتر التطبيق
 ============================ */
 
 .app-footer {
@@ -517,7 +661,7 @@ body {
 }
 
 /* ============================
-   استجابة للشاشات الأكبر
+   13) استجابة للشاشات الأكبر
 ============================ */
 
 @media (min-width: 768px) {
@@ -547,147 +691,4 @@ body {
     background: rgba(15, 23, 42, 0.9);
     border-color: rgba(31, 41, 55, 0.9);
   }
- }
-
-/* ====== بطاقة اسأل المعلم / واتساب ====== */
-
-.ai-question-card h3 {
-  margin-top: 0;
 }
-
-.ai-send-btn[disabled] {
-  opacity: 0.6;
-  cursor: not-allowed;
-}
-
-/* بطاقة التواصل مع الأستاذة */
-
-.teacher-contact {
-  background: #ecfdf5;
-  border-color: #bbf7d0;
-}
-
-.teacher-contact-header {
-  margin-bottom: 0.6rem;
-}
-
-.teacher-contact-title {
-  font-size: 0.95rem;
-  font-weight: 700;
-  color: #065f46;
-}
-
-.teacher-contact-subtitle {
-  font-size: 0.8rem;
-  color: var(--text-muted);
-}
-
-.teacher-contact-inner {
-  background: #f0fdf9;
-  border-radius: 0.9rem;
-  border: 1px solid #bbf7d0;
-  padding: 0.9rem 0.9rem 0.8rem;
-  display: flex;
-  gap: 0.8rem;
-  align-items: center;
-}
-
-.teacher-avatar {
-  flex-shrink: 0;
-  width: 52px;
-  height: 52px;
-  border-radius: 999px;
-  background: #dcfce7;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 2rem;
-}
-
-.teacher-main {
-  flex: 1;
-}
-
-.teacher-name {
-  font-weight: 700;
-  font-size: 1rem;
-  margin-bottom: 0.15rem;
-}
-
-.teacher-role {
-  font-size: 0.85rem;
-  color: var(--text-muted);
-  margin-bottom: 0.35rem;
-}
-
-.teacher-phone {
-  display: flex;
-  align-items: center;
-  gap: 0.35rem;
-  font-size: 0.9rem;
-  margin-bottom: 0.4rem;
-}
-
-.phone-number {
-  direction: ltr;
-  unicode-bidi: bidi-override;
-}
-
-.phone-icon {
-  font-size: 1rem;
-}
-
-.teacher-note {
-  margin: 0 0 0.55rem;
-  font-size: 0.85rem;
-  color: var(--text-muted);
-}
-
-/* زر الواتساب */
-
-.whatsapp-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4rem;
-  border-radius: 999px;
-  padding: 0.55rem 1.3rem;
-  background: #16a34a;
-  color: #f9fafb;
-  text-decoration: none;
-  font-size: 0.9rem;
-  font-weight: 600;
-  box-shadow: 0 10px 18px rgba(22, 163, 74, 0.35);
-  transition: transform 0.05s ease, box-shadow 0.1s ease,
-    background-color 0.12s ease;
-}
-
-.whatsapp-btn:hover {
-  background: #22c55e;
-}
-
-.whatsapp-btn:active {
-  transform: translateY(1px);
-  box-shadow: 0 4px 10px rgba(21, 128, 61, 0.5);
-}
-
-.wa-icon {
-  font-size: 1.1rem;
-}
-
-.teacher-time {
-  margin-top: 0.7rem;
-  font-size: 0.8rem;
-  color: var(--text-muted);
-  text-align: center;
-}
-
-/* استجابة للشاشات الصغيرة: ترتيب عمودي */
-
-@media (max-width: 480px) {
-  .teacher-contact-inner {
-    flex-direction: row;
-    align-items: flex-start;
-  }
-}
-
-   
