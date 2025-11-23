@@ -487,7 +487,7 @@ const LESSONS = {
 };
 
 // =============================
-// 2) التصنيفات (Accordion)
+// 2) التصنيفات
 // =============================
 
 const CATEGORIES = [
@@ -572,10 +572,10 @@ const CATEGORIES = [
 ];
 
 // =============================
-// 3) حالة التطبيق (التقدّم + الملاحظات + المفضلة)
+// 3) حالة التطبيق
 // =============================
 
-const STORAGE_KEY = 'nahw-bisatate-state-v2';
+const STORAGE_KEY = 'nahw-bisatate-state-v3';
 
 let appState = {
   completedLessons: {}, // lessonId: true
@@ -594,7 +594,7 @@ function loadState() {
     if (parsed.favorites) appState.favorites = parsed.favorites;
     if (typeof parsed.points === 'number') appState.points = parsed.points;
   } catch (err) {
-    console.warn('تعذّر قراءة الحالة من التخزين', err);
+    console.warn('تعذر قراءة الحالة من التخزين', err);
   }
 }
 
@@ -602,7 +602,7 @@ function saveState() {
   try {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(appState));
   } catch (err) {
-    console.warn('تعذّر حفظ الحالة في التخزين', err);
+    console.warn('تعذر حفظ الحالة في التخزين', err);
   }
 }
 
@@ -719,7 +719,7 @@ function switchView(viewId) {
 }
 
 // =============================
-// 6) واجهة الدروس (القائمة الرئيسية)
+// 6) واجهة الدروس الرئيسية
 // =============================
 
 function renderLessonRow(lessonId) {
@@ -794,7 +794,7 @@ function renderLessonsHome() {
 
   view.innerHTML = html;
 
-  // فتح / طيّ التصنيف
+  // فتح / طي التصنيف
   document.querySelectorAll('.category-header').forEach((btn) => {
     btn.addEventListener('click', () => {
       const catId = btn.dataset.catId;
@@ -806,7 +806,7 @@ function renderLessonsHome() {
     });
   });
 
-  // فتح الدرس
+  // فتح صفحة الدرس
   document.querySelectorAll('.lesson-row').forEach((row) => {
     row.addEventListener('click', () => {
       const lessonId = row.dataset.lessonId;
@@ -817,10 +817,10 @@ function renderLessonsHome() {
   // تبديل المفضلة من القائمة
   document.querySelectorAll('.favorite-toggle').forEach((btn) => {
     btn.addEventListener('click', (ev) => {
-      ev.stopPropagation(); // لا تفتح صفحة الدرس
+      ev.stopPropagation();
       const lessonId = btn.dataset.lessonId;
       toggleFavorite(lessonId);
-      renderLessonsHome(); // إعادة الرسم لتحديث النجوم
+      renderLessonsHome();
     });
   });
 }
@@ -932,14 +932,14 @@ function renderLessonDetail(lessonId) {
     </section>
   `;
 
-  // رجوع للقائمة
-  document.getElementById('back-to-lessons').addEventListener('click', () => {
-    const ok = window.confirm(
-      'هل أنت متأكد من العودة إلى قائمة الدروس؟\nالعلم يحتاج صبرًا، لا تتعجّل الخروج 😊'
-    );
-    if (!ok) return;
-    renderLessonsHome();
-  });
+  // رجوع للقائمة مع مودال جميل
+  document
+    .getElementById('back-to-lessons')
+    .addEventListener('click', () => {
+      showExitConfirmModal(() => {
+        renderLessonsHome();
+      });
+    });
 
   // حفظ الملاحظات
   document.getElementById('save-notes').addEventListener('click', () => {
@@ -979,7 +979,10 @@ function renderLessonDetail(lessonId) {
   }
 }
 
-// إنشاء نافذة للطباعة / الحفظ كـ PDF
+// =============================
+// 8) إنشاء PDF (نافذة طباعة)
+// =============================
+
 function downloadLessonPdf(lessonId) {
   const lesson = LESSONS[lessonId];
   if (!lesson) return;
@@ -1038,7 +1041,53 @@ function downloadLessonPdf(lessonId) {
 }
 
 // =============================
-// 8) صفحة الإحصائيات
+// 9) مودال تأكيد الخروج (تصميم جميل)
+// =============================
+
+function showExitConfirmModal(onExit) {
+  const modal = document.createElement('div');
+  modal.className = 'modal';
+
+  modal.innerHTML = `
+    <div class="modal-box exit-modal">
+      <button class="modal-close" aria-label="إغلاق">×</button>
+      <div class="exit-modal-icon">✨</div>
+      <h3 class="exit-modal-title">هل أنت متأكد؟</h3>
+      <p class="exit-modal-text">
+        العلم يحتاج صبرًا، لا تتعجّل الخروج...
+        كل دقيقة تتعلم فيها تقرّبك من الإتقان! 📚
+      </p>
+      <div class="modal-actions">
+        <button class="secondary-btn exit-btn">الخروج</button>
+        <button class="primary-btn stay-btn">متابعة التعلم</button>
+      </div>
+    </div>
+  `;
+
+  document.body.appendChild(modal);
+
+  const close = () => {
+    if (modal.parentNode) modal.parentNode.removeChild(modal);
+  };
+
+  modal.addEventListener('click', (e) => {
+    if (e.target === modal) close();
+  });
+
+  modal.querySelector('.modal-close').addEventListener('click', close);
+
+  modal.querySelector('.stay-btn').addEventListener('click', () => {
+    close();
+  });
+
+  modal.querySelector('.exit-btn').addEventListener('click', () => {
+    close();
+    if (typeof onExit === 'function') onExit();
+  });
+}
+
+// =============================
+// 10) صفحة الإحصائيات
 // =============================
 
 function renderStatsView() {
@@ -1077,7 +1126,7 @@ function renderStatsView() {
 }
 
 // =============================
-// 9) صفحة "اسأل المعلم"
+// 11) صفحة "اسأل المعلم"
 // =============================
 
 function renderAskTeacherView() {
@@ -1146,7 +1195,7 @@ function renderAskTeacherView() {
 }
 
 // =============================
-// 10) صفحة المتصدرين (تجريبية محلية)
+// 12) صفحة المتصدرين (محلية)
 // =============================
 
 function renderLeadersView() {
@@ -1177,7 +1226,7 @@ function renderLeadersView() {
 }
 
 // =============================
-// 11) نقطة البداية
+// 13) نقطة البداية
 // =============================
 
 document.addEventListener('DOMContentLoaded', () => {
