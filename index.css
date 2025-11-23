@@ -1,179 +1,651 @@
-@import "tailwindcss";
-@import "tw-animate-css";
-
-@custom-variant dark (&:is(.dark *));
-
-@theme inline {
-  --radius-sm: calc(var(--radius) - 4px);
-  --radius-md: calc(var(--radius) - 2px);
-  --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) + 4px);
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --color-card: var(--card);
-  --color-card-foreground: var(--card-foreground);
-  --color-popover: var(--popover);
-  --color-popover-foreground: var(--popover-foreground);
-  --color-primary: var(--primary);
-  --color-primary-foreground: var(--primary-foreground);
-  --color-secondary: var(--secondary);
-  --color-secondary-foreground: var(--secondary-foreground);
-  --color-muted: var(--muted);
-  --color-muted-foreground: var(--muted-foreground);
-  --color-accent: var(--accent);
-  --color-accent-foreground: var(--accent-foreground);
-  --color-destructive: var(--destructive);
-  --color-destructive-foreground: var(--destructive-foreground);
-  --color-border: var(--border);
-  --color-input: var(--input);
-  --color-ring: var(--ring);
-  --color-chart-1: var(--chart-1);
-  --color-chart-2: var(--chart-2);
-  --color-chart-3: var(--chart-3);
-  --color-chart-4: var(--chart-4);
-  --color-chart-5: var(--chart-5);
-  --color-sidebar: var(--sidebar);
-  --color-sidebar-foreground: var(--sidebar-foreground);
-  --color-sidebar-primary: var(--sidebar-primary);
-  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
-  --color-sidebar-accent: var(--sidebar-accent);
-  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
-  --color-sidebar-border: var(--sidebar-border);
-  --color-sidebar-ring: var(--sidebar-ring);
-}
+/* ============================
+   1) المتغيّرات العامة والثيم
+============================ */
 
 :root {
-  --base-font-size: 16px;
-  --primary: var(--color-blue-700);
-  --primary-foreground: var(--color-blue-50);
-  --sidebar-primary: var(--color-blue-600);
-  --sidebar-primary-foreground: var(--color-blue-50);
-  --chart-1: var(--color-blue-300);
-  --chart-2: var(--color-blue-500);
-  --chart-3: var(--color-blue-600);
-  --chart-4: var(--color-blue-700);
-  --chart-5: var(--color-blue-800);
-  --radius: 0.65rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.235 0.015 65);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.235 0.015 65);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.235 0.015 65);
-  --secondary: oklch(0.98 0.001 286.375);
-  --secondary-foreground: oklch(0.4 0.015 65);
-  --muted: oklch(0.967 0.001 286.375);
-  --muted-foreground: oklch(0.552 0.016 285.938);
-  --accent: oklch(0.967 0.001 286.375);
-  --accent-foreground: oklch(0.141 0.005 285.823);
-  --destructive: oklch(0.577 0.245 27.325);
-  --destructive-foreground: oklch(0.985 0 0);
-  --border: oklch(0.92 0.004 286.32);
-  --input: oklch(0.92 0.004 286.32);
-  --ring: oklch(0.623 0.214 259.815);
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.235 0.015 65);
-  --sidebar-accent: oklch(0.967 0.001 286.375);
-  --sidebar-accent-foreground: oklch(0.141 0.005 285.823);
-  --sidebar-border: oklch(0.92 0.004 286.32);
-  --sidebar-ring: oklch(0.623 0.214 259.815);
+  color-scheme: light;
+  --bg-body: #f0fdf9;
+  --bg-card: #ffffff;
+  --bg-topbar: #059669;
+  --bg-bottombar: #ffffff;
+  --accent: #10b981;
+  --accent-soft: #d1fae5;
+  --text-main: #111827;
+  --text-muted: #6b7280;
+  --border-subtle: #e5e7eb;
+  --shadow-soft: 0 10px 25px rgba(15, 118, 110, 0.18);
+  --lesson-font-scale: 1;
 }
 
-.dark {
-  --primary: var(--color-blue-700);
-  --primary-foreground: var(--color-blue-50);
-  --sidebar-primary: var(--color-blue-500);
-  --sidebar-primary-foreground: var(--color-blue-50);
-  --background: oklch(0.141 0.005 285.823);
-  --foreground: oklch(0.85 0.005 65);
-  --card: oklch(0.21 0.006 285.885);
-  --card-foreground: oklch(0.85 0.005 65);
-  --popover: oklch(0.21 0.006 285.885);
-  --popover-foreground: oklch(0.85 0.005 65);
-  --secondary: oklch(0.24 0.006 286.033);
-  --secondary-foreground: oklch(0.7 0.005 65);
-  --muted: oklch(0.274 0.006 286.033);
-  --muted-foreground: oklch(0.705 0.015 286.067);
-  --accent: oklch(0.274 0.006 286.033);
-  --accent-foreground:  oklch(0.92 0.005 65);
-  --destructive: oklch(0.704 0.191 22.216);
-  --destructive-foreground: oklch(0.985 0 0);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.488 0.243 264.376);
-  --chart-1: var(--color-blue-300);
-  --chart-2: var(--color-blue-500);
-  --chart-3: var(--color-blue-600);
-  --chart-4: var(--color-blue-700);
-  --chart-5: var(--color-blue-800);
-  --sidebar: oklch(0.21 0.006 285.885);
-  --sidebar-foreground: oklch(0.85 0.005 65);
-  --sidebar-accent: oklch(0.274 0.006 286.033);
-  --sidebar-accent-foreground:  oklch(0.985 0 0);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.488 0.243 264.376);
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --bg-body: #020617;
+  --bg-card: #020617;
+  --bg-topbar: #0f172a;
+  --bg-bottombar: #020617;
+  --accent: #22c55e;
+  --accent-soft: rgba(34, 197, 94, 0.15);
+  --text-main: #e5e7eb;
+  --text-muted: #9ca3af;
+  --border-subtle: #1f2937;
+  --shadow-soft: 0 16px 40px rgba(0, 0, 0, 0.65);
 }
 
-@layer base {
-  * {
-    @apply border-border outline-ring/50;
-  }
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
+  background: var(--bg-body);
+  color: var(--text-main);
+  direction: rtl;
+  display: flex;
+  flex-direction: column;
+}
+
+.hidden {
+  display: none !important;
+}
+
+/* ============================
+   2) شاشة الترحيب
+============================ */
+
+.landing {
+  position: relative;
+  flex: 1;
+  padding: 2.5rem 1rem 2rem;
+  background: radial-gradient(circle at top, #bbf7d0, #ecfeff);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.landing-inner {
+  position: relative;
+  max-width: 720px;
+  width: 100%;
+  text-align: center;
+  padding: 1.5rem 1.25rem 1.75rem;
+}
+
+.landing-icon {
+  font-size: 3rem;
+  margin-bottom: 0.5rem;
+}
+
+.landing-title {
+  margin: 0 0 0.6rem;
+  font-size: 2.4rem;
+  color: #047857;
+}
+
+.landing-subtitle {
+  margin: 0 0 0.75rem;
+  font-size: 1.1rem;
+  color: #15803d;
+}
+
+.landing-subtitle strong {
+  font-weight: 700;
+}
+
+.landing-text {
+  margin: 0 auto 1.4rem;
+  max-width: 640px;
+  line-height: 1.8;
+  font-size: 1rem;
+  color: var(--text-main);
+}
+
+.landing-footnote {
+  margin-top: 1rem;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+.primary-btn {
+  border: none;
+  border-radius: 999px;
+  padding: 0.55rem 1.4rem;
+  background: var(--accent);
+  color: #ecfdf5;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: var(--shadow-soft);
+  transition: transform 0.05s ease, box-shadow 0.1s ease,
+    background-color 0.12s ease;
+}
+
+.primary-btn:hover {
+  background: #22c55e;
+}
+
+.primary-btn:active {
+  transform: scale(0.97);
+  box-shadow: 0 4px 10px rgba(16, 185, 129, 0.45);
+}
+
+/* دوائر الخلفية */
+
+.orb {
+  position: absolute;
+  border-radius: 999px;
+  background: rgba(16, 185, 129, 0.18);
+  filter: blur(0.5px);
+}
+
+.orb-1 {
+  width: 200px;
+  height: 200px;
+  top: -60px;
+  left: 6%;
+}
+
+.orb-2 {
+  width: 140px;
+  height: 140px;
+  top: 18%;
+  right: 8%;
+}
+
+.orb-3 {
+  width: 110px;
+  height: 110px;
+  bottom: 8%;
+  left: 12%;
+}
+
+.orb-4 {
+  width: 90px;
+  height: 90px;
+  bottom: 20%;
+  right: 18%;
+}
+
+/* ============================
+   3) هيكل التطبيق بعد "ابدأ التعلّم"
+============================ */
+
+.app-root {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  padding: 0 0 0.75rem;
+}
+
+.app-shell {
+  width: 100%;
+  max-width: 480px;
+  margin: 0 auto;
+  min-height: calc(100vh - 0.75rem);
+  display: flex;
+  flex-direction: column;
+}
+
+/* الشريط العلوي */
+
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.65rem 0.9rem;
+  background: var(--bg-topbar);
+  color: #ecfdf5;
+  border-radius: 0 0 1.25rem 1.25rem;
+  box-shadow: 0 6px 18px rgba(15, 118, 110, 0.35);
+}
+
+.topbar-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+}
+
+.icon-btn {
+  border: none;
+  background: rgba(15, 23, 42, 0.16);
+  color: #ecfdf5;
+  border-radius: 999px;
+  width: 32px;
+  height: 32px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.icon-btn:hover {
+  background: rgba(15, 23, 42, 0.28);
+}
+
+/* ============================
+   4) الـ Views والبطاقات العامة
+============================ */
+
+.view {
+  flex: 1;
+  padding: 0.75rem 0.75rem 3.9rem; /* مساحة للتابات أسفل */
+  overflow-y: auto;
+}
+
+.view:not(.active) {
+  display: none;
+}
+
+.card {
+  background: var(--bg-card);
+  border-radius: 0.9rem;
+  border: 1px solid var(--border-subtle);
+  padding: 0.75rem 0.9rem;
+  margin-bottom: 0.7rem;
+  box-shadow: 0 2px 6px rgba(15, 23, 42, 0.04);
+}
+
+.app-header h2 {
+  margin: 0 0 0.25rem;
+  font-size: 1.3rem;
+}
+
+.app-header p {
+  margin: 0 0 0.5rem;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+/* ============================
+   5) Accordion التصنيفات والدروس
+============================ */
+
+.category-card {
+  margin-top: 0.65rem;
+}
+
+.category-header {
+  width: 100%;
+  text-align: right;
+  border: none;
+  background: transparent;
+  padding: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+}
+
+.category-header h3 {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.category-header p {
+  margin: 0.1rem 0 0;
+  font-size: 0.82rem;
+  color: var(--text-muted);
+}
+
+.category-body {
+  margin-top: 0.35rem;
+}
+
+.lessons-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.lesson-row {
+  padding: 0.5rem 0.35rem;
+  border-bottom: 1px solid rgba(15, 23, 42, 0.08);
+  cursor: pointer;
+}
+
+.lesson-row:last-child {
+  border-bottom: none;
+}
+
+.lesson-row-main {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.lesson-title {
+  font-size: 0.95rem;
+}
+
+.lesson-status {
+  font-size: 0.9rem;
+}
+
+.lesson-row-meta {
+  margin-top: 0.15rem;
+  font-size: 0.78rem;
+  color: var(--text-muted);
+}
+
+/* ============================
+   6) صفحة الدرس
+============================ */
+
+.lesson-content {
+  font-size: calc(1rem * var(--lesson-font-scale));
+  line-height: 1.9;
+}
+
+.lesson-content p {
+  margin: 0 0 0.75rem;
+}
+
+.lesson-section ul {
+  padding-right: 1.2rem;
+  margin: 0 0 0.75rem;
+}
+
+.lesson-image img {
+  max-width: 100%;
+  display: block;
+  border-radius: 0.75rem;
+  margin-bottom: 0.45rem;
+}
+
+.videos-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.videos-list li {
+  margin-bottom: 0.4rem;
+  font-size: 0.9rem;
+}
+
+/* ============================
+   7) شريط التابات السفلي
+============================ */
+
+.bottombar {
+  position: sticky;
+  bottom: 0;
+  z-index: 15;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  background: var(--bg-bottombar);
+  border-top: 1px solid var(--border-subtle);
+  padding: 0.25rem 0.4rem;
+  border-radius: 1rem 1rem 0 0;
+  box-shadow: 0 -4px 14px rgba(15, 23, 42, 0.12);
+}
+
+.tab-btn {
+  border: none;
+  background: transparent;
+  padding: 0.3rem 0.4rem;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.tab-btn.active {
+  color: var(--accent);
+  font-weight: 600;
+}
+
+/* ============================
+   8) الإحصائيات والمتصدرون
+============================ */
+
+.progress-bar {
+  margin-top: 0.4rem;
+  width: 100%;
+  height: 8px;
+  border-radius: 999px;
+  background: #e5e7eb;
+  overflow: hidden;
+}
+
+.progress-bar span {
+  display: block;
+  height: 100%;
+  background: linear-gradient(90deg, #22c55e, #22c55e);
+}
+
+.stats-list,
+.leaders-list {
+  list-style: none;
+  padding: 0;
+  margin: 0.3rem 0 0;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.stats-list li + li,
+.leaders-list li + li {
+  margin-top: 0.25rem;
+}
+
+.muted {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+/* ============================
+   9) صفحة اسأل المعلم
+============================ */
+
+.ask-ai-card h3 {
+  margin-top: 0;
+}
+
+.teacher-contact {
+  background: #ecfdf5;
+  border-radius: 0.9rem;
+  border: 1px solid #bbf7d0;
+  padding: 0.9rem 0.9rem 0.8rem;
+  margin-top: 0.7rem;
+}
+
+.teacher-contact-header h3 {
+  margin: 0 0 0.15rem;
+  font-size: 0.95rem;
+  color: #065f46;
+}
+
+.teacher-contact-header p {
+  margin: 0;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.teacher-contact-inner {
+  margin-top: 0.7rem;
+  background: #f0fdf9;
+  border-radius: 0.9rem;
+  border: 1px solid #bbf7d0;
+  padding: 0.9rem 0.9rem 0.8rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.teacher-avatar {
+  width: 60px;
+  height: 60px;
+  border-radius: 999px;
+  background: #dcfce7;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.1rem;
+  margin-bottom: 0.4rem;
+}
+
+.teacher-name {
+  margin: 0 0 0.1rem;
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.teacher-role {
+  margin: 0 0 0.4rem;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.teacher-phone {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  margin-bottom: 0.4rem;
+  font-size: 0.9rem;
+}
+
+.teacher-phone-icon {
+  font-size: 1rem;
+}
+
+.teacher-phone-number {
+  direction: ltr;
+  unicode-bidi: bidi-override;
+}
+
+.teacher-note {
+  margin: 0 0 0.55rem;
+  font-size: 0.86rem;
+  color: var(--text-muted);
+}
+
+/* زر الواتساب */
+
+.whatsapp-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  border-radius: 999px;
+  padding: 0.55rem 1.3rem;
+  background: #16a34a;
+  color: #f9fafb;
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 600;
+  box-shadow: 0 10px 18px rgba(22, 163, 74, 0.35);
+  transition: transform 0.05s ease, box-shadow 0.1s ease,
+    background-color 0.12s ease;
+}
+
+.whatsapp-btn:hover {
+  background: #22c55e;
+}
+
+.whatsapp-btn:active {
+  transform: translateY(1px);
+  box-shadow: 0 4px 10px rgba(21, 128, 61, 0.5);
+}
+
+.teacher-time {
+  margin-top: 0.7rem;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  text-align: center;
+}
+
+/* ============================
+   10) المودال (غير مستخدم حاليًا)
+============================ */
+
+.modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+}
+
+.modal-box {
+  background: var(--bg-card);
+  border-radius: 0.9rem;
+  padding: 1rem 1rem 0.9rem;
+  width: 90%;
+  max-width: 360px;
+  box-shadow: var(--shadow-soft);
+}
+
+.modal-box h3 {
+  margin: 0 0 0.5rem;
+  font-size: 1.1rem;
+}
+
+.modal-box p {
+  margin: 0 0 0.9rem;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+.modal-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+/* ============================
+   11) فوتر التطبيق
+============================ */
+
+.app-footer {
+  text-align: center;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  padding: 0.5rem 1rem 0.9rem;
+}
+
+/* ============================
+   12) استجابة الشاشات الكبيرة
+============================ */
+
+@media (min-width: 768px) {
   body {
-    @apply bg-background text-foreground;
-    font-size: var(--base-font-size, 16px);
-  }
-  button:not(:disabled),
-  [role="button"]:not([aria-disabled="true"]),
-  [type="button"]:not(:disabled),
-  [type="submit"]:not(:disabled),
-  [type="reset"]:not(:disabled),
-  a[href],
-  select:not(:disabled),
-  input[type="checkbox"]:not(:disabled),
-  input[type="radio"]:not(:disabled) {
-    @apply cursor-pointer;
-  }
-}
-
-@layer components {
-  /**
-   * Custom container utility that centers content and adds responsive padding.
-   *
-   * This overrides Tailwind's default container behavior to:
-   * - Auto-center content (mx-auto)
-   * - Add responsive horizontal padding
-   * - Set max-width for large screens
-   *
-   * Usage: <div className="container">...</div>
-   *
-   * For custom widths, use max-w-* utilities directly:
-   * <div className="max-w-6xl mx-auto px-4">...</div>
-   */
-  .container {
-    width: 100%;
-    margin-left: auto;
-    margin-right: auto;
-    padding-left: 1rem; /* 16px - mobile padding */
-    padding-right: 1rem;
+    justify-content: flex-start;
+    align-items: center;
   }
 
-  .flex {
-    min-height: 0;
-    min-width: 0;
+  .landing {
+    padding-top: 3rem;
   }
 
-  @media (min-width: 640px) {
-    .container {
-      padding-left: 1.5rem; /* 24px - tablet padding */
-      padding-right: 1.5rem;
-    }
+  .landing-title {
+    font-size: 2.7rem;
   }
 
-  @media (min-width: 1024px) {
-    .container {
-      padding-left: 2rem; /* 32px - desktop padding */
-      padding-right: 2rem;
-      max-width: 1280px; /* Standard content width */
-    }
+  .app-shell {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    border-radius: 1.25rem;
+    background: rgba(255, 255, 255, 0.86);
+    backdrop-filter: blur(16px);
+    border: 1px solid rgba(148, 163, 184, 0.35);
+  }
+
+  :root[data-theme="dark"] .app-shell {
+    background: rgba(15, 23, 42, 0.9);
+    border-color: rgba(31, 41, 55, 0.9);
   }
 }
