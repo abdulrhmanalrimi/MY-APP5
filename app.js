@@ -481,43 +481,8 @@ const LESSONS = {
         url: 'https://youtu.be/fY-y8LqX6Bk?si=LU1wqp5iTMB_YQOB'
       }
     ],
-    images: [
-      // ضع هنا مسار صورة أدوات الاستفهام إن أحببت
-      // "public/lessons/أدوات الاستفهام.jpg"
-    ],
-    contentHtml: `
-      <section class="lesson-section">
-        <p>
-          أسلوب الاستفهام هو سؤال نستخدم فيه أداة خاصة حتى نطلب معلومة مجهولة
-          عن شخص أو شيء أو زمان أو مكان. :contentReference[oaicite:0]{index=0}
-        </p>
-
-        <p>من أهم أدوات الاستفهام في العربية:</p>
-
-        <ul>
-          <li><strong>مَنْ / مَنْ ذا</strong> للسؤال عن العاقل.</li>
-          <li><strong>ما / ماذا</strong> للسؤال عن غير العاقل أو عن الشيء.</li>
-          <li><strong>متى</strong> للسؤال عن الزمان الحاضر أو الماضي.</li>
-          <li><strong>أيان</strong> للسؤال عن الزمن في المستقبل.</li>
-          <li><strong>أين</strong> للسؤال عن المكان.</li>
-          <li><strong>كيف</strong> للسؤال عن الحال والهيئة.</li>
-          <li><strong>كم</strong> للسؤال عن العدد.</li>
-          <li><strong>أيُّ</strong> للسؤال عن تعيين واحد من بين مجموعة.</li>
-        </ul>
-
-        <p>أمثلة توضيحية:</p>
-        <ul>
-          <li>مَنْ آخر الخلفاء الراشدين؟ (للسؤال عن العاقل)</li>
-          <li>ما أحبُّ العلوم إليك؟ (للسؤال عن غير العاقل)</li>
-          <li>متى رجعت؟ (للسؤال عن الزمان)</li>
-          <li>أيان تسافر؟ (للسؤال عن الزمان المستقبل)</li>
-          <li>كيف حالك؟ (للسؤال عن الحالة)</li>
-          <li>كم كتابًا قرأت؟ (للسؤال عن العدد)</li>
-          <li>أين أخوك؟ (للسؤال عن المكان)</li>
-          <li>أيُّ رجلٍ أتى؟ (للسؤال عن تعيين الشيء)</li>
-        </ul>
-      </section>
-    `
+    images: [],
+    contentHtml: ''
   }
 };
 
@@ -607,14 +572,15 @@ const CATEGORIES = [
 ];
 
 // =============================
-// 3) حالة التطبيق (التقدّم + الملاحظات)
+// 3) حالة التطبيق (التقدّم + الملاحظات + المفضلة)
 // =============================
 
-const STORAGE_KEY = 'nahw-bisatate-state-v1';
+const STORAGE_KEY = 'nahw-bisatate-state-v2';
 
 let appState = {
   completedLessons: {}, // lessonId: true
-  notes: {}, // lessonId: 'نص الملاحظات'
+  notes: {}, // lessonId: 'text'
+  favorites: {}, // lessonId: true
   points: 0
 };
 
@@ -625,6 +591,7 @@ function loadState() {
     const parsed = JSON.parse(raw);
     if (parsed.completedLessons) appState.completedLessons = parsed.completedLessons;
     if (parsed.notes) appState.notes = parsed.notes;
+    if (parsed.favorites) appState.favorites = parsed.favorites;
     if (typeof parsed.points === 'number') appState.points = parsed.points;
   } catch (err) {
     console.warn('تعذّر قراءة الحالة من التخزين', err);
@@ -646,6 +613,15 @@ function getProgress() {
     if (appState.completedLessons[id]) completed++;
   });
   return { completed, total: allIds.length };
+}
+
+function toggleFavorite(lessonId) {
+  if (appState.favorites[lessonId]) {
+    delete appState.favorites[lessonId];
+  } else {
+    appState.favorites[lessonId] = true;
+  }
+  saveState();
 }
 
 // =============================
@@ -681,11 +657,11 @@ function buildAppShell() {
     <div class="app-shell">
       <header class="topbar">
         <div class="topbar-left">
-          <button id="btn-text-size" class="icon-btn" title="تغيير حجم الخط">T</button>
+          <button id="btn-theme" class="icon-btn" title="الوضع الليلي">🌙</button>
         </div>
         <div class="topbar-title">النحو ببساطة</div>
         <div class="topbar-right">
-          <button id="btn-theme" class="icon-btn" title="الوضع الليلي">🌙</button>
+          <button id="btn-text-size" class="icon-btn" title="تغيير حجم الخط">T</button>
         </div>
       </header>
 
@@ -750,16 +726,24 @@ function renderLessonRow(lessonId) {
   const lesson = LESSONS[lessonId];
   if (!lesson) return '';
   const isCompleted = !!appState.completedLessons[lessonId];
+  const isFavorite = !!appState.favorites[lessonId];
   const hasVideo = lesson.videos && lesson.videos.length > 0;
 
   return `
     <li class="lesson-row" data-lesson-id="${lessonId}">
       <div class="lesson-row-main">
         <span class="lesson-title">${lesson.title}</span>
-        ${isCompleted ? '<span class="lesson-status">✅</span>' : ''}
+        <button
+          class="favorite-toggle"
+          data-lesson-id="${lessonId}"
+          aria-label="تبديل المفضلة"
+          style="border:none;background:transparent;font-size:1.1rem;cursor:pointer;">
+          ${isFavorite ? '★' : '☆'}
+        </button>
       </div>
       <div class="lesson-row-meta">
         ${hasVideo ? '<span>🎥 يحتوي فيديو</span>' : ''}
+        ${isCompleted ? '<span> · مكتمل ✅</span>' : ''}
       </div>
     </li>
   `;
@@ -810,6 +794,7 @@ function renderLessonsHome() {
 
   view.innerHTML = html;
 
+  // فتح / طيّ التصنيف
   document.querySelectorAll('.category-header').forEach((btn) => {
     btn.addEventListener('click', () => {
       const catId = btn.dataset.catId;
@@ -821,10 +806,21 @@ function renderLessonsHome() {
     });
   });
 
+  // فتح الدرس
   document.querySelectorAll('.lesson-row').forEach((row) => {
     row.addEventListener('click', () => {
       const lessonId = row.dataset.lessonId;
       renderLessonDetail(lessonId);
+    });
+  });
+
+  // تبديل المفضلة من القائمة
+  document.querySelectorAll('.favorite-toggle').forEach((btn) => {
+    btn.addEventListener('click', (ev) => {
+      ev.stopPropagation(); // لا تفتح صفحة الدرس
+      const lessonId = btn.dataset.lessonId;
+      toggleFavorite(lessonId);
+      renderLessonsHome(); // إعادة الرسم لتحديث النجوم
     });
   });
 }
@@ -840,6 +836,7 @@ function renderLessonDetail(lessonId) {
 
   const isCompleted = !!appState.completedLessons[lessonId];
   const notes = appState.notes[lessonId] || '';
+  const isFavorite = !!appState.favorites[lessonId];
 
   let imagesHtml = '';
   if (lesson.images && lesson.images.length) {
@@ -886,7 +883,15 @@ function renderLessonDetail(lessonId) {
     </button>
 
     <section class="card">
-      <h2>${lesson.title}</h2>
+      <div class="lesson-detail-header" style="display:flex;align-items:center;justify-content:space-between;gap:0.5rem;">
+        <h2 style="margin:0;">${lesson.title}</h2>
+        <button
+          id="favorite-detail-toggle"
+          aria-label="تبديل المفضلة"
+          style="border:none;background:transparent;font-size:1.4rem;cursor:pointer;">
+          ${isFavorite ? '★' : '☆'}
+        </button>
+      </div>
     </section>
 
     ${imagesHtml}
@@ -901,6 +906,14 @@ function renderLessonDetail(lessonId) {
     </section>
 
     ${videosHtml}
+
+    <section class="card">
+      <h3>تحميل الدرس</h3>
+      <p class="muted">سيتم فتح نافذة الطباعة، ويمكنك اختيار "حفظ كملف PDF" من المتصفح.</p>
+      <button class="primary-btn" id="download-pdf">
+        تحميل الدرس بصيغة PDF
+      </button>
+    </section>
 
     <section class="card">
       <h3>ملاحظاتي الشخصية</h3>
@@ -919,6 +932,7 @@ function renderLessonDetail(lessonId) {
     </section>
   `;
 
+  // رجوع للقائمة
   document.getElementById('back-to-lessons').addEventListener('click', () => {
     const ok = window.confirm(
       'هل أنت متأكد من العودة إلى قائمة الدروس؟\nالعلم يحتاج صبرًا، لا تتعجّل الخروج 😊'
@@ -927,6 +941,7 @@ function renderLessonDetail(lessonId) {
     renderLessonsHome();
   });
 
+  // حفظ الملاحظات
   document.getElementById('save-notes').addEventListener('click', () => {
     const textarea = document.getElementById('notes-text');
     appState.notes[lessonId] = textarea.value;
@@ -934,6 +949,7 @@ function renderLessonDetail(lessonId) {
     alert('تم حفظ ملاحظاتك ✅');
   });
 
+  // تبديل حالة الإكمال
   document.getElementById('toggle-complete').addEventListener('click', () => {
     appState.completedLessons[lessonId] = !appState.completedLessons[lessonId];
     if (appState.completedLessons[lessonId]) {
@@ -944,6 +960,81 @@ function renderLessonDetail(lessonId) {
     saveState();
     renderLessonDetail(lessonId);
   });
+
+  // تبديل المفضلة من صفحة الدرس
+  const favBtn = document.getElementById('favorite-detail-toggle');
+  if (favBtn) {
+    favBtn.addEventListener('click', () => {
+      toggleFavorite(lessonId);
+      renderLessonDetail(lessonId);
+    });
+  }
+
+  // تحميل PDF
+  const downloadBtn = document.getElementById('download-pdf');
+  if (downloadBtn) {
+    downloadBtn.addEventListener('click', () => {
+      downloadLessonPdf(lessonId);
+    });
+  }
+}
+
+// إنشاء نافذة للطباعة / الحفظ كـ PDF
+function downloadLessonPdf(lessonId) {
+  const lesson = LESSONS[lessonId];
+  if (!lesson) return;
+
+  const html = `
+    <!doctype html>
+    <html lang="ar" dir="rtl">
+      <head>
+        <meta charset="utf-8" />
+        <title>${lesson.title}</title>
+        <style>
+          body {
+            font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+            line-height: 1.8;
+            padding: 24px;
+          }
+          h1 {
+            text-align: center;
+            margin-bottom: 18px;
+          }
+          h2, h3 {
+            margin-top: 18px;
+          }
+          p, li {
+            font-size: 16px;
+          }
+          ul {
+            padding-right: 20px;
+          }
+        </style>
+      </head>
+      <body>
+        <h1>${lesson.title}</h1>
+        ${
+          lesson.contentHtml && lesson.contentHtml.trim()
+            ? lesson.contentHtml
+            : '<p>سيتم إضافة محتوى هذا الدرس لاحقًا.</p>'
+        }
+      </body>
+    </html>
+  `;
+
+  const printWindow = window.open('', '_blank');
+  if (!printWindow) {
+    alert('تعذر فتح نافذة جديدة، قد يكون المتصفح حظر النوافذ المنبثقة.');
+    return;
+  }
+  printWindow.document.open();
+  printWindow.document.write(html);
+  printWindow.document.close();
+  printWindow.focus();
+
+  printWindow.onload = function () {
+    printWindow.print();
+  };
 }
 
 // =============================
@@ -956,6 +1047,7 @@ function renderStatsView() {
 
   const { completed, total } = getProgress();
   const percent = total ? Math.round((completed / total) * 100) : 0;
+  const favoritesCount = Object.keys(appState.favorites).length;
 
   view.innerHTML = `
     <header class="app-header">
@@ -976,6 +1068,11 @@ function renderStatsView() {
       <p>النقاط الحالية: ${appState.points}</p>
       <p>تكسب 10 نقاط عن كل درس تضعه مكتملًا.</p>
     </section>
+
+    <section class="card">
+      <h3>المفضلة</h3>
+      <p>عدد الدروس في المفضلة: ${favoritesCount}</p>
+    </section>
   `;
 }
 
@@ -993,53 +1090,54 @@ function renderAskTeacherView() {
       <p>اكتب سؤالك في النحو أو تواصل مباشرة مع الأستاذة المشرفة.</p>
     </header>
 
-    <section class="card ai-question-card">
+    <section class="card">
       <h3>سؤال للذكاء الاصطناعي (قريبًا)</h3>
       <p class="muted">
         في النسخة القادمة سيتم ربط هذه الخانة بخدمة ذكاء اصطناعي عبر خادم آمن،
-        حتى لا نعرض مفاتيح الـ API للمتصفّح. حاليًا يمكنك استخدام هذه الخانة
-        لكتابة الأسئلة أو الملاحظات التي تريد مناقشتها مع المعلم.
+        حتى لا نعرض مفاتيح الـ API في المتصفّح. الآن يمكنك استخدام الخانة فقط
+        لتدوين الأسئلة التي تريد مناقشتها مع المعلم.
       </p>
       <textarea id="ai-question" rows="4" style="width:100%;" placeholder="اكتب سؤالك هنا..."></textarea>
-      <button class="primary-btn ai-send-btn" id="ai-send" disabled>
+      <button class="primary-btn" id="ai-send" disabled>
         إرسال (غير مفعّل بعد)
       </button>
     </section>
 
-    <section class="card teacher-contact">
+    <section class="card teacher-contact-card">
       <div class="teacher-contact-header">
-        <span class="teacher-header-icon">💬</span>
         <div>
           <h3>تواصل مع الأستاذة المشرفة</h3>
-          <p>للاستفسارات والأسئلة المباشرة</p>
+          <p class="teacher-contact-subtitle">للاستفسارات والأسئلة المباشرة</p>
         </div>
+        <span class="teacher-contact-icon">💬</span>
       </div>
 
-      <div class="teacher-card">
+      <div class="teacher-contact-inner">
         <div class="teacher-avatar">👩‍🏫</div>
-        <h4 class="teacher-name">الأستاذة/ سهام غازي</h4>
-        <p class="teacher-role">المشرفة على التطبيق</p>
+        <div class="teacher-name">الأستاذة/ سهام غازي</div>
+        <div class="teacher-role">المشرفة على التطبيق</div>
 
-        <a class="teacher-phone" href="tel:+967775392526">
-          +967&nbsp;775&nbsp;392&nbsp;526
-        </a>
+        <div class="teacher-phone">
+          <span class="phone-icon">📞</span>
+          <span class="phone-number">+967&nbsp;775&nbsp;392&nbsp;526</span>
+        </div>
 
-        <p class="teacher-note">
+        <p class="teacher-message">
           لديك سؤال أو استفسار؟ تواصل معنا مباشرة عبر الواتساب،
           وسنكون سعداء بمساعدتك في فهم القواعد النحوية وتجاوز الصعوبات.
         </p>
 
         <a
-          class="whatsapp-btn"
+          class="teacher-whatsapp-btn"
           href="https://wa.me/967775392526"
           target="_blank"
           rel="noopener"
         >
           <span>راسلنا على الواتساب</span>
-          <span class="wa-icon">🟢</span>
+          <span>🟢</span>
         </a>
 
-        <p class="teacher-time">
+        <p class="teacher-note">
           أوقات الرد: من السبت إلى الخميس، ٩ صباحًا – ٥ مساءً 🕒
         </p>
       </div>
@@ -1048,7 +1146,7 @@ function renderAskTeacherView() {
 }
 
 // =============================
-// 10) صفحة المتصدرين (محلية)
+// 10) صفحة المتصدرين (تجريبية محلية)
 // =============================
 
 function renderLeadersView() {
