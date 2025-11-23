@@ -1,5 +1,5 @@
 // =============================
-// 1) بيانات الدروس
+// 1) بيانات الدروس LESSONS
 // =============================
 
 const LESSONS = {
@@ -487,7 +487,7 @@ const LESSONS = {
 };
 
 // =============================
-// 2) التصنيفات
+// 2) التصنيفات CATEGORIES
 // =============================
 
 const CATEGORIES = [
@@ -572,16 +572,17 @@ const CATEGORIES = [
 ];
 
 // =============================
-// 3) حالة التطبيق
+// 3) حالة التطبيق (تقدّم + ملاحظات + مفضلة + نتائج اختبارات)
 // =============================
 
-const STORAGE_KEY = 'nahw-bisatate-state-v3';
+const STORAGE_KEY = 'nahw-bisatate-state-v2';
 
 let appState = {
   completedLessons: {}, // lessonId: true
   notes: {}, // lessonId: 'text'
   favorites: {}, // lessonId: true
-  points: 0
+  points: 0,
+  quizResults: [] // مصفوفة نتائج الاختبارات (0-100)
 };
 
 function loadState() {
@@ -593,6 +594,7 @@ function loadState() {
     if (parsed.notes) appState.notes = parsed.notes;
     if (parsed.favorites) appState.favorites = parsed.favorites;
     if (typeof parsed.points === 'number') appState.points = parsed.points;
+    if (Array.isArray(parsed.quizResults)) appState.quizResults = parsed.quizResults;
   } catch (err) {
     console.warn('تعذر قراءة الحالة من التخزين', err);
   }
@@ -615,6 +617,30 @@ function getProgress() {
   return { completed, total: allIds.length };
 }
 
+function getAverageQuizScore() {
+  const arr = appState.quizResults || [];
+  if (!arr.length) return null;
+  const sum = arr.reduce((s, v) => s + v, 0);
+  return Math.round(sum / arr.length);
+}
+
+function getCategoryStats() {
+  return CATEGORIES.map((cat) => {
+    const total = cat.lessonIds.filter((id) => LESSONS[id]).length;
+    const completed = cat.lessonIds.filter(
+      (id) => LESSONS[id] && appState.completedLessons[id]
+    ).length;
+    const percent = total ? Math.round((completed / total) * 100) : 0;
+    return {
+      id: cat.id,
+      title: cat.title,
+      total,
+      completed,
+      percent
+    };
+  });
+}
+
 function toggleFavorite(lessonId) {
   if (appState.favorites[lessonId]) {
     delete appState.favorites[lessonId];
@@ -625,7 +651,7 @@ function toggleFavorite(lessonId) {
 }
 
 // =============================
-// 4) الثيم وحجم الخط
+// 4) الثيم + حجم الخط
 // =============================
 
 let fontScale = 1;
@@ -719,7 +745,7 @@ function switchView(viewId) {
 }
 
 // =============================
-// 6) واجهة الدروس الرئيسية
+// 6) واجهة قائمة الدروس
 // =============================
 
 function renderLessonRow(lessonId) {
@@ -765,7 +791,7 @@ function renderLessonsHome() {
       <strong>تقدّمك العام:</strong>
       <p>الدروس المكتملة: ${progress.completed} من ${progress.total}</p>
     </section>
-  `;
+ `;
 
   CATEGORIES.forEach((cat, index) => {
     const catLessons = cat.lessonIds.filter((id) => LESSONS[id]);
@@ -794,7 +820,7 @@ function renderLessonsHome() {
 
   view.innerHTML = html;
 
-  // فتح / طي التصنيف
+  // فتح / إغلاق التصنيف
   document.querySelectorAll('.category-header').forEach((btn) => {
     btn.addEventListener('click', () => {
       const catId = btn.dataset.catId;
@@ -932,7 +958,7 @@ function renderLessonDetail(lessonId) {
     </section>
   `;
 
-  // رجوع للقائمة مع مودال جميل
+  // زر العودة مع مودال جميل
   document
     .getElementById('back-to-lessons')
     .addEventListener('click', () => {
@@ -979,10 +1005,7 @@ function renderLessonDetail(lessonId) {
   }
 }
 
-// =============================
-// 8) إنشاء PDF (نافذة طباعة)
-// =============================
-
+// إنشاء نافذة للطباعة / الحفظ كـ PDF
 function downloadLessonPdf(lessonId) {
   const lesson = LESSONS[lessonId];
   if (!lesson) return;
@@ -1041,53 +1064,61 @@ function downloadLessonPdf(lessonId) {
 }
 
 // =============================
-// 9) مودال تأكيد الخروج (تصميم جميل)
+// 8) الشارات والإنجازات
 // =============================
 
-function showExitConfirmModal(onExit) {
-  const modal = document.createElement('div');
-  modal.className = 'modal';
+function getBadges(overall, percent) {
+  const favoritesCount = Object.keys(appState.favorites).length;
+  const avgScore = getAverageQuizScore();
 
-  modal.innerHTML = `
-    <div class="modal-box exit-modal">
-      <button class="modal-close" aria-label="إغلاق">×</button>
-      <div class="exit-modal-icon">✨</div>
-      <h3 class="exit-modal-title">هل أنت متأكد؟</h3>
-      <p class="exit-modal-text">
-        العلم يحتاج صبرًا، لا تتعجّل الخروج...
-        كل دقيقة تتعلم فيها تقرّبك من الإتقان! 📚
-      </p>
-      <div class="modal-actions">
-        <button class="secondary-btn exit-btn">الخروج</button>
-        <button class="primary-btn stay-btn">متابعة التعلم</button>
-      </div>
-    </div>
-  `;
-
-  document.body.appendChild(modal);
-
-  const close = () => {
-    if (modal.parentNode) modal.parentNode.removeChild(modal);
-  };
-
-  modal.addEventListener('click', (e) => {
-    if (e.target === modal) close();
-  });
-
-  modal.querySelector('.modal-close').addEventListener('click', close);
-
-  modal.querySelector('.stay-btn').addEventListener('click', () => {
-    close();
-  });
-
-  modal.querySelector('.exit-btn').addEventListener('click', () => {
-    close();
-    if (typeof onExit === 'function') onExit();
-  });
+  return [
+    {
+      id: 'first-lesson',
+      title: 'أول خطوة',
+      description: 'إكمال أول درس في التطبيق.',
+      unlocked: overall.completed >= 1
+    },
+    {
+      id: 'ten-lessons',
+      title: 'محبّ النحو',
+      description: 'إكمال 10 دروس أو أكثر.',
+      unlocked: overall.completed >= 10
+    },
+    {
+      id: 'half-way',
+      title: 'نصف الطريق',
+      description: 'الوصول إلى 50٪ من الدروس.',
+      unlocked: percent >= 50
+    },
+    {
+      id: 'full-progress',
+      title: 'قمة الإتقان',
+      description: 'إكمال جميع الدروس المتاحة.',
+      unlocked: overall.total > 0 && percent === 100
+    },
+    {
+      id: 'points-100',
+      title: 'مجتهد',
+      description: 'الحصول على 100 نقطة أو أكثر.',
+      unlocked: appState.points >= 100
+    },
+    {
+      id: 'favorites-3',
+      title: 'عاشق الدروس',
+      description: 'إضافة 3 دروس على الأقل إلى المفضلة.',
+      unlocked: favoritesCount >= 3
+    },
+    {
+      id: 'quiz-master',
+      title: 'محترف الاختبارات',
+      description: 'الوصول إلى متوسط 80٪ في الاختبارات.',
+      unlocked: avgScore !== null && avgScore >= 80
+    }
+  ];
 }
 
 // =============================
-// 10) صفحة الإحصائيات
+// 9) صفحة الإحصائيات المتقدمة
 // =============================
 
 function renderStatsView() {
@@ -1097,36 +1128,218 @@ function renderStatsView() {
   const { completed, total } = getProgress();
   const percent = total ? Math.round((completed / total) * 100) : 0;
   const favoritesCount = Object.keys(appState.favorites).length;
+  const avgScore = getAverageQuizScore();
+  const catStats = getCategoryStats();
+  const badges = getBadges({ completed, total }, percent);
+  const unlockedBadges = badges.filter((b) => b.unlocked).length;
+
+  const canDownloadCertificate = percent >= 60; // نسبة المطلوب للشهادة
 
   view.innerHTML = `
     <header class="app-header">
       <h2>إحصائياتي</h2>
-      <p>تابع تقدّمك في تعلّم النحو.</p>
+      <p>تابع تقدّمك في تعلّم النحو من خلال هذه اللوحة التفاعلية.</p>
     </header>
 
+    <!-- التقدم العام -->
     <section class="card">
       <h3>التقدّم العام</h3>
-      <p>الدروس المكتملة: ${completed} من ${total} (${percent}٪)</p>
+      <p>الدروس المكتملة: <strong>${completed}</strong> من <strong>${total}</strong> (${percent}٪)</p>
+      <p>النقاط المكتسبة: <strong>${appState.points}</strong></p>
+      <p>متوسط نتائج الاختبارات:
+        <strong>${
+          avgScore === null ? 'لا توجد نتائج للاختبارات بعد.' : avgScore + '٪'
+        }</strong>
+      </p>
       <div class="progress-bar">
         <span style="width:${percent}%;"></span>
       </div>
     </section>
 
+    <!-- الرسوم البيانية حسب التصنيف -->
     <section class="card">
-      <h3>النقاط</h3>
-      <p>النقاط الحالية: ${appState.points}</p>
-      <p>تكسب 10 نقاط عن كل درس تضعه مكتملًا.</p>
+      <h3>التقدّم حسب التصنيف</h3>
+      <div class="stats-bars">
+        ${catStats
+          .map(
+            (cat) => `
+          <div class="stats-bar-row">
+            <div class="stats-bar-label">${cat.title}</div>
+            <div class="stats-bar-track">
+              <span style="width:${cat.percent}%;"></span>
+            </div>
+            <div class="stats-bar-value">
+              ${cat.completed}/${cat.total} (${cat.percent}٪)
+            </div>
+          </div>
+        `
+          )
+          .join('')}
+      </div>
     </section>
 
+    <!-- الشارات -->
+    <section class="card">
+      <h3>الإنجازات والشارات</h3>
+      <p>الشارات المفتوحة: <strong>${unlockedBadges}</strong> من ${
+    badges.length
+  }</p>
+      <div class="badges-grid">
+        ${badges
+          .map(
+            (b) => `
+          <div class="badge-card ${
+            b.unlocked ? 'badge-unlocked' : 'badge-locked'
+          }">
+            <div class="badge-icon">${b.unlocked ? '🏅' : '🔒'}</div>
+            <div class="badge-title">${b.title}</div>
+            <div class="badge-desc">${b.description}</div>
+          </div>
+        `
+          )
+          .join('')}
+      </div>
+    </section>
+
+    <!-- معلومات المفضلة -->
     <section class="card">
       <h3>المفضلة</h3>
-      <p>عدد الدروس في المفضلة: ${favoritesCount}</p>
+      <p>عدد الدروس في المفضلة: <strong>${favoritesCount}</strong></p>
+      <p class="muted">استخدم المفضلة لحفظ الدروس التي تريد مراجعتها باستمرار.</p>
+    </section>
+
+    <!-- شهادة الإنجاز -->
+    <section class="card">
+      <h3>شهادة الإنجاز</h3>
+      <p>
+        عند الوصول إلى تقدّم جيد في التطبيق يمكنك تحميل شهادة إنجاز بصيغة PDF
+        ومشاركتها مع أصدقائك أو معلمك.
+      </p>
+      <button class="primary-btn" id="download-cert" ${
+        canDownloadCertificate ? '' : 'disabled'
+      }>
+        تحميل شهادة الإنجاز PDF
+      </button>
+      ${
+        canDownloadCertificate
+          ? '<p class="muted small">🎉 رائع! يمكنك الآن تحميل الشهادة لأن تقدّمك 60٪ أو أكثر.</p>'
+          : '<p class="muted small">تحتاج للوصول إلى <strong>60٪</strong> من الدروس على الأقل لتحميل الشهادة.</p>'
+      }
     </section>
   `;
+
+  // ربط زر الشهادة
+  const certBtn = document.getElementById('download-cert');
+  if (certBtn && canDownloadCertificate) {
+    certBtn.addEventListener('click', () => {
+      downloadCertificatePdf(percent);
+    });
+  }
+}
+
+// إنشاء شهادة إنجاز PDF
+function downloadCertificatePdf(percent) {
+  const { completed, total } = getProgress();
+
+  const html = `
+    <!doctype html>
+    <html lang="ar" dir="rtl">
+      <head>
+        <meta charset="utf-8" />
+        <title>شهادة إنجاز - النحو ببساطة</title>
+        <style>
+          body {
+            font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+            background: #ecfdf5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+          }
+          .cert {
+            background: white;
+            border-radius: 16px;
+            padding: 32px 40px;
+            border: 3px solid #10b981;
+            box-shadow: 0 20px 40px rgba(16,185,129,0.25);
+            width: 800px;
+            max-width: 100%;
+            text-align: center;
+          }
+          .cert-title {
+            font-size: 28px;
+            margin-bottom: 8px;
+            color: #065f46;
+          }
+          .cert-subtitle {
+            font-size: 18px;
+            margin-bottom: 24px;
+            color: #047857;
+          }
+          .cert-name {
+            font-size: 24px;
+            margin: 16px 0;
+          }
+          .cert-info {
+            font-size: 16px;
+            margin: 8px 0;
+          }
+          .cert-footer {
+            margin-top: 32px;
+            display: flex;
+            justify-content: space-between;
+            font-size: 14px;
+            color: #6b7280;
+          }
+          .cert-brand {
+            font-weight: 600;
+            color: #10b981;
+          }
+        </style>
+      </head>
+      <body>
+        <div class="cert">
+          <div class="cert-title">شهادة إنجاز</div>
+          <div class="cert-subtitle">تطبيق "النحو ببساطة"</div>
+
+          <p class="cert-info">تُمنح هذه الشهادة لـ</p>
+          <p class="cert-name">.........................</p>
+
+          <p class="cert-info">
+            تقديراً لاجتهاده في دراسة قواعد النحو وإكماله
+            <strong>${completed}</strong> من
+            <strong>${total}</strong> درسًا
+            بنسبة تقدّم
+            <strong>${percent}٪</strong>.
+          </p>
+
+          <p class="cert-info">
+            النقاط المكتسبة داخل التطبيق: <strong>${appState.points}</strong> نقطة.
+          </p>
+
+          <div class="cert-footer">
+            <span>توقيع المشرف/ـة: .......................</span>
+            <span class="cert-brand">تطبيق النحو ببساطة</span>
+          </div>
+        </div>
+      </body>
+    </html>
+  `;
+
+  const w = window.open('', '_blank');
+  if (!w) {
+    alert('تعذر فتح نافذة جديدة، قد يكون المتصفح حظر النوافذ المنبثقة.');
+    return;
+  }
+  w.document.open();
+  w.document.write(html);
+  w.document.close();
+  w.focus();
+  w.onload = () => w.print();
 }
 
 // =============================
-// 11) صفحة "اسأل المعلم"
+// 10) صفحة "اسأل المعلم"
 // =============================
 
 function renderAskTeacherView() {
@@ -1195,7 +1408,7 @@ function renderAskTeacherView() {
 }
 
 // =============================
-// 12) صفحة المتصدرين (محلية)
+// 11) صفحة المتصدرين (تجريبية)
 // =============================
 
 function renderLeadersView() {
@@ -1210,7 +1423,7 @@ function renderLeadersView() {
       <h2>المتصدرون</h2>
       <p>
         مستقبلًا يمكن ربط هذه الصفحة بقاعدة بيانات لعرض متعلّمين حقيقيين.
-        حاليًا نعرض تقدّمك أنت كتجربة.
+        حاليًا نعرض تقدّمك أنت كتجربة محلية.
       </p>
     </header>
 
@@ -1223,6 +1436,52 @@ function renderLeadersView() {
       </p>
     </section>
   `;
+}
+
+// =============================
+// 12) مودال تأكيد الخروج من الدرس
+// =============================
+
+function showExitConfirmModal(onExit) {
+  const modal = document.createElement('div');
+  modal.className = 'modal';
+
+  modal.innerHTML = `
+    <div class="modal-box modal-exit">
+      <button class="modal-close" aria-label="إغلاق">×</button>
+
+      <div class="exit-modal-icon">✨</div>
+
+      <h3 class="exit-modal-title">هل أنت متأكد؟</h3>
+      <p class="exit-modal-text">
+        العلم يحتاج صبرًا، لا تتعجّل الخروج...
+        كل دقيقة تتعلم فيها تقرّبك من الإتقان! 📚
+      </p>
+
+      <div class="modal-actions">
+        <button class="secondary-btn exit-btn">الخروج</button>
+        <button class="primary-btn stay-btn">متابعة التعلم</button>
+      </div>
+    </div>
+  `;
+
+  document.body.appendChild(modal);
+
+  const close = () => {
+    if (modal.parentNode) modal.parentNode.removeChild(modal);
+  };
+
+  modal.querySelector('.modal-close').addEventListener('click', close);
+  modal.querySelector('.stay-btn').addEventListener('click', close);
+
+  modal.querySelector('.exit-btn').addEventListener('click', () => {
+    close();
+    if (typeof onExit === 'function') onExit();
+  });
+
+  modal.addEventListener('click', (e) => {
+    if (e.target === modal) close();
+  });
 }
 
 // =============================
