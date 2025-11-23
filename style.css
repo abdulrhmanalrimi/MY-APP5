@@ -1,31 +1,68 @@
-/* أساسيات عامة */
+/* ============================
+   الأساسيات والمتغيّرات
+============================ */
 
-* {
+:root {
+  color-scheme: light;
+  --bg-body: #f0fdf9;
+  --bg-card: #ffffff;
+  --bg-topbar: #059669;
+  --bg-bottombar: #ffffff;
+  --accent: #10b981;
+  --accent-soft: #d1fae5;
+  --text-main: #111827;
+  --text-muted: #6b7280;
+  --border-subtle: #e5e7eb;
+  --shadow-soft: 0 10px 25px rgba(15, 118, 110, 0.18);
+  --lesson-font-scale: 1;
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --bg-body: #020617;
+  --bg-card: #020617;
+  --bg-topbar: #0f172a;
+  --bg-bottombar: #020617;
+  --accent: #22c55e;
+  --accent-soft: rgba(34, 197, 94, 0.15);
+  --text-main: #e5e7eb;
+  --text-muted: #9ca3af;
+  --border-subtle: #1f2937;
+  --shadow-soft: 0 16px 40px rgba(0, 0, 0, 0.65);
+}
+
+*,
+*::before,
+*::after {
   box-sizing: border-box;
 }
 
 body {
   margin: 0;
   min-height: 100vh;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  background: #f0fdf9;
-  color: #111827;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
+  background: var(--bg-body);
+  color: var(--text-main);
+  direction: rtl;
   display: flex;
   flex-direction: column;
 }
 
-/* لإخفاء العناصر مثل app-root في البداية */
+/* لإخفاء أي عنصر (landing / app-root / modal / body التصنيفات ...) */
 .hidden {
-  display: none;
+  display: none !important;
 }
 
-/* شاشة الترحيب */
+/* ============================
+   شاشة الترحيب (النحو ببساطة)
+============================ */
 
 .landing {
   position: relative;
   flex: 1;
-  padding: 2rem 1rem 1.5rem;
-  background: radial-gradient(circle at top, #e0fdf4, #f0fdf9);
+  padding: 2.5rem 1rem 2rem;
+  background: radial-gradient(circle at top, #bbf7d0, #ecfeff);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -35,25 +72,26 @@ body {
 .landing-inner {
   position: relative;
   max-width: 720px;
+  width: 100%;
   text-align: center;
-  z-index: 1;
+  padding: 1.5rem 1.25rem 1.75rem;
 }
 
 .landing-icon {
-  font-size: 3.2rem;
-  margin-bottom: 0.8rem;
+  font-size: 3rem;
+  margin-bottom: 0.5rem;
 }
 
 .landing-title {
-  margin: 0 0 0.7rem;
-  font-size: 2.3rem;
+  margin: 0 0 0.6rem;
+  font-size: 2.4rem;
   color: #047857;
 }
 
 .landing-subtitle {
-  margin: 0 0 0.7rem;
+  margin: 0 0 0.75rem;
   font-size: 1.1rem;
-  color: #166534;
+  color: #15803d;
 }
 
 .landing-subtitle strong {
@@ -62,135 +100,185 @@ body {
 
 .landing-text {
   margin: 0 auto 1.4rem;
-  max-width: 620px;
-  line-height: 1.7;
-  color: #374151;
-}
-
-.primary-btn {
-  border: none;
-  border-radius: 999px;
-  padding: 0.7rem 1.6rem;
-  background: #22c55e;
-  color: #f9fafb;
+  max-width: 640px;
+  line-height: 1.8;
   font-size: 1rem;
-  font-weight: 600;
-  cursor: pointer;
-  box-shadow: 0 10px 20px rgba(22, 163, 74, 0.25);
-}
-
-.primary-btn:active {
-  transform: scale(0.97);
-  box-shadow: 0 4px 12px rgba(22, 163, 74, 0.3);
+  color: var(--text-main);
 }
 
 .landing-footnote {
   margin-top: 1rem;
   font-size: 0.9rem;
-  color: #6b7280;
+  color: var(--text-muted);
 }
 
-/* الدوائر والزخارف في الخلفية */
+/* زر رئيسي عام (يُستخدم في شاشة الترحيب وبقية الواجهات) */
+.primary-btn {
+  border: none;
+  border-radius: 999px;
+  padding: 0.55rem 1.4rem;
+  background: var(--accent);
+  color: #ecfdf5;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: var(--shadow-soft);
+  transition: transform 0.05s ease, box-shadow 0.1s ease,
+    background-color 0.12s ease;
+}
+
+.primary-btn:hover {
+  background: #22c55e;
+}
+
+.primary-btn:active {
+  transform: scale(0.97);
+  box-shadow: 0 4px 10px rgba(16, 185, 129, 0.45);
+}
+
+/* دوائر وزخارف الخلفية */
 
 .orb {
   position: absolute;
   border-radius: 999px;
-  background: rgba(34, 197, 94, 0.12);
+  background: rgba(16, 185, 129, 0.18);
+  filter: blur(0.5px);
 }
 
 .orb-1 {
-  width: 180px;
-  height: 180px;
-  top: -40px;
-  right: 12%;
+  width: 200px;
+  height: 200px;
+  top: -60px;
+  left: 6%;
 }
 
 .orb-2 {
-  width: 130px;
-  height: 130px;
-  bottom: -30px;
-  left: 20%;
+  width: 140px;
+  height: 140px;
+  top: 18%;
+  right: 8%;
 }
 
 .orb-3 {
-  width: 90px;
-  height: 90px;
-  top: 20%;
-  left: 8%;
+  width: 110px;
+  height: 110px;
+  bottom: 8%;
+  left: 12%;
 }
 
 .orb-4 {
-  width: 70px;
-  height: 70px;
-  bottom: 18%;
-  right: 10%;
+  width: 90px;
+  height: 90px;
+  bottom: 20%;
+  right: 18%;
 }
 
-/* واجهة التطبيق بعد الضغط على "ابدأ التعلم" */
+/* ============================
+   منطقة التطبيق (بعد ابدأ التعلّم)
+============================ */
 
 .app-root {
   flex: 1;
-  padding: 1rem;
-  max-width: 960px;
-  margin: 0 auto;
-  width: 100%;
-  background: #f9fafb;
-  color: #111827;
+  display: flex;
+  justify-content: center;
+  padding: 0 0 0.75rem;
 }
 
-.app-header {
-  margin-bottom: 0.8rem;
+/* هيكل يشبه واجهة الهاتف */
+.app-shell {
+  width: 100%;
+  max-width: 480px;
+  margin: 0 auto;
+  min-height: calc(100vh - 0.75rem);
+  display: flex;
+  flex-direction: column;
+}
+
+/* ============================
+   الشريط العلوي (Topbar)
+============================ */
+
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.65rem 0.9rem;
+  background: var(--bg-topbar);
+  color: #ecfdf5;
+  border-radius: 0 0 1.25rem 1.25rem;
+  box-shadow: 0 6px 18px rgba(15, 118, 110, 0.35);
+}
+
+.topbar-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+}
+
+.icon-btn {
+  border: none;
+  background: rgba(15, 23, 42, 0.16);
+  color: #ecfdf5;
+  border-radius: 999px;
+  width: 32px;
+  height: 32px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.icon-btn:hover {
+  background: rgba(15, 23, 42, 0.28);
+}
+
+/* ============================
+   الـ Views (الدروس / الإحصائيات / اسأل المعلم / المتصدرون)
+============================ */
+
+.view {
+  flex: 1;
+  padding: 0.75rem 0.75rem 3.9rem; /* مساحة للتابات في الأسفل */
+  overflow-y: auto;
+}
+
+.view:not(.active) {
+  display: none;
+}
+
+/* ============================
+   الكروت العامة
+============================ */
+
+.card {
+  background: var(--bg-card);
+  border-radius: 0.9rem;
+  border: 1px solid var(--border-subtle);
+  padding: 0.75rem 0.9rem;
+  margin-bottom: 0.7rem;
+  box-shadow: 0 2px 6px rgba(15, 23, 42, 0.04);
 }
 
 .app-header h2 {
-  margin: 0 0 0.2rem;
+  margin: 0 0 0.25rem;
+  font-size: 1.3rem;
 }
 
 .app-header p {
-  margin: 0;
-  color: #6b7280;
+  margin: 0 0 0.5rem;
+  font-size: 0.9rem;
+  color: var(--text-muted);
 }
 
-/* الكروت العامة */
-
-.card {
-  background: #ffffff;
-  border-radius: 0.8rem;
-  border: 1px solid #e5e7eb;
-  padding: 0.9rem;
-  margin-bottom: 0.8rem;
-}
-
-/* الفوتر */
-
-.app-footer {
-  padding: 0.6rem 1rem;
-  text-align: center;
-  font-size: 0.8rem;
-  background: #f9fafb;
-  color: #6b7280;
-  border-top: 1px solid #e5e7eb;
-}
-
-/* استجابة على الشاشات الصغيرة */
-
-@media (max-width: 600px) {
-  .landing {
-    padding-top: 2.5rem;
-  }
-
-  .landing-title {
-    font-size: 1.9rem;
-  }
-}
-
-/* ========================= */
-/*  الجزء الخاص بالـ Accordion  */
-/* ========================= */
+/* ============================
+   Accordion التصنيفات والدروس
+============================ */
 
 .category-card {
-  margin-top: 0.7rem;
-  color: #111827; /* مهم عشان النص يبان على الخلفية الفاتحة */
+  margin-top: 0.65rem;
 }
 
 .category-header {
@@ -207,22 +295,28 @@ body {
 
 .category-header h3 {
   margin: 0;
+  font-size: 1rem;
 }
 
 .category-header p {
-  margin: 0.2rem 0 0;
-  font-size: 0.85rem;
+  margin: 0.1rem 0 0;
+  font-size: 0.82rem;
+  color: var(--text-muted);
+}
+
+.category-body {
+  margin-top: 0.35rem;
 }
 
 .lessons-list {
   list-style: none;
   padding: 0;
-  margin: 0.4rem 0 0;
+  margin: 0;
 }
 
 .lesson-row {
-  padding: 0.5rem 0.4rem;
-  border-bottom: 1px solid rgba(15, 23, 42, 0.1);
+  padding: 0.5rem 0.35rem;
+  border-bottom: 1px solid rgba(15, 23, 42, 0.08);
   cursor: pointer;
 }
 
@@ -238,7 +332,6 @@ body {
 
 .lesson-title {
   font-size: 0.95rem;
-  color: #111827;
 }
 
 .lesson-status {
@@ -246,16 +339,40 @@ body {
 }
 
 .lesson-row-meta {
-  font-size: 0.8rem;
-  color: #4b5563;
-  margin-top: 0.1rem;
+  margin-top: 0.15rem;
+  font-size: 0.78rem;
+  color: var(--text-muted);
+}
+
+/* ============================
+   صفحة الدرس
+============================ */
+
+.lesson-number {
+  margin: 0.2rem 0 0;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+}
+
+.lesson-content {
+  font-size: calc(1rem * var(--lesson-font-scale));
+  line-height: 1.9;
+}
+
+.lesson-content p {
+  margin: 0 0 0.75rem;
+}
+
+.lesson-section ul {
+  padding-right: 1.2rem;
+  margin: 0 0 0.75rem;
 }
 
 .lesson-image img {
   max-width: 100%;
-  border-radius: 0.6rem;
   display: block;
-  margin-bottom: 0.4rem;
+  border-radius: 0.75rem;
+  margin-bottom: 0.45rem;
 }
 
 .videos-list {
@@ -266,7 +383,168 @@ body {
 
 .videos-list li {
   margin-bottom: 0.4rem;
+  font-size: 0.9rem;
 }
-.hidden {
-  display: none;
+
+/* ============================
+   شريط التابات السفلي
+============================ */
+
+.bottombar {
+  position: sticky;
+  bottom: 0;
+  z-index: 15;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  background: var(--bg-bottombar);
+  border-top: 1px solid var(--border-subtle);
+  padding: 0.25rem 0.4rem;
+  border-radius: 1rem 1rem 0 0;
+  box-shadow: 0 -4px 14px rgba(15, 23, 42, 0.12);
+}
+
+.tab-btn {
+  border: none;
+  background: transparent;
+  padding: 0.3rem 0.4rem;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.tab-btn.active {
+  color: var(--accent);
+  font-weight: 600;
+}
+
+/* ============================
+   الإحصائيات / الشارات / المتصدرون
+============================ */
+
+.progress-bar {
+  margin-top: 0.4rem;
+  width: 100%;
+  height: 8px;
+  border-radius: 999px;
+  background: #e5e7eb;
+  overflow: hidden;
+}
+
+.progress-bar span {
+  display: block;
+  height: 100%;
+  background: linear-gradient(90deg, #22c55e, #22c55e);
+}
+
+.stats-list,
+.leaders-list {
+  list-style: none;
+  padding: 0;
+  margin: 0.3rem 0 0;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.stats-list li + li,
+.leaders-list li + li {
+  margin-top: 0.25rem;
+}
+
+.ask-answer {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+.muted {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+/* ============================
+   المودال (تأكيد الخروج من الدرس)
+   - يمكنك تفعيلها بإضافة HTML مناسب في index.html
+============================ */
+
+.modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+}
+
+.modal-box {
+  background: var(--bg-card);
+  border-radius: 0.9rem;
+  padding: 1rem 1rem 0.9rem;
+  width: 90%;
+  max-width: 360px;
+  box-shadow: var(--shadow-soft);
+}
+
+.modal-box h3 {
+  margin: 0 0 0.5rem;
+  font-size: 1.1rem;
+}
+
+.modal-box p {
+  margin: 0 0 0.9rem;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+.modal-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+/* ============================
+   فوتر التطبيق
+============================ */
+
+.app-footer {
+  text-align: center;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  padding: 0.5rem 1rem 0.9rem;
+}
+
+/* ============================
+   استجابة للشاشات الأكبر
+============================ */
+
+@media (min-width: 768px) {
+  body {
+    justify-content: flex-start;
+    align-items: center;
+  }
+
+  .landing {
+    padding-top: 3rem;
+  }
+
+  .landing-title {
+    font-size: 2.7rem;
+  }
+
+  .app-shell {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    border-radius: 1.25rem;
+    background: rgba(255, 255, 255, 0.86);
+    backdrop-filter: blur(16px);
+    border: 1px solid rgba(148, 163, 184, 0.35);
+  }
+
+  :root[data-theme="dark"] .app-shell {
+    background: rgba(15, 23, 42, 0.9);
+    border-color: rgba(31, 41, 55, 0.9);
+  }
 }
