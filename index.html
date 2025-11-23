@@ -1,68 +1,62 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ar" dir="rtl">
+
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>النحو ببساطة</title>
-
-    <link rel="manifest" href="manifest.json" />
-    <meta name="theme-color" content="#16a34a" />
-    <link rel="icon" type="image/png" href="public/icon-192.png" />
-
-    <link rel="stylesheet" href="style.css" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1" />
+    <!-- Favicon and Icons -->
+    <link rel="icon" type="image/png" href="/icon-192.png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/manifest.json" />
+    
+    <!-- Theme and Display -->
+    <meta name="theme-color" content="#10b981" />
+    <meta name="theme-color" media="(prefers-color-scheme: light)" content="#10b981" />
+    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#059669" />
+    
+    <!-- SEO and Description -->
+    <meta name="description" content="تطبيق تعليمي تفاعلي لتعلم قواعد النحو العربي بطريقة سهلة وممتعة مع اختبارات تفاعلية ونظام تتبع التقدم" />
+    <meta name="keywords" content="النحو, العربية, تعليم, قواعد, اللغة العربية, تطبيق تعليمي" />
+    <meta name="author" content="عبدالرحمن الضبيبي" />
+    
+    <!-- Apple iOS Meta Tags -->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="النحو ببساطة" />
+    
+    <!-- Microsoft Tiles -->
+    <meta name="msapplication-TileColor" content="#10b981" />
+    <meta name="msapplication-TileImage" content="/icon-512.png" />
+    <meta name="msapplication-config" content="/browserconfig.xml" />
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="النحو ببساطة - تعلم قواعد النحو العربي" />
+    <meta property="og:description" content="تطبيق تعليمي تفاعلي لتعلم قواعد النحو العربي" />
+    <meta property="og:image" content="/icon-512.png" />
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:title" content="النحو ببساطة" />
+    <meta property="twitter:description" content="تعلم قواعد النحو العربي بطريقة سهلة وممتعة" />
+    <meta property="twitter:image" content="/icon-512.png" />
+    <title>%VITE_APP_TITLE%</title>
+    <!-- Add Google Fonts here, example:
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    -->
   </head>
+
   <body>
-    <!-- شاشة الترحيب (Landing) -->
-    <main id="landing" class="landing">
-      <div class="landing-inner">
-        <div class="landing-icon">📘</div>
-
-        <h1 class="landing-title">النحو ببساطة</h1>
-
-        <p class="landing-subtitle">
-          ✨ مرحبًا بك في تطبيق <strong>النحو ببساطة</strong> …
-        </p>
-
-        <p class="landing-text">
-          هنا تصبح القواعد فكرة واضحة، والمعنى أقرب، والفهم أخف وأجمل.  
-          اجعل النحو جزءًا من متعتك اليومية في التعلّم؛ كل تفاعل يفتح لك بابًا من الإتقان
-          ويقودك إلى نحو أسهل ولغة أمتن.
-        </p>
-
-        <button id="start-learning" class="primary-btn">
-          ✨ ابدأ التعلّم
-        </button>
-
-        <p class="landing-footnote">
-          كل قاعدة تفهمها تقرّبك من فصاحة التعبير.
-        </p>
-      </div>
-
-      <!-- دوائر وزخارف بسيطة -->
-      <span class="orb orb-1"></span>
-      <span class="orb orb-2"></span>
-      <span class="orb orb-3"></span>
-      <span class="orb orb-4"></span>
-    </main>
-
-    <!-- واجهة التطبيق بعد الضغط على ابدأ التعلم -->
-    <div id="app-root" class="app-root hidden">
-      <!-- سيتم تعبئته من app.js -->
-    </div>
-
-    <footer class="app-footer">
-      نسخة تجريبية من تطبيق النحو كـ PWA.
-    </footer>
-
-    <script src="app.js"></script>
-    <script>
-      if ("serviceWorker" in navigator) {
-        window.addEventListener("load", () => {
-          navigator.serviceWorker
-            .register("sw.js")
-            .catch((err) => console.log("SW registration failed", err));
-        });
-      }
-    </script>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+    <script
+      defer
+      src="%VITE_ANALYTICS_ENDPOINT%/umami"
+      data-website-id="%VITE_ANALYTICS_WEBSITE_ID%"></script>
   </body>
+
 </html>
