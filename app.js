@@ -1,14 +1,70 @@
-// =============================
-// 1) بيانات الدروس LESSONS
-// =============================
+// ============================
+// ثوابت عامّة
+// ============================
 
+// معلومات المبرمج (تستخدم في بطاقة المبرمج + الشهادة)
+const DEVELOPER_INFO = {
+  label: 'برمجة المهندس / عبدالرحمن الضبيبي',
+  phone: '+967 781 752 213'
+};
+
+// اسم المشرفة على التطبيق (لإظهارها في الشهادة)
+const SUPERVISOR_NAME = 'الأستاذة سهام غازي';
+
+// مفاتيح التخزين المحلي
+const STORAGE_KEYS = {
+  profile: 'nahw_student_profile_v1',
+  progress: 'nahw_lessons_progress_v1',
+  favorites: 'nahw_favorites_v1'
+};
+
+// ============================
+// بيانات التصنيفات والدروس
+// ============================
+
+const CATEGORIES = {
+  intro: {
+    id: 'intro',
+    title: 'تعريف النحو',
+    description: 'دروس تمهيدية لفهم أنواع الكلمة وبداية النحو.',
+    colorClass: 'cat-green'
+  },
+  sentences: {
+    id: 'sentences',
+    title: 'الجُمَل',
+    description: 'الجملة الاسمية والجملة الفعلية وبناؤهما.',
+    colorClass: 'cat-yellow'
+  },
+  nouns: {
+    id: 'nouns',
+    title: 'الأسماء وأنواعها',
+    description: 'أسماء الإشارة، الأسماء الموصولة، الأسماء الخمسة وغيرها.',
+    colorClass: 'cat-blue'
+  },
+  styles: {
+    id: 'styles',
+    title: 'أساليب نحوية',
+    description: 'أسلوب الاستفهام وأدواته.',
+    colorClass: 'cat-pink'
+  },
+  tawabi: {
+    id: 'tawabi',
+    title: 'التوابع والتمييز',
+    description: 'درس التمييز وأنواعه.',
+    colorClass: 'cat-purple'
+  }
+};
+
+// ملاحظة: المحتوى النصي للدروس مأخوذ من ملفاتك (Word + صور) التي أرسلتها سابقًا.
+// يمكنك إضافة باقي الدروس بنفس النمط لو أحببت.
 const LESSONS = {
   // =========================
-  // تعريف النحو / المقدمة
+  // تعريف النحو / أنواع الكلمة
   // =========================
   'types-of-word': {
     id: 'types-of-word',
     title: 'أنواع الكلمة',
+    lessonNumber: 10,
     categoryId: 'intro',
     videos: [
       {
@@ -22,13 +78,13 @@ const LESSONS = {
     contentHtml: `
       <p>
         تنقسم الكلمة في اللغة العربية إلى ثلاثة أنواع أساسية:
-        <strong>اسم</strong> و<strong>فعل</strong> و<strong>حرف</strong>.
+        <strong>اسم</strong> و<strong>فعل</strong> و<strong>حرف</strong>. :contentReference[oaicite:1]{index=1}
       </p>
 
       <h4>أولًا: الاسم</h4>
       <p>
         هو كلمة تدل على معنى في نفسها ولا تقترن بزمن،
-        مثل: <strong>محمد، طالبة، كتاب، شجرة</strong>.
+        مثل: <strong>محمد، طالبة، كتاب، شجرة</strong>. :contentReference[oaicite:2]{index=2}
       </p>
       <p>
         يمكن أن يدل الاسم على الإنسان، أو الحيوان، أو النبات، أو الجماد؛
@@ -38,18 +94,18 @@ const LESSONS = {
       <h4>ثانيًا: الفعل</h4>
       <p>
         هو كلمة تدل على معنى في نفسها، وتقترن بواحد من الأزمنة الثلاثة:
-        الماضي، أو المضارع، أو الأمر.
+        الماضي، أو المضارع، أو الأمر. :contentReference[oaicite:3]{index=3}
       </p>
       <ul>
         <li><strong>الفعل الماضي:</strong> يدل على حدث وقع في الزمن الماضي، مثل: <em>نصرَ، فهمَ، جلسَ</em>.</li>
-        <li><strong>الفعل المضارع:</strong> يدل على حدث يقع الآن أو يستمر، مثل: <em>ينصرُ، يجلسُ، يجتهدُ</em>.</li>
-        <li><strong>فعل الأمر:</strong> يدل على طلب حدوث الفعل في المستقبل، مثل: <em>انصرْ، اجلسْ، اجتهدْ</em>.</li>
+        <li><strong>الفعل المضارع:</strong> يدل على حدث يقع الآن أو يتجدد، مثل: <em>ينصرُ، يجلسُ، يجتهدُ</em>.</li>
+        <li><strong>فعل الأمر:</strong> يدل على طلب حدوث الفعل في المستقبل، مثل: <em>انصُرْ، اجلسْ، اجتهدْ</em>.</li>
       </ul>
 
       <h4>ثالثًا: الحرف</h4>
       <p>
         هو كلمة لا يظهر معناها كاملًا وحدها، بل يتضح بالاقتران مع غيرها،
-        مثل: <strong>من، إلى، عن، في، بل، ثم</strong>.
+        مثل: <strong>من، إلى، عن، في، بل، ثم</strong>. :contentReference[oaicite:4]{index=4}
       </p>
       <p>
         في جملة <strong>ذهبتُ من البيت</strong> لا يتضح معنى <strong>من</strong>
@@ -117,25 +173,13 @@ const LESSONS = {
     ]
   },
 
-  // مثال لدرس تمهيدي آخر إن احتجته
-  'nahw-definition-2': {
-    id: 'nahw-definition-2',
-    title: 'درس تمهيدي إضافي',
-    categoryId: 'intro',
-    videos: [],
-    images: [],
-    contentHtml: `
-      <p>يمكنك لاحقًا وضع محتوى تمهيدي إضافي هنا.</p>
-    `,
-    quiz: []
-  },
-
   // =========================
-  // الجمل
+  // الجملة
   // =========================
   sentence: {
     id: 'sentence',
     title: 'الجملة',
+    lessonNumber: 11,
     categoryId: 'sentences',
     videos: [
       {
@@ -148,15 +192,15 @@ const LESSONS = {
     ],
     contentHtml: `
       <p>
-        الجملة في اللغة العربية نوعان رئيسان:
-        <strong>جملة اسمية</strong> و<strong>جملة فعلية</strong>.
+        تنقسم الجملة في اللغة العربية إلى نوعين رئيسين:
+        <strong>جملة اسمية</strong> و<strong>جملة فعلية</strong>. :contentReference[oaicite:5]{index=5}
       </p>
 
       <h4>أولًا: الجملة الاسمية</h4>
       <p>
         هي التي تبدأ باسم، وتتكون أساسًا من
         <strong>مبتدأ وخبر</strong>،
-        مثل: <em>العِلْمُ نورٌ، المطرُ غزيرٌ</em>.
+        مثل: <em>العِلْمُ نورٌ، المطرُ غزيرٌ</em>. :contentReference[oaicite:6]{index=6}
       </p>
       <p>
         قد يدخل على الجملة الاسمية
@@ -168,7 +212,7 @@ const LESSONS = {
       <h4>ثانيًا: الجملة الفعلية</h4>
       <p>
         هي التي تبدأ بفعل، وتتكون من <strong>فعل وفاعل</strong>،
-        مثل: <em>حضرَ المعلمُ، يكتبُ الولدُ</em>.
+        مثل: <em>حضرَ المعلمُ، يكتبُ الولدُ</em>. :contentReference[oaicite:7]{index=7}
       </p>
       <p>
         وقد تُبنى للمجهول فيكون التركيب من
@@ -253,13 +297,12 @@ const LESSONS = {
   },
 
   // =========================
-  // الأسماء (تصنيفات متعدّدة)
-  // =========================
-
   // أسماء الإشارة
-  demonstratives: {
+  // =========================
+  'demonstratives': {
     id: 'demonstratives',
     title: 'أسماء الإشارة',
+    lessonNumber: 20,
     categoryId: 'nouns',
     videos: [
       {
@@ -273,34 +316,25 @@ const LESSONS = {
     contentHtml: `
       <p>
         <strong>اسم الإشارة</strong>
-        هو اسم يُستعمل للدلالة على معيَّن بواسطة إشارة حسّية
-        باليد أو العين نحو شيء حاضر.
+        هو ما وُضع لِمُعين بواسطة إشارة حسّية. :contentReference[oaicite:8]{index=8}
       </p>
 
-      <h4>أولًا: للمفرد القريب</h4>
+      <h4>المفرد القريب</h4>
       <ul>
         <li><strong>هذا</strong> للمفرد المذكر: <em>هذا رجلٌ، هذا محمدٌ</em>.</li>
         <li><strong>هذه</strong> للمفرد المؤنث: <em>هذه امرأةٌ، هذه عائشةُ</em>.</li>
       </ul>
 
-      <h4>ثانيًا: للمثنّى القريب</h4>
+      <h4>المثنّى القريب</h4>
       <ul>
         <li><strong>هذانِ</strong> للمثنّى المذكر: <em>هذانِ رجلان، هذانِ كريمان</em>.</li>
         <li><strong>هاتانِ</strong> للمثنّى المؤنث: <em>هاتانِ امرأتان، هاتانِ كريمتانِ</em>.</li>
       </ul>
 
-      <h4>ثالثًا: للجمع القريب</h4>
+      <h4>الجمع القريب</h4>
       <ul>
-        <li>
-          <strong>هؤلاءِ</strong> لجمع المذكر والمؤنث:
-          <em>هؤلاءِ أطفال، هؤلاءِ نسوةٌ، هؤلاءِ متحابّون، هؤلاءِ مؤدّباتٌ</em>.
-        </li>
+        <li><strong>هؤلاءِ</strong> لجمع المذكر والمؤنث: <em>هؤلاءِ أطفال، هؤلاءِ نسوةٌ، هؤلاءِ متحابّون، هؤلاءِ مؤدّباتٌ</em>.</li>
       </ul>
-
-      <p>
-        يتغيّر إعراب اسم الإشارة حسب موقعه في الجملة
-        (مبتدأ، خبر، فاعل...) لكنه يبقى مبنيًّا في أغلب الاستعمالات.
-      </p>
     `,
     quiz: [
       {
@@ -361,10 +395,13 @@ const LESSONS = {
     ]
   },
 
+  // =========================
   // الأسماء الموصولة
+  // =========================
   'relative-pronouns': {
     id: 'relative-pronouns',
     title: 'الأسماء الموصولة',
+    lessonNumber: 21,
     categoryId: 'nouns',
     videos: [
       {
@@ -377,37 +414,27 @@ const LESSONS = {
     ],
     contentHtml: `
       <p>
-        <strong>الاسْمُ المَوْصُولُ</strong>
-        هو اسم يُستعمل لِمُسمّى معيَّن بواسطة جملة تُذكر بعده
-        تُسمّى <strong>صلة الموصول</strong>، مثل:
-        <em>جاء الذي فاز</em>.
+        <strong>الاسم الموصُول</strong> هو اسم وُضع لمسمى معيّن بواسطة جملة تُذكر بعده تُسمى صلة الموصول،
+        مثل: <em>جاء الذي فاز</em>. :contentReference[oaicite:9]{index=9}
       </p>
 
-      <h4>أولًا: الأسماء الموصولة المشتركة</h4>
-      <p>لفظ واحد يستعمل للجميع (مفرد، مثنّى، جمع، مذكر، مؤنث):</p>
+      <h4>الأسماء الموصولة المشتركة</h4>
       <ul>
         <li><strong>مَن</strong> للعاقل، مثل: <em>نجح من اجتهد</em>.</li>
         <li><strong>ما</strong> لغير العاقل، مثل: <em>اقرأ من الكتب ما يفيدك</em>.</li>
-        <li><strong>أيّ</strong> بحسب السياق للعاقل وغيره، مثل: <em>أكرِم أيَّهم أكثرُ اجتهادًا</em>.</li>
+        <li><strong>أيّ</strong> بحسب السياق للعاقل وغيره، مثل: <em>أكرم أيَّهم أكثرُ اجتهادًا</em>.</li>
       </ul>
 
-      <h4>ثانيًا: الأسماء الموصولة الخاصة</h4>
-      <p>تتغيّر حسب التذكير والتأنيث والإفراد والتثنية والجمع:</p>
+      <h4>الأسماء الموصولة الخاصة</h4>
+      <p>تتغير حسب العدد والجنس:</p>
       <ul>
         <li>
-          للمذكر:
-          <strong>الذي، اللذانِ، اللذين، الذين</strong>.
+          للمذكر: <strong>الذي، اللذانِ، اللذين، الذين</strong>.
         </li>
         <li>
-          للمؤنث:
-          <strong>التي، اللتانِ، اللتين، اللاتي، اللائي، اللواتي</strong>.
+          للمؤنث: <strong>التي، اللتانِ، اللتين، اللاتي، اللائي، اللواتي</strong>.
         </li>
       </ul>
-
-      <p>
-        صلة الموصول تكون جملة اسمية أو فعلية، ولا محلّ لها من الإعراب،
-        لكنها تُتمّم معنى الاسم الموصول وتحدّد المقصود به.
-      </p>
     `,
     quiz: [
       {
@@ -446,7 +473,7 @@ const LESSONS = {
           'منذُ زمنٍ بعيدٍ'
         ],
         correctIndex: 2,
-        explanation: 'صلة الموصول جملة تامة: فعل وفاعل مثلاً "حضرَ مبكرًا".'
+        explanation: 'صلة الموصول جملة تامة: فعل وفاعل مثل "حضر مبكرًا".'
       },
       {
         id: 'rel-q5',
@@ -458,10 +485,13 @@ const LESSONS = {
     ]
   },
 
+  // =========================
   // الأسماء الخمسة
+  // =========================
   'five-nouns': {
     id: 'five-nouns',
     title: 'الأسماء الخمسة',
+    lessonNumber: 22,
     categoryId: 'nouns',
     videos: [
       {
@@ -475,29 +505,25 @@ const LESSONS = {
     ],
     contentHtml: `
       <p>
-        <strong>الأسماء الخمسة</strong> هي:
-        <strong>أبوك، أخوك، حموك، فوك، ذو مالٍ</strong>.
-        وتمتاز بأن إعرابها يكون بالحروف نيابةً عن الحركات في حالات معيّنة.
+        <strong>الأسماء الخمسة</strong> هي: <strong>أبوك، أخوك، حموك، فوك، ذو مالٍ</strong>.
+      </p>
+      <p>
+        تمتاز بأن إعرابها يكون بالحروف نيابةً عن الحركات في حالات معيّنة. :contentReference[oaicite:10]{index=10}
       </p>
 
       <h4>إعراب الأسماء الخمسة</h4>
       <ul>
         <li><strong>ترفع بالواو</strong>: <em>جاء أبوك، زارنا أخوك، هذا ذو مالٍ</em>.</li>
         <li><strong>تنصب بالألف</strong>: <em>رأيت أباك، صادقت أخاك، أكرمت حماك</em>.</li>
-        <li><strong>تُجرّ بالياء</strong>: <em>مررت بأبيك، سلمت على أخيك، جلست إلى حميك</em>.</li>
+        <li><strong>تجرّ بالياء</strong>: <em>مررت بأبيك، سلمت على أخيك، جلست إلى حميك</em>.</li>
       </ul>
 
       <h4>شروط إعرابها بهذا الإعراب</h4>
       <ul>
-        <li>أن تكون <strong>مفردة</strong>؛ فإذا ثُنّيت أو جُمعت أُعربت إعراب المثنّى أو الجمع.</li>
-        <li>أن تكون <strong>مضافة</strong>؛ فلا تُعرب هذا الإعراب إذا قُطعت عن الإضافة.</li>
-        <li>أن تضاف إلى <strong>غير ياءِ المتكلّم</strong>؛ فإذا أُضيفت إلى ياء المتكلّم (أبي، أخي) عادت إلى الإعراب بالحركات.</li>
+        <li>أن تكون <strong>مفردة</strong>.</li>
+        <li>أن تكون <strong>مضافة</strong>.</li>
+        <li>ألا تُضاف إلى <strong>ياء المتكلم</strong>، وإلا أُعربت بالحركات.</li>
       </ul>
-
-      <p>
-        إذا اختلّ واحد من هذه الشروط عادت الأسماء الخمسة إلى الإعراب بالحركات
-        على الحرف الأخير مثل سائر الأسماء.
-      </p>
     `,
     quiz: [
       {
@@ -544,13 +570,12 @@ const LESSONS = {
   },
 
   // =========================
-  // الأساليب النحوية
+  // أسلوب الاستفهام (أدوات الاستفهام)
   // =========================
-
-  // أسلوب الاستفهام / أدوات الاستفهام
   interrogatives: {
     id: 'interrogatives',
     title: 'أدوات الاستفهام',
+    lessonNumber: 30,
     categoryId: 'styles',
     videos: [
       {
@@ -563,34 +588,22 @@ const LESSONS = {
     ],
     contentHtml: `
       <p>
-        <strong>أسلوب الاستفهام</strong> يُستعمل لطلب الفهم أو الاستعلام عن شيء مجهول
-        عند المتكلّم، ولكل أداة منه معنى خاص ونوع معيّن من السؤال.
+        <strong>أسلوب الاستفهام</strong> هو ما يُستعمل لطلب الفهم أو السؤال عن شيء مجهول. :contentReference[oaicite:11]{index=11}
       </p>
-
-      <h4>أهم أدوات الاستفهام ومعانيها</h4>
-      <ul>
-        <li><strong>مَن</strong> – للسؤال عن <strong>العاقل</strong>:
-          <em>مَن آخرُ الخلفاءِ الراشدين؟</em></li>
-        <li><strong>ما / ماذا</strong> – للسؤال عن <strong>غير العاقل</strong> أو الأشياء:
-          <em>ما أحبُّ العلومِ إليك؟</em></li>
-        <li><strong>متى</strong> – للسؤال عن <strong>الزمان</strong>:
-          <em>متى رجعت؟</em></li>
-        <li><strong>أيان</strong> – للزمان المستقبل:
-          <em>أيان تُسافر؟</em></li>
-        <li><strong>أين</strong> – للسؤال عن <strong>المكان</strong>:
-          <em>أين أخوك؟</em></li>
-        <li><strong>كيف</strong> – للسؤال عن <strong>الحال</strong> أو الهيئة:
-          <em>كيف حالُك؟</em></li>
-        <li><strong>كم</strong> – للسؤال عن <strong>العدد</strong>:
-          <em>كم كتابًا قرأت؟</em></li>
-        <li><strong>أيُّ</strong> – للسؤال عن <strong>تعيين</strong> واحد من مجموعة:
-          <em>أيُّ رجلٍ أتى؟</em></li>
-      </ul>
-
       <p>
-        اختيار أداة الاستفهام المناسبة يعطي سؤالك دقةً ووضوحًا،
-        ويساعدك على فهم النصوص القرآنية واللغوية فهمًا أفضل.
+        من أدوات الاستفهام: <strong>مَن، ما، ماذا، متى، أيان، أين، كيف، كم، أيُّ</strong>.
       </p>
+
+      <ul>
+        <li><strong>مَن</strong> – للسؤال عن العاقل: <em>مَن آخر الخلفاء الراشدين؟</em></li>
+        <li><strong>ما / ماذا</strong> – للسؤال عن غير العاقل: <em>ما أحبُّ العلوم إليك؟</em></li>
+        <li><strong>متى</strong> – للسؤال عن الزمان: <em>متى رجعت؟</em></li>
+        <li><strong>أيان</strong> – للزمان المستقبل: <em>أيان تسافر؟</em></li>
+        <li><strong>أين</strong> – للسؤال عن المكان: <em>أين أخوك؟</em></li>
+        <li><strong>كيف</strong> – للسؤال عن الحال: <em>كيف حالك؟</em></li>
+        <li><strong>كم</strong> – للسؤال عن العدد: <em>كم كتابًا قرأت؟</em></li>
+        <li><strong>أيُّ</strong> – لتعيين واحد من مجموعة: <em>أيُّ رجلٍ أتى؟</em></li>
+      </ul>
     `,
     quiz: [
       {
@@ -647,11 +660,12 @@ const LESSONS = {
   },
 
   // =========================
-  // التوابع / أحكام أخرى
+  // التمييز
   // =========================
   tamyeez: {
     id: 'tamyeez',
     title: 'التمييز',
+    lessonNumber: 31,
     categoryId: 'tawabi',
     videos: [],
     images: [
@@ -659,33 +673,22 @@ const LESSONS = {
     ],
     contentHtml: `
       <p>
-        <strong>التمييز</strong> اسم نكرة منصوب يأتي لِيُزيل إبهامًا في الجملة
-        ويُوضّح المقصود من كلمة قبله،
-        مثل: <em>اشتريتُ كيلو سُكرًا</em>؛ فكلمة <strong>سكرًا</strong> تمييز.
+        <strong>التمييز</strong> اسم نكرة منصوب يزيل إبهامًا في الجملة
+        ويُوضّح المقصود من كلمة قبله.
       </p>
 
-      <h4>أنواع التمييز</h4>
-
-      <h5>1- تمييز ملفوظ</h5>
+      <h4>تمييز ملفوظ</h4>
       <p>
         يوضّح مقدارًا مذكورًا قبله، مثل العدد أو الكيل أو الوزن أو المساحة:
       </p>
       <ul>
-        <li>تمييز العدد: <em>معي خمسةُ ريالاتٍ</em>.</li>
-        <li>تمييز الكيل: <em>شربتُ لترًا ماءً</em>.</li>
-        <li>تمييز الوزن: <em>اشتريتُ كيلو لحمًا</em>.</li>
-        <li>تمييز المساحة: <em>زرعتُ فدانًا قمحًا</em>.</li>
+        <li>خمسةُ ريالاتٍ، كيلو لحمًا، فدانًا قمحًا، لترًا ماءً.</li>
       </ul>
 
-      <h5>2- تمييز ملحوظ (نِسبة)</h5>
+      <h4>تمييز ملحوظ (نِسبة)</h4>
       <p>
-        يوضّح جملةً أو نسبةً معنويةً قبله، مثل:
-        <em>طابَ الجوُّ هواءً</em>،
-        <em>ازدادَ الطالبُ علمًا</em>.
-      </p>
-
-      <p>
-        معرفة نوع التمييز تساعد على فهم الجملة وضبط إعرابها بدقّة.
+        يوضّح جملة أو نسبة معنوية قبله، مثل:
+        <em>طاب الجوُّ هواءً</em>، <em>ازداد الطالب علمًا</em>.
       </p>
     `,
     quiz: [
@@ -736,598 +739,432 @@ const LESSONS = {
       }
     ]
   }
-
-  // … يمكنك إضافة بقية الدروس هنا بنفس البنية إن أحببت …
 };
 
+// ============================
+// دوال التخزين العامّة
+// ============================
 
-// =============================
-// 2) التصنيفات CATEGORIES
-// =============================
-
-const CATEGORIES = [
-  {
-    id: 'intro',
-    title: 'تعريف النحو',
-    color: '#dcfce7',
-    lessonIds: ['types-of-word', 'kinds-of-noun']
-  },
-  {
-    id: 'sentences',
-    title: 'الجمل',
-    color: '#fef3c7',
-    lessonIds: ['sentence']
-  },
-  {
-    id: 'verbs',
-    title: 'الأفعال',
-    color: '#fee2e2',
-    lessonIds: [
-      'verb-types',
-      'present-raf',
-      'present-nasb',
-      'present-jazm',
-      'five-verbs'
-    ]
-  },
-  {
-    id: 'fael',
-    title: 'الفاعل ونائب الفاعل',
-    color: '#e0f2fe',
-    lessonIds: ['subject', 'naib-fael']
-  },
-  {
-    id: 'objects',
-    title: 'المفاعيل',
-    color: '#fef9c3',
-    lessonIds: ['object']
-  },
-  {
-    id: 'pronouns',
-    title: 'الضمائر',
-    color: '#f3e8ff',
-    lessonIds: [
-      'pronoun',
-      'address-pronouns',
-      'absent-pronouns',
-      'speaker-pronouns'
-    ]
-  },
-  {
-    id: 'nouns',
-    title: 'الأسماء وأنواعها',
-    color: '#e0f2fe',
-    lessonIds: [
-      'demonstratives',
-      'relative-pronouns',
-      'five-nouns',
-      'nakira',
-      'jar-ism',
-      'mudaf-ilayh'
-    ]
-  },
-  {
-    id: 'sentence-grammar',
-    title: 'إعراب الجمل والأفعال الناسخة',
-    color: '#fee2e2',
-    lessonIds: ['kana', 'kada', 'inna', 'dhanna']
-  },
-  {
-    id: 'tawabi',
-    title: 'التوابع، الحال، التمييز',
-    color: '#fae8ff',
-    lessonIds: ['tawabi', 'naat', 'atf', 'tawkeed', 'badal', 'haal', 'tamyeez']
-  },
-  {
-    id: 'styles',
-    title: 'الأساليب النحوية',
-    color: '#ecfeff',
-    lessonIds: ['interrogatives']
-  }
-];
-
-// =============================
-// 3) أسئلة نهاية كل درس QUIZZES
-// =============================
-// يمكنك إضافة أو تعديل الأسئلة كما تريد لكل درس
-
-const QUIZZES = {
-  'types-of-word': {
-    questions: [
-      {
-        text: 'الكلمة في اللغة العربية تنقسم إلى:',
-        options: [
-          'اسم وحرف فقط',
-          'اسم وفعل فقط',
-          'اسم وفعل وحرف',
-          'فعل وحرف فقط'
-        ],
-        correctIndex: 2
-      },
-      {
-        text: 'أيّ مما يأتي يُعَدُّ حرفًا؟',
-        options: ['محمد', 'يلعب', 'إلى', 'كتاب'],
-        correctIndex: 2
-      }
-    ]
-  },
-
-  'verb-types': {
-    questions: [
-      {
-        text: 'الفعل الصحيح هو:',
-        options: ['قال', 'مشى', 'كتب', 'دعا'],
-        correctIndex: 2
-      },
-      {
-        text: 'الفعل المعتل هو الفعل الذي:',
-        options: [
-          'يخلو من حروف العلة',
-          'يحتوي على حرف واحد من حروف العلة',
-          'يحتوي على حرفين من حروف العلة فقط',
-          'يحتوي على ثلاثة حروف علة'
-        ],
-        correctIndex: 1
-      }
-    ]
-  }
-
-  // أضف كائنًا جديدًا هنا لأي درس آخر تريد له أسئلة
-};
-
-// =============================
-// 4) حالة التطبيق (تقدّم + ملاحظات + مفضلة + نتائج اختبارات)
-// =============================
-
-const STORAGE_KEY = 'nahw-bisatate-state-v2';
-
-let appState = {
-  completedLessons: {}, // lessonId: true
-  notes: {}, // lessonId: 'text'
-  favorites: {}, // lessonId: true
-  points: 0,
-  quizResults: [] // مصفوفة نتائج الاختبارات (0-100)
-};
-
-function loadState() {
+function loadFromStorage(key, fallback) {
   try {
-    const raw = localStorage.getItem(STORAGE_KEY);
-    if (!raw) return;
-    const parsed = JSON.parse(raw);
-    if (parsed.completedLessons) appState.completedLessons = parsed.completedLessons;
-    if (parsed.notes) appState.notes = parsed.notes;
-    if (parsed.favorites) appState.favorites = parsed.favorites;
-    if (typeof parsed.points === 'number') appState.points = parsed.points;
-    if (Array.isArray(parsed.quizResults)) appState.quizResults = parsed.quizResults;
-  } catch (err) {
-    console.warn('تعذر قراءة الحالة من التخزين', err);
+    const raw = localStorage.getItem(key);
+    return raw ? JSON.parse(raw) : fallback;
+  } catch (e) {
+    console.error('Storage read error', e);
+    return fallback;
   }
 }
 
-function saveState() {
+function saveToStorage(key, value) {
   try {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(appState));
-  } catch (err) {
-    console.warn('تعذر حفظ الحالة في التخزين', err);
+    localStorage.setItem(key, JSON.stringify(value));
+  } catch (e) {
+    console.error('Storage write error', e);
   }
 }
 
-function getProgress() {
-  const allIds = Object.keys(LESSONS);
-  let completed = 0;
-  allIds.forEach((id) => {
-    if (appState.completedLessons[id]) completed++;
-  });
-  return { completed, total: allIds.length };
+// ============================
+// الملف الشخصي للطالب
+// ============================
+
+function getStudentProfile() {
+  return loadFromStorage(STORAGE_KEYS.profile, null);
 }
 
-function getAverageQuizScore() {
-  const arr = appState.quizResults || [];
-  if (!arr.length) return null;
-  const sum = arr.reduce((s, v) => s + v, 0);
-  return Math.round(sum / arr.length);
+function saveStudentProfile(profile) {
+  saveToStorage(STORAGE_KEYS.profile, profile);
 }
 
-function getCategoryStats() {
-  return CATEGORIES.map((cat) => {
-    const total = cat.lessonIds.filter((id) => LESSONS[id]).length;
-    const completed = cat.lessonIds.filter(
-      (id) => LESSONS[id] && appState.completedLessons[id]
-    ).length;
-    const percent = total ? Math.round((completed / total) * 100) : 0;
-    return {
-      id: cat.id,
-      title: cat.title,
-      total,
-      completed,
-      percent
-    };
-  });
+// ============================
+// التقدم في الدروس والمفضّلة
+// ============================
+
+function loadProgress() {
+  return loadFromStorage(STORAGE_KEYS.progress, {});
 }
 
-function toggleFavorite(lessonId) {
-  if (appState.favorites[lessonId]) {
-    delete appState.favorites[lessonId];
-  } else {
-    appState.favorites[lessonId] = true;
-  }
-  saveState();
+function saveProgress(progress) {
+  saveToStorage(STORAGE_KEYS.progress, progress);
 }
 
-// =============================
-// 5) الثيم + حجم الخط
-// =============================
-
-let fontScale = 1;
-
-function cycleFontSize() {
-  fontScale += 0.1;
-  if (fontScale > 1.3) fontScale = 0.9;
-  document.documentElement.style.setProperty(
-    '--lesson-font-scale',
-    String(fontScale)
-  );
+function loadFavorites() {
+  return loadFromStorage(STORAGE_KEYS.favorites, []);
 }
 
-function toggleTheme() {
-  const root = document.documentElement;
-  const isDark = root.getAttribute('data-theme') === 'dark';
-  root.setAttribute('data-theme', isDark ? 'light' : 'dark');
+function saveFavorites(favs) {
+  saveToStorage(STORAGE_KEYS.favorites, favs);
 }
 
-// =============================
-// 6) بناء الـ App Shell
-// =============================
+// ============================
+// حالة التطبيق
+// ============================
 
-function buildAppShell() {
-  const appRoot = document.getElementById('app-root');
-  if (!appRoot) return;
+const appState = {
+  profile: null,
+  progress: loadProgress(),
+  favorites: loadFavorites(),
+  currentLessonId: null,
+  currentView: 'landing'
+};
 
-  appRoot.innerHTML = `
-    <div class="app-shell">
-      <header class="topbar">
-        <div class="topbar-left">
-          <button id="btn-theme" class="icon-btn" title="الوضع الليلي">🌙</button>
-        </div>
-        <div class="topbar-title">النحو ببساطة</div>
-        <div class="topbar-right">
-          <button id="btn-text-size" class="icon-btn" title="تغيير حجم الخط">T</button>
-        </div>
-      </header>
+// ============================
+// بطاقة المبرمج
+// ============================
 
-      <main id="view-lessons" class="view active"></main>
-      <main id="view-stats" class="view"></main>
-      <main id="view-ask" class="view"></main>
-      <main id="view-leaders" class="view"></main>
+function createDeveloperCardHTML() {
+  const phoneHref = DEVELOPER_INFO.phone.replace(/\s+/g, '');
+  return `
+    <section class="developer-card">
+      <p class="developer-title">${DEVELOPER_INFO.label}</p>
+      <p class="developer-phone">
+        <a href="tel:${phoneHref}">${DEVELOPER_INFO.phone}</a>
+        <span class="developer-phone-icon">📞</span>
+      </p>
+    </section>
+  `;
+}
 
-      <nav class="bottombar">
-        <button class="tab-btn active" data-view="lessons">الدروس</button>
-        <button class="tab-btn" data-view="stats">الإحصائيات</button>
-        <button class="tab-btn" data-view="ask">اسأل المعلم</button>
-        <button class="tab-btn" data-view="leaders">المتصدرون</button>
-      </nav>
+// ============================
+// مودال بيانات الطالب
+// ============================
+
+function openProfileModal(onDone) {
+  const existing = getStudentProfile() || { fullName: '', grade: '' };
+
+  const overlay = document.createElement('div');
+  overlay.className = 'modal-overlay profile-modal-overlay';
+  overlay.innerHTML = `
+    <div class="profile-modal-card">
+      <button class="profile-modal-close" aria-label="إغلاق">&times;</button>
+      <div class="profile-modal-icon">👩‍🎓</div>
+      <h2>مرحبًا بك في تطبيق النحو ببساطة</h2>
+      <p class="profile-modal-text">
+        من فضلك أدخل بياناتك حتى نُظهر اسمك في شهادة الإنجاز:
+      </p>
+
+      <label class="profile-modal-label">
+        الاسم الرباعي
+        <input id="profile-full-name" class="profile-modal-input" type="text"
+               placeholder="مثال: أحمد محمد علي عبد الله" value="${existing.fullName || ''}">
+      </label>
+
+      <label class="profile-modal-label">
+        المرحلة الدراسية
+        <input id="profile-grade" class="profile-modal-input" type="text"
+               placeholder="مثال: الصف التاسع الأساسي" value="${existing.grade || ''}">
+      </label>
+
+      <div class="profile-modal-actions">
+        <button class="profile-modal-secondary">إلغاء</button>
+        <button class="profile-modal-primary">حفظ وبدء التعلّم</button>
+      </div>
     </div>
   `;
 
-  attachShellEvents();
-  renderLessonsHome();
-}
+  document.body.appendChild(overlay);
 
-function attachShellEvents() {
-  const btnTextSize = document.getElementById('btn-text-size');
-  const btnTheme = document.getElementById('btn-theme');
+  const fullNameInput = overlay.querySelector('#profile-full-name');
+  const gradeInput = overlay.querySelector('#profile-grade');
+  const btnPrimary = overlay.querySelector('.profile-modal-primary');
+  const btnSecondary = overlay.querySelector('.profile-modal-secondary');
+  const btnClose = overlay.querySelector('.profile-modal-close');
 
-  if (btnTextSize) btnTextSize.addEventListener('click', cycleFontSize);
-  if (btnTheme) btnTheme.addEventListener('click', toggleTheme);
-
-  document.querySelectorAll('.bottombar .tab-btn').forEach((btn) => {
-    btn.addEventListener('click', () => {
-      const view = btn.dataset.view;
-      switchView(view);
-    });
-  });
-}
-
-function switchView(viewId) {
-  document.querySelectorAll('.view').forEach((view) => {
-    view.classList.toggle('active', view.id === 'view-' + viewId);
-  });
-
-  document.querySelectorAll('.bottombar .tab-btn').forEach((btn) => {
-    btn.classList.toggle('active', btn.dataset.view === viewId);
-  });
-
-  if (viewId === 'lessons') {
-    renderLessonsHome();
-  } else if (viewId === 'stats') {
-    renderStatsView();
-  } else if (viewId === 'ask') {
-    renderAskTeacherView();
-  } else if (viewId === 'leaders') {
-    renderLeadersView();
+  function closeModal() {
+    overlay.remove();
   }
+
+  btnSecondary.addEventListener('click', closeModal);
+  btnClose.addEventListener('click', closeModal);
+
+  btnPrimary.addEventListener('click', () => {
+    const fullName = fullNameInput.value.trim();
+    const grade = gradeInput.value.trim();
+
+    if (!fullName) {
+      alert('من فضلك أدخل اسمك الرباعي.');
+      fullNameInput.focus();
+      return;
+    }
+
+    const profile = { fullName, grade, createdAt: Date.now() };
+    saveStudentProfile(profile);
+    appState.profile = profile;
+    closeModal();
+    if (typeof onDone === 'function') onDone();
+  });
 }
 
-// =============================
-// 7) واجهة قائمة الدروس
-// =============================
+// ============================
+// عرض الشهادة (HTML + نافذة جديدة)
+// ============================
 
-function renderLessonRow(lessonId) {
-  const lesson = LESSONS[lessonId];
-  if (!lesson) return '';
-  const isCompleted = !!appState.completedLessons[lessonId];
-  const isFavorite = !!appState.favorites[lessonId];
-  const hasVideo = lesson.videos && lesson.videos.length > 0;
+function buildCertificateHtml(stats) {
+  const profile = getStudentProfile();
+  const studentName = profile?.fullName || 'الطالب / الطالبة';
+  const grade = profile?.grade || '';
+  const today = new Date().toLocaleDateString('ar-YE', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric'
+  });
+
+  const totalLessons = Object.keys(LESSONS).length;
+  const completed = stats?.completedLessons || 0;
 
   return `
-    <li class="lesson-row" data-lesson-id="${lessonId}">
-      <div class="lesson-row-main">
-        <span class="lesson-title">${lesson.title}</span>
-        <button
-          class="favorite-toggle"
-          data-lesson-id="${lessonId}"
-          aria-label="تبديل المفضلة"
-          style="border:none;background:transparent;font-size:1.1rem;cursor:pointer;">
-          ${isFavorite ? '★' : '☆'}
-        </button>
-      </div>
-      <div class="lesson-row-meta">
-        ${hasVideo ? '<span>🎥 يحتوي فيديو</span>' : ''}
-        ${isCompleted ? '<span> · مكتمل ✅</span>' : ''}
-      </div>
-    </li>
-  `;
-}
+    <html dir="rtl" lang="ar">
+      <head>
+        <meta charset="UTF-8">
+        <title>شهادة إنجاز</title>
+        <style>
+          body {
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            background: #f0fdf4;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+          }
+          .cert {
+            background: #ffffff;
+            padding: 3rem 3.5rem;
+            border-radius: 24px;
+            box-shadow: 0 20px 40px rgba(15, 118, 110, 0.15);
+            text-align: center;
+            max-width: 700px;
+            border: 3px solid #22c55e;
+          }
+          .cert-title {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+            color: #047857;
+          }
+          .cert-subtitle {
+            margin-bottom: 2rem;
+            color: #6b7280;
+          }
+          .cert-name {
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-bottom: 0.25rem;
+          }
+          .cert-grade {
+            margin-bottom: 1.5rem;
+            color: #4b5563;
+          }
+          .cert-body {
+            margin-bottom: 2rem;
+            line-height: 1.8;
+          }
+          .cert-footer {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 2.5rem;
+            font-size: 0.95rem;
+          }
+          .cert-sign {
+            text-align: right;
+          }
+          .cert-dev {
+            text-align: left;
+            color: #059669;
+          }
+          .cert-date {
+            margin-top: 0.75rem;
+            color: #6b7280;
+          }
+        </style>
+      </head>
+      <body>
+        <div class="cert">
+          <h1 class="cert-title">شهادة إنجاز</h1>
+          <p class="cert-subtitle">يُمنح هذه الشهادة</p>
 
-function renderLessonsHome() {
-  const view = document.getElementById('view-lessons');
-  if (!view) return;
+          <div class="cert-name">${studentName}</div>
+          ${grade ? `<div class="cert-grade">المرحلة: ${grade}</div>` : ''}
 
-  const progress = getProgress();
-
-  let html = `
-    <header class="app-header">
-      <h2>دروس النحو</h2>
-      <p>اختر التصنيف والدرس الذي تريد البدء به.</p>
-    </header>
-
-    <section class="card">
-      <strong>تقدّمك العام:</strong>
-      <p>الدروس المكتملة: ${progress.completed} من ${progress.total}</p>
-    </section>
-  `;
-
-  CATEGORIES.forEach((cat, index) => {
-    const catLessons = cat.lessonIds.filter((id) => LESSONS[id]);
-    const completedInCat = catLessons.filter(
-      (id) => appState.completedLessons[id]
-    ).length;
-    const bodyHiddenClass = index === 0 ? '' : 'hidden';
-
-    html += `
-      <article class="card category-card" style="background:${cat.color};">
-        <button class="category-header" data-cat-id="${cat.id}">
-          <div>
-            <h3>${cat.title}</h3>
-            <p>${catLessons.length} درس — مكتمل: ${completedInCat}</p>
+          <div class="cert-body">
+            تقديرًا لجهوده في إكمال
+            <strong>${completed}</strong>
+            من أصل
+            <strong>${totalLessons}</strong>
+            درسًا من دروس تطبيق
+            <strong>«النحو ببساطة»</strong>
+            وتحقيقه تقدمًا ملحوظًا في الاختبارات التفاعلية.
           </div>
-          <span>▼</span>
-        </button>
-        <div class="category-body ${bodyHiddenClass}" data-cat-body="${cat.id}">
-          <ul class="lessons-list">
-            ${catLessons.map((id) => renderLessonRow(id)).join('')}
-          </ul>
+
+          <div class="cert-footer">
+            <div class="cert-sign">
+              <div>المشرفة على التطبيق</div>
+              <div><strong>${SUPERVISOR_NAME}</strong></div>
+            </div>
+            <div class="cert-dev">
+              <div>${DEVELOPER_INFO.label}</div>
+              <div>${DEVELOPER_INFO.phone}</div>
+            </div>
+          </div>
+
+          <div class="cert-date">التاريخ: ${today}</div>
         </div>
-      </article>
-    `;
-  });
-
-  view.innerHTML = html;
-
-  // فتح / إغلاق التصنيف
-  document.querySelectorAll('.category-header').forEach((btn) => {
-    btn.addEventListener('click', () => {
-      const catId = btn.dataset.catId;
-      const body = document.querySelector(
-        `.category-body[data-cat-body="${catId}"]`
-      );
-      if (!body) return;
-      body.classList.toggle('hidden');
-    });
-  });
-
-  // فتح صفحة الدرس
-  document.querySelectorAll('.lesson-row').forEach((row) => {
-    row.addEventListener('click', () => {
-      const lessonId = row.dataset.lessonId;
-      renderLessonDetail(lessonId);
-    });
-  });
-
-  // تبديل المفضلة من القائمة
-  document.querySelectorAll('.favorite-toggle').forEach((btn) => {
-    btn.addEventListener('click', (ev) => {
-      ev.stopPropagation();
-      const lessonId = btn.dataset.lessonId;
-      toggleFavorite(lessonId);
-      renderLessonsHome();
-    });
-  });
-}
-
-// =============================
-// 8) HTML قسم الاختبار لكل درس
-// =============================
-
-function getQuizHtmlForLesson(lessonId) {
-  const quiz = QUIZZES[lessonId];
-  if (!quiz || !quiz.questions || !quiz.questions.length) {
-    return `
-      <section class="card">
-        <h3>اختبر نفسك</h3>
-        <p>سيتم إضافة أسئلة تفاعلية لهذا الدرس لاحقًا.</p>
-      </section>
-    `;
-  }
-
-  return `
-    <section class="card" id="quiz-section">
-      <h3>اختبر نفسك</h3>
-      <div id="quiz-container"></div>
-    </section>
+      </body>
+    </html>
   `;
 }
 
-function setupQuizHandlers(lessonId) {
-  const quiz = QUIZZES[lessonId];
-  if (!quiz || !quiz.questions || !quiz.questions.length) return;
+function generateCertificate(stats) {
+  const win = window.open('', '_blank');
+  win.document.write(buildCertificateHtml(stats || {}));
+  win.document.close();
+  win.focus();
+}
 
-  const container = document.getElementById('quiz-container');
+// ============================
+// حساب الإحصائيات من progress
+// ============================
+
+function computeStats() {
+  const progress = appState.progress;
+  const totalLessons = Object.keys(LESSONS).length;
+  let completedLessons = 0;
+  let totalQuestions = 0;
+  let correctAnswers = 0;
+
+  Object.keys(LESSONS).forEach(id => {
+    const lesson = LESSONS[id];
+    const p = progress[id];
+    if (p && p.completed) completedLessons += 1;
+    if (lesson.quiz && lesson.quiz.length) {
+      totalQuestions += lesson.quiz.length;
+      if (p && typeof p.score === 'number') {
+        correctAnswers += p.score;
+      }
+    }
+  });
+
+  return {
+    totalLessons,
+    completedLessons,
+    totalQuestions,
+    correctAnswers
+  };
+}
+
+// ============================
+// عرض القوائم والدروس
+// ============================
+
+function renderCategories() {
+  const container = document.getElementById('categories-container');
   if (!container) return;
 
-  let currentIndex = 0;
-  let correctCount = 0;
-  let selectedIndex = null;
-
-  function renderQuestion() {
-    const q = quiz.questions[currentIndex];
-    selectedIndex = null;
-
-    container.innerHTML = `
-      <div class="quiz-header">
-        <p class="quiz-counter">السؤال ${currentIndex + 1} من ${
-      quiz.questions.length
-    }</p>
-        <p class="quiz-text">${q.text}</p>
-      </div>
-      <div class="quiz-options">
-        ${q.options
-          .map(
-            (opt, i) => `
-          <button class="quiz-option" data-index="${i}">${opt}</button>
-        `
-          )
-          .join('')}
-      </div>
-      <button class="primary-btn quiz-confirm" id="quiz-confirm">
-        تأكيد الإجابة
-      </button>
-      <p class="quiz-feedback" id="quiz-feedback"></p>
-    `;
-
-    container.querySelectorAll('.quiz-option').forEach((btn) => {
-      btn.addEventListener('click', () => {
-        selectedIndex = Number(btn.dataset.index);
-        container
-          .querySelectorAll('.quiz-option')
-          .forEach((b) => b.classList.remove('selected'));
-        btn.classList.add('selected');
-      });
-    });
-
-    container.querySelector('#quiz-confirm').addEventListener('click', () => {
-      if (selectedIndex === null) {
-        alert('اختر إجابة أولاً ✋');
-        return;
-      }
-      const feedbackEl = document.getElementById('quiz-feedback');
-      const isCorrect =
-        selectedIndex === quiz.questions[currentIndex].correctIndex;
-
-      if (isCorrect) {
-        correctCount++;
-        feedbackEl.textContent = 'إجابة صحيحة 👏';
-        feedbackEl.className = 'quiz-feedback correct';
-      } else {
-        feedbackEl.textContent = 'إجابة خاطئة، جرّب في السؤال التالي 🙂';
-        feedbackEl.className = 'quiz-feedback wrong';
-      }
-
-      setTimeout(() => {
-        if (currentIndex < quiz.questions.length - 1) {
-          currentIndex++;
-          renderQuestion();
-        } else {
-          finishQuiz();
-        }
-      }, 700);
-    });
-  }
-
-  function finishQuiz() {
-    const total = quiz.questions.length;
-    const percent = Math.round((correctCount / total) * 100);
-
-    container.innerHTML = `
-      <p>انتهى الاختبار! ✨</p>
-      <p>نتيجتك: <strong>${correctCount}</strong> من <strong>${total}</strong> (${percent}٪)</p>
-      <button class="primary-btn" id="quiz-retry">إعادة المحاولة</button>
-    `;
-
-    // حفظ النتيجة في الإحصائيات
-    if (!Array.isArray(appState.quizResults)) appState.quizResults = [];
-    appState.quizResults.push(percent);
-    appState.points += Math.round(percent / 20); // مكافأة بسيطة حسب النتيجة
-    saveState();
-
-    const retryBtn = document.getElementById('quiz-retry');
-    if (retryBtn) {
-      retryBtn.addEventListener('click', () => {
-        currentIndex = 0;
-        correctCount = 0;
-        renderQuestion();
-      });
+  const lessonsByCategory = {};
+  Object.values(LESSONS).forEach(lesson => {
+    if (!lessonsByCategory[lesson.categoryId]) {
+      lessonsByCategory[lesson.categoryId] = [];
     }
-  }
+    lessonsByCategory[lesson.categoryId].push(lesson);
+  });
 
-  renderQuestion();
+  // ترتيب بسيط حسب lessonNumber
+  Object.values(lessonsByCategory).forEach(list =>
+    list.sort((a, b) => (a.lessonNumber || 0) - (b.lessonNumber || 0))
+  );
+
+  container.innerHTML = '';
+
+  Object.values(CATEGORIES).forEach(cat => {
+    const lessons = lessonsByCategory[cat.id] || [];
+    const card = document.createElement('article');
+    card.className = `category-card ${cat.colorClass || ''}`;
+
+    const completedCount = lessons.filter(l => appState.progress[l.id]?.completed).length;
+
+    card.innerHTML = `
+      <button class="category-header" type="button">
+        <div>
+          <h3>${cat.title}</h3>
+          <p>${lessons.length} درس — مكتمل: ${completedCount}</p>
+        </div>
+        <span class="category-toggle">▼</span>
+      </button>
+      <ul class="lessons-list" style="display:none"></ul>
+    `;
+
+    const listEl = card.querySelector('.lessons-list');
+
+    lessons.forEach(lesson => {
+      const progress = appState.progress[lesson.id] || {};
+      const li = document.createElement('li');
+      li.className = 'lesson-row';
+      li.dataset.lessonId = lesson.id;
+
+      const hasVideo = lesson.videos && lesson.videos.length > 0;
+
+      li.innerHTML = `
+        <div class="lesson-row-main">
+          <span class="lesson-title">${lesson.title}</span>
+          <span class="lesson-status">
+            ${progress.completed ? '✓ مكتمل' : 'لم يُنجز بعد'}
+          </span>
+        </div>
+        <div class="lesson-row-meta">
+          ${hasVideo ? 'يحتوي فيديو 🎬' : 'بدون فيديو'}
+        </div>
+      `;
+
+      li.addEventListener('click', () => {
+        openLesson(lesson.id);
+      });
+
+      listEl.appendChild(li);
+    });
+
+    const headerBtn = card.querySelector('.category-header');
+    headerBtn.addEventListener('click', () => {
+      const isOpen = listEl.style.display === 'block';
+      listEl.style.display = isOpen ? 'none' : 'block';
+      headerBtn.querySelector('.category-toggle').textContent = isOpen ? '▼' : '▲';
+    });
+
+    container.appendChild(card);
+  });
 }
 
-// =============================
-// 9) صفحة تفاصيل الدرس
-// =============================
-
-function renderLessonDetail(lessonId) {
+function openLesson(lessonId) {
   const lesson = LESSONS[lessonId];
-  const view = document.getElementById('view-lessons');
-  if (!lesson || !view) return;
+  if (!lesson) return;
+  appState.currentLessonId = lessonId;
 
-  const isCompleted = !!appState.completedLessons[lessonId];
-  const notes = appState.notes[lessonId] || '';
-  const isFavorite = !!appState.favorites[lessonId];
+  const view = document.getElementById('lesson-detail-view');
+  if (!view) return;
+
+  showView('lessons'); // نتأكد أننا في شاشة الدروس
+
+  const progress = appState.progress[lessonId] || {};
+  const isFavorite = appState.favorites.includes(lessonId);
 
   let imagesHtml = '';
   if (lesson.images && lesson.images.length) {
     imagesHtml = `
-      <section class="card">
-        <h3>صور توضيحية</h3>
+      <div class="lesson-images">
         ${lesson.images
-          .map(
-            (src) => `
-              <figure class="lesson-image">
-                <img src="${src}" alt="${lesson.title}" />
-              </figure>
-            `
-          )
+          .map(src => `<div class="lesson-image"><img src="${src}" alt=""></div>`)
           .join('')}
-      </section>
+      </div>
     `;
   }
 
   let videosHtml = '';
   if (lesson.videos && lesson.videos.length) {
     videosHtml = `
-      <section class="card">
+      <section class="lesson-section">
         <h3>الفيديوهات التوضيحية</h3>
         <ul class="videos-list">
           ${lesson.videos
             .map(
-              (v) => `
-                <li>
-                  <strong>${v.title}</strong><br />
-                  <a href="${v.url}" target="_blank" rel="noopener">مشاهدة على يوتيوب</a>
-                </li>
-              `
+              v => `<li><a href="${v.url}" target="_blank" rel="noopener">
+                🎬 ${v.title}
+              </a></li>`
             )
             .join('')}
         </ul>
@@ -1335,610 +1172,1951 @@ function renderLessonDetail(lessonId) {
     `;
   }
 
-  const quizHtml = getQuizHtmlForLesson(lessonId);
-
   view.innerHTML = `
-    <button class="primary-btn" id="back-to-lessons" style="margin-bottom:0.8rem;">
-      ← العودة إلى الدروس
-    </button>
-
-    <section class="card">
-      <div class="lesson-detail-header" style="display:flex;align-items:center;justify-content:space-between;gap:0.5rem;">
-        <h2 style="margin:0;">${lesson.title}</h2>
-        <button
-          id="favorite-detail-toggle"
-          aria-label="تبديل المفضلة"
-          style="border:none;background:transparent;font-size:1.4rem;cursor:pointer;">
-          ${isFavorite ? '★' : '☆'}
+    <header class="lesson-header">
+      <button id="back-to-lessons" class="secondary-btn small-btn">العودة إلى الدروس</button>
+      <div class="lesson-header-main">
+        <h2>${lesson.title}</h2>
+        ${lesson.lessonNumber ? `<p class="lesson-number">الدرس ${lesson.lessonNumber}</p>` : ''}
+      </div>
+      <div class="lesson-header-actions">
+        <button id="fav-btn" class="icon-btn" title="إضافة للمفضلة">
+          ${isFavorite ? '⭐' : '☆'}
         </button>
       </div>
-    </section>
+    </header>
 
     ${imagesHtml}
 
-    <section class="card lesson-content">
+    <section class="lesson-section">
       <h3>محتوى الدرس</h3>
-      ${
-        lesson.contentHtml && lesson.contentHtml.trim()
-          ? lesson.contentHtml
-          : '<p>سيتم إضافة المحتوى التفصيلي لهذا الدرس لاحقًا.</p>'
-      }
+      <div class="lesson-content">${lesson.contentHtml}</div>
     </section>
 
     ${videosHtml}
 
-    ${quizHtml}
+    <section class="lesson-section" id="quiz-section">
+      <h3>اختبر نفسك</h3>
+      <div id="quiz-container"></div>
+    </section>
 
-    <section class="card">
+    <section class="lesson-section">
       <h3>تحميل الدرس</h3>
-      <p class="muted">سيتم فتح نافذة الطباعة، ويمكنك اختيار "حفظ كملف PDF" من المتصفح.</p>
-      <button class="primary-btn" id="download-pdf">
-        تحميل الدرس بصيغة PDF
-      </button>
-    </section>
-
-    <section class="card">
-      <h3>ملاحظاتي الشخصية</h3>
-      <textarea id="notes-text" rows="4" style="width:100%;">${notes}</textarea>
-      <button class="primary-btn" id="save-notes" style="margin-top:0.4rem;">
-        حفظ الملاحظات
-      </button>
-    </section>
-
-    <section class="card">
-      <h3>حالة الدرس</h3>
-      <p>الحالة الحالية: ${isCompleted ? '✅ مكتمل' : 'لم يُكمَل بعد'}</p>
-      <button class="primary-btn" id="toggle-complete">
-        ${isCompleted ? 'إزالة علامة الإكمال' : 'وضع علامة درس مكتمل'}
-      </button>
+      <p>سيتم فتح نافذة الطباعة، ويمكنك اختيار "حفظ كملف PDF" من المتصفح.</p>
+      <button id="download-lesson-pdf" class="primary-btn">تحميل الدرس بصيغة PDF</button>
     </section>
   `;
 
-  // تفعيل الاختبار
-  setupQuizHandlers(lessonId);
-
-  // زر العودة مع مودال جميل
-  document
-    .getElementById('back-to-lessons')
-    .addEventListener('click', () => {
-      showExitConfirmModal(() => {
-        renderLessonsHome();
-      });
-    });
-
-  // حفظ الملاحظات
-  document.getElementById('save-notes').addEventListener('click', () => {
-    const textarea = document.getElementById('notes-text');
-    appState.notes[lessonId] = textarea.value;
-    saveState();
-    alert('تم حفظ ملاحظاتك ✅');
-  });
-
-  // تبديل حالة الإكمال
-  document.getElementById('toggle-complete').addEventListener('click', () => {
-    appState.completedLessons[lessonId] = !appState.completedLessons[lessonId];
-    if (appState.completedLessons[lessonId]) {
-      appState.points += 10;
-    } else {
-      appState.points = Math.max(0, appState.points - 10);
-    }
-    saveState();
-    renderLessonDetail(lessonId);
-  });
-
-  // تبديل المفضلة من صفحة الدرس
-  const favBtn = document.getElementById('favorite-detail-toggle');
-  if (favBtn) {
-    favBtn.addEventListener('click', () => {
-      toggleFavorite(lessonId);
-      renderLessonDetail(lessonId);
+  const backBtn = document.getElementById('back-to-lessons');
+  if (backBtn) {
+    backBtn.addEventListener('click', () => {
+      appState.currentLessonId = null;
+      // مجرد إخفاء التفاصيل، والقائمة تبقى معروضة
+      document.getElementById('lesson-detail-view').innerHTML = '';
     });
   }
 
-  // تحميل PDF
-  const downloadBtn = document.getElementById('download-pdf');
-  if (downloadBtn) {
-    downloadBtn.addEventListener('click', () => {
+  const favBtn = document.getElementById('fav-btn');
+  if (favBtn) {
+    favBtn.addEventListener('click', () => {
+      toggleFavoriteLesson(lessonId);
+      favBtn.textContent = appState.favorites.includes(lessonId) ? '⭐' : '☆';
+    });
+  }
+
+  const pdfBtn = document.getElementById('download-lesson-pdf');
+  if (pdfBtn) {
+    pdfBtn.addEventListener('click', () => {
       downloadLessonPdf(lessonId);
     });
   }
+
+  renderQuiz(lesson, progress);
 }
 
-// إنشاء نافذة للطباعة / الحفظ كـ PDF
+function toggleFavoriteLesson(lessonId) {
+  const idx = appState.favorites.indexOf(lessonId);
+  if (idx === -1) {
+    appState.favorites.push(lessonId);
+  } else {
+    appState.favorites.splice(idx, 1);
+  }
+  saveFavorites(appState.favorites);
+}
+
+// ============================
+// الاختبار لكل درس
+// ============================
+
+function renderQuiz(lesson, progress) {
+  const container = document.getElementById('quiz-container');
+  if (!container) return;
+
+  const questions = lesson.quiz || [];
+  if (!questions.length) {
+    container.innerHTML = '<p>سيتم إضافة أسئلة لهذا الدرس لاحقًا.</p>';
+    return;
+  }
+
+  container.innerHTML = '';
+
+  questions.forEach((q, index) => {
+    const field = document.createElement('fieldset');
+    field.className = 'quiz-question';
+
+    field.innerHTML = `
+      <legend>السؤال ${index + 1} من ${questions.length}</legend>
+      <p class="quiz-q-text">${q.question}</p>
+      <div class="quiz-options">
+        ${q.options
+          .map(
+            (opt, i) => `
+          <label class="quiz-option">
+            <input type="radio" name="q-${q.id}" value="${i}">
+            <span>${opt}</span>
+          </label>
+        `
+          )
+          .join('')}
+      </div>
+      <p class="quiz-feedback" data-qid="${q.id}"></p>
+    `;
+
+    container.appendChild(field);
+  });
+
+  const submitBtn = document.createElement('button');
+  submitBtn.textContent = 'تأكيد الإجابة';
+  submitBtn.className = 'primary-btn';
+  container.appendChild(submitBtn);
+
+  const resultP = document.createElement('p');
+  resultP.className = 'quiz-result';
+  container.appendChild(resultP);
+
+  submitBtn.addEventListener('click', () => {
+    let score = 0;
+
+    questions.forEach(q => {
+      const selected = container.querySelector(`input[name="q-${q.id}"]:checked`);
+      const feedback = container.querySelector(`.quiz-feedback[data-qid="${q.id}"]`);
+      if (!feedback) return;
+
+      if (!selected) {
+        feedback.textContent = 'لم تختر إجابة بعد.';
+        feedback.className = 'quiz-feedback quiz-feedback-missing';
+        return;
+      }
+
+      const answerIndex = Number(selected.value);
+      if (answerIndex === q.correctIndex) {
+        score += 1;
+        feedback.textContent = 'إجابة صحيحة ✔️';
+        feedback.className = 'quiz-feedback quiz-feedback-correct';
+      } else {
+        feedback.textContent = `إجابة خاطئة ❌ — الصحيح هو: ${q.options[q.correctIndex]}`;
+        feedback.className = 'quiz-feedback quiz-feedback-wrong';
+      }
+    });
+
+    const percent = Math.round((score / questions.length) * 100);
+    resultP.textContent = `نتيجتك: ${score} من ${questions.length} (${percent}٪)`;
+
+    appState.progress[lesson.id] = {
+      completed: true,
+      score,
+      total: questions.length
+    };
+    saveProgress(appState.progress);
+
+    // تحديث القائمة الرئيسية (حالة مكتمل)
+    renderCategories();
+  });
+}
+
+// ============================
+// تحميل الدرس كـ PDF (عن طريق الطباعة)
+// ============================
+
 function downloadLessonPdf(lessonId) {
   const lesson = LESSONS[lessonId];
   if (!lesson) return;
 
-  const html = `
-    <!doctype html>
-    <html lang="ar" dir="rtl">
+  const profile = getStudentProfile();
+  const studentName = profile?.fullName || '';
+  const win = window.open('', '_blank');
+
+  win.document.write(`
+    <html dir="rtl" lang="ar">
       <head>
-        <meta charset="utf-8" />
+        <meta charset="UTF-8">
         <title>${lesson.title}</title>
         <style>
           body {
-            font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            padding: 2rem;
             line-height: 1.8;
-            padding: 24px;
           }
           h1 {
             text-align: center;
-            margin-bottom: 18px;
+            margin-bottom: 1.5rem;
           }
-          h2, h3 {
-            margin-top: 18px;
+          .student-name {
+            text-align: center;
+            margin-bottom: 1rem;
+            color: #4b5563;
           }
-          p, li {
-            font-size: 16px;
-          }
-          ul {
-            padding-right: 20px;
+          img {
+            max-width: 100%;
+            margin: 1rem 0;
           }
         </style>
       </head>
       <body>
         <h1>${lesson.title}</h1>
+        ${studentName ? `<p class="student-name">الطالب/ة: ${studentName}</p>` : ''}
+        ${lesson.contentHtml}
         ${
-          lesson.contentHtml && lesson.contentHtml.trim()
-            ? lesson.contentHtml
-            : '<p>سيتم إضافة محتوى هذا الدرس لاحقًا.</p>'
+          lesson.images && lesson.images.length
+            ? lesson.images.map(src => `<p><img src="${src}" alt=""></p>`).join('')
+            : ''
         }
       </body>
     </html>
-  `;
+  `);
 
-  const printWindow = window.open('', '_blank');
-  if (!printWindow) {
-    alert('تعذر فتح نافذة جديدة، قد يكون المتصفح حظر النوافذ المنبثقة.');
-    return;
-  }
-  printWindow.document.open();
-  printWindow.document.write(html);
-  printWindow.document.close();
-  printWindow.focus();
-
-  printWindow.onload = function () {
-    printWindow.print();
-  };
+  win.document.close();
+  win.focus();
+  // المستخدم يختار "حفظ كملف PDF" من نافذة الطباعة
+  win.print();
 }
 
-// =============================
-// 10) الشارات والإنجازات
-// =============================
-
-function getBadges(overall, percent) {
-  const favoritesCount = Object.keys(appState.favorites).length;
-  const avgScore = getAverageQuizScore();
-
-  return [
-    {
-      id: 'first-lesson',
-      title: 'أول خطوة',
-      description: 'إكمال أول درس في التطبيق.',
-      unlocked: overall.completed >= 1
-    },
-    {
-      id: 'ten-lessons',
-      title: 'محبّ النحو',
-      description: 'إكمال 10 دروس أو أكثر.',
-      unlocked: overall.completed >= 10
-    },
-    {
-      id: 'half-way',
-      title: 'نصف الطريق',
-      description: 'الوصول إلى 50٪ من الدروس.',
-      unlocked: percent >= 50
-    },
-    {
-      id: 'full-progress',
-      title: 'قمة الإتقان',
-      description: 'إكمال جميع الدروس المتاحة.',
-      unlocked: overall.total > 0 && percent === 100
-    },
-    {
-      id: 'points-100',
-      title: 'مجتهد',
-      description: 'الحصول على 100 نقطة أو أكثر.',
-      unlocked: appState.points >= 100
-    },
-    {
-      id: 'favorites-3',
-      title: 'عاشق الدروس',
-      description: 'إضافة 3 دروس على الأقل إلى المفضلة.',
-      unlocked: favoritesCount >= 3
-    },
-    {
-      id: 'quiz-master',
-      title: 'محترف الاختبارات',
-      description: 'الوصول إلى متوسط 80٪ في الاختبارات.',
-      unlocked: avgScore !== null && avgScore >= 80
-    }
-  ];
-}
-
-// =============================
-// 11) صفحة الإحصائيات المتقدمة
-// =============================
+// ============================
+// عرض الإحصائيات
+// ============================
 
 function renderStatsView() {
-  const view = document.getElementById('view-stats');
+  const view = document.getElementById('stats-view');
   if (!view) return;
 
-  const { completed, total } = getProgress();
-  const percent = total ? Math.round((completed / total) * 100) : 0;
-  const favoritesCount = Object.keys(appState.favorites).length;
-  const avgScore = getAverageQuizScore();
-  const catStats = getCategoryStats();
-  const badges = getBadges({ completed, total }, percent);
-  const unlockedBadges = badges.filter((b) => b.unlocked).length;
-
-  const canDownloadCertificate = percent >= 60; // نسبة المطلوب للشهادة
+  const stats = computeStats();
 
   view.innerHTML = `
-    <header class="app-header">
-      <h2>إحصائياتي</h2>
-      <p>تابع تقدّمك في تعلّم النحو من خلال هذه اللوحة التفاعلية.</p>
-    </header>
-
-    <!-- التقدم العام -->
-    <section class="card">
-      <h3>التقدّم العام</h3>
-      <p>الدروس المكتملة: <strong>${completed}</strong> من <strong>${total}</strong> (${percent}٪)</p>
-      <p>النقاط المكتسبة: <strong>${appState.points}</strong></p>
-      <p>متوسط نتائج الاختبارات:
-        <strong>${
-          avgScore === null ? 'لا توجد نتائج للاختبارات بعد.' : avgScore + '٪'
-        }</strong>
-      </p>
-      <div class="progress-bar">
-        <span style="width:${percent}%;"></span>
-      </div>
-    </section>
-
-    <!-- الرسوم البيانية حسب التصنيف -->
-    <section class="card">
-      <h3>التقدّم حسب التصنيف</h3>
-      <div class="stats-bars">
-        ${catStats
-          .map(
-            (cat) => `
-          <div class="stats-bar-row">
-            <div class="stats-bar-label">${cat.title}</div>
-            <div class="stats-bar-track">
-              <span style="width:${cat.percent}%;"></span>
-            </div>
-            <div class="stats-bar-value">
-              ${cat.completed}/${cat.total} (${cat.percent}٪)
-            </div>
-          </div>
-        `
-          )
-          .join('')}
-      </div>
-    </section>
-
-    <!-- الشارات -->
-    <section class="card">
-      <h3>الإنجازات والشارات</h3>
-      <p>الشارات المفتوحة: <strong>${unlockedBadges}</strong> من ${
-    badges.length
-  }</p>
-      <div class="badges-grid">
-        ${badges
-          .map(
-            (b) => `
-          <div class="badge-card ${
-            b.unlocked ? 'badge-unlocked' : 'badge-locked'
-          }">
-            <div class="badge-icon">${b.unlocked ? '🏅' : '🔒'}</div>
-            <div class="badge-title">${b.title}</div>
-            <div class="badge-desc">${b.description}</div>
-          </div>
-        `
-          )
-          .join('')}
-      </div>
-    </section>
-
-    <!-- معلومات المفضلة -->
-    <section class="card">
-      <h3>المفضلة</h3>
-      <p>عدد الدروس في المفضلة: <strong>${favoritesCount}</strong></p>
-      <p class="muted">استخدم المفضلة لحفظ الدروس التي تريد مراجعتها باستمرار.</p>
-    </section>
-
-    <!-- شهادة الإنجاز -->
-    <section class="card">
-      <h3>شهادة الإنجاز</h3>
-      <p>
-        عند الوصول إلى تقدّم جيد في التطبيق يمكنك تحميل شهادة إنجاز بصيغة PDF
-        ومشاركتها مع أصدقائك أو معلمك.
-      </p>
-      <button class="primary-btn" id="download-cert" ${
-        canDownloadCertificate ? '' : 'disabled'
-      }>
-        تحميل شهادة الإنجاز PDF
+    <section class="stats-card">
+      <h2>إحصائيات تقدّمك</h2>
+      <p>عدد الدروس الكلّي: ${stats.totalLessons}</p>
+      <p>الدروس المكتملة: ${stats.completedLessons}</p>
+      <p>عدد أسئلة الاختبارات: ${stats.totalQuestions}</p>
+      <p>إجابات صحيحة: ${stats.correctAnswers}</p>
+      <button id="download-certificate-btn" class="primary-btn">
+        تحميل شهادة إنجاز PDF
       </button>
-      ${
-        canDownloadCertificate
-          ? '<p class="muted small">🎉 رائع! يمكنك الآن تحميل الشهادة لأن تقدّمك 60٪ أو أكثر.</p>'
-          : '<p class="muted small">تحتاج للوصول إلى <strong>60٪</strong> من الدروس على الأقل لتحميل الشهادة.</p>'
-      }
     </section>
   `;
 
-  // ربط زر الشهادة
-  const certBtn = document.getElementById('download-cert');
-  if (certBtn && canDownloadCertificate) {
+  const certBtn = document.getElementById('download-certificate-btn');
+  if (certBtn) {
     certBtn.addEventListener('click', () => {
-      downloadCertificatePdf(percent);
+      generateCertificate(stats);
     });
   }
 }
 
-// إنشاء شهادة إنجاز PDF
-function downloadCertificatePdf(percent) {
-  const { completed, total } = getProgress();
+// ============================
+// صفحة "اسأل المعلم"
+// ============================
 
-  const html = `
-    <!doctype html>
-    <html lang="ar" dir="rtl">
+function renderAskTeacherView() {
+  const container = document.getElementById('ask-teacher-view');
+  if (!container) return;
+
+  container.innerHTML = `
+    <section class="teacher-card">
+      <h2 class="teacher-title">تواصل مع الأستاذة المشرفة</h2>
+      <p class="teacher-subtitle">للاستفسارات والأسئلة المباشرة</p>
+
+      <div class="teacher-box">
+        <div class="teacher-icon">👩‍🏫</div>
+        <h3 class="teacher-name">الأستاذة / سهام غازي</h3>
+        <p class="teacher-role">المشرفة على التطبيق</p>
+        <p class="teacher-phone">
+          <a href="https://wa.me/967775392526" target="_blank" rel="noopener">
+            تواصل عبر الواتساب
+          </a>
+        </p>
+      </div>
+    </section>
+
+    <div class="developer-wrapper">
+      ${createDeveloperCardHTML()}
+    </div>
+  `;
+}
+
+// ============================
+// إدارة الواجهات (Views)
+// ============================
+
+const views = {};
+
+function cacheViews() {
+  views.landing = document.getElementById('landing-view');
+  views.lessons = document.getElementById('lessons-view');
+  views.stats = document.getElementById('stats-view');
+  views.askTeacher = document.getElementById('ask-teacher-view');
+}
+
+function showView(name) {
+  appState.currentView = name;
+  Object.entries(views).forEach(([key, el]) => {
+    if (!el) return;
+    if (key === name) {
+      el.classList.remove('hidden');
+    } else {
+      el.classList.add('hidden');
+    }
+  });
+}
+
+// ============================
+// تهيئة زر "ابدأ التعلّم"
+// ============================
+
+function initStartButton() {
+  const startBtn =
+    document.getElementById('start-learning') ||
+    document.getElementById('start-learning-btn');
+
+  if (!startBtn) return;
+
+  startBtn.addEventListener('click', () => {
+    const profile = getStudentProfile();
+    if (!profile) {
+      openProfileModal(() => {
+        showView('lessons');
+      });
+    } else {
+      showView('lessons');
+    }
+  });
+}
+
+// ============================
+// بطاقات المبرمج في الواجهة الرئيسية
+// ============================
+
+function initHomeDeveloperCard() {
+  const homeDevSlot = document.getElementById('developer-card-home');
+  if (homeDevSlot) {
+    homeDevSlot.innerHTML = createDeveloperCardHTML();
+  }
+}
+
+// ============================
+// تهيئة التنقل (الهيدر / التبويبات)
+// ============================
+
+function initNavigation() {
+  const navHome = document.getElementById('nav-home');
+  const navLessons = document.getElementById('nav-lessons');
+  const navStats = document.getElementById('nav-stats');
+  const navAsk = document.getElementById('nav-ask-teacher');
+
+  if (navHome) {
+    navHome.addEventListener('click', () => showView('landing'));
+  }
+  if (navLessons) {
+    navLessons.addEventListener('click', () => showView('lessons'));
+  }
+  if (navStats) {
+    navStats.addEventListener('click', () => {
+      renderStatsView();
+      showView('stats');
+    });
+  }
+  if (navAsk) {
+    navAsk.addEventListener('click', () => {
+      renderAskTeacherView();
+      showView('askTeacher');
+    });
+  }
+}
+
+// ============================
+// تهيئة التطبيق
+// ============================
+
+document.addEventListener('DOMContentLoaded', () => {
+  appState.profile = getStudentProfile();
+  cacheViews();
+  initStartButton();
+  initHomeDeveloperCard();
+  renderCategories();
+  renderStatsView();
+  renderAskTeacherView(); // حتى يكون جاهز أول ما يفتح التبويب
+  initNavigation();
+
+  // شاشة البداية
+  showView('landing');
+});
+// ============================
+// ثوابت عامّة
+// ============================
+
+// معلومات المبرمج (تستخدم في بطاقة المبرمج + الشهادة)
+const DEVELOPER_INFO = {
+  label: 'برمجة المهندس / عبدالرحمن الضبيبي',
+  phone: '+967 781 752 213'
+};
+
+// اسم المشرفة على التطبيق (لإظهارها في الشهادة)
+const SUPERVISOR_NAME = 'الأستاذة سهام غازي';
+
+// مفاتيح التخزين المحلي
+const STORAGE_KEYS = {
+  profile: 'nahw_student_profile_v1',
+  progress: 'nahw_lessons_progress_v1',
+  favorites: 'nahw_favorites_v1'
+};
+
+// ============================
+// بيانات التصنيفات والدروس
+// ============================
+
+const CATEGORIES = {
+  intro: {
+    id: 'intro',
+    title: 'تعريف النحو',
+    description: 'دروس تمهيدية لفهم أنواع الكلمة وبداية النحو.',
+    colorClass: 'cat-green'
+  },
+  sentences: {
+    id: 'sentences',
+    title: 'الجُمَل',
+    description: 'الجملة الاسمية والجملة الفعلية وبناؤهما.',
+    colorClass: 'cat-yellow'
+  },
+  nouns: {
+    id: 'nouns',
+    title: 'الأسماء وأنواعها',
+    description: 'أسماء الإشارة، الأسماء الموصولة، الأسماء الخمسة وغيرها.',
+    colorClass: 'cat-blue'
+  },
+  styles: {
+    id: 'styles',
+    title: 'أساليب نحوية',
+    description: 'أسلوب الاستفهام وأدواته.',
+    colorClass: 'cat-pink'
+  },
+  tawabi: {
+    id: 'tawabi',
+    title: 'التوابع والتمييز',
+    description: 'درس التمييز وأنواعه.',
+    colorClass: 'cat-purple'
+  }
+};
+
+// ملاحظة: المحتوى النصي للدروس مأخوذ من ملفاتك (Word + صور) التي أرسلتها سابقًا.
+// يمكنك إضافة باقي الدروس بنفس النمط لو أحببت.
+const LESSONS = {
+  // =========================
+  // تعريف النحو / أنواع الكلمة
+  // =========================
+  'types-of-word': {
+    id: 'types-of-word',
+    title: 'أنواع الكلمة',
+    lessonNumber: 10,
+    categoryId: 'intro',
+    videos: [
+      {
+        title: 'أنواع الكلمة',
+        url: 'https://youtu.be/46MwuNDrdlo?si=yHVbvc0IS1QbtRft'
+      }
+    ],
+    images: [
+      'lessons/أنواع الكلمة/أنواع الكلمة.jpg'
+    ],
+    contentHtml: `
+      <p>
+        تنقسم الكلمة في اللغة العربية إلى ثلاثة أنواع أساسية:
+        <strong>اسم</strong> و<strong>فعل</strong> و<strong>حرف</strong>. :contentReference[oaicite:1]{index=1}
+      </p>
+
+      <h4>أولًا: الاسم</h4>
+      <p>
+        هو كلمة تدل على معنى في نفسها ولا تقترن بزمن،
+        مثل: <strong>محمد، طالبة، كتاب، شجرة</strong>. :contentReference[oaicite:2]{index=2}
+      </p>
+      <p>
+        يمكن أن يدل الاسم على الإنسان، أو الحيوان، أو النبات، أو الجماد؛
+        مثل: <em>محمد، أسد، عنب، ساعة</em>.
+      </p>
+
+      <h4>ثانيًا: الفعل</h4>
+      <p>
+        هو كلمة تدل على معنى في نفسها، وتقترن بواحد من الأزمنة الثلاثة:
+        الماضي، أو المضارع، أو الأمر. :contentReference[oaicite:3]{index=3}
+      </p>
+      <ul>
+        <li><strong>الفعل الماضي:</strong> يدل على حدث وقع في الزمن الماضي، مثل: <em>نصرَ، فهمَ، جلسَ</em>.</li>
+        <li><strong>الفعل المضارع:</strong> يدل على حدث يقع الآن أو يتجدد، مثل: <em>ينصرُ، يجلسُ، يجتهدُ</em>.</li>
+        <li><strong>فعل الأمر:</strong> يدل على طلب حدوث الفعل في المستقبل، مثل: <em>انصُرْ، اجلسْ، اجتهدْ</em>.</li>
+      </ul>
+
+      <h4>ثالثًا: الحرف</h4>
+      <p>
+        هو كلمة لا يظهر معناها كاملًا وحدها، بل يتضح بالاقتران مع غيرها،
+        مثل: <strong>من، إلى، عن، في، بل، ثم</strong>. :contentReference[oaicite:4]{index=4}
+      </p>
+      <p>
+        في جملة <strong>ذهبتُ من البيت</strong> لا يتضح معنى <strong>من</strong>
+        إلا مع بقية الكلمات في الجملة.
+      </p>
+    `,
+    quiz: [
+      {
+        id: 'types-q1',
+        question: 'ما التعريف الأدق للاسم؟',
+        options: [
+          'كلمة تدل على معنى في نفسها ولا تقترن بزمن',
+          'كلمة تدل على معنى في نفسها وتقترن بزمن',
+          'كلمة لا يظهر معناها إلا مع غيرها',
+          'كلمة تدل على زمان فقط'
+        ],
+        correctIndex: 0,
+        explanation: 'الاسم يدل على معنى في نفسه، ولا يرتبط بزمان معيّن.'
+      },
+      {
+        id: 'types-q2',
+        question: 'أيٌّ مما يلي يُعَدُّ فعلًا ماضيًا؟',
+        options: ['يكتبُ', 'اكتبْ', 'كتبَ', 'يَكتُبون'],
+        correctIndex: 2,
+        explanation: 'الفعل الماضي يدل على حدث وقع في الزمن الماضي مثل: كتبَ.'
+      },
+      {
+        id: 'types-q3',
+        question: 'أي الكلمات الآتية تُعَدُّ حروفًا؟',
+        options: ['محمد', 'من', 'قلم', 'يجلس'],
+        correctIndex: 1,
+        explanation: 'الحرف مثل: من، إلى، عن، لا يتم معناه إلا مع غيره.'
+      },
+      {
+        id: 'types-q4',
+        question: 'أيُّ جملة فيها اسم يدل على جماد؟',
+        options: [
+          'جلسَ الطالبُ',
+          'طارَ العصفورُ',
+          'انكسرَ الكأسُ',
+          'نما الزرعُ'
+        ],
+        correctIndex: 2,
+        explanation: 'الكأسُ جماد، بخلاف الطالب والعصفور والزرع.'
+      },
+      {
+        id: 'types-q5',
+        question: 'في الجملة: "يقرأُ الطفلُ القصّةَ"، كلمة "يقرأُ" هي:',
+        options: ['اسم', 'فعل مضارع', 'حرف', 'فعل ماض'],
+        correctIndex: 1,
+        explanation: 'يقرأُ فعل مضارع لأنه يدل على حدثٍ يقع الآن أو يتجدد.'
+      },
+      {
+        id: 'types-q6',
+        question: 'في أيِّ الجمل التالية ظهر حرف من حروف الجر؟',
+        options: [
+          'الطالبُ مجتهدٌ',
+          'نجحَ محمدٌ',
+          'ذهبتُ إلى المدرسةِ',
+          'يلعبُ الأطفالُ'
+        ],
+        correctIndex: 2,
+        explanation: 'حرف الجر هنا هو "إلى".'
+      }
+    ]
+  },
+
+  // =========================
+  // الجملة
+  // =========================
+  sentence: {
+    id: 'sentence',
+    title: 'الجملة',
+    lessonNumber: 11,
+    categoryId: 'sentences',
+    videos: [
+      {
+        title: 'الجملة',
+        url: 'https://youtu.be/9AR0d5IUSSo?si=hr3P7QyUKslCVCh2'
+      }
+    ],
+    images: [
+      'lessons/الجملة/الجملة.jpg'
+    ],
+    contentHtml: `
+      <p>
+        تنقسم الجملة في اللغة العربية إلى نوعين رئيسين:
+        <strong>جملة اسمية</strong> و<strong>جملة فعلية</strong>. :contentReference[oaicite:5]{index=5}
+      </p>
+
+      <h4>أولًا: الجملة الاسمية</h4>
+      <p>
+        هي التي تبدأ باسم، وتتكون أساسًا من
+        <strong>مبتدأ وخبر</strong>،
+        مثل: <em>العِلْمُ نورٌ، المطرُ غزيرٌ</em>. :contentReference[oaicite:6]{index=6}
+      </p>
+      <p>
+        قد يدخل على الجملة الاسمية
+        <strong>إنَّ وأخواتُها</strong>
+        فتنصب المبتدأ وترفع الخبر:
+        <em>إنَّ اللهَ رحيمٌ، ليتَ الشبابَ عائدٌ</em>.
+      </p>
+
+      <h4>ثانيًا: الجملة الفعلية</h4>
+      <p>
+        هي التي تبدأ بفعل، وتتكون من <strong>فعل وفاعل</strong>،
+        مثل: <em>حضرَ المعلمُ، يكتبُ الولدُ</em>. :contentReference[oaicite:7]{index=7}
+      </p>
+      <p>
+        وقد تُبنى للمجهول فيكون التركيب من
+        <strong>فعل ونائب فاعل</strong>،
+        مثل: <em>فُتحَ البابُ، يُفتحُ البابُ</em>.
+      </p>
+
+      <p>
+        فهمُ نوع الجملة يساعدك على ضبط الإعراب
+        وتحديد موقع كل كلمة داخل الجملة.
+      </p>
+    `,
+    quiz: [
+      {
+        id: 'sent-q1',
+        question: 'أيُّ الجمل الآتية جملة اسمية؟',
+        options: [
+          'جلسَ الطالبُ',
+          'يقرأُ الطفلُ',
+          'المطرُ غزيرٌ',
+          'سافرَ الأبُ'
+        ],
+        correctIndex: 2,
+        explanation: 'الجملة الاسمية تبدأ باسم: "المطرُ غزيرٌ".'
+      },
+      {
+        id: 'sent-q2',
+        question: 'المكوِّنان الأساسيان للجملة الاسمية هما:',
+        options: [
+          'فعل وفاعل',
+          'مبتدأ وخبر',
+          'فعل ومفعول به',
+          'مبتدأ ومضاف إليه'
+        ],
+        correctIndex: 1,
+        explanation: 'الجملة الاسمية تتكون من مبتدأ وخبر أساسًا.'
+      },
+      {
+        id: 'sent-q3',
+        question: 'أيُّ جملةٍ فعلية مبنية للمجهول؟',
+        options: [
+          'فتحَ الولدُ البابَ',
+          'يكتبُ الطالبُ الدرسَ',
+          'فُتحَ البابُ',
+          'أكلَ الطفلُ التفاحةَ'
+        ],
+        correctIndex: 2,
+        explanation: 'فُتحَ البابُ: فعل ماضٍ مبني للمجهول ونائب فاعل.'
+      },
+      {
+        id: 'sent-q4',
+        question: 'في جملة "إنَّ اللهَ رحيمٌ"، كلمة "الله" تعرب:',
+        options: [
+          'مبتدأ مرفوع',
+          'خبر مرفوع',
+          'اسم إنَّ منصوب',
+          'خبر إنَّ منصوب'
+        ],
+        correctIndex: 2,
+        explanation: 'إنَّ تنصب المبتدأ، فيصبح اسمها منصوبًا.'
+      },
+      {
+        id: 'sent-q5',
+        question: 'في جملة "يكتبُ الطالبُ الدرسَ"، نوع الجملة هو:',
+        options: ['اسمية', 'فعلية', 'شرطية', 'استفهامية'],
+        correctIndex: 1,
+        explanation: 'الجملة بدأت بفعل مضارع "يكتبُ"، فهي جملة فعلية.'
+      },
+      {
+        id: 'sent-q6',
+        question: 'أيُّ تركيبٍ يُعَدُّ ركنًا من أركان الجملة الفعلية؟',
+        options: [
+          'مبتدأ وخبر',
+          'فاعل ومفعول به فقط',
+          'فعل وفاعل',
+          'فعل وحرف جر'
+        ],
+        correctIndex: 2,
+        explanation: 'الركن الأساسي للجملة الفعلية: فعل وفاعل.'
+      }
+    ]
+  },
+
+  // =========================
+  // أسماء الإشارة
+  // =========================
+  'demonstratives': {
+    id: 'demonstratives',
+    title: 'أسماء الإشارة',
+    lessonNumber: 20,
+    categoryId: 'nouns',
+    videos: [
+      {
+        title: 'أسماء الإشارة',
+        url: 'https://youtu.be/eO0c3sBP6Zg?si=Up6ALenO0749PGzc'
+      }
+    ],
+    images: [
+      'lessons/اسم الإشارة/اسم الإشارة.jpg'
+    ],
+    contentHtml: `
+      <p>
+        <strong>اسم الإشارة</strong>
+        هو ما وُضع لِمُعين بواسطة إشارة حسّية. :contentReference[oaicite:8]{index=8}
+      </p>
+
+      <h4>المفرد القريب</h4>
+      <ul>
+        <li><strong>هذا</strong> للمفرد المذكر: <em>هذا رجلٌ، هذا محمدٌ</em>.</li>
+        <li><strong>هذه</strong> للمفرد المؤنث: <em>هذه امرأةٌ، هذه عائشةُ</em>.</li>
+      </ul>
+
+      <h4>المثنّى القريب</h4>
+      <ul>
+        <li><strong>هذانِ</strong> للمثنّى المذكر: <em>هذانِ رجلان، هذانِ كريمان</em>.</li>
+        <li><strong>هاتانِ</strong> للمثنّى المؤنث: <em>هاتانِ امرأتان، هاتانِ كريمتانِ</em>.</li>
+      </ul>
+
+      <h4>الجمع القريب</h4>
+      <ul>
+        <li><strong>هؤلاءِ</strong> لجمع المذكر والمؤنث: <em>هؤلاءِ أطفال، هؤلاءِ نسوةٌ، هؤلاءِ متحابّون، هؤلاءِ مؤدّباتٌ</em>.</li>
+      </ul>
+    `,
+    quiz: [
+      {
+        id: 'dem-q1',
+        question: 'أيُّ اسم إشارة مناسب للجملة: _____ طالبةٌ مجتهدة؟',
+        options: ['هذا', 'هذه', 'هذانِ', 'هؤلاءِ'],
+        correctIndex: 1,
+        explanation: 'طالبة مؤنث مفرد، فيُستخدم اسم الإشارة "هذه".'
+      },
+      {
+        id: 'dem-q2',
+        question: 'الجملة الصحيحة هي:',
+        options: [
+          'هذا بناتٌ مجتهداتٌ',
+          'هؤلاءِ بنتٌ مجتهدةٌ',
+          'هؤلاءِ بناتٌ مجتهداتٌ',
+          'هذانِ بناتٌ مجتهداتٌ'
+        ],
+        correctIndex: 2,
+        explanation: 'الجمع المؤنث "بنات" يناسبه اسم الإشارة "هؤلاءِ".'
+      },
+      {
+        id: 'dem-q3',
+        question: 'أيُّ تركيب صائب: للمثنّى المذكر القريب؟',
+        options: [
+          'هذا كتابانِ',
+          'هذانِ كتابينِ',
+          'هذانِ كتابانِ',
+          'هؤلاءِ كتابانِ'
+        ],
+        correctIndex: 2,
+        explanation: 'المثنّى المذكر: "هذانِ كتابانِ".'
+      },
+      {
+        id: 'dem-q4',
+        question: 'في جملة "هذه شجرةٌ مثمرةٌ"، إعراب "هذه" غالبًا:',
+        options: [
+          'مبتدأ مبني في محل رفع',
+          'خبر مرفوع',
+          'مفعول به منصوب',
+          'مضاف إليه مجرور'
+        ],
+        correctIndex: 0,
+        explanation: 'غالبًا يقع اسم الإشارة في أول الجملة الاسمية مبتدأً.'
+      },
+      {
+        id: 'dem-q5',
+        question: 'أيُّ الجمل التالية تحتوي على اسم إشارة للجمع؟',
+        options: [
+          'هذا بيتٌ جميلٌ',
+          'هذه مدرسةٌ',
+          'هذانِ طالبانِ',
+          'هؤلاءِ طلابٌ مجتهدون'
+        ],
+        correctIndex: 3,
+        explanation: '"هؤلاءِ" يُستعمل للجمع.'
+      }
+    ]
+  },
+
+  // =========================
+  // الأسماء الموصولة
+  // =========================
+  'relative-pronouns': {
+    id: 'relative-pronouns',
+    title: 'الأسماء الموصولة',
+    lessonNumber: 21,
+    categoryId: 'nouns',
+    videos: [
+      {
+        title: 'الأسماء الموصولة',
+        url: 'https://youtu.be/tPIEgfxmDr0?si=t1ed37kxFOR77WRF'
+      }
+    ],
+    images: [
+      'lessons/الأسماء الموصولة/الأسماء الموصولة.jpg'
+    ],
+    contentHtml: `
+      <p>
+        <strong>الاسم الموصُول</strong> هو اسم وُضع لمسمى معيّن بواسطة جملة تُذكر بعده تُسمى صلة الموصول،
+        مثل: <em>جاء الذي فاز</em>. :contentReference[oaicite:9]{index=9}
+      </p>
+
+      <h4>الأسماء الموصولة المشتركة</h4>
+      <ul>
+        <li><strong>مَن</strong> للعاقل، مثل: <em>نجح من اجتهد</em>.</li>
+        <li><strong>ما</strong> لغير العاقل، مثل: <em>اقرأ من الكتب ما يفيدك</em>.</li>
+        <li><strong>أيّ</strong> بحسب السياق للعاقل وغيره، مثل: <em>أكرم أيَّهم أكثرُ اجتهادًا</em>.</li>
+      </ul>
+
+      <h4>الأسماء الموصولة الخاصة</h4>
+      <p>تتغير حسب العدد والجنس:</p>
+      <ul>
+        <li>
+          للمذكر: <strong>الذي، اللذانِ، اللذين، الذين</strong>.
+        </li>
+        <li>
+          للمؤنث: <strong>التي، اللتانِ، اللتين، اللاتي، اللائي، اللواتي</strong>.
+        </li>
+      </ul>
+    `,
+    quiz: [
+      {
+        id: 'rel-q1',
+        question: 'في جملة "نجحَ مَنِ اجتهدَ"، كلمة "مَن" هي:',
+        options: ['اسم استفهام', 'اسم موصول مشترك', 'اسم شرط', 'ضمير'],
+        correctIndex: 1,
+        explanation: '"مَن" هنا اسم موصول مشترك يُستخدم للعاقل.'
+      },
+      {
+        id: 'rel-q2',
+        question: 'أيُّ جملة تحوي اسمًا موصولًا خاصًّا للمذكر المفرد؟',
+        options: [
+          'أكرمْ أيَّهم أنشطُ',
+          'جاء الذي فازَ بالمسابقةِ',
+          'نجح من اجتهد',
+          'هذا ما أُحبّ'
+        ],
+        correctIndex: 1,
+        explanation: '"الذي" اسم موصول خاصّ للمذكر المفرد.'
+      },
+      {
+        id: 'rel-q3',
+        question: 'في جملة "قرأتُ ما ينفعني"، نوع "ما" هو:',
+        options: ['اسم استفهام', 'اسم موصول لغير العاقل', 'حرف نفي', 'حرف جر'],
+        correctIndex: 1,
+        explanation: '"ما" هنا اسم موصول لغير العاقل.'
+      },
+      {
+        id: 'rel-q4',
+        question: 'الجملة التي تصلح أن تكون صلة موصول هي:',
+        options: [
+          'في المدرسةِ',
+          'الذي فازَ',
+          'حضرَ مبكرًا',
+          'منذُ زمنٍ بعيدٍ'
+        ],
+        correctIndex: 2,
+        explanation: 'صلة الموصول جملة تامة: فعل وفاعل مثل "حضر مبكرًا".'
+      },
+      {
+        id: 'rel-q5',
+        question: 'أيُّ الأسماء التالية من الأسماء الموصولة الخاصة للمؤنث؟',
+        options: ['من', 'ما', 'التي', 'أيّ'],
+        correctIndex: 2,
+        explanation: '"التي" من الأسماء الموصولة الخاصة بالمفرد المؤنث.'
+      }
+    ]
+  },
+
+  // =========================
+  // الأسماء الخمسة
+  // =========================
+  'five-nouns': {
+    id: 'five-nouns',
+    title: 'الأسماء الخمسة',
+    lessonNumber: 22,
+    categoryId: 'nouns',
+    videos: [
+      {
+        title: 'الأسماء الخمسة',
+        url: 'https://youtu.be/Ao6gfEK177o?si=IO3W-EWf7nZHpn41'
+      }
+    ],
+    images: [
+      'lessons/الأسماء الخمسة/الأسماء الخمسة.jpg',
+      'lessons/الأسماء الخمسة/الأسماء الخمسة 1.jpg'
+    ],
+    contentHtml: `
+      <p>
+        <strong>الأسماء الخمسة</strong> هي: <strong>أبوك، أخوك، حموك، فوك، ذو مالٍ</strong>.
+      </p>
+      <p>
+        تمتاز بأن إعرابها يكون بالحروف نيابةً عن الحركات في حالات معيّنة. :contentReference[oaicite:10]{index=10}
+      </p>
+
+      <h4>إعراب الأسماء الخمسة</h4>
+      <ul>
+        <li><strong>ترفع بالواو</strong>: <em>جاء أبوك، زارنا أخوك، هذا ذو مالٍ</em>.</li>
+        <li><strong>تنصب بالألف</strong>: <em>رأيت أباك، صادقت أخاك، أكرمت حماك</em>.</li>
+        <li><strong>تجرّ بالياء</strong>: <em>مررت بأبيك، سلمت على أخيك، جلست إلى حميك</em>.</li>
+      </ul>
+
+      <h4>شروط إعرابها بهذا الإعراب</h4>
+      <ul>
+        <li>أن تكون <strong>مفردة</strong>.</li>
+        <li>أن تكون <strong>مضافة</strong>.</li>
+        <li>ألا تُضاف إلى <strong>ياء المتكلم</strong>، وإلا أُعربت بالحركات.</li>
+      </ul>
+    `,
+    quiz: [
+      {
+        id: 'five-q1',
+        question: 'أيٌّ مما يلي يُعَدُّ من الأسماء الخمسة؟',
+        options: ['أبوك', 'أخينا', 'أبانا', 'أبوين'],
+        correctIndex: 0,
+        explanation: 'الصيغة الأصلية من الأسماء الخمسة: أبوك، أخوك، حموك، فوك، ذو.'
+      },
+      {
+        id: 'five-q2',
+        question: 'في جملة "جاء أبوك"، علامة رفع "أبوك" هي:',
+        options: ['الضمة', 'الواو', 'الألف', 'الياء'],
+        correctIndex: 1,
+        explanation: 'الأسماء الخمسة تُرفع بالواو.'
+      },
+      {
+        id: 'five-q3',
+        question: 'في جملة "رأيتُ أباك"، علامة نصب "أباك" هي:',
+        options: ['الفتحة', 'الضمة', 'الألف', 'الياء'],
+        correctIndex: 2,
+        explanation: 'تنصب الأسماء الخمسة بالألف.'
+      },
+      {
+        id: 'five-q4',
+        question: 'في جملة "مررتُ بأبيك"، علامة جر "أبيك" هي:',
+        options: ['الكسرة', 'الفتحة', 'الياء', 'الواو'],
+        correctIndex: 2,
+        explanation: 'تُجرّ الأسماء الخمسة بالياء.'
+      },
+      {
+        id: 'five-q5',
+        question: 'أيُّ الجمل التالية اختل فيها شرط من شروط الأسماء الخمسة؟',
+        options: [
+          'زارني أخوك',
+          'جاء أبوك',
+          'أكرمتُ حمي',
+          'احترمتُ ذا علمٍ'
+        ],
+        correctIndex: 2,
+        explanation: 'عند إضافتها لياء المتكلم (حمي) تعود للإعراب بالحركات لا بالحروف.'
+      }
+    ]
+  },
+
+  // =========================
+  // أسلوب الاستفهام (أدوات الاستفهام)
+  // =========================
+  interrogatives: {
+    id: 'interrogatives',
+    title: 'أدوات الاستفهام',
+    lessonNumber: 30,
+    categoryId: 'styles',
+    videos: [
+      {
+        title: 'أدوات الاستفهام',
+        url: 'https://youtu.be/fY-y8LqX6Bk?si=LU1wqp5iTMB_YQOB'
+      }
+    ],
+    images: [
+      'lessons/أسلوب الاستفهام/أدوات الاستفهام.jpg'
+    ],
+    contentHtml: `
+      <p>
+        <strong>أسلوب الاستفهام</strong> هو ما يُستعمل لطلب الفهم أو السؤال عن شيء مجهول. :contentReference[oaicite:11]{index=11}
+      </p>
+      <p>
+        من أدوات الاستفهام: <strong>مَن، ما، ماذا، متى، أيان، أين، كيف، كم، أيُّ</strong>.
+      </p>
+
+      <ul>
+        <li><strong>مَن</strong> – للسؤال عن العاقل: <em>مَن آخر الخلفاء الراشدين؟</em></li>
+        <li><strong>ما / ماذا</strong> – للسؤال عن غير العاقل: <em>ما أحبُّ العلوم إليك؟</em></li>
+        <li><strong>متى</strong> – للسؤال عن الزمان: <em>متى رجعت؟</em></li>
+        <li><strong>أيان</strong> – للزمان المستقبل: <em>أيان تسافر؟</em></li>
+        <li><strong>أين</strong> – للسؤال عن المكان: <em>أين أخوك؟</em></li>
+        <li><strong>كيف</strong> – للسؤال عن الحال: <em>كيف حالك؟</em></li>
+        <li><strong>كم</strong> – للسؤال عن العدد: <em>كم كتابًا قرأت؟</em></li>
+        <li><strong>أيُّ</strong> – لتعيين واحد من مجموعة: <em>أيُّ رجلٍ أتى؟</em></li>
+      </ul>
+    `,
+    quiz: [
+      {
+        id: 'int-q1',
+        question: 'أيُّ أداة استفهام تُستخدم للسؤال عن العاقل؟',
+        options: ['ما', 'أين', 'مَن', 'كم'],
+        correctIndex: 2,
+        explanation: 'تستعمل "مَن" للسؤال عن العاقل.'
+      },
+      {
+        id: 'int-q2',
+        question: 'السؤال المناسب عن الزمان هو:',
+        options: [
+          'أين تدرس؟',
+          'متى تبدأُ الحصةُ؟',
+          'كيف حالُك؟',
+          'كم كتابًا قرأت؟'
+        ],
+        correctIndex: 1,
+        explanation: '"متى" تختص بالسؤال عن الزمان.'
+      },
+      {
+        id: 'int-q3',
+        question: 'أيُّ سؤالٍ يستخدم أداة استفهام عن المكان؟',
+        options: [
+          'متى رجعت؟',
+          'أين تسكن؟',
+          'كم طالبًا في الصف؟',
+          'كيف وصلت؟'
+        ],
+        correctIndex: 1,
+        explanation: '"أين تسكن؟" سؤال عن المكان.'
+      },
+      {
+        id: 'int-q4',
+        question: 'في الجملة "كم طالبًا في الصف؟"، أداة الاستفهام تُستخدم للسؤال عن:',
+        options: ['الزمان', 'المكان', 'الحال', 'العدد'],
+        correctIndex: 3,
+        explanation: '"كم" للسؤال عن العدد أو الكمية.'
+      },
+      {
+        id: 'int-q5',
+        question: 'أيُّ سؤالٍ مناسب للسؤال عن حال الشخص؟',
+        options: [
+          'متى حضرت؟',
+          'أين تقيم؟',
+          'كيف صحتُك؟',
+          'كم مرةً زرتنا؟'
+        ],
+        correctIndex: 2,
+        explanation: '"كيف" تُستخدم للسؤال عن الحال أو الهيئة.'
+      }
+    ]
+  },
+
+  // =========================
+  // التمييز
+  // =========================
+  tamyeez: {
+    id: 'tamyeez',
+    title: 'التمييز',
+    lessonNumber: 31,
+    categoryId: 'tawabi',
+    videos: [],
+    images: [
+      'lessons/التمييز/التمييز.jpg'
+    ],
+    contentHtml: `
+      <p>
+        <strong>التمييز</strong> اسم نكرة منصوب يزيل إبهامًا في الجملة
+        ويُوضّح المقصود من كلمة قبله.
+      </p>
+
+      <h4>تمييز ملفوظ</h4>
+      <p>
+        يوضّح مقدارًا مذكورًا قبله، مثل العدد أو الكيل أو الوزن أو المساحة:
+      </p>
+      <ul>
+        <li>خمسةُ ريالاتٍ، كيلو لحمًا، فدانًا قمحًا، لترًا ماءً.</li>
+      </ul>
+
+      <h4>تمييز ملحوظ (نِسبة)</h4>
+      <p>
+        يوضّح جملة أو نسبة معنوية قبله، مثل:
+        <em>طاب الجوُّ هواءً</em>، <em>ازداد الطالب علمًا</em>.
+      </p>
+    `,
+    quiz: [
+      {
+        id: 'tam-q1',
+        question: 'التمييز في جملة "اشتريتُ كيلو سُكرًا" هو:',
+        options: ['كيلو', 'اشتريتُ', 'سكرًا', 'هو'],
+        correctIndex: 2,
+        explanation: '"سكرًا" تمييز يوضّح نوع المقدار (كيلو).'
+      },
+      {
+        id: 'tam-q2',
+        question: 'في جملة "معي خمسةُ ريالاتٍ"، نوع التمييز هو:',
+        options: ['تمييز وزن', 'تمييز عدد', 'تمييز مساحة', 'تمييز حال'],
+        correctIndex: 1,
+        explanation: 'خمسةُ ريالاتٍ: تمييز عدد.'
+      },
+      {
+        id: 'tam-q3',
+        question: 'أيُّ جملة فيها تمييز ملحوظ (نسبة)؟',
+        options: [
+          'شربتُ لترًا ماءً',
+          'اشتريتُ كيلو أرزًا',
+          'طابَ الجوُّ هواءً',
+          'زرعتُ فدانًا قمحًا'
+        ],
+        correctIndex: 2,
+        explanation: '"طاب الجوُّ هواءً" يوضّح حالة الجو، وهذا تمييز ملحوظ.'
+      },
+      {
+        id: 'tam-q4',
+        question: 'ما تعريف التمييز؟',
+        options: [
+          'اسم معرفة يوضّح الفاعل',
+          'اسم نكرة مرفوع يزيل إبهامًا',
+          'اسم نكرة منصوب يزيل إبهامًا في الجملة',
+          'فعل ماضٍ يزيل الغموض'
+        ],
+        correctIndex: 2,
+        explanation: 'التعريف الصحيح: اسم نكرة منصوب يزيل إبهامًا.'
+      },
+      {
+        id: 'tam-q5',
+        question: 'في جملة "ازدادَ الطالبُ علمًا"، كلمة "علمًا" هي:',
+        options: ['فاعل', 'مفعول به', 'حال', 'تمييز'],
+        correctIndex: 3,
+        explanation: '"علمًا" تمييز ملحوظ يوضح نوع الزيادة.'
+      }
+    ]
+  }
+};
+
+// ============================
+// دوال التخزين العامّة
+// ============================
+
+function loadFromStorage(key, fallback) {
+  try {
+    const raw = localStorage.getItem(key);
+    return raw ? JSON.parse(raw) : fallback;
+  } catch (e) {
+    console.error('Storage read error', e);
+    return fallback;
+  }
+}
+
+function saveToStorage(key, value) {
+  try {
+    localStorage.setItem(key, JSON.stringify(value));
+  } catch (e) {
+    console.error('Storage write error', e);
+  }
+}
+
+// ============================
+// الملف الشخصي للطالب
+// ============================
+
+function getStudentProfile() {
+  return loadFromStorage(STORAGE_KEYS.profile, null);
+}
+
+function saveStudentProfile(profile) {
+  saveToStorage(STORAGE_KEYS.profile, profile);
+}
+
+// ============================
+// التقدم في الدروس والمفضّلة
+// ============================
+
+function loadProgress() {
+  return loadFromStorage(STORAGE_KEYS.progress, {});
+}
+
+function saveProgress(progress) {
+  saveToStorage(STORAGE_KEYS.progress, progress);
+}
+
+function loadFavorites() {
+  return loadFromStorage(STORAGE_KEYS.favorites, []);
+}
+
+function saveFavorites(favs) {
+  saveToStorage(STORAGE_KEYS.favorites, favs);
+}
+
+// ============================
+// حالة التطبيق
+// ============================
+
+const appState = {
+  profile: null,
+  progress: loadProgress(),
+  favorites: loadFavorites(),
+  currentLessonId: null,
+  currentView: 'landing'
+};
+
+// ============================
+// بطاقة المبرمج
+// ============================
+
+function createDeveloperCardHTML() {
+  const phoneHref = DEVELOPER_INFO.phone.replace(/\s+/g, '');
+  return `
+    <section class="developer-card">
+      <p class="developer-title">${DEVELOPER_INFO.label}</p>
+      <p class="developer-phone">
+        <a href="tel:${phoneHref}">${DEVELOPER_INFO.phone}</a>
+        <span class="developer-phone-icon">📞</span>
+      </p>
+    </section>
+  `;
+}
+
+// ============================
+// مودال بيانات الطالب
+// ============================
+
+function openProfileModal(onDone) {
+  const existing = getStudentProfile() || { fullName: '', grade: '' };
+
+  const overlay = document.createElement('div');
+  overlay.className = 'modal-overlay profile-modal-overlay';
+  overlay.innerHTML = `
+    <div class="profile-modal-card">
+      <button class="profile-modal-close" aria-label="إغلاق">&times;</button>
+      <div class="profile-modal-icon">👩‍🎓</div>
+      <h2>مرحبًا بك في تطبيق النحو ببساطة</h2>
+      <p class="profile-modal-text">
+        من فضلك أدخل بياناتك حتى نُظهر اسمك في شهادة الإنجاز:
+      </p>
+
+      <label class="profile-modal-label">
+        الاسم الرباعي
+        <input id="profile-full-name" class="profile-modal-input" type="text"
+               placeholder="مثال: أحمد محمد علي عبد الله" value="${existing.fullName || ''}">
+      </label>
+
+      <label class="profile-modal-label">
+        المرحلة الدراسية
+        <input id="profile-grade" class="profile-modal-input" type="text"
+               placeholder="مثال: الصف التاسع الأساسي" value="${existing.grade || ''}">
+      </label>
+
+      <div class="profile-modal-actions">
+        <button class="profile-modal-secondary">إلغاء</button>
+        <button class="profile-modal-primary">حفظ وبدء التعلّم</button>
+      </div>
+    </div>
+  `;
+
+  document.body.appendChild(overlay);
+
+  const fullNameInput = overlay.querySelector('#profile-full-name');
+  const gradeInput = overlay.querySelector('#profile-grade');
+  const btnPrimary = overlay.querySelector('.profile-modal-primary');
+  const btnSecondary = overlay.querySelector('.profile-modal-secondary');
+  const btnClose = overlay.querySelector('.profile-modal-close');
+
+  function closeModal() {
+    overlay.remove();
+  }
+
+  btnSecondary.addEventListener('click', closeModal);
+  btnClose.addEventListener('click', closeModal);
+
+  btnPrimary.addEventListener('click', () => {
+    const fullName = fullNameInput.value.trim();
+    const grade = gradeInput.value.trim();
+
+    if (!fullName) {
+      alert('من فضلك أدخل اسمك الرباعي.');
+      fullNameInput.focus();
+      return;
+    }
+
+    const profile = { fullName, grade, createdAt: Date.now() };
+    saveStudentProfile(profile);
+    appState.profile = profile;
+    closeModal();
+    if (typeof onDone === 'function') onDone();
+  });
+}
+
+// ============================
+// عرض الشهادة (HTML + نافذة جديدة)
+// ============================
+
+function buildCertificateHtml(stats) {
+  const profile = getStudentProfile();
+  const studentName = profile?.fullName || 'الطالب / الطالبة';
+  const grade = profile?.grade || '';
+  const today = new Date().toLocaleDateString('ar-YE', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric'
+  });
+
+  const totalLessons = Object.keys(LESSONS).length;
+  const completed = stats?.completedLessons || 0;
+
+  return `
+    <html dir="rtl" lang="ar">
       <head>
-        <meta charset="utf-8" />
-        <title>شهادة إنجاز - النحو ببساطة</title>
+        <meta charset="UTF-8">
+        <title>شهادة إنجاز</title>
         <style>
           body {
-            font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
-            background: #ecfdf5;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            background: #f0fdf4;
             display: flex;
             align-items: center;
             justify-content: center;
             min-height: 100vh;
           }
           .cert {
-            background: white;
-            border-radius: 16px;
-            padding: 32px 40px;
-            border: 3px solid #10b981;
-            box-shadow: 0 20px 40px rgba(16,185,129,0.25);
-            width: 800px;
-            max-width: 100%;
+            background: #ffffff;
+            padding: 3rem 3.5rem;
+            border-radius: 24px;
+            box-shadow: 0 20px 40px rgba(15, 118, 110, 0.15);
             text-align: center;
+            max-width: 700px;
+            border: 3px solid #22c55e;
           }
           .cert-title {
-            font-size: 28px;
-            margin-bottom: 8px;
-            color: #065f46;
-          }
-          .cert-subtitle {
-            font-size: 18px;
-            margin-bottom: 24px;
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
             color: #047857;
           }
-          .cert-name {
-            font-size: 24px;
-            margin: 16px 0;
-          }
-          .cert-info {
-            font-size: 16px;
-            margin: 8px 0;
-          }
-          .cert-footer {
-            margin-top: 32px;
-            display: flex;
-            justify-content: space-between;
-            font-size: 14px;
+          .cert-subtitle {
+            margin-bottom: 2rem;
             color: #6b7280;
           }
-          .cert-brand {
-            font-weight: 600;
-            color: #10b981;
+          .cert-name {
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-bottom: 0.25rem;
+          }
+          .cert-grade {
+            margin-bottom: 1.5rem;
+            color: #4b5563;
+          }
+          .cert-body {
+            margin-bottom: 2rem;
+            line-height: 1.8;
+          }
+          .cert-footer {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 2.5rem;
+            font-size: 0.95rem;
+          }
+          .cert-sign {
+            text-align: right;
+          }
+          .cert-dev {
+            text-align: left;
+            color: #059669;
+          }
+          .cert-date {
+            margin-top: 0.75rem;
+            color: #6b7280;
           }
         </style>
       </head>
       <body>
         <div class="cert">
-          <div class="cert-title">شهادة إنجاز</div>
-          <div class="cert-subtitle">تطبيق "النحو ببساطة"</div>
+          <h1 class="cert-title">شهادة إنجاز</h1>
+          <p class="cert-subtitle">يُمنح هذه الشهادة</p>
 
-          <p class="cert-info">تُمنح هذه الشهادة لـ</p>
-          <p class="cert-name">.........................</p>
+          <div class="cert-name">${studentName}</div>
+          ${grade ? `<div class="cert-grade">المرحلة: ${grade}</div>` : ''}
 
-          <p class="cert-info">
-            تقديراً لاجتهاده في دراسة قواعد النحو وإكماله
-            <strong>${completed}</strong> من
-            <strong>${total}</strong> درسًا
-            بنسبة تقدّم
-            <strong>${percent}٪</strong>.
-          </p>
-
-          <p class="cert-info">
-            النقاط المكتسبة داخل التطبيق: <strong>${appState.points}</strong> نقطة.
-          </p>
+          <div class="cert-body">
+            تقديرًا لجهوده في إكمال
+            <strong>${completed}</strong>
+            من أصل
+            <strong>${totalLessons}</strong>
+            درسًا من دروس تطبيق
+            <strong>«النحو ببساطة»</strong>
+            وتحقيقه تقدمًا ملحوظًا في الاختبارات التفاعلية.
+          </div>
 
           <div class="cert-footer">
-            <span>توقيع المشرف/ـة: .......................</span>
-            <span class="cert-brand">تطبيق النحو ببساطة</span>
+            <div class="cert-sign">
+              <div>المشرفة على التطبيق</div>
+              <div><strong>${SUPERVISOR_NAME}</strong></div>
+            </div>
+            <div class="cert-dev">
+              <div>${DEVELOPER_INFO.label}</div>
+              <div>${DEVELOPER_INFO.phone}</div>
+            </div>
           </div>
+
+          <div class="cert-date">التاريخ: ${today}</div>
         </div>
       </body>
     </html>
   `;
+}
 
-  const w = window.open('', '_blank');
-  if (!w) {
-    alert('تعذر فتح نافذة جديدة، قد يكون المتصفح حظر النوافذ المنبثقة.');
+function generateCertificate(stats) {
+  const win = window.open('', '_blank');
+  win.document.write(buildCertificateHtml(stats || {}));
+  win.document.close();
+  win.focus();
+}
+
+// ============================
+// حساب الإحصائيات من progress
+// ============================
+
+function computeStats() {
+  const progress = appState.progress;
+  const totalLessons = Object.keys(LESSONS).length;
+  let completedLessons = 0;
+  let totalQuestions = 0;
+  let correctAnswers = 0;
+
+  Object.keys(LESSONS).forEach(id => {
+    const lesson = LESSONS[id];
+    const p = progress[id];
+    if (p && p.completed) completedLessons += 1;
+    if (lesson.quiz && lesson.quiz.length) {
+      totalQuestions += lesson.quiz.length;
+      if (p && typeof p.score === 'number') {
+        correctAnswers += p.score;
+      }
+    }
+  });
+
+  return {
+    totalLessons,
+    completedLessons,
+    totalQuestions,
+    correctAnswers
+  };
+}
+
+// ============================
+// عرض القوائم والدروس
+// ============================
+
+function renderCategories() {
+  const container = document.getElementById('categories-container');
+  if (!container) return;
+
+  const lessonsByCategory = {};
+  Object.values(LESSONS).forEach(lesson => {
+    if (!lessonsByCategory[lesson.categoryId]) {
+      lessonsByCategory[lesson.categoryId] = [];
+    }
+    lessonsByCategory[lesson.categoryId].push(lesson);
+  });
+
+  // ترتيب بسيط حسب lessonNumber
+  Object.values(lessonsByCategory).forEach(list =>
+    list.sort((a, b) => (a.lessonNumber || 0) - (b.lessonNumber || 0))
+  );
+
+  container.innerHTML = '';
+
+  Object.values(CATEGORIES).forEach(cat => {
+    const lessons = lessonsByCategory[cat.id] || [];
+    const card = document.createElement('article');
+    card.className = `category-card ${cat.colorClass || ''}`;
+
+    const completedCount = lessons.filter(l => appState.progress[l.id]?.completed).length;
+
+    card.innerHTML = `
+      <button class="category-header" type="button">
+        <div>
+          <h3>${cat.title}</h3>
+          <p>${lessons.length} درس — مكتمل: ${completedCount}</p>
+        </div>
+        <span class="category-toggle">▼</span>
+      </button>
+      <ul class="lessons-list" style="display:none"></ul>
+    `;
+
+    const listEl = card.querySelector('.lessons-list');
+
+    lessons.forEach(lesson => {
+      const progress = appState.progress[lesson.id] || {};
+      const li = document.createElement('li');
+      li.className = 'lesson-row';
+      li.dataset.lessonId = lesson.id;
+
+      const hasVideo = lesson.videos && lesson.videos.length > 0;
+
+      li.innerHTML = `
+        <div class="lesson-row-main">
+          <span class="lesson-title">${lesson.title}</span>
+          <span class="lesson-status">
+            ${progress.completed ? '✓ مكتمل' : 'لم يُنجز بعد'}
+          </span>
+        </div>
+        <div class="lesson-row-meta">
+          ${hasVideo ? 'يحتوي فيديو 🎬' : 'بدون فيديو'}
+        </div>
+      `;
+
+      li.addEventListener('click', () => {
+        openLesson(lesson.id);
+      });
+
+      listEl.appendChild(li);
+    });
+
+    const headerBtn = card.querySelector('.category-header');
+    headerBtn.addEventListener('click', () => {
+      const isOpen = listEl.style.display === 'block';
+      listEl.style.display = isOpen ? 'none' : 'block';
+      headerBtn.querySelector('.category-toggle').textContent = isOpen ? '▼' : '▲';
+    });
+
+    container.appendChild(card);
+  });
+}
+
+function openLesson(lessonId) {
+  const lesson = LESSONS[lessonId];
+  if (!lesson) return;
+  appState.currentLessonId = lessonId;
+
+  const view = document.getElementById('lesson-detail-view');
+  if (!view) return;
+
+  showView('lessons'); // نتأكد أننا في شاشة الدروس
+
+  const progress = appState.progress[lessonId] || {};
+  const isFavorite = appState.favorites.includes(lessonId);
+
+  let imagesHtml = '';
+  if (lesson.images && lesson.images.length) {
+    imagesHtml = `
+      <div class="lesson-images">
+        ${lesson.images
+          .map(src => `<div class="lesson-image"><img src="${src}" alt=""></div>`)
+          .join('')}
+      </div>
+    `;
+  }
+
+  let videosHtml = '';
+  if (lesson.videos && lesson.videos.length) {
+    videosHtml = `
+      <section class="lesson-section">
+        <h3>الفيديوهات التوضيحية</h3>
+        <ul class="videos-list">
+          ${lesson.videos
+            .map(
+              v => `<li><a href="${v.url}" target="_blank" rel="noopener">
+                🎬 ${v.title}
+              </a></li>`
+            )
+            .join('')}
+        </ul>
+      </section>
+    `;
+  }
+
+  view.innerHTML = `
+    <header class="lesson-header">
+      <button id="back-to-lessons" class="secondary-btn small-btn">العودة إلى الدروس</button>
+      <div class="lesson-header-main">
+        <h2>${lesson.title}</h2>
+        ${lesson.lessonNumber ? `<p class="lesson-number">الدرس ${lesson.lessonNumber}</p>` : ''}
+      </div>
+      <div class="lesson-header-actions">
+        <button id="fav-btn" class="icon-btn" title="إضافة للمفضلة">
+          ${isFavorite ? '⭐' : '☆'}
+        </button>
+      </div>
+    </header>
+
+    ${imagesHtml}
+
+    <section class="lesson-section">
+      <h3>محتوى الدرس</h3>
+      <div class="lesson-content">${lesson.contentHtml}</div>
+    </section>
+
+    ${videosHtml}
+
+    <section class="lesson-section" id="quiz-section">
+      <h3>اختبر نفسك</h3>
+      <div id="quiz-container"></div>
+    </section>
+
+    <section class="lesson-section">
+      <h3>تحميل الدرس</h3>
+      <p>سيتم فتح نافذة الطباعة، ويمكنك اختيار "حفظ كملف PDF" من المتصفح.</p>
+      <button id="download-lesson-pdf" class="primary-btn">تحميل الدرس بصيغة PDF</button>
+    </section>
+  `;
+
+  const backBtn = document.getElementById('back-to-lessons');
+  if (backBtn) {
+    backBtn.addEventListener('click', () => {
+      appState.currentLessonId = null;
+      // مجرد إخفاء التفاصيل، والقائمة تبقى معروضة
+      document.getElementById('lesson-detail-view').innerHTML = '';
+    });
+  }
+
+  const favBtn = document.getElementById('fav-btn');
+  if (favBtn) {
+    favBtn.addEventListener('click', () => {
+      toggleFavoriteLesson(lessonId);
+      favBtn.textContent = appState.favorites.includes(lessonId) ? '⭐' : '☆';
+    });
+  }
+
+  const pdfBtn = document.getElementById('download-lesson-pdf');
+  if (pdfBtn) {
+    pdfBtn.addEventListener('click', () => {
+      downloadLessonPdf(lessonId);
+    });
+  }
+
+  renderQuiz(lesson, progress);
+}
+
+function toggleFavoriteLesson(lessonId) {
+  const idx = appState.favorites.indexOf(lessonId);
+  if (idx === -1) {
+    appState.favorites.push(lessonId);
+  } else {
+    appState.favorites.splice(idx, 1);
+  }
+  saveFavorites(appState.favorites);
+}
+
+// ============================
+// الاختبار لكل درس
+// ============================
+
+function renderQuiz(lesson, progress) {
+  const container = document.getElementById('quiz-container');
+  if (!container) return;
+
+  const questions = lesson.quiz || [];
+  if (!questions.length) {
+    container.innerHTML = '<p>سيتم إضافة أسئلة لهذا الدرس لاحقًا.</p>';
     return;
   }
-  w.document.open();
-  w.document.write(html);
-  w.document.close();
-  w.focus();
-  w.onload = () => w.print();
+
+  container.innerHTML = '';
+
+  questions.forEach((q, index) => {
+    const field = document.createElement('fieldset');
+    field.className = 'quiz-question';
+
+    field.innerHTML = `
+      <legend>السؤال ${index + 1} من ${questions.length}</legend>
+      <p class="quiz-q-text">${q.question}</p>
+      <div class="quiz-options">
+        ${q.options
+          .map(
+            (opt, i) => `
+          <label class="quiz-option">
+            <input type="radio" name="q-${q.id}" value="${i}">
+            <span>${opt}</span>
+          </label>
+        `
+          )
+          .join('')}
+      </div>
+      <p class="quiz-feedback" data-qid="${q.id}"></p>
+    `;
+
+    container.appendChild(field);
+  });
+
+  const submitBtn = document.createElement('button');
+  submitBtn.textContent = 'تأكيد الإجابة';
+  submitBtn.className = 'primary-btn';
+  container.appendChild(submitBtn);
+
+  const resultP = document.createElement('p');
+  resultP.className = 'quiz-result';
+  container.appendChild(resultP);
+
+  submitBtn.addEventListener('click', () => {
+    let score = 0;
+
+    questions.forEach(q => {
+      const selected = container.querySelector(`input[name="q-${q.id}"]:checked`);
+      const feedback = container.querySelector(`.quiz-feedback[data-qid="${q.id}"]`);
+      if (!feedback) return;
+
+      if (!selected) {
+        feedback.textContent = 'لم تختر إجابة بعد.';
+        feedback.className = 'quiz-feedback quiz-feedback-missing';
+        return;
+      }
+
+      const answerIndex = Number(selected.value);
+      if (answerIndex === q.correctIndex) {
+        score += 1;
+        feedback.textContent = 'إجابة صحيحة ✔️';
+        feedback.className = 'quiz-feedback quiz-feedback-correct';
+      } else {
+        feedback.textContent = `إجابة خاطئة ❌ — الصحيح هو: ${q.options[q.correctIndex]}`;
+        feedback.className = 'quiz-feedback quiz-feedback-wrong';
+      }
+    });
+
+    const percent = Math.round((score / questions.length) * 100);
+    resultP.textContent = `نتيجتك: ${score} من ${questions.length} (${percent}٪)`;
+
+    appState.progress[lesson.id] = {
+      completed: true,
+      score,
+      total: questions.length
+    };
+    saveProgress(appState.progress);
+
+    // تحديث القائمة الرئيسية (حالة مكتمل)
+    renderCategories();
+  });
 }
 
-// =============================
-// 12) صفحة "اسأل المعلم"
-// =============================
+// ============================
+// تحميل الدرس كـ PDF (عن طريق الطباعة)
+// ============================
 
-function renderAskTeacherView() {
-  const view = document.getElementById('view-ask');
+function downloadLessonPdf(lessonId) {
+  const lesson = LESSONS[lessonId];
+  if (!lesson) return;
+
+  const profile = getStudentProfile();
+  const studentName = profile?.fullName || '';
+  const win = window.open('', '_blank');
+
+  win.document.write(`
+    <html dir="rtl" lang="ar">
+      <head>
+        <meta charset="UTF-8">
+        <title>${lesson.title}</title>
+        <style>
+          body {
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            padding: 2rem;
+            line-height: 1.8;
+          }
+          h1 {
+            text-align: center;
+            margin-bottom: 1.5rem;
+          }
+          .student-name {
+            text-align: center;
+            margin-bottom: 1rem;
+            color: #4b5563;
+          }
+          img {
+            max-width: 100%;
+            margin: 1rem 0;
+          }
+        </style>
+      </head>
+      <body>
+        <h1>${lesson.title}</h1>
+        ${studentName ? `<p class="student-name">الطالب/ة: ${studentName}</p>` : ''}
+        ${lesson.contentHtml}
+        ${
+          lesson.images && lesson.images.length
+            ? lesson.images.map(src => `<p><img src="${src}" alt=""></p>`).join('')
+            : ''
+        }
+      </body>
+    </html>
+  `);
+
+  win.document.close();
+  win.focus();
+  // المستخدم يختار "حفظ كملف PDF" من نافذة الطباعة
+  win.print();
+}
+
+// ============================
+// عرض الإحصائيات
+// ============================
+
+function renderStatsView() {
+  const view = document.getElementById('stats-view');
   if (!view) return;
 
-  view.innerHTML = `
-    <header class="app-header">
-      <h2>اسأل المعلم</h2>
-      <p>اكتب سؤالك في النحو أو تواصل مباشرة مع الأستاذة المشرفة.</p>
-    </header>
+  const stats = computeStats();
 
-    <section class="card">
-      <h3>سؤال للذكاء الاصطناعي (قريبًا)</h3>
-      <p class="muted">
-        في النسخة القادمة سيتم ربط هذه الخانة بخدمة ذكاء اصطناعي عبر خادم آمن،
-        حتى لا نعرض مفاتيح الـ API في المتصفّح. الآن يمكنك استخدام الخانة فقط
-        لتدوين الأسئلة التي تريد مناقشتها مع المعلم.
-      </p>
-      <textarea id="ai-question" rows="4" style="width:100%;" placeholder="اكتب سؤالك هنا..."></textarea>
-      <button class="primary-btn" id="ai-send" disabled>
-        إرسال (غير مفعّل بعد)
+  view.innerHTML = `
+    <section class="stats-card">
+      <h2>إحصائيات تقدّمك</h2>
+      <p>عدد الدروس الكلّي: ${stats.totalLessons}</p>
+      <p>الدروس المكتملة: ${stats.completedLessons}</p>
+      <p>عدد أسئلة الاختبارات: ${stats.totalQuestions}</p>
+      <p>إجابات صحيحة: ${stats.correctAnswers}</p>
+      <button id="download-certificate-btn" class="primary-btn">
+        تحميل شهادة إنجاز PDF
       </button>
     </section>
+  `;
 
-    <section class="card teacher-contact-card">
-      <div class="teacher-contact-header">
-        <div>
-          <h3>تواصل مع الأستاذة المشرفة</h3>
-          <p class="teacher-contact-subtitle">للاستفسارات والأسئلة المباشرة</p>
-        </div>
-        <span class="teacher-contact-icon">💬</span>
-      </div>
+  const certBtn = document.getElementById('download-certificate-btn');
+  if (certBtn) {
+    certBtn.addEventListener('click', () => {
+      generateCertificate(stats);
+    });
+  }
+}
 
-      <div class="teacher-contact-inner">
-        <div class="teacher-avatar">👩‍🏫</div>
-        <div class="teacher-name">الأستاذة/ سهام غازي</div>
-        <div class="teacher-role">المشرفة على التطبيق</div>
+// ============================
+// صفحة "اسأل المعلم"
+// ============================
 
-        <div class="teacher-phone">
-          <span class="phone-icon">📞</span>
-          <span class="phone-number">+967&nbsp;775&nbsp;392&nbsp;526</span>
-        </div>
+function renderAskTeacherView() {
+  const container = document.getElementById('ask-teacher-view');
+  if (!container) return;
 
-        <p class="teacher-message">
-          لديك سؤال أو استفسار؟ تواصل معنا مباشرة عبر الواتساب،
-          وسنكون سعداء بمساعدتك في فهم القواعد النحوية وتجاوز الصعوبات.
-        </p>
+  container.innerHTML = `
+    <section class="teacher-card">
+      <h2 class="teacher-title">تواصل مع الأستاذة المشرفة</h2>
+      <p class="teacher-subtitle">للاستفسارات والأسئلة المباشرة</p>
 
-        <a
-          class="teacher-whatsapp-btn"
-          href="https://wa.me/967775392526"
-          target="_blank"
-          rel="noopener"
-        >
-          <span>راسلنا على الواتساب</span>
-          <span>🟢</span>
-        </a>
-
-        <p class="teacher-note">
-          أوقات الرد: من السبت إلى الخميس، ٩ صباحًا – ٥ مساءً 🕒
+      <div class="teacher-box">
+        <div class="teacher-icon">👩‍🏫</div>
+        <h3 class="teacher-name">الأستاذة / سهام غازي</h3>
+        <p class="teacher-role">المشرفة على التطبيق</p>
+        <p class="teacher-phone">
+          <a href="https://wa.me/967775392526" target="_blank" rel="noopener">
+            تواصل عبر الواتساب
+          </a>
         </p>
       </div>
     </section>
-  `;
-}
 
-// =============================
-// 13) صفحة المتصدرين (تجريبية)
-// =============================
-
-function renderLeadersView() {
-  const view = document.getElementById('view-leaders');
-  if (!view) return;
-
-  const { completed, total } = getProgress();
-  const percent = total ? Math.round((completed / total) * 100) : 0;
-
-  view.innerHTML = `
-    <header class="app-header">
-      <h2>المتصدرون</h2>
-      <p>
-        مستقبلًا يمكن ربط هذه الصفحة بقاعدة بيانات لعرض متعلّمين حقيقيين.
-        حاليًا نعرض تقدّمك أنت كتجربة محلية.
-      </p>
-    </header>
-
-    <section class="card">
-      <h3>مركزك الحالي (محليًا)</h3>
-      <p>نسبة الإكمال: ${percent}٪</p>
-      <p>النقاط: ${appState.points}</p>
-      <p class="muted">
-        كلما أكملت دروسًا أكثر ورفعت نقاطك، ارتفع مركزك بين المتعلمين 😊
-      </p>
-    </section>
-  `;
-}
-
-// =============================
-// 14) مودال تأكيد الخروج من الدرس
-// =============================
-
-function showExitConfirmModal(onExit) {
-  const modal = document.createElement('div');
-  modal.className = 'modal';
-
-  modal.innerHTML = `
-    <div class="modal-box modal-exit">
-      <button class="modal-close" aria-label="إغلاق">×</button>
-
-      <div class="exit-modal-icon">✨</div>
-
-      <h3 class="exit-modal-title">هل أنت متأكد؟</h3>
-      <p class="exit-modal-text">
-        العلم يحتاج صبرًا، لا تتعجّل الخروج...
-        كل دقيقة تتعلم فيها تقرّبك من الإتقان! 📚
-      </p>
-
-      <div class="modal-actions">
-        <button class="secondary-btn exit-btn">الخروج</button>
-        <button class="primary-btn stay-btn">متابعة التعلم</button>
-      </div>
+    <div class="developer-wrapper">
+      ${createDeveloperCardHTML()}
     </div>
   `;
+}
 
-  document.body.appendChild(modal);
+// ============================
+// إدارة الواجهات (Views)
+// ============================
 
-  const close = () => {
-    if (modal.parentNode) modal.parentNode.removeChild(modal);
-  };
+const views = {};
 
-  modal.querySelector('.modal-close').addEventListener('click', close);
-  modal.querySelector('.stay-btn').addEventListener('click', close);
+function cacheViews() {
+  views.landing = document.getElementById('landing-view');
+  views.lessons = document.getElementById('lessons-view');
+  views.stats = document.getElementById('stats-view');
+  views.askTeacher = document.getElementById('ask-teacher-view');
+}
 
-  modal.querySelector('.exit-btn').addEventListener('click', () => {
-    close();
-    if (typeof onExit === 'function') onExit();
-  });
-
-  modal.addEventListener('click', (e) => {
-    if (e.target === modal) close();
+function showView(name) {
+  appState.currentView = name;
+  Object.entries(views).forEach(([key, el]) => {
+    if (!el) return;
+    if (key === name) {
+      el.classList.remove('hidden');
+    } else {
+      el.classList.add('hidden');
+    }
   });
 }
 
-// =============================
-// 15) نقطة البداية
-// =============================
+// ============================
+// تهيئة زر "ابدأ التعلّم"
+// ============================
 
-document.addEventListener('DOMContentLoaded', () => {
-  loadState();
+function initStartButton() {
+  const startBtn =
+    document.getElementById('start-learning') ||
+    document.getElementById('start-learning-btn');
 
-  const landing = document.getElementById('landing');
-  const startBtn = document.getElementById('start-learning');
-  const appRoot = document.getElementById('app-root');
-
-  if (!landing || !startBtn || !appRoot) return;
+  if (!startBtn) return;
 
   startBtn.addEventListener('click', () => {
-    landing.classList.add('hidden');
-    appRoot.classList.remove('hidden');
-    buildAppShell();
+    const profile = getStudentProfile();
+    if (!profile) {
+      openProfileModal(() => {
+        showView('lessons');
+      });
+    } else {
+      showView('lessons');
+    }
   });
+}
+
+// ============================
+// بطاقات المبرمج في الواجهة الرئيسية
+// ============================
+
+function initHomeDeveloperCard() {
+  const homeDevSlot = document.getElementById('developer-card-home');
+  if (homeDevSlot) {
+    homeDevSlot.innerHTML = createDeveloperCardHTML();
+  }
+}
+
+// ============================
+// تهيئة التنقل (الهيدر / التبويبات)
+// ============================
+
+function initNavigation() {
+  const navHome = document.getElementById('nav-home');
+  const navLessons = document.getElementById('nav-lessons');
+  const navStats = document.getElementById('nav-stats');
+  const navAsk = document.getElementById('nav-ask-teacher');
+
+  if (navHome) {
+    navHome.addEventListener('click', () => showView('landing'));
+  }
+  if (navLessons) {
+    navLessons.addEventListener('click', () => showView('lessons'));
+  }
+  if (navStats) {
+    navStats.addEventListener('click', () => {
+      renderStatsView();
+      showView('stats');
+    });
+  }
+  if (navAsk) {
+    navAsk.addEventListener('click', () => {
+      renderAskTeacherView();
+      showView('askTeacher');
+    });
+  }
+}
+
+// ============================
+// تهيئة التطبيق
+// ============================
+
+document.addEventListener('DOMContentLoaded', () => {
+  appState.profile = getStudentProfile();
+  cacheViews();
+  initStartButton();
+  initHomeDeveloperCard();
+  renderCategories();
+  renderStatsView();
+  renderAskTeacherView(); // حتى يكون جاهز أول ما يفتح التبويب
+  initNavigation();
+
+  // شاشة البداية
+  showView('landing');
 });
