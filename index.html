@@ -2,439 +2,74 @@
 <html lang="ar" dir="rtl">
   <head>
     <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
     <title>النحو ببساطة</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#059669" />
 
-    <!-- ملف التنسيقات -->
+    <!-- ملف الـ PWA -->
+    <link rel="manifest" href="manifest.json" />
+    <meta name="theme-color" content="#16a34a" />
+
+    <!-- الأيقونة (عدّل المسار إذا لزم) -->
+    <link rel="icon" type="image/png" href="public/icon-192.png" />
+
+    <!-- التنسيقات -->
     <link rel="stylesheet" href="style.css" />
-    <!-- لو عندك manifest خاص بالتطبيق أضِفه هنا -->
-    <!-- <link rel="manifest" href="manifest.webmanifest" /> -->
-
-    <!-- ملف جافاسكربت الرئيسي -->
-    <script src="app.js" defer></script>
   </head>
 
   <body>
-    <div class="app-shell">
-      <!-- شريط علوي -->
-      <header class="app-header">
-        <button
-          id="theme-toggle"
-          class="header-icon"
-          type="button"
-          title="وضع الليل / النهار"
-        >
-          🌙
+    <!-- شاشة الترحيب الأولى -->
+    <main id="landing" class="landing">
+      <div class="landing-inner">
+        <div class="landing-icon">📘</div>
+
+        <h1 class="landing-title">النحو ببساطة</h1>
+
+        <p class="landing-subtitle">
+          ✨ مرحبًا بك في تطبيق <strong>النحو ببساطة</strong> …
+        </p>
+
+        <p class="landing-text">
+          هنا تصبح القواعد فكرة واضحة، والمعنى أقرب، والفهم أخف وأجمل.  
+          اجعل النحو جزءًا من متعتك اليومية في التعلّم؛ كل تفاعل يفتح لك
+          بابًا من الإتقان ويقودك إلى نحو أسهل ولغة أمتن.
+        </p>
+
+        <button id="start-learning" class="primary-btn">
+          ✨ ابدأ التعلّم
         </button>
 
-        <h1 class="app-title">النحو ببساطة</h1>
-
-        <button
-          id="font-toggle"
-          class="header-icon"
-          type="button"
-          title="تكبير / تصغير الخط"
-        >
-          T
-        </button>
-      </header>
-
-      <!-- المحتوى الرئيسي -->
-      <main class="app-main">
-        <!-- =========================
-             الواجهة الترحيبية الأولى
-        ========================== -->
-        <section id="landing-view" class="view landing-view">
-          <div class="hero-card">
-            <div class="hero-icon">📘</div>
-            <h2 class="hero-title">النحو ببساطة</h2>
-
-            <p class="hero-line">
-              ✨ مرحبًا بك في تطبيق <strong>( النحو ببساطة )</strong> …
-            </p>
-            <p class="hero-text">
-              هنا تصبح القواعد فكرة واضحة، والمعنى أقرب، والفهم أخف وأجمل.
-            </p>
-            <p class="hero-text">
-              ابدأ رحلتك الآن… واجعل النحو جزءًا من متعتك اليومية في التعلم؛ كل
-              تفاعل يفتح لك بابًا من الإتقان ويقودك إلى نحو أسهل ولغة أمتن.
-            </p>
-
-            <button id="start-learning" class="primary-btn hero-start-btn">
-              ✨ ابدأ التعلّم
-            </button>
-
-            <p class="hero-footnote">
-              كل قاعدة تفهمها تقرّبك من فصاحة التعبير.
-            </p>
-          </div>
-
-          <!-- بطاقة المبرمج في الواجهة الأولى -->
-          <footer class="developer-card">
-            <p>برمجة المهندس / عبدالرحمن الضبيبي</p>
-            <a class="dev-phone" href="tel:+967781752213">
-              +967 781 752 213 ☎️
-            </a>
-          </footer>
-        </section>
-
-        <!-- =========================
-             صفحة الدروس (القائمة)
-        ========================== -->
-        <section id="lessons-view" class="view hidden">
-          <header class="section-header">
-            <h2>دروس النحو</h2>
-            <p>اختر التصنيف والدرس الذي تريد البدء به.</p>
-          </header>
-
-          <div id="categories-container" class="categories-container">
-            <!-- يتم توليد البطاقات من app.js -->
-          </div>
-        </section>
-
-        <!-- =========================
-             صفحة الدرس الواحد
-        ========================== -->
-        <section id="lesson-detail-view" class="view hidden">
-          <button
-            id="lesson-back-btn"
-            type="button"
-            class="ghost-btn back-btn"
-          >
-            ← العودة إلى قائمة الدروس
-          </button>
-
-          <article class="lesson-detail-card">
-            <header class="lesson-detail-header">
-              <h2 id="lesson-title">عنوان الدرس</h2>
-              <div class="lesson-detail-actions">
-                <button
-                  id="lesson-favorite-toggle"
-                  type="button"
-                  class="icon-btn"
-                  title="إضافة إلى المفضلة"
-                >
-                  ★
-                </button>
-                <button
-                  id="lesson-pdf-btn"
-                  type="button"
-                  class="icon-btn"
-                  title="تحميل الدرس PDF"
-                >
-                  📄
-                </button>
-              </div>
-            </header>
-
-            <section id="lesson-content" class="lesson-content">
-              <!-- المحتوى النصي للدرس من app.js -->
-            </section>
-
-            <section class="lesson-media">
-              <h3>الصور التوضيحية</h3>
-              <div id="lesson-images" class="lesson-images">
-                <!-- صور الدرس -->
-              </div>
-
-              <h3>الفيديوهات التوضيحية</h3>
-              <div id="lesson-videos" class="lesson-videos">
-                <!-- روابط الفيديو -->
-              </div>
-            </section>
-
-            <section class="lesson-quiz-section">
-              <h3>اختبر نفسك</h3>
-              <div id="quiz-container"></div>
-            </section>
-
-            <section class="lesson-notes-section">
-              <h3>ملاحظاتي الشخصية</h3>
-              <textarea
-                id="lesson-notes"
-                rows="4"
-                placeholder="اكتب ملاحظاتك حول هذا الدرس..."
-              ></textarea>
-            </section>
-          </article>
-        </section>
-
-        <!-- =========================
-             صفحة الإحصائيات
-        ========================== -->
-        <section id="stats-view" class="view hidden">
-          <header class="section-header">
-            <h2>إحصائياتي</h2>
-            <p>تابع تقدّمك في تعلّم النحو.</p>
-          </header>
-
-          <article class="stats-card">
-            <p id="stats-overall">
-              لم تبدأ بعد. ابدأ بأول درس لتظهر إحصائياتك هنا.
-            </p>
-          </article>
-        </section>
-
-        <!-- =========================
-             صفحة اسأل المعلم
-        ========================== -->
-        <section id="ask-teacher-view" class="view hidden">
-          <header class="section-header">
-            <h2>اسأل المعلم</h2>
-            <p>للاستفسارات والأسئلة المباشرة مع المشرفة.</p>
-          </header>
-
-          <article class="teacher-card">
-            <h3>الأستاذة / سهام غازي</h3>
-            <p class="teacher-role">المشرفة على التطبيق</p>
-
-            <p class="teacher-phone">
-              <span>رقم التواصل:</span>
-              <a href="tel:+967775392526">+967 775 392 526</a>
-            </p>
-
-            <a
-              class="primary-btn teacher-whatsapp"
-              href="https://wa.me/967775392526"
-              target="_blank"
-              rel="noopener"
-            >
-              مراسلتنا على الواتساب
-            </a>
-
-            <p class="teacher-time">
-              أوقات الرد: من السبت إلى الخميس، 9 صباحًا - 5 مساءً.
-            </p>
-          </article>
-
-          <!-- بطاقة المبرمج في صفحة اسأل المعلم -->
-          <footer class="developer-card">
-            <p>برمجة المهندس / عبدالرحمن الضبيبي</p>
-            <a class="dev-phone" href="tel:+967781752213">
-              +967 781 752 213 ☎️
-            </a>
-          </footer>
-        </section>
-
-        <!-- =========================
-             صفحة شهادة الإنجاز
-        ========================== -->
-        <section id="certificate-view" class="view hidden">
-          <header class="section-header">
-            <h2>شهادة الإنجاز</h2>
-            <p>يمكنك تحميل شهادة إنجاز بعد تقدّمك في الدروس.</p>
-          </header>
-
-          <article class="certificate-card">
-            <h3>شهادة إنجاز</h3>
-
-            <p>تُمنح للطالبة / الطالب:</p>
-            <p id="cert-student-name" class="cert-name">اسم الطالب</p>
-            <p id="cert-student-grade" class="cert-grade"></p>
-
-            <p>
-              تقديرًا لجهوده في تعلّم قواعد النحو عبر تطبيق
-              <strong>النحو ببساطة</strong>.
-            </p>
-
-            <p class="cert-teacher">
-              المشرفة:
-              <span id="cert-teacher-name">الأستاذة سهام غازي</span>
-            </p>
-          </article>
-
-          <button
-            id="download-certificate-btn"
-            type="button"
-            class="primary-btn cert-download-btn"
-          >
-            تحميل الشهادة PDF
-          </button>
-        </section>
-      </main>
-
-      <!-- =========================
-           شريط التنقل السفلي
-      ========================== -->
-      <nav class="bottom-nav">
-        <button
-          type="button"
-          class="bottom-nav-item"
-          data-nav-target="lessons"
-        >
-          <span class="nav-icon">📚</span>
-          <span class="nav-label">الدروس</span>
-        </button>
-
-        <button type="button" class="bottom-nav-item" data-nav-target="stats">
-          <span class="nav-icon">📊</span>
-          <span class="nav-label">الإحصائيات</span>
-        </button>
-
-        <button
-          type="button"
-          class="bottom-nav-item"
-          data-nav-target="askTeacher"
-        >
-          <span class="nav-icon">💬</span>
-          <span class="nav-label">اسأل المعلم</span>
-        </button>
-
-        <button
-          type="button"
-          class="bottom-nav-item"
-          data-nav-target="certificate"
-        >
-          <span class="nav-icon">📜</span>
-          <span class="nav-label">الشهادة</span>
-        </button>
-      </nav>
-    </div>
-
-    <!-- =========================
-         نافذة بيانات الطالب
-    ========================== -->
-    <div id="user-profile-modal" class="modal-backdrop hidden">
-      <div class="modal-card">
-        <button
-          type="button"
-          class="modal-close"
-          id="user-profile-close"
-          aria-label="إغلاق"
-        >
-          ×
-        </button>
-
-        <div class="modal-header">
-          <div class="modal-icon">✨</div>
-          <h3>مرحبًا بك في رحلة النحو!</h3>
-          <p>من فضلك أدخل بياناتك ليظهر اسمك في الشهادة والإحصائيات.</p>
-        </div>
-
-        <form id="user-profile-form" class="modal-body">
-          <label class="form-field">
-            <span>الاسم الرباعي</span>
-            <input
-              id="profile-name"
-              type="text"
-              required
-              placeholder="اكتب اسمك الكامل"
-            />
-          </label>
-
-          <label class="form-field">
-            <span>المرحلة الدراسية</span>
-            <select id="profile-grade" required>
-              <option value="">اختر المرحلة</option>
-              <option value="الصف الرابع الأساسي">الصف الرابع الأساسي</option>
-              <option value="الصف الخامس الأساسي">الصف الخامس الأساسي</option>
-              <option value="الصف السادس الأساسي">الصف السادس الأساسي</option>
-              <option value="المرحلة الإعدادية">المرحلة الإعدادية</option>
-              <option value="مرحلة أخرى">مرحلة أخرى</option>
-            </select>
-          </label>
-
-          <div class="modal-actions">
-            <button type="submit" class="primary-btn">ابدأ الرحلة</button>
-          </div>
-        </form>
+        <p class="landing-footnote">
+          كل قاعدة تفهمها تقرّبك من فصاحة التعبير.
+        </p>
       </div>
-    </div>
 
-    <!-- =========================
-         نافذة تأكيد الخروج من الدرس
-    ========================== -->
-    <div id="exit-lesson-modal" class="modal-backdrop hidden">
-      <div class="modal-card">
-        <button
-          type="button"
-          class="modal-close"
-          id="exit-modal-close"
-          aria-label="إغلاق"
-        >
-          ×
-        </button>
+      <!-- دوائر وزخارف بسيطة في الخلفية -->
+      <span class="orb orb-1"></span>
+      <span class="orb orb-2"></span>
+      <span class="orb orb-3"></span>
+      <span class="orb orb-4"></span>
+    </main>
 
-        <div class="modal-header">
-          <div class="modal-icon">✨</div>
-          <h3>هل أنت متأكد؟</h3>
-          <p>
-            العلم يحتاج صبرًا، لا تتعجل الخروج… كل دقيقة تعلّم تقرّبك من
-            الإتقان 📚
-          </p>
-        </div>
+    <!-- هنا يرسم app.js واجهة الدروس والدرس الواحد -->
+    <div id="app-root" class="app-root hidden"></div>
 
-        <div class="modal-actions modal-actions-row">
-          <button
-            type="button"
-            class="secondary-btn"
-            id="exit-cancel-btn"
-          >
-            متابعة التعلّم
-          </button>
-          <button
-            type="button"
-            class="primary-btn"
-            id="exit-confirm-btn"
-          >
-            الخروج
-          </button>
-        </div>
-      </div>
-    </div>
+    <footer class="app-footer">
+      نسخة تجريبية من تطبيق النحو كـ PWA.
+    </footer>
 
-    <!-- =========================
-         سكربت بسيط لوضع الليل + تكبير الخط
-         (لا يغيّر شيء في app.js)
-    ========================== -->
+    <!-- سكربت التطبيق -->
+    <script src="app.js"></script>
+
+    <!-- تسجيل الـ Service Worker للـ PWA -->
     <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        const root = document.documentElement;
-        const themeToggle = document.getElementById("theme-toggle");
-        const fontToggle = document.getElementById("font-toggle");
-
-        const THEME_KEY = "nahw-theme";
-        const FONT_KEY = "nahw-font-scale";
-
-        function applyTheme(theme) {
-          root.dataset.theme = theme;
-        }
-
-        // استعادة الثيم
-        const savedTheme = localStorage.getItem(THEME_KEY) || "light";
-        applyTheme(savedTheme);
-
-        if (themeToggle) {
-          themeToggle.addEventListener("click", () => {
-            const current =
-              root.dataset.theme === "dark" ? "dark" : "light";
-            const next = current === "light" ? "dark" : "light";
-            applyTheme(next);
-            localStorage.setItem(THEME_KEY, next);
-          });
-        }
-
-        // مقياس الخط
-        let savedScale = parseFloat(localStorage.getItem(FONT_KEY) || "1");
-        if (!isNaN(savedScale)) {
-          root.style.setProperty("--app-font-scale", savedScale);
-        }
-
-        if (fontToggle) {
-          fontToggle.addEventListener("click", () => {
-            let current = parseFloat(
-              getComputedStyle(root).getPropertyValue("--app-font-scale") ||
-                "1"
-            );
-            if (isNaN(current) || current < 1) current = 1;
-            let next = current + 0.1;
-            if (next > 1.4) next = 1; // يرجع للحجم الطبيعي
-            root.style.setProperty("--app-font-scale", String(next));
-            localStorage.setItem(FONT_KEY, String(next));
-          });
-        }
-      });
+      if ("serviceWorker" in navigator) {
+        window.addEventListener("load", () => {
+          navigator.serviceWorker
+            .register("sw.js")
+            .catch((err) => console.log("SW registration failed", err));
+        });
+      }
     </script>
   </body>
 </html>
