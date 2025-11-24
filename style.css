@@ -1,57 +1,35 @@
-/* ==========================
-   إعدادات عامة و متغيرات
-=========================== */
+/* ============================
+   1) المتغيّرات العامة والثيم
+============================ */
 
 :root {
-  --app-font-scale: 1;
-
-  --app-bg: #ecfdf5;
-  --app-bg-soft: #f1f5f9;
-  --app-surface: #ffffff;
-  --app-surface-soft: #f9fafb;
-  --app-border-subtle: rgba(15, 23, 42, 0.08);
-
-  --app-accent: #059669;
-  --app-accent-soft: #d1fae5;
-  --app-accent-strong: #047857;
-
-  --app-danger: #ef4444;
-  --app-warning: #facc15;
-
-  --app-text: #0f172a;
-  --app-text-muted: #6b7280;
-
-  --radius-lg: 1.4rem;
-  --radius-md: 1rem;
-  --radius-sm: 0.75rem;
-  --radius-pill: 999px;
-
-  --shadow-soft: 0 10px 25px rgba(15, 23, 42, 0.11);
-  --shadow-strong: 0 18px 45px rgba(15, 23, 42, 0.18);
-
-  --header-height: 56px;
-  --bottom-nav-height: 64px;
+  color-scheme: light;
+  --bg-body: #f0fdf9;
+  --bg-card: #ffffff;
+  --bg-topbar: #059669;
+  --bg-bottombar: #ffffff;
+  --accent: #10b981;
+  --accent-soft: #d1fae5;
+  --text-main: #111827;
+  --text-muted: #6b7280;
+  --border-subtle: #e5e7eb;
+  --shadow-soft: 0 10px 25px rgba(15, 118, 110, 0.18);
+  --lesson-font-scale: 1;
 }
 
-/* ثيم داكن بسيط */
 :root[data-theme="dark"] {
-  --app-bg: #020617;
-  --app-bg-soft: #020617;
-  --app-surface: #020617;
-  --app-surface-soft: #020617;
-  --app-border-subtle: rgba(148, 163, 184, 0.45);
-
-  --app-accent: #22c55e;
-  --app-accent-soft: rgba(34, 197, 94, 0.18);
-  --app-accent-strong: #16a34a;
-
-  --app-text: #e5e7eb;
-  --app-text-muted: #9ca3af;
+  color-scheme: dark;
+  --bg-body: #020617;
+  --bg-card: #020617;
+  --bg-topbar: #0f172a;
+  --bg-bottombar: #020617;
+  --accent: #22c55e;
+  --accent-soft: rgba(34, 197, 94, 0.15);
+  --text-main: #e5e7eb;
+  --text-muted: #9ca3af;
+  --border-subtle: #1f2937;
+  --shadow-soft: 0 16px 40px rgba(0, 0, 0, 0.65);
 }
-
-/* ==========================
-   Reset بسيط
-=========================== */
 
 *,
 *::before,
@@ -59,375 +37,277 @@
   box-sizing: border-box;
 }
 
-html {
-  font-size: 16px;
-}
-
 body {
   margin: 0;
-  font-family: "Cairo", system-ui, -apple-system, BlinkMacSystemFont,
-    "Segoe UI", sans-serif;
-  font-size: calc(16px * var(--app-font-scale));
-  background: radial-gradient(circle at top left, #d1fae5 0, #ecfdf5 35%, #fff 80%);
-  color: var(--app-text);
+  min-height: 100vh;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
+  background: var(--bg-body);
+  color: var(--text-main);
   direction: rtl;
-  text-align: right;
-  min-height: 100vh;
-}
-
-img {
-  max-width: 100%;
-  height: auto;
-  display: block;
-}
-
-button,
-input,
-select,
-textarea {
-  font-family: inherit;
-}
-
-/* ==========================
-   هيكل التطبيق
-=========================== */
-
-.app-shell {
-  min-height: 100vh;
   display: flex;
   flex-direction: column;
-}
-
-/* شريط علوي */
-
-.app-header {
-  position: sticky;
-  top: 0;
-  z-index: 40;
-  height: var(--header-height);
-  padding: 0.35rem 0.9rem calc(0.35rem + env(safe-area-inset-top));
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  background: var(--app-accent);
-  color: #f9fafb;
-  border-radius: 0 0 1.2rem 1.2rem;
-  box-shadow: 0 3px 12px rgba(15, 23, 42, 0.35);
-}
-
-.app-title {
-  margin: 0;
-  font-size: 1.1rem;
-  font-weight: 700;
-}
-
-.header-icon-btn {
-  width: 34px;
-  height: 34px;
-  border-radius: 50%;
-  border: none;
-  background: rgba(15, 118, 110, 0.35);
-  color: #e5e7eb;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  font-size: 1.05rem;
-  transition: background 0.2s ease, transform 0.1s ease;
-}
-
-.header-icon-btn:hover {
-  background: rgba(15, 118, 110, 0.6);
-}
-
-.header-icon-btn:active {
-  transform: scale(0.95);
-}
-
-/* ==========================
-   المحتوى الرئيسي
-=========================== */
-
-.app-main {
-  flex: 1;
-  padding: 0.75rem 0.9rem calc(var(--bottom-nav-height) + 1.1rem);
-  max-width: 900px;
-  width: 100%;
-  margin: 0 auto;
-}
-
-/* عرض/إخفاء الصفحات */
-
-.page-view {
-  display: none;
-}
-
-.page-view:not(.hidden) {
-  display: block;
 }
 
 .hidden {
   display: none !important;
 }
 
-/* ==========================
-   أزرار عامة
-=========================== */
+/* ============================
+   2) شاشة الترحيب (Landing)
+============================ */
 
-.primary-btn,
-.secondary-btn,
-.ghost-btn {
-  border-radius: var(--radius-pill);
-  border: none;
-  padding: 0.6rem 1.4rem;
+.landing {
+  position: relative;
+  flex: 1;
+  padding: 2.5rem 1rem 2rem;
+  background: radial-gradient(circle at top, #bbf7d0, #ecfeff);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.landing-inner {
+  position: relative;
+  max-width: 420px;
+  width: 100%;
+  text-align: center;
+  padding: 1.9rem 1.4rem 1.7rem;
+  background: rgba(255, 255, 255, 0.92);
+  border-radius: 1.6rem;
+  border: 1px solid rgba(148, 163, 184, 0.25);
+  box-shadow: 0 20px 45px rgba(16, 185, 129, 0.28);
+}
+
+.landing-icon {
+  width: 72px;
+  height: 72px;
+  border-radius: 24px;
+  margin: 0 auto 0.8rem;
+  background: var(--accent-soft);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.4rem;
+  color: #047857;
+}
+
+.landing-title {
+  margin: 0 0 0.5rem;
+  font-size: 2.1rem;
+  color: #059669;
+  letter-spacing: -0.03em;
+}
+
+.landing-subtitle {
+  margin: 0 0 0.85rem;
+  font-size: 1.02rem;
+  color: #047857;
+}
+
+.landing-subtitle strong {
+  font-weight: 700;
+  color: #059669;
+}
+
+.landing-text {
+  margin: 0 auto 1.5rem;
+  max-width: 360px;
+  line-height: 1.9;
   font-size: 0.95rem;
+  color: var(--text-main);
+}
+
+.landing-footnote {
+  margin-top: 1.15rem;
+  font-size: 0.82rem;
+  color: var(--text-muted);
+}
+
+/* زر رئيسي عام (يُستخدم أيضًا داخل التطبيق) */
+
+.primary-btn {
+  border: none;
+  border-radius: 999px;
+  padding: 0.7rem 1.7rem;
+  background: var(--accent);
+  color: #ecfdf5;
+  font-size: 0.98rem;
   font-weight: 600;
   cursor: pointer;
+  box-shadow: var(--shadow-soft);
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 0.35rem;
-  transition: background 0.18s ease, color 0.18s ease, transform 0.1s ease,
-    box-shadow 0.18s ease;
-}
-
-.primary-btn {
-  background: var(--app-accent);
-  color: #f9fafb;
-  box-shadow: 0 10px 24px rgba(5, 150, 105, 0.38);
+  min-width: 190px;
+  transition: transform 0.05s ease, box-shadow 0.1s ease,
+    background-color 0.12s ease;
 }
 
 .primary-btn:hover {
-  background: var(--app-accent-strong);
+  background: #22c55e;
 }
 
 .primary-btn:active {
-  transform: translateY(1px) scale(0.98);
-  box-shadow: 0 5px 10px rgba(5, 150, 105, 0.35);
+  transform: scale(0.97);
+  box-shadow: 0 4px 10px rgba(16, 185, 129, 0.45);
 }
 
-.secondary-btn {
-  background: var(--app-surface-soft);
-  color: var(--app-accent-strong);
-  border: 1px solid rgba(5, 150, 105, 0.25);
-}
+/* دوائر زخرفية في الخلفية */
 
-.secondary-btn:hover {
-  background: var(--app-accent-soft);
-}
-
-.ghost-btn {
-  background: transparent;
-  color: var(--app-accent-strong);
-  padding-inline: 0.2rem;
-}
-
-.ghost-btn:hover {
-  color: #10b981;
-}
-
-/* ==========================
-   الصفحة الترحيبية
-=========================== */
-
-.landing-view {
-  margin-top: 0.7rem;
-}
-
-.landing-hero {
-  position: relative;
-  overflow: hidden;
-  padding: 2.2rem 1.6rem 1.7rem;
-  border-radius: var(--radius-lg);
-  background: radial-gradient(circle at top left, #bbf7d0 0, #ecfdf5 45%, #fff 90%);
-  box-shadow: var(--shadow-soft);
-}
-
-.landing-hero::before,
-.landing-hero::after {
-  content: "";
+.orb {
   position: absolute;
   border-radius: 999px;
-  background: rgba(209, 250, 229, 0.5);
+  background: rgba(16, 185, 129, 0.18);
+  filter: blur(0.5px);
 }
 
-.landing-hero::before {
-  width: 170px;
-  height: 170px;
+.orb-1 {
+  width: 200px;
+  height: 200px;
   top: -60px;
-  left: -40px;
+  left: 6%;
 }
 
-.landing-hero::after {
-  width: 210px;
-  height: 210px;
-  bottom: -120px;
-  right: -70px;
-  background: rgba(219, 234, 254, 0.7);
+.orb-2 {
+  width: 140px;
+  height: 140px;
+  top: 18%;
+  right: 8%;
 }
 
-.landing-icon {
-  position: relative;
-  z-index: 1;
-  font-size: 2.9rem;
-  margin-bottom: 1rem;
-  color: var(--app-accent-strong);
+.orb-3 {
+  width: 110px;
+  height: 110px;
+  bottom: 8%;
+  left: 12%;
 }
 
-.landing-title {
-  position: relative;
-  z-index: 1;
-  margin: 0 0 0.5rem;
-  font-size: 1.9rem;
-  color: var(--app-accent-strong);
+.orb-4 {
+  width: 90px;
+  height: 90px;
+  bottom: 20%;
+  right: 18%;
 }
 
-.landing-subtitle {
-  position: relative;
-  z-index: 1;
-  margin: 0 0 0.6rem;
-  font-size: 1rem;
-}
+/* ============================
+   3) منطقة التطبيق (App Shell)
+============================ */
 
-.landing-text {
-  position: relative;
-  z-index: 1;
-  margin: 0.25rem 0;
-  font-size: 0.95rem;
-  line-height: 1.7;
-  color: var(--app-text);
-}
-
-.start-btn {
-  position: relative;
-  z-index: 1;
-  margin-top: 1.4rem;
-}
-
-.landing-footnote {
-  position: relative;
-  z-index: 1;
-  margin-top: 1.1rem;
-  font-size: 0.9rem;
-  color: var(--app-text-muted);
-}
-
-/* ==========================
-   بطاقة المبرمج
-=========================== */
-
-.developer-card {
-  margin-top: 1.5rem;
-  padding: 0.9rem 1rem;
-  border-radius: var(--radius-md);
-  background: linear-gradient(135deg, #ecfdf5 0%, #e0f2fe 100%);
-  border: 1px solid rgba(5, 150, 105, 0.2);
-  text-align: center;
-  box-shadow: 0 12px 26px rgba(15, 23, 42, 0.12);
-}
-
-.developer-text {
-  margin: 0 0 0.25rem;
-  font-size: 0.95rem;
-  font-weight: 600;
-  color: var(--app-accent-strong);
-}
-
-.developer-phone {
-  text-decoration: none;
-  font-weight: 600;
-  color: var(--app-text);
-  font-size: 0.9rem;
-}
-
-.developer-phone:hover {
-  text-decoration: underline;
-}
-
-/* ==========================
-   رؤوس الصفحات
-=========================== */
-
-.page-header {
-  margin-top: 0.75rem;
-  margin-bottom: 0.8rem;
-}
-
-.page-header h2 {
-  margin: 0 0 0.2rem;
-  font-size: 1.25rem;
-}
-
-.page-description {
-  margin: 0;
-  font-size: 0.9rem;
-  color: var(--app-text-muted);
-}
-
-/* ==========================
-   التقدّم (Progress)
-=========================== */
-
-.progress-card {
-  margin-top: 0.5rem;
-  padding: 0.9rem 1rem;
-  border-radius: var(--radius-md);
-  background: var(--app-surface);
-  border: 1px solid var(--app-border-subtle);
-  box-shadow: var(--shadow-soft);
-}
-
-.progress-header {
+.app-root {
+  flex: 1;
   display: flex;
-  justify-content: space-between;
-  font-size: 0.9rem;
-  margin-bottom: 0.45rem;
-  color: var(--app-text-muted);
+  justify-content: center;
+  padding: 0 0 0.75rem;
 }
 
-.progress-header span:last-child {
-  color: var(--app-accent-strong);
-  font-weight: 600;
-}
-
-.progress-bar {
+.app-shell {
   width: 100%;
-  height: 7px;
+  max-width: 480px;
+  margin: 0 auto;
+  min-height: calc(100vh - 0.75rem);
+  display: flex;
+  flex-direction: column;
+}
+
+/* ============================
+   4) الشريط العلوي (Topbar)
+============================ */
+
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.55rem 0.7rem;
+  background: var(--bg-topbar);
+  color: #ecfdf5;
+  border-radius: 0 0 1.25rem 1.25rem;
+  box-shadow: 0 6px 18px rgba(15, 118, 110, 0.35);
+}
+
+.topbar-left,
+.topbar-right {
+  display: flex;
+  align-items: center;
+}
+
+.topbar-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+}
+
+/* أزرار الأيقونات (القمر + T) */
+
+.icon-btn {
+  border: none;
+  background: rgba(15, 23, 42, 0.16);
+  color: #ecfdf5;
   border-radius: 999px;
-  background: rgba(148, 163, 184, 0.2);
-  overflow: hidden;
+  width: 32px;
+  height: 32px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 0.95rem;
 }
 
-.progress-bar-fill {
-  height: 100%;
-  width: 0%;
-  background: linear-gradient(90deg, #4ade80, #22c55e);
-  border-radius: inherit;
-  transition: width 0.4s ease;
+.icon-btn:hover {
+  background: rgba(15, 23, 42, 0.28);
 }
 
-.progress-count {
-  margin: 0.35rem 0 0;
-  font-size: 0.86rem;
-  color: var(--app-text-muted);
+/* زر تغيير الخط يكون أوضح شوي */
+
+#btn-text-size {
+  font-weight: 700;
+  font-size: 1.05rem;
 }
 
-/* ==========================
-   قائمة التصنيفات والدروس
-=========================== */
+/* ============================
+   5) الـ Views والكروت العامة
+============================ */
 
-.categories-container {
-  margin-top: 1rem;
+.view {
+  flex: 1;
+  padding: 0.75rem 0.75rem 3.9rem; /* مساحة للتابات أسفل */
+  overflow-y: auto;
 }
 
-/* كان عندك هذا الجزء سابقًا وتم تطويره */
+.view:not(.active) {
+  display: none;
+}
+
+.card {
+  background: var(--bg-card);
+  border-radius: 0.9rem;
+  border: 1px solid var(--border-subtle);
+  padding: 0.75rem 0.9rem;
+  margin-bottom: 0.7rem;
+  box-shadow: 0 2px 6px rgba(15, 23, 42, 0.04);
+}
+
+.app-header h2 {
+  margin: 0 0 0.25rem;
+  font-size: 1.3rem;
+}
+
+.app-header p {
+  margin: 0 0 0.5rem;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+/* ============================
+   6) Accordion التصنيفات والدروس
+============================ */
+
 .category-card {
-  margin-top: 0.7rem;
-  padding: 0.8rem 0.8rem 0.4rem;
-  border-radius: var(--radius-md);
-  border: 1px solid var(--app-border-subtle);
-  background: #ecfdf5;
-  box-shadow: var(--shadow-soft);
+  margin-top: 0.65rem;
 }
 
 .category-header {
@@ -438,49 +318,39 @@ textarea {
   padding: 0;
   display: flex;
   justify-content: space-between;
-  align-items: flex-start;
+  align-items: center;
   cursor: pointer;
 }
 
-.category-main {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-}
-
-.category-title {
+.category-header h3 {
   margin: 0;
-  font-size: 1.02rem;
-  font-weight: 700;
+  font-size: 1rem;
 }
 
-.category-meta {
-  margin: 0.15rem 0 0;
-  font-size: 0.84rem;
-  color: var(--app-text-muted);
+.category-header p {
+  margin: 0.1rem 0 0;
+  font-size: 0.82rem;
+  color: var(--text-muted);
 }
 
-.category-toggle {
-  font-size: 0.9rem;
-  margin-right: 0.3rem;
-  transform: rotate(0deg);
-  transition: transform 0.2s ease;
-}
-
-.category-card.open .category-toggle {
-  transform: rotate(180deg);
+.category-body {
+  margin-top: 0.35rem;
 }
 
 .lessons-list {
   list-style: none;
   padding: 0;
-  margin: 0.5rem 0 0.1rem;
+  margin: 0;
 }
 
 .lesson-row {
-  padding: 0.5rem 0.4rem;
-  border-top: 1px solid rgba(15, 23, 42, 0.06);
+  padding: 0.5rem 0.35rem;
+  border-bottom: 1px solid rgba(15, 23, 42, 0.08);
   cursor: pointer;
+}
+
+.lesson-row:last-child {
+  border-bottom: none;
 }
 
 .lesson-row-main {
@@ -491,550 +361,379 @@ textarea {
 
 .lesson-title {
   font-size: 0.95rem;
-  margin: 0;
 }
 
 .lesson-status {
   font-size: 0.9rem;
-  color: var(--app-text-muted);
 }
 
 .lesson-row-meta {
-  font-size: 0.8rem;
-  color: var(--app-text-muted);
-  margin-top: 0.1rem;
+  margin-top: 0.15rem;
+  font-size: 0.78rem;
+  color: var(--text-muted);
 }
 
-.lesson-row-completed .lesson-title {
-  color: var(--app-accent-strong);
-}
-
-.lesson-row-completed .lesson-status {
-  color: #22c55e;
-}
-
-/* ==========================
-   صفحة الدرس
-=========================== */
-
-.lesson-view {
-  margin-top: 0.75rem;
-}
-
-.lesson-header {
-  display: flex;
-  align-items: center;
-  gap: 0.4rem;
-  margin-bottom: 0.7rem;
-}
-
-.lesson-title {
-  margin: 0;
-  font-size: 1.2rem;
-}
-
-.lesson-section {
-  margin-bottom: 1rem;
-  padding: 0.85rem 1rem;
-  border-radius: var(--radius-md);
-  background: var(--app-surface);
-  border: 1px solid var(--app-border-subtle);
-  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.08);
-}
-
-.lesson-section h3 {
-  margin: 0 0 0.35rem;
-  font-size: 1rem;
-}
+/* ============================
+   7) صفحة الدرس
+============================ */
 
 .lesson-content {
-  font-size: 0.94rem;
-  line-height: 1.7;
-  color: var(--app-text);
+  font-size: calc(1rem * var(--lesson-font-scale));
+  line-height: 1.9;
 }
 
-/* صور الدرس */
+.lesson-content p {
+  margin: 0 0 0.75rem;
+}
 
-.lesson-images {
-  display: flex;
-  flex-direction: column;
-  gap: 0.55rem;
+.lesson-section ul {
+  padding-right: 1.2rem;
+  margin: 0 0 0.75rem;
 }
 
 .lesson-image img {
   max-width: 100%;
-  border-radius: 0.85rem;
   display: block;
-}
-
-/* فيديوهات الدرس */
-
-.lesson-videos {
-  display: flex;
-  flex-direction: column;
-  gap: 0.45rem;
-}
-
-.lesson-video-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.35rem;
-  font-size: 0.92rem;
-  text-decoration: none;
-  color: var(--app-accent-strong);
-}
-
-.lesson-video-link::before {
-  content: "▶";
-  font-size: 0.8rem;
-}
-
-/* أزرار الدرس (مفضلة + PDF) */
-
-.lesson-actions {
-  display: flex;
-  gap: 0.5rem;
-  flex-wrap: wrap;
-  justify-content: flex-start;
-}
-
-/* ==========================
-   الاختبار داخل الدرس
-=========================== */
-
-.lesson-quiz-container {
-  display: flex;
-  flex-direction: column;
-  gap: 0.65rem;
-}
-
-.quiz-question {
-  font-weight: 600;
-  font-size: 0.96rem;
+  border-radius: 0.75rem;
   margin-bottom: 0.45rem;
 }
 
-.quiz-options {
-  display: flex;
-  flex-direction: column;
-  gap: 0.35rem;
-}
-
-.quiz-option-btn {
-  width: 100%;
-  text-align: right;
-  border-radius: 0.8rem;
-  border: 1px solid #e5e7eb;
-  background: #ffffff;
-  padding: 0.45rem 0.8rem;
-  font-size: 0.92rem;
-  cursor: pointer;
-  transition: background 0.16s ease, border-color 0.16s ease,
-    transform 0.08s ease;
-}
-
-.quiz-option-btn:hover {
-  background: #f9fafb;
-}
-
-.quiz-option-btn:active {
-  transform: scale(0.98);
-}
-
-.quiz-option-btn.correct {
-  border-color: #22c55e;
-  background: #dcfce7;
-}
-
-.quiz-option-btn.wrong {
-  border-color: #f97373;
-  background: #fee2e2;
-}
-
-.quiz-feedback {
-  font-size: 0.9rem;
-  margin-top: 0.3rem;
-}
-
-/* ملاحظات الدرس */
-
-.notes-textarea {
-  width: 100%;
-  border-radius: 0.85rem;
-  border: 1px solid #e5e7eb;
-  padding: 0.6rem 0.7rem;
-  font-size: 0.92rem;
-  resize: vertical;
-  min-height: 90px;
-}
-
-/* ==========================
-   صفحة الإحصائيات
-=========================== */
-
-.stats-grid {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr);
-  gap: 0.7rem;
-  margin-top: 0.5rem;
-}
-
-.stats-card {
-  padding: 0.8rem 0.9rem;
-  border-radius: var(--radius-md);
-  background: var(--app-surface);
-  border: 1px solid var(--app-border-subtle);
-  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.06);
-}
-
-.stats-card h3 {
-  margin: 0 0 0.4rem;
-  font-size: 0.98rem;
-}
-
-.stats-value {
-  margin: 0 0 0.2rem;
-  font-size: 1.1rem;
-  font-weight: 700;
-  color: var(--app-accent-strong);
-}
-
-.muted {
-  margin: 0;
-  font-size: 0.86rem;
-  color: var(--app-text-muted);
-}
-
-.badges-list {
+.videos-list {
   list-style: none;
   padding: 0;
-  margin: 0.35rem 0 0;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.4rem;
+  margin: 0;
 }
 
-.badge-pill {
-  padding: 0.25rem 0.65rem;
-  border-radius: 999px;
-  background: var(--app-accent-soft);
-  color: var(--app-accent-strong);
-  font-size: 0.8rem;
+.videos-list li {
+  margin-bottom: 0.4rem;
+  font-size: 0.9rem;
+}
+
+/* ============================
+   8) شريط التابات السفلي
+============================ */
+
+.bottombar {
+  position: sticky;
+  bottom: 0;
+  z-index: 15;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  background: var(--bg-bottombar);
+  border-top: 1px solid var(--border-subtle);
+  padding: 0.25rem 0.4rem;
+  border-radius: 1rem 1rem 0 0;
+  box-shadow: 0 -4px 14px rgba(15, 23, 42, 0.12);
+}
+
+.tab-btn {
+  border: none;
+  background: transparent;
+  padding: 0.3rem 0.4rem;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.tab-btn.active {
+  color: var(--accent);
   font-weight: 600;
 }
 
-/* ==========================
-   صفحة اسأل المعلم
-=========================== */
+/* ============================
+   9) الإحصائيات والمتصدرون
+============================ */
 
-.teacher-card {
-  margin-top: 0.8rem;
-  padding: 1rem 1rem 0.9rem;
-  border-radius: var(--radius-lg);
+.progress-bar {
+  margin-top: 0.4rem;
+  width: 100%;
+  height: 8px;
+  border-radius: 999px;
+  background: #e5e7eb;
+  overflow: hidden;
+}
+
+.progress-bar span {
+  display: block;
+  height: 100%;
+  background: linear-gradient(90deg, #22c55e, #22c55e);
+}
+
+.stats-list,
+.leaders-list {
+  list-style: none;
+  padding: 0;
+  margin: 0.3rem 0 0;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.stats-list li + li,
+.leaders-list li + li {
+  margin-top: 0.25rem;
+}
+
+.ask-answer {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+.muted {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+/* ============================
+   10) كارت "اسأل المعلم" (واتساب)
+============================ */
+
+.teacher-contact-card {
   background: #ecfdf5;
-  border: 1px solid #bbf7d0;
-  box-shadow: var(--shadow-soft);
+  border-color: #bbf7d0;
 }
 
-.teacher-card-title {
-  margin: 0 0 0.6rem;
-  font-size: 1rem;
-}
-
-.teacher-card-body {
+.teacher-contact-header {
   display: flex;
+  justify-content: space-between;
   align-items: center;
-  gap: 0.8rem;
-  flex-wrap: wrap;
+  margin-bottom: 0.6rem;
+}
+
+.teacher-contact-header h3 {
+  margin: 0;
+  font-size: 1rem;
+  color: #065f46;
+}
+
+.teacher-contact-subtitle {
+  margin: 0.2rem 0 0;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.teacher-contact-icon {
+  font-size: 1.4rem;
+}
+
+.teacher-contact-inner {
+  background: #f0fdf9;
+  border-radius: 0.9rem;
+  border: 1px solid #bbf7d0;
+  padding: 0.85rem 0.9rem 0.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  align-items: flex-start;
 }
 
 .teacher-avatar {
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-  background: var(--app-accent);
+  width: 52px;
+  height: 52px;
+  border-radius: 999px;
+  background: #dcfce7;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #f9fafb;
   font-size: 2rem;
-}
-
-.teacher-info {
-  flex: 1;
+  margin-bottom: 0.3rem;
 }
 
 .teacher-name {
   margin: 0;
+  font-size: 1rem;
   font-weight: 700;
-  font-size: 1.02rem;
 }
 
 .teacher-role {
-  margin: 0.1rem 0 0.3rem;
-  font-size: 0.88rem;
-  color: var(--app-text-muted);
+  margin: 0.15rem 0 0.3rem;
+  font-size: 0.85rem;
+  color: var(--text-muted);
 }
 
 .teacher-phone {
-  margin: 0 0 0.45rem;
-  font-size: 0.92rem;
-}
-
-.teacher-phone span {
-  margin-left: 0.15rem;
-}
-
-.teacher-times {
-  margin-top: 0.6rem;
-  font-size: 0.86rem;
-}
-
-.whatsapp-btn {
-  margin-top: 0.15rem;
-}
-
-/* ملاحظة توضيحية في أسأل المعلم */
-
-.muted-card {
-  margin-top: 0.8rem;
-  padding: 0.75rem 0.9rem;
-  border-radius: var(--radius-md);
-  background: var(--app-surface);
-  border: 1px dashed rgba(148, 163, 184, 0.6);
-}
-
-/* ==========================
-   صفحة الشهادة
-=========================== */
-
-.certificate-wrapper {
-  margin-top: 0.8rem;
-}
-
-.certificate {
-  position: relative;
-  padding: 1.3rem 1.4rem 1rem;
-  border-radius: 1.2rem;
-  background: radial-gradient(circle at top left, #fef3c7 0, #ffffff 45%, #e0f2fe 100%);
-  border: 1px solid rgba(248, 196, 113, 0.7);
-  box-shadow: var(--shadow-strong);
-}
-
-.certificate-heading {
-  margin: 0 0 0.5rem;
-  text-align: center;
-  font-size: 1.15rem;
-}
-
-.certificate-text {
-  margin: 0.1rem 0;
+  margin: 0 0 0.35rem;
   font-size: 0.9rem;
-}
-
-.certificate-name {
-  margin: 0.4rem 0;
-  text-align: center;
-  font-size: 1.15rem;
-  font-weight: 700;
-  color: var(--app-accent-strong);
-}
-
-.certificate-grade {
-  margin: 0;
-  text-align: center;
-  font-size: 0.9rem;
-  color: var(--app-text-muted);
-}
-
-.certificate-score {
-  margin: 0.4rem 0 0;
-  font-size: 0.9rem;
-}
-
-.certificate-footer {
   display: flex;
-  justify-content: space-between;
-  gap: 1rem;
-  margin-top: 0.8rem;
-  font-size: 0.86rem;
-}
-
-.certificate-column .label {
-  display: block;
-  color: var(--app-text-muted);
-}
-
-.certificate-column .value {
-  font-weight: 600;
-}
-
-.certificate-actions {
-  margin-top: 0.9rem;
-  text-align: center;
-}
-
-/* ==========================
-   شريط التنقّل السفلي
-=========================== */
-
-.bottom-nav {
-  position: fixed;
-  right: 0;
-  left: 0;
-  bottom: 0;
-  height: auto;
-  padding: 0.25rem 0.7rem calc(0.3rem + env(safe-area-inset-bottom));
-  background: rgba(248, 250, 252, 0.96);
-  backdrop-filter: blur(12px);
-  border-top: 1px solid rgba(148, 163, 184, 0.5);
-  display: flex;
-  justify-content: space-between;
-  gap: 0.4rem;
-  z-index: 35;
-}
-
-.nav-item {
-  flex: 1;
-  border: none;
-  background: transparent;
-  border-radius: 999px;
-  padding: 0.25rem 0.1rem;
-  font-size: 0.8rem;
-  color: var(--app-text-muted);
-  display: flex;
-  flex-direction: column;
   align-items: center;
-  gap: 0.05rem;
-  cursor: pointer;
-  transition: background 0.18s ease, color 0.18s ease, transform 0.08s ease;
+  gap: 0.35rem;
 }
 
-.nav-item-active {
-  background: var(--app-accent-soft);
-  color: var(--app-accent-strong);
+.phone-icon {
+  font-size: 1rem;
+}
+
+.phone-number {
+  direction: ltr;
+  unicode-bidi: bidi-override;
+}
+
+.teacher-message {
+  margin: 0 0 0.5rem;
+  font-size: 0.86rem;
+  color: var(--text-muted);
+}
+
+.teacher-whatsapp-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.55rem 1.3rem;
+  border-radius: 999px;
+  background: #16a34a;
+  color: #f9fafb;
+  text-decoration: none;
+  font-size: 0.9rem;
   font-weight: 600;
+  box-shadow: 0 10px 18px rgba(22, 163, 74, 0.35);
+  transition: transform 0.05s ease, box-shadow 0.1s ease,
+    background-color 0.12s ease;
 }
 
-.nav-item:active {
-  transform: translateY(1px) scale(0.97);
+.teacher-whatsapp-btn:hover {
+  background: #22c55e;
 }
 
-/* ==========================
-   النوافذ المنبثقة (Modals)
-=========================== */
+.teacher-whatsapp-btn:active {
+  transform: translateY(1px);
+  box-shadow: 0 4px 10px rgba(21, 128, 61, 0.5);
+}
+
+.teacher-note {
+  margin: 0.7rem 0 0;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  text-align: center;
+}
+
+/* ============================
+   11) المودال (اختياري)
+============================ */
 
 .modal {
   position: fixed;
   inset: 0;
-  z-index: 80;
+  background: rgba(15, 23, 42, 0.55);
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 1.1rem;
-  background: rgba(15, 23, 42, 0.45);
+  z-index: 100;
 }
 
-.modal-dialog {
-  position: relative;
-  width: 100%;
-  max-width: 420px;
-  background: #ecfdf5;
-  border-radius: 1.4rem;
-  padding: 1.25rem 1.2rem 1.1rem;
-  box-shadow: var(--shadow-strong);
+.modal-box {
+  background: var(--bg-card);
+  border-radius: 0.9rem;
+  padding: 1rem 1rem 0.9rem;
+  width: 90%;
+  max-width: 360px;
+  box-shadow: var(--shadow-soft);
 }
 
-.modal-icon {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background: #fef3c7;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 0.45rem;
-  font-size: 1.6rem;
+.modal-box h3 {
+  margin: 0 0 0.5rem;
+  font-size: 1.1rem;
 }
 
-.modal-title {
-  margin: 0 0 0.35rem;
-  font-size: 1.05rem;
-}
-
-.modal-text {
-  margin: 0 0 0.6rem;
+.modal-box p {
+  margin: 0 0 0.9rem;
   font-size: 0.9rem;
-  color: var(--app-text-muted);
+  color: var(--text-muted);
 }
 
-.modal-close-btn {
-  position: absolute;
-  top: 0.65rem;
-  left: 0.75rem;
-  border: none;
-  background: transparent;
-  font-size: 1.3rem;
-  cursor: pointer;
-  color: #6b7280;
-}
-
-.modal-form {
-  margin-top: 0.4rem;
-}
-
-.form-field {
-  margin-bottom: 0.7rem;
-}
-
-.form-field span {
-  display: block;
-  margin-bottom: 0.2rem;
-  font-size: 0.9rem;
-  font-weight: 500;
-}
-
-.form-field input,
-.form-field select {
-  width: 100%;
-  padding: 0.55rem 0.7rem;
-  border-radius: 0.75rem;
-  border: 1px solid #e5e7eb;
-  font-size: 0.92rem;
-  background: #ffffff;
-}
-
-/* زر تأكيد في المودال */
-.modal-submit-btn {
-  width: 100%;
-  margin-top: 0.2rem;
-}
-
-/* موديال خروج من الدرس: نفس القالب العام */
 .modal-actions {
-  margin-top: 0.9rem;
-  text-align: center;
-}
-
-.modal-actions-row {
   display: flex;
+  flex-direction: column;
   gap: 0.5rem;
 }
 
-/* ==========================
-   استجابات للشاشات الكبيرة
-=========================== */
+/* ============================
+   12) فوتر التطبيق
+============================ */
+
+.app-footer {
+  text-align: center;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  padding: 0.5rem 1rem 0.9rem;
+}
+
+/* ============================
+   13) استجابة للشاشات الأكبر
+============================ */
 
 @media (min-width: 768px) {
-  .app-main {
-    padding-inline: 1.4rem;
+  body {
+    justify-content: flex-start;
+    align-items: center;
   }
 
-  .stats-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+  .landing {
+    padding-top: 3rem;
   }
 
-  .certificate-footer {
-    justify-content: space-around;
+  .landing-title {
+    font-size: 2.7rem;
   }
+
+  .app-shell {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    border-radius: 1.25rem;
+    background: rgba(255, 255, 255, 0.86);
+    backdrop-filter: blur(16px);
+    border: 1px solid rgba(148, 163, 184, 0.35);
+  }
+
+  :root[data-theme="dark"] .app-shell {
+    background: rgba(15, 23, 42, 0.9);
+    border-color: rgba(31, 41, 55, 0.9);
+  }
+   /* ========= Footer ========= */
+
+.app-footer {
+  margin-top: 2.5rem;
+  padding: 1.25rem 1.5rem 1.75rem;
+  border-top: 1px solid rgba(15, 23, 42, 0.08);
+  text-align: center;
+  font-size: 0.9rem;
+  color: #64748b;
+  background: linear-gradient(
+    to bottom,
+    rgba(16, 185, 129, 0.03),
+    rgba(15, 118, 110, 0.06)
+  );
+  border-radius: 1.5rem 1.5rem 0 0;
+}
+
+.app-footer-main {
+  font-weight: 600;
+  color: #0f766e;
+}
+
+.app-footer-sub {
+  margin-top: 0.25rem;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
+  letter-spacing: 0.03em;
+}
+
+/* دعم الوضع الليلي إن كنت تستخدم data-theme="dark" */
+
+[data-theme="dark"] .app-footer {
+  border-top-color: rgba(148, 163, 184, 0.4);
+  background: linear-gradient(
+    to bottom,
+    rgba(15, 23, 42, 0.8),
+    rgba(15, 23, 42, 0.95)
+  );
+  color: #cbd5f5;
+}
+
+[data-theme="dark"] .app-footer-main {
+  color: #6ee7b7;
+}
+
 }
