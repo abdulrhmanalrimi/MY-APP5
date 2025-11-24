@@ -42,7 +42,11 @@
       "purpose": "any"
     }
   ],
-  "categories": ["education", "productivity", "books"],
+  "categories": [
+    "education",
+    "productivity",
+    "books"
+  ],
   "screenshots": [
     {
       "src": "/icon-512.png",
@@ -93,8 +97,6 @@
     }
   ],
   "prefer_related_applications": false,
-  "related_applications": [],
-  "iarc_rating_id": "",
   "share_target": {
     "action": "/",
     "method": "GET",
