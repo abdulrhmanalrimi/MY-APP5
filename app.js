@@ -3,6 +3,9 @@
 // =============================
 
 const LESSONS = {
+  // =========================
+  // تعريف النحو / المقدمة
+  // =========================
   'types-of-word': {
     id: 'types-of-word',
     title: 'أنواع الكلمة',
@@ -13,24 +16,63 @@ const LESSONS = {
         url: 'https://youtu.be/46MwuNDrdlo?si=yHVbvc0IS1QbtRft'
       }
     ],
-    images: [],
-    contentHtml: ''
-  },
-
-  'kinds-of-noun': {
-    id: 'kinds-of-noun',
-    title: 'أقسام الاسم',
-    categoryId: 'intro',
-    videos: [
-      {
-        title: 'أقسام الاسم',
-        url: 'https://youtu.be/gd6oBVpED1U?si=3-PD1pHIJPDtI6uF'
-      }
+    images: [
+      'lessons/أنواع الكلمة/أنواع الكلمة.jpg'
     ],
-    images: [],
-    contentHtml: ''
+    contentHtml: `
+      <p>
+        تنقسم الكلمة في اللغة العربية إلى ثلاثة أنواع أساسية:
+        <strong>اسم</strong> و<strong>فعل</strong> و<strong>حرف</strong>.
+      </p>
+
+      <h4>أولًا: الاسم</h4>
+      <p>
+        هو كلمة تدل على معنى في نفسها ولا تقترن بزمن،
+        مثل: <strong>محمد، طالبة، كتاب، شجرة</strong>.
+      </p>
+      <p>
+        يمكن أن يدل الاسم على الإنسان، أو الحيوان، أو النبات، أو الجماد؛
+        مثل: <em>محمد، أسد، عنب، ساعة</em>.
+      </p>
+
+      <h4>ثانيًا: الفعل</h4>
+      <p>
+        هو كلمة تدل على معنى في نفسها، وتقترن بواحد من الأزمنة الثلاثة:
+        الماضي، أو المضارع، أو الأمر.
+      </p>
+      <ul>
+        <li><strong>الفعل الماضي:</strong> يدل على حدث وقع في الزمن الماضي، مثل: <em>نصرَ، فهمَ، جلسَ</em>.</li>
+        <li><strong>الفعل المضارع:</strong> يدل على حدث يقع الآن أو يستمر، مثل: <em>ينصرُ، يجلسُ، يجتهدُ</em>.</li>
+        <li><strong>فعل الأمر:</strong> يدل على طلب حدوث الفعل في المستقبل، مثل: <em>انصرْ، اجلسْ، اجتهدْ</em>.</li>
+      </ul>
+
+      <h4>ثالثًا: الحرف</h4>
+      <p>
+        هو كلمة لا يظهر معناها كاملًا وحدها، بل يتضح بالاقتران مع غيرها،
+        مثل: <strong>من، إلى، عن، في، بل، ثم</strong>.
+      </p>
+      <p>
+        في جملة <strong>ذهبتُ من البيت</strong> لا يتضح معنى <strong>من</strong>
+        إلا مع بقية الكلمات في الجملة.
+      </p>
+    `
   },
 
+  // مثال لدرس آخر في نفس التصنيف (لو عندك دروس زيادة خَلِّها كما هي أو عدّلها لاحقًا)
+  'nahw-definition-2': {
+    id: 'nahw-definition-2',
+    title: 'درس تمهيدي آخر',
+    categoryId: 'intro',
+    videos: [],
+    images: [],
+    contentHtml: `
+      <p>يمكنك لاحقًا وضع محتوى لدرس تمهيدي آخر هنا.</p>
+    `
+  },
+
+  // =========================
+  // الجمل
+  // =========================
   sentence: {
     id: 'sentence',
     title: 'الجملة',
@@ -41,198 +83,51 @@ const LESSONS = {
         url: 'https://youtu.be/9AR0d5IUSSo?si=hr3P7QyUKslCVCh2'
       }
     ],
-    images: [],
-    contentHtml: ''
-  },
-
-  'verb-types': {
-    id: 'verb-types',
-    title: 'أقسام الفعل',
-    categoryId: 'verbs',
-    videos: [
-      {
-        title: 'أقسام الفعل (الفعل الصحيح والمعتل)',
-        url: 'https://youtu.be/OBPXE1K1NOE?si=Y4VAxXMM0YM4-3RP'
-      },
-      {
-        title: 'أقسام الفعل (المجرد والمزيد)',
-        url: 'https://youtu.be/dpQz0U4x3t8?si=tkbmy7kR3sQtKWTR'
-      },
-      {
-        title: 'أقسام الفعل (اللازم والمتعدي)',
-        url: 'https://youtu.be/GP7z8T5B5_0?si=R5UfITqhPUP0oK67'
-      }
+    images: [
+      'lessons/الجملة/الجملة.jpg'
     ],
-    images: [],
-    contentHtml: ''
+    contentHtml: `
+      <p>
+        الجملة في اللغة العربية نوعان رئيسان:
+        <strong>جملة اسمية</strong> و<strong>جملة فعلية</strong>.
+      </p>
+
+      <h4>أولًا: الجملة الاسمية</h4>
+      <p>
+        هي التي تبدأ باسم، وتتكون أساسًا من
+        <strong>مبتدأ وخبر</strong>،
+        مثل: <em>العِلْمُ نورٌ، المطرُ غزيرٌ</em>.
+      </p>
+      <p>
+        قد يدخل على الجملة الاسمية
+        <strong>إنَّ وأخواتُها</strong>
+        فتنصب المبتدأ وترفع الخبر:
+        <em>إنَّ اللهَ رحيمٌ، ليتَ الشبابَ عائدٌ</em>.
+      </p>
+
+      <h4>ثانيًا: الجملة الفعلية</h4>
+      <p>
+        هي التي تبدأ بفعل، وتتكون من <strong>فعل وفاعل</strong>،
+        مثل: <em>حضرَ المعلمُ، يكتبُ الولدُ</em>.
+      </p>
+      <p>
+        وقد تُبنى للمجهول فيكون التركيب من
+        <strong>فعل ونائب فاعل</strong>،
+        مثل: <em>فُتحَ البابُ، يُفتحُ البابُ</em>.
+      </p>
+
+      <p>
+        فهمُ نوع الجملة يساعدك على ضبط الإعراب
+        وتحديد موقع كل كلمة داخل الجملة.
+      </p>
+    `
   },
 
-  'present-raf': {
-    id: 'present-raf',
-    title: 'رفع الفعل المضارع',
-    categoryId: 'verbs',
-    videos: [
-      {
-        title: 'رفع الفعل المضارع',
-        url: 'https://youtu.be/63dRKoaxLh4?si=zSjX0oOGj0ujR6n7'
-      }
-    ],
-    images: [],
-    contentHtml: ''
-  },
+  // =========================
+  // الأسماء (تصنيفات متعدّدة)
+  // =========================
 
-  'present-nasb': {
-    id: 'present-nasb',
-    title: 'نصب الفعل المضارع',
-    categoryId: 'verbs',
-    videos: [
-      {
-        title: 'نصب الفعل المضارع',
-        url: 'https://youtu.be/OH8e6y1Elow?si=HAStLo7C7DoK8iTu'
-      }
-    ],
-    images: [],
-    contentHtml: ''
-  },
-
-  'present-jazm': {
-    id: 'present-jazm',
-    title: 'جزم الفعل المضارع',
-    categoryId: 'verbs',
-    videos: [
-      {
-        title: 'جزم الفعل المضارع',
-        url: 'https://youtu.be/9CCiiFMsUyU?si=PpRYerP40K8nOwij'
-      }
-    ],
-    images: [],
-    contentHtml: ''
-  },
-
-  'five-verbs': {
-    id: 'five-verbs',
-    title: 'الأفعال الخمسة',
-    categoryId: 'verbs',
-    videos: [
-      {
-        title: 'الأفعال الخمسة (الجزء الأول)',
-        url: 'https://youtu.be/GqM1QhxMsK4?si=cObgFffyyQNCVku1'
-      },
-      {
-        title: 'الأفعال الخمسة (الجزء الثاني)',
-        url: 'https://youtu.be/5Dy3vwxvptw?feature=shared'
-      }
-    ],
-    images: [],
-    contentHtml: ''
-  },
-
-  subject: {
-    id: 'subject',
-    title: 'الفاعل',
-    categoryId: 'fael',
-    videos: [
-      {
-        title: 'الفاعل (الجزء الأول)',
-        url: 'https://youtu.be/cWs98q2K7sc?feature=shared'
-      },
-      {
-        title: 'الفاعل (الجزء الثاني)',
-        url: 'https://youtu.be/GeoiDO3Y6ls?si=mkLO2JaER52opXow'
-      }
-    ],
-    images: [],
-    contentHtml: ''
-  },
-
-  'naib-fael': {
-    id: 'naib-fael',
-    title: 'نائب الفاعل',
-    categoryId: 'fael',
-    videos: [
-      {
-        title: 'نائب الفاعل (الجزء الأول)',
-        url: 'https://youtu.be/2tLJA0MfiJA?si=cC5U9tgim3MYx0yR'
-      },
-      {
-        title: 'نائب الفاعل (الجزء الثاني)',
-        url: 'https://youtu.be/PiAOOQJzi9M?feature=shared'
-      }
-    ],
-    images: [],
-    contentHtml: ''
-  },
-
-  object: {
-    id: 'object',
-    title: 'المفعول به',
-    categoryId: 'objects',
-    videos: [
-      {
-        title: 'المفعول به',
-        url: 'https://youtu.be/-sSadKciHjA?si=J7aYxgFml5Pq0fFP'
-      }
-    ],
-    images: [],
-    contentHtml: ''
-  },
-
-  pronoun: {
-    id: 'pronoun',
-    title: 'الضمير',
-    categoryId: 'pronouns',
-    videos: [
-      {
-        title: 'الضمير',
-        url: 'https://youtu.be/cGxdW8XgiOs?si=dan-xmlnrHCNMYSG'
-      }
-    ],
-    images: [],
-    contentHtml: ''
-  },
-
-  'address-pronouns': {
-    id: 'address-pronouns',
-    title: 'ضمائر الخطاب',
-    categoryId: 'pronouns',
-    videos: [
-      {
-        title: 'ضمائر الخطاب',
-        url: 'https://youtu.be/aYnw3u2ChRI?si=C01Y6-zYlPunF-jF'
-      }
-    ],
-    images: [],
-    contentHtml: ''
-  },
-
-  'absent-pronouns': {
-    id: 'absent-pronouns',
-    title: 'ضمائر الغائب',
-    categoryId: 'pronouns',
-    videos: [
-      {
-        title: 'ضمائر الغائب',
-        url: 'https://youtu.be/aYnw3u2ChRI?si=C01Y6-zYlPunF-jF'
-      }
-    ],
-    images: [],
-    contentHtml: ''
-  },
-
-  'speaker-pronouns': {
-    id: 'speaker-pronouns',
-    title: 'ضمائر المتكلم',
-    categoryId: 'pronouns',
-    videos: [
-      {
-        title: 'ضمائر المتكلم',
-        url: 'https://youtu.be/aYnw3u2ChRI?si=C01Y6-zYlPunF-jF'
-      }
-    ],
-    images: [],
-    contentHtml: ''
-  },
-
+  // أسماء الإشارة
   demonstratives: {
     id: 'demonstratives',
     title: 'أسماء الإشارة',
@@ -243,10 +138,45 @@ const LESSONS = {
         url: 'https://youtu.be/eO0c3sBP6Zg?si=Up6ALenO0749PGzc'
       }
     ],
-    images: [],
-    contentHtml: ''
+    images: [
+      // عدِّل اسم الملف هنا لو كان مختلفًا عندك
+      'lessons/اسم الإشارة/اسم الإشارة.jpg'
+    ],
+    contentHtml: `
+      <p>
+        <strong>اسم الإشارة</strong>
+        هو اسم يُستعمل للدلالة على معيَّن بواسطة إشارة حسّية
+        باليد أو العين نحو شيء حاضر.
+      </p>
+
+      <h4>أولًا: للمفرد القريب</h4>
+      <ul>
+        <li><strong>هذا</strong> للمفرد المذكر: <em>هذا رجلٌ، هذا محمدٌ</em>.</li>
+        <li><strong>هذه</strong> للمفرد المؤنث: <em>هذه امرأةٌ، هذه عائشةُ</em>.</li>
+      </ul>
+
+      <h4>ثانيًا: للمثنّى القريب</h4>
+      <ul>
+        <li><strong>هذانِ</strong> للمثنّى المذكر: <em>هذانِ رجلان، هذانِ كريمان</em>.</li>
+        <li><strong>هاتانِ</strong> للمثنّى المؤنث: <em>هاتانِ امرأتان، هاتانِ كريمتان</em>.</li>
+      </ul>
+
+      <h4>ثالثًا: للجمع القريب</h4>
+      <ul>
+        <li>
+          <strong>هؤلاءِ</strong> لجمع المذكر والمؤنث:
+          <em>هؤلاءِ أطفال، هؤلاءِ نسوةٌ، هؤلاءِ متحابّون، هؤلاءِ مؤدّباتٌ</em>.
+        </li>
+      </ul>
+
+      <p>
+        يتغيّر إعراب اسم الإشارة حسب موقعه في الجملة
+        (مبتدأ، خبر، فاعل...) لكنه يبقى مبنيًّا في أغلب الاستعمالات.
+      </p>
+    `
   },
 
+  // الأسماء الموصولة
   'relative-pronouns': {
     id: 'relative-pronouns',
     title: 'الأسماء الموصولة',
@@ -257,10 +187,46 @@ const LESSONS = {
         url: 'https://youtu.be/tPIEgfxmDr0?si=t1ed37kxFOR77WRF'
       }
     ],
-    images: [],
-    contentHtml: ''
+    images: [
+      'lessons/الأسماء الموصولة/الأسماء الموصولة.jpg'
+    ],
+    contentHtml: `
+      <p>
+        <strong>الاسْمُ المَوْصُولُ</strong>
+        هو اسم يُستعمل لِمُسمّى معيَّن بواسطة جملة تُذكر بعده
+        وتُسمّى <strong>صلة الموصول</strong>، مثل:
+        <em>جاء الذي فاز</em>.
+      </p>
+
+      <h4>أولًا: الأسماء الموصولة المشتركة</h4>
+      <p>لفظ واحد يستعمل للجميع (مفرد، مثنّى، جمع، مذكر، مؤنث):</p>
+      <ul>
+        <li><strong>مَن</strong> للعاقل، مثل: <em>نجح من اجتهد</em>.</li>
+        <li><strong>ما</strong> لغير العاقل، مثل: <em>اقرأ من الكتب ما يفيدك</em>.</li>
+        <li><strong>أيّ</strong> بحسب السياق للعاقل وغيره، مثل: <em>أكرِم أيَّهم أكثر اجتهادًا</em>.</li>
+      </ul>
+
+      <h4>ثانيًا: الأسماء الموصولة الخاصة</h4>
+      <p>تتغيّر حسب التذكير والتأنيث والإفراد والتثنية والجمع:</p>
+      <ul>
+        <li>
+          للمذكر:
+          <strong>الذي، اللذانِ، اللذين، الذين</strong>.
+        </li>
+        <li>
+          للمؤنث:
+          <strong>التي، اللتانِ، اللتين، اللاتي، اللائي، اللواتي</strong>.
+        </li>
+      </ul>
+
+      <p>
+        صلة الموصول تكون جملة اسمية أو فعلية، ولا محلّ لها من الإعراب،
+        لكنها تُتمّم معنى الاسم الموصول وتحدّد المقصود به.
+      </p>
+    `
   },
 
+  // الأسماء الخمسة
   'five-nouns': {
     id: 'five-nouns',
     title: 'الأسماء الخمسة',
@@ -271,206 +237,45 @@ const LESSONS = {
         url: 'https://youtu.be/Ao6gfEK177o?si=IO3W-EWf7nZHpn41'
       }
     ],
-    images: [],
-    contentHtml: ''
-  },
-
-  kana: {
-    id: 'kana',
-    title: 'كان وأخواتها',
-    categoryId: 'sentence-grammar',
-    videos: [
-      {
-        title: 'كان وأخواتها',
-        url: 'https://youtu.be/ARmVdKlDwxA?si=V2DWQVPL9cPBqnVU'
-      }
+    images: [
+      'lessons/الأسماء الخمسة/الأسماء الخمسة.jpg',
+      'lessons/الأسماء الخمسة/الأسماء الخمسة 1.jpg'
     ],
-    images: [],
-    contentHtml: ''
+    contentHtml: `
+      <p>
+        <strong>الأسماء الخمسة</strong> هي:
+        <strong>أبوك، أخوك، حموك، فوك، ذو مالٍ</strong>.
+        وتمتاز بأن إعرابها يكون بالحروف نيابةً عن الحركات في حالات معيّنة.
+      </p>
+
+      <h4>إعراب الأسماء الخمسة</h4>
+      <ul>
+        <li><strong>ترفع بالواو</strong>: <em>جاء أبوك، زارنا أخوك، هذا ذو مالٍ</em>.</li>
+        <li><strong>تنصب بالألف</strong>: <em>رأيت أباك، صادقت أخاك، أكرمت حماك</em>.</li>
+        <li><strong>تُجرّ بالياء</strong>: <em>مررت بأبيك، سلمت على أخيك، جلست إلى حميك</em>.</li>
+      </ul>
+
+      <h4>شروط إعرابها بهذا الإعراب</h4>
+      <ul>
+        <li>أن تكون <strong>مفردة</strong>؛ فإذا ثُنّيت أو جُمعت أُعربت إعراب المثنّى أو الجمع.</li>
+        <li>أن تكون <strong>مضافة</strong>؛ فلا تُعرب هذا الإعراب إذا قُطعت عن الإضافة.</li>
+        <li>أن تضاف إلى <strong>غير ياءِ المتكلّم</strong>؛ فإذا أُضيفت إلى ياء المتكلّم (أبي، أخي) عادت إلى الإعراب بالحركات.</li>
+      </ul>
+
+      <p>
+        إذا اختلّ واحد من هذه الشروط عادت الأسماء الخمسة إلى الإعراب بالحركات
+        على الحرف الأخير مثل سائر الأسماء.
+      </p>
+    `
   },
 
-  kada: {
-    id: 'kada',
-    title: 'كاد وأخواتها',
-    categoryId: 'sentence-grammar',
-    videos: [
-      {
-        title: 'كاد وأخواتها',
-        url: 'https://youtu.be/IQL4DXk2vig?feature=shared'
-      }
-    ],
-    images: [],
-    contentHtml: ''
-  },
+  // ممكن تضيف هنا دروس أسماء أخرى (ضمائر، اسم الفاعل، ...)
 
-  inna: {
-    id: 'inna',
-    title: 'إن وأخواتها',
-    categoryId: 'sentence-grammar',
-    videos: [
-      {
-        title: 'إن وأخواتها',
-        url: 'https://youtu.be/6exrOOT9chw?si=-xbF_TblqbNCaXG8'
-      }
-    ],
-    images: [],
-    contentHtml: ''
-  },
+  // =========================
+  // الأساليب النحوية
+  // =========================
 
-  dhanna: {
-    id: 'dhanna',
-    title: 'ظن وأخواتها',
-    categoryId: 'sentence-grammar',
-    videos: [
-      {
-        title: 'ظن وأخواتها',
-        url: 'https://youtu.be/fVSvZHFsrpI?feature=shared'
-      }
-    ],
-    images: [],
-    contentHtml: ''
-  },
-
-  tawabi: {
-    id: 'tawabi',
-    title: 'التوابع',
-    categoryId: 'tawabi',
-    videos: [
-      {
-        title: 'التوابع',
-        url: 'https://youtu.be/miXr0AI-qBc?si=moLUWnx536LRHUSW'
-      }
-    ],
-    images: [],
-    contentHtml: ''
-  },
-
-  naat: {
-    id: 'naat',
-    title: 'النعت (الصفة)',
-    categoryId: 'tawabi',
-    videos: [
-      {
-        title: 'النعت (الصفة)',
-        url: 'https://youtu.be/Cu6xb3CgW8U?si=KsmLqlNz2oddtzFz'
-      }
-    ],
-    images: [],
-    contentHtml: ''
-  },
-
-  atf: {
-    id: 'atf',
-    title: 'العطف',
-    categoryId: 'tawabi',
-    videos: [
-      {
-        title: 'العطف',
-        url: 'https://youtu.be/5V-uGR2ZL4M?si=-rFW0xHc4uhVlqhO'
-      }
-    ],
-    images: [],
-    contentHtml: ''
-  },
-
-  tawkeed: {
-    id: 'tawkeed',
-    title: 'التوكيد',
-    categoryId: 'tawabi',
-    videos: [
-      {
-        title: 'التوكيد',
-        url: 'https://youtu.be/PJJ4dXlYuxw?si=Sqk1UKiN-NJUvSL4'
-      }
-    ],
-    images: [],
-    contentHtml: ''
-  },
-
-  badal: {
-    id: 'badal',
-    title: 'البدل',
-    categoryId: 'tawabi',
-    videos: [
-      {
-        title: 'البدل',
-        url: 'https://youtu.be/1Qg0zSoIFLg?si=B_rElnDxyXjKCYDn'
-      }
-    ],
-    images: [],
-    contentHtml: ''
-  },
-
-  haal: {
-    id: 'haal',
-    title: 'الحال',
-    categoryId: 'tawabi',
-    videos: [
-      {
-        title: 'الحال',
-        url: 'https://youtu.be/7JxHhdJGMYE?si=weJ9Hz5R7yappj-8'
-      }
-    ],
-    images: [],
-    contentHtml: ''
-  },
-
-  tamyeez: {
-    id: 'tamyeez',
-    title: 'التمييز',
-    categoryId: 'tawabi',
-    videos: [
-      {
-        title: 'التمييز',
-        url: 'https://youtu.be/Z3VulRoUu1I?si=n_GvQ71SSf6Q6OMa'
-      }
-    ],
-    images: [],
-    contentHtml: ''
-  },
-
-  nakira: {
-    id: 'nakira',
-    title: 'النكرة',
-    categoryId: 'nouns',
-    videos: [
-      {
-        title: 'النكرة',
-        url: 'https://youtu.be/RQ0t11gzZHA?feature=shared'
-      }
-    ],
-    images: [],
-    contentHtml: ''
-  },
-
-  'jar-ism': {
-    id: 'jar-ism',
-    title: 'جر الاسم',
-    categoryId: 'nouns',
-    videos: [
-      {
-        title: 'جر الاسم',
-        url: 'https://youtu.be/yJ60Yy-_FDg?si=lHCN7SUE-r5eLx9Z'
-      }
-    ],
-    images: [],
-    contentHtml: ''
-  },
-
-  'mudaf-ilayh': {
-    id: 'mudaf-ilayh',
-    title: 'المضاف إليه',
-    categoryId: 'nouns',
-    videos: [
-      {
-        title: 'المضاف إليه',
-        url: 'https://youtu.be/vFBGO9pF3Ew?si=daXcyxkMSYbYZmjL'
-      }
-    ],
-    images: [],
-    contentHtml: ''
-  },
-
+  // أسلوب الاستفهام
   interrogatives: {
     id: 'interrogatives',
     title: 'أدوات الاستفهام',
@@ -481,10 +286,90 @@ const LESSONS = {
         url: 'https://youtu.be/fY-y8LqX6Bk?si=LU1wqp5iTMB_YQOB'
       }
     ],
-    images: [],
-    contentHtml: ''
+    images: [
+      'lessons/أسلوب الاستفهام/أدوات الاستفهام.jpg'
+    ],
+    contentHtml: `
+      <p>
+        <strong>أسلوب الاستفهام</strong> يُستعمل لطلب الفهم أو الاستعلام عن شيء مجهول
+        عند المتكلّم، ولكل أداة منه معنى خاص ونوع معيّن من السؤال.
+      </p>
+
+      <h4>أهم أدوات الاستفهام ومعانيها</h4>
+      <ul>
+        <li><strong>مَن</strong> – للسؤال عن <strong>العاقل</strong>:
+          <em>مَن آخرُ الخلفاءِ الراشدين؟</em></li>
+        <li><strong>ما / ماذا</strong> – للسؤال عن <strong>غير العاقل</strong> أو الأشياء:
+          <em>ما أحبُّ العلومِ إليك؟</em></li>
+        <li><strong>متى</strong> – للسؤال عن <strong>الزمان</strong>:
+          <em>متى رجعت؟</em></li>
+        <li><strong>أيان</strong> – للزمان المستقبل:
+          <em>أيان تُسافر؟</em></li>
+        <li><strong>أين</strong> – للسؤال عن <strong>المكان</strong>:
+          <em>أين أخوك؟</em></li>
+        <li><strong>كيف</strong> – للسؤال عن <strong>الحال</strong> أو الهيئة:
+          <em>كيف حالُك؟</em></li>
+        <li><strong>كم</strong> – للسؤال عن <strong>العدد</strong>:
+          <em>كم كتابًا قرأت؟</em></li>
+        <li><strong>أيُّ</strong> – للسؤال عن <strong>تعيين</strong> واحد من مجموعة:
+          <em>أيُّ رجلٍ أتى؟</em></li>
+      </ul>
+
+      <p>
+        اختيار أداة الاستفهام المناسبة يعطي سؤالك دقةً ووضوحًا،
+        ويساعدك على فهم النصوص القرآنية واللغوية فهمًا أفضل.
+      </p>
+    `
+  },
+
+  // =========================
+  // التوابع / أحكام أخرى
+  // =========================
+  tamyeez: {
+    id: 'tamyeez',
+    title: 'التمييز',
+    categoryId: 'tawabi',
+    videos: [],
+    images: [
+      'lessons/التمييز/التمييز.jpg'
+    ],
+    contentHtml: `
+      <p>
+        <strong>التمييز</strong> اسم نكرة منصوب يأتي لِيُزيل إبهامًا في الجملة
+        ويُوضّح المقصود من كلمة قبله،
+        مثل: <em>اشتريتُ كيلو سُكرًا</em>؛ فكلمة <strong>سكرًا</strong> تمييز.
+      </p>
+
+      <h4>أنواع التمييز</h4>
+
+      <h5>1- تمييز ملفوظ</h5>
+      <p>
+        يوضّح مقدارًا مذكورًا قبله، مثل العدد أو الكيل أو الوزن أو المساحة:
+      </p>
+      <ul>
+        <li>تمييز العدد: <em>معي خمسةُ ريالاتٍ</em>.</li>
+        <li>تمييز الكيل: <em>شربتُ لترًا ماءً</em>.</li>
+        <li>تمييز الوزن: <em>اشتريتُ كيلو لحمًا</em>.</li>
+        <li>تمييز المساحة: <em>زرعتُ فدانًا قمحًا</em>.</li>
+      </ul>
+
+      <h5>2- تمييز ملحوظ (نِسبة)</h5>
+      <p>
+        يوضّح جملةً أو نسبةً معنويةً قبله، مثل:
+        <em>طابَ الجوُّ هواءً</em>،
+        <em>ازدادَ الطالبُ علمًا</em>.
+      </p>
+
+      <p>
+        معرفة نوع التمييز تساعد على فهم الجملة وضبط إعرابها بدقّة.
+      </p>
+    `
   }
+
+  // يمكنك هنا الإبقاء على بقية الدروس القديمة إن كانت موجودة
+  // فقط تأكد أن تضيفها بعد هذا الكود داخل نفس الكائن LESSONS
 };
+
 
 // =============================
 // 2) التصنيفات CATEGORIES
