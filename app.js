@@ -1,3 +1,6 @@
+// =============================
+// 0) بيانات الطالب (الملف الشخصي)
+// =============================
 
 const USER_PROFILE_KEY = 'nahw-user-profile-v1';
 
@@ -18,8 +21,6 @@ function saveUserProfile(profile) {
     console.error('Error saving user profile', err);
   }
 }
-
-
 
 // =============================
 // 1) بيانات الدروس LESSONS
@@ -852,51 +853,23 @@ const CATEGORIES = [
 // =============================
 // 3) أسئلة نهاية كل درس QUIZZES
 // =============================
-// يمكنك إضافة أو تعديل الأسئلة كما تريد لكل درس
 
-const QUIZZES = {
-  'types-of-word': {
-    questions: [
-      {
-        text: 'الكلمة في اللغة العربية تنقسم إلى:',
-        options: [
-          'اسم وحرف فقط',
-          'اسم وفعل فقط',
-          'اسم وفعل وحرف',
-          'فعل وحرف فقط'
-        ],
-        correctIndex: 2
-      },
-      {
-        text: 'أيّ مما يأتي يُعَدُّ حرفًا؟',
-        options: ['محمد', 'يلعب', 'إلى', 'كتاب'],
-        correctIndex: 2
-      }
-    ]
-  },
+// نولّد أسئلة الاختبارات مباشرة من مصفوفة quiz داخل كل درس
+// حتى لا نكرر البيانات في مكانين.
 
-  'verb-types': {
-    questions: [
-      {
-        text: 'الفعل الصحيح هو:',
-        options: ['قال', 'مشى', 'كتب', 'دعا'],
-        correctIndex: 2
-      },
-      {
-        text: 'الفعل المعتل هو الفعل الذي:',
-        options: [
-          'يخلو من حروف العلة',
-          'يحتوي على حرف واحد من حروف العلة',
-          'يحتوي على حرفين من حروف العلة فقط',
-          'يحتوي على ثلاثة حروف علة'
-        ],
-        correctIndex: 1
-      }
-    ]
+const QUIZZES = {};
+Object.keys(LESSONS).forEach((id) => {
+  const lesson = LESSONS[id];
+  if (lesson.quiz && Array.isArray(lesson.quiz) && lesson.quiz.length) {
+    QUIZZES[id] = {
+      questions: lesson.quiz.map((q) => ({
+        text: q.question,
+        options: q.options,
+        correctIndex: q.correctIndex
+      }))
+    };
   }
-
-  // أضف كائنًا جديدًا هنا لأي درس آخر تريد له أسئلة
-};
+});
 
 // =============================
 // 4) حالة التطبيق (تقدّم + ملاحظات + مفضلة + نتائج اختبارات)
@@ -1595,7 +1568,7 @@ function renderStatsView() {
   const badges = getBadges({ completed, total }, percent);
   const unlockedBadges = badges.filter((b) => b.unlocked).length;
 
-  const canDownloadCertificate = percent >= 60; // نسبة المطلوب للشهادة
+  const canDownloadCertificate = percent >= 60; // النسبة المطلوبة للشهادة
 
   view.innerHTML = `
     <header class="app-header">
@@ -1699,9 +1672,34 @@ function renderStatsView() {
   }
 }
 
+// تعبئة بيانات الشهادة (اسم الطالب + المرحلة + اسم المشرفة)
+function fillCertificateData(targetDocument) {
+  const profile = loadUserProfile() || {};
+  const doc = targetDocument || document;
+
+  const nameEl = doc.getElementById('cert-student-name');
+  const gradeEl = doc.getElementById('cert-student-grade');
+  const teacherEl = doc.getElementById('cert-teacher-name');
+
+  if (nameEl) {
+    nameEl.textContent = profile.name || 'اسم الطالب';
+  }
+
+  if (gradeEl) {
+    gradeEl.textContent = profile.grade ? `المرحلة: ${profile.grade}` : '';
+  }
+
+  if (teacherEl) {
+    teacherEl.textContent = 'الأستاذة سهام غازي';
+  }
+}
+
 // إنشاء شهادة إنجاز PDF
 function downloadCertificatePdf(percent) {
   const { completed, total } = getProgress();
+  const profile = loadUserProfile() || {};
+  const studentName = profile.name || 'اسم الطالب';
+  const gradeText = profile.grade ? `المرحلة: ${profile.grade}` : '';
 
   const html = `
     <!doctype html>
@@ -1765,7 +1763,8 @@ function downloadCertificatePdf(percent) {
           <div class="cert-subtitle">تطبيق "النحو ببساطة"</div>
 
           <p class="cert-info">تُمنح هذه الشهادة لـ</p>
-          <p class="cert-name">.........................</p>
+          <p class="cert-name" id="cert-student-name">${studentName}</p>
+          <p class="cert-info" id="cert-student-grade">${gradeText}</p>
 
           <p class="cert-info">
             تقديراً لاجتهاده في دراسة قواعد النحو وإكماله
@@ -1780,7 +1779,10 @@ function downloadCertificatePdf(percent) {
           </p>
 
           <div class="cert-footer">
-            <span>توقيع المشرف/ـة: .......................</span>
+            <span>
+              المشرفة على التطبيق:
+              <strong id="cert-teacher-name">الأستاذة سهام غازي</strong>
+            </span>
             <span class="cert-brand">تطبيق النحو ببساطة</span>
           </div>
         </div>
@@ -1797,7 +1799,11 @@ function downloadCertificatePdf(percent) {
   w.document.write(html);
   w.document.close();
   w.focus();
-  w.onload = () => w.print();
+  w.onload = () => {
+    // تأكد أن البيانات محدثة حسب آخر ملف شخصي
+    fillCertificateData(w.document);
+    w.print();
+  };
 }
 
 // =============================
@@ -1947,7 +1953,7 @@ function showExitConfirmModal(onExit) {
 }
 
 // =============================
-// 15) نقطة البداية
+// 15) نقطة البداية + نافذة بيانات الطالب
 // =============================
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -1957,11 +1963,95 @@ document.addEventListener('DOMContentLoaded', () => {
   const startBtn = document.getElementById('start-learning');
   const appRoot = document.getElementById('app-root');
 
+  // عناصر نافذة البيانات
+  const modal = document.getElementById('user-profile-modal');
+  const profileForm = document.getElementById('user-profile-form');
+  const nameInput = document.getElementById('profile-name');
+  const gradeSelect = document.getElementById('profile-grade');
+  const closeBtn = document.getElementById('user-profile-close');
+
   if (!landing || !startBtn || !appRoot) return;
 
-  startBtn.addEventListener('click', () => {
+  function buildShellIfNeeded() {
+    if (!appRoot.dataset.shellBuilt) {
+      buildAppShell();
+      appRoot.dataset.shellBuilt = '1';
+    }
+  }
+
+  function goToLessonsView() {
     landing.classList.add('hidden');
     appRoot.classList.remove('hidden');
-    buildAppShell();
+    buildShellIfNeeded();
+    switchView('lessons');
+  }
+
+  function openProfileModal() {
+    if (!modal) {
+      // لو ما كان المودال موجود لأي سبب → ادخل مباشرة
+      goToLessonsView();
+      return;
+    }
+    modal.classList.remove('hidden');
+    if (nameInput) nameInput.focus();
+  }
+
+  function closeProfileModal() {
+    if (modal) modal.classList.add('hidden');
+  }
+
+  // عند الضغط على "ابدأ التعلّم"
+  startBtn.addEventListener('click', () => {
+    const existing = loadUserProfile();
+    if (existing && existing.name && existing.grade) {
+      // عنده بيانات محفوظة مسبقًا → ادخل مباشرة
+      goToLessonsView();
+    } else {
+      // أول مرة → افتح نافذة البيانات
+      openProfileModal();
+    }
   });
+
+  // حفظ بيانات الطالب من الفورم
+  if (profileForm) {
+    profileForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const name = nameInput ? nameInput.value.trim() : '';
+      const grade = gradeSelect ? gradeSelect.value : '';
+
+      if (!name || !grade) {
+        if (!name && nameInput) {
+          nameInput.focus();
+        } else if (gradeSelect) {
+          gradeSelect.focus();
+        }
+        return;
+      }
+
+      saveUserProfile({
+        name,
+        grade,
+        createdAt: Date.now()
+      });
+
+      closeProfileModal();
+      goToLessonsView();
+    });
+  }
+
+  // زر إغلاق المودال
+  if (closeBtn) {
+    closeBtn.addEventListener('click', () => {
+      closeProfileModal();
+    });
+  }
+
+  // إغلاق عند الضغط على خلفية المودال
+  if (modal) {
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) {
+        closeProfileModal();
+      }
+    });
+  }
 });
