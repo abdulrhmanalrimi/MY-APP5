@@ -65,6 +65,50 @@
   </p>
 </footer>
 
+    <!-- نافذة بيانات الطالب -->
+<div id="user-profile-modal" class="modal-backdrop hidden">
+  <div class="modal-card">
+    <button type="button" class="modal-close" id="user-profile-close">
+      ✕
+    </button>
+
+    <div class="modal-header">
+      <span class="modal-icon">✨</span>
+      <h2>لنبدأ رحلتك في النحو</h2>
+      <p>من فضلك أدخل بياناتك حتى نُجهِّز لك شهادة الإنجاز باسمك.</p>
+    </div>
+
+    <form id="user-profile-form" class="modal-form">
+      <label class="field-label" for="profile-name">
+        الاسم الرباعي
+      </label>
+      <input
+        id="profile-name"
+        type="text"
+        required
+        placeholder="مثال: أحمد محمد علي عبد الله"
+        class="field-input"
+      />
+
+      <label class="field-label" for="profile-grade">
+        المرحلة الدراسية
+      </label>
+      <select id="profile-grade" required class="field-input">
+        <option value="" disabled selected>اختر المرحلة</option>
+        <option value="الابتدائية">المرحلة الابتدائية</option>
+        <option value="المتوسطة">المرحلة المتوسطة</option>
+        <option value="الثانوية">المرحلة الثانوية</option>
+        <option value="جامعية">مرحلة جامعية</option>
+        <option value="أخرى">أخرى</option>
+      </select>
+
+      <button type="submit" class="primary-btn modal-submit">
+        ابدأ التعلم الآن 🚀
+      </button>
+    </form>
+  </div>
+</div>
+
 
     <!-- سكربت التطبيق -->
     <script src="app.js"></script>
