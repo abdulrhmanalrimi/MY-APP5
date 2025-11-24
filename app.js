@@ -1,3 +1,26 @@
+
+const USER_PROFILE_KEY = 'nahw-user-profile-v1';
+
+function loadUserProfile() {
+  try {
+    const raw = localStorage.getItem(USER_PROFILE_KEY);
+    return raw ? JSON.parse(raw) : null;
+  } catch (err) {
+    console.error('Error loading user profile', err);
+    return null;
+  }
+}
+
+function saveUserProfile(profile) {
+  try {
+    localStorage.setItem(USER_PROFILE_KEY, JSON.stringify(profile));
+  } catch (err) {
+    console.error('Error saving user profile', err);
+  }
+}
+
+
+
 // =============================
 // 1) بيانات الدروس LESSONS
 // =============================
