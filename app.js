@@ -41,7 +41,7 @@ const LESSONS = {
       }
     ],
     images: [
-      'lessons/أنواع الكلمة/أنواع الكلمة.jpg'
+      'lessons/القسم%20الأول%20أنواع%20الكلمة/أنواع%20الكلمة.jpg'
     ],
     contentHtml: `
       <p>
