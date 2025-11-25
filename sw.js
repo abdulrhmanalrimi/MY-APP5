@@ -17,6 +17,7 @@ const PRECACHE_URLS = [
   withBase('index.html'),
   withBase('manifest.json'),
   withBase('app.js'),
+  withBase('pwa.js'),
   withBase('style.css'),
   withBase('index.css'),
   OFFLINE_URL,

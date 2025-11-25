@@ -5,6 +5,7 @@
   "description": "تطبيق تعليمي تفاعلي لتعلم قواعد النحو العربي بطريقة سهلة وممتعة مع اختبارات تفاعلية ونظام تتبع التقدم",
   "start_url": "./",
   "display": "standalone",
+  "display_override": ["standalone", "fullscreen"],
   "background_color": "#f0fdf4",
   "theme_color": "#10b981",
   "orientation": "portrait-primary",
