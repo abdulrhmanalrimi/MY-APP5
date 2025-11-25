@@ -32,8 +32,8 @@ const LESSONS = {
   // =========================
   'types-of-word': {
     id: 'types-of-word',
-    title: 'أنواع الكلمة',
-    categoryId: 'intro',
+    title: 'أنواع الكلام',
+    categoryId: 'parts-of-speech',
     videos: [
       {
         title: 'أنواع الكلمة',
@@ -145,7 +145,7 @@ const LESSONS = {
   'nahw-definition-2': {
     id: 'nahw-definition-2',
     title: 'درس تمهيدي إضافي',
-    categoryId: 'intro',
+    categoryId: 'parts-of-speech',
     videos: [],
     images: [],
     contentHtml: `
@@ -160,7 +160,7 @@ const LESSONS = {
   sentence: {
     id: 'sentence',
     title: 'الجملة',
-    categoryId: 'sentences',
+    categoryId: 'sentence-types',
     videos: [
       {
         title: 'الجملة',
@@ -276,6 +276,118 @@ const LESSONS = {
     ]
   },
 
+  // أقسام الجملة
+  'present-raf': {
+    id: 'present-raf',
+    title: 'رفع الفعل المضارع',
+    categoryId: 'sentence-types',
+    videos: [],
+    images: [
+      'lessons/القسم%20الخامس%20رفع%20الفعل%20المضارع/رفع%20الفعل%20المضارع.jpg'
+    ],
+    contentHtml: `
+      <p>
+        يُرفع الفعل المضارع إذا لم يسبقه ناصب أو جازم،
+        وعلامة الرفع الأصلية الضمة، وتنوب عنها ثبوت النون في الأفعال الخمسة.
+      </p>
+      <p>
+        من أمثلة الرفع: <em>يكتبُ الطالبُ الدرسَ</em>،
+        و<em>يفهمانِ المسألةَ</em>.
+      </p>
+    `,
+    quiz: []
+  },
+  'present-nasb': {
+    id: 'present-nasb',
+    title: 'نصب الفعل المضارع',
+    categoryId: 'sentence-types',
+    videos: [],
+    images: [
+      'lessons/القسم%20السادس%20نصب%20الفعل%20المضارع/نصب%20الفعل%20المضارع.jpg'
+    ],
+    contentHtml: `
+      <p>
+        يُنصب الفعل المضارع إذا بقته أداة نصب مثل: <strong>أن، لن، كي، حتى</strong>،
+        وتكون علامة النصب الفتحة أو حذف النون في الأفعال الخمسة.
+      </p>
+      <p>
+        مثال: <em>لن أتأخرَ</em>، و<em>لن يفهموا الدرسَ</em> بحذف النون.
+      </p>
+    `,
+    quiz: []
+  },
+  'present-jazm': {
+    id: 'present-jazm',
+    title: 'جزم الفعل المضارع',
+    categoryId: 'sentence-types',
+    videos: [],
+    images: [
+      'lessons/القسم%20السابع%20جزم%20الفعل%20المضارع/جزم%20الفعل%20المضارع%20.docx'
+    ],
+    contentHtml: `
+      <p>
+        يُجزم الفعل المضارع إذا سبقه جازم مثل <strong>لم، لما، لا الناهية</strong>
+        أو أداة الشرط الجازمة، وعلامة الجزم السكون أو حذف حرف العلة أو حذف النون.
+      </p>
+      <p>
+        مثال: <em>لم يخرجْ</em> بالسكون، و<em>لا تَتْركنَّ</em> بحذف النون.
+      </p>
+    `,
+    quiz: []
+  },
+  subject: {
+    id: 'subject',
+    title: 'الفاعل',
+    categoryId: 'sentence-types',
+    videos: [],
+    images: ['lessons/الفاعل/الفاعل.docx'],
+    contentHtml: `
+      <p>
+        الفاعل اسم مرفوع يدل على من قام بالفعل أو اتصف به،
+        ويأتي بعد الفعل غالبًا أو يتقدمه ضمير مستتر يعود على الفاعل.
+      </p>
+      <p>مثل: <em>نجحَ الطالبُ</em> و<em>قرأ الكتابَ</em> حيث الطالب هو الفاعل.</p>
+    `,
+    quiz: []
+  },
+  'naib-fael': {
+    id: 'naib-fael',
+    title: 'نائب الفاعل',
+    categoryId: 'sentence-types',
+    videos: [],
+    images: ['lessons/القسم%20العاشر%20نائب%20الفاعل/نائب%20الفاعل.docx'],
+    contentHtml: `
+      <p>
+        يُستعمل نائب الفاعل عندما يُبنى الفعل للمجهول،
+        فيحل محل الفاعل ويُرفع كذلك، مثل: <em>كُتِبَ الدرسُ</em>.
+      </p>
+      <p>
+        قد يكون اسمًا ظاهرًا أو ضميرًا مستترًا يعود على اسم متأخر في الجملة.
+      </p>
+    `,
+    quiz: []
+  },
+  'five-verbs': {
+    id: 'five-verbs',
+    title: 'الأفعال الخمسة',
+    categoryId: 'sentence-types',
+    videos: [],
+    images: [
+      'lessons/القسم%20الثامن%20%20الأفعال%20الخمسة/الأفعال%20الخمسة%20.docx',
+      'lessons/الأفعال%20الخمسة.jpg'
+    ],
+    contentHtml: `
+      <p>
+        الأفعال الخمسة هي كل مضارع اتصلت به ألف الاثنين أو واو الجماعة أو ياء المخاطبة،
+        مثل: <em>يفعلان، يفعلون، تفعلين</em>.
+      </p>
+      <p>
+        تُرفع بثبوت النون، وتُنصب وتُجزم بحذفها.
+      </p>
+    `,
+    quiz: []
+  },
+
   // =========================
   // الأسماء (تصنيفات متعدّدة)
   // =========================
@@ -284,7 +396,7 @@ const LESSONS = {
   demonstratives: {
     id: 'demonstratives',
     title: 'أسماء الإشارة',
-    categoryId: 'nouns',
+    categoryId: 'built-nouns',
     videos: [
       {
         title: 'أسماء الإشارة',
@@ -389,7 +501,7 @@ const LESSONS = {
   'relative-pronouns': {
     id: 'relative-pronouns',
     title: 'الأسماء الموصولة',
-    categoryId: 'nouns',
+    categoryId: 'built-nouns',
     videos: [
       {
         title: 'الأسماء الموصولة',
@@ -408,91 +520,153 @@ const LESSONS = {
       </p>
 
       <h4>أولًا: الأسماء الموصولة المشتركة</h4>
-      <p>لفظ واحد يستعمل للجميع (مفرد، مثنّى، جمع، مذكر، مؤنث):</p>
       <ul>
-        <li><strong>مَن</strong> للعاقل، مثل: <em>نجح من اجتهد</em>.</li>
-        <li><strong>ما</strong> لغير العاقل، مثل: <em>اقرأ من الكتب ما يفيدك</em>.</li>
-        <li><strong>أيّ</strong> بحسب السياق للعاقل وغيره، مثل: <em>أكرِم أيَّهم أكثرُ اجتهادًا</em>.</li>
+        <li><strong>الذي</strong> للمفرد المذكر: <em>جاء الذي فاز</em>.</li>
+        <li><strong>التي</strong> للمفرد المؤنث: <em>جاءت التي نجحت</em>.</li>
+        <li><strong>اللذانِ</strong> للمثنّى المذكر: <em>نجح اللذانِ اجتهدا</em>.</li>
+        <li><strong>اللتانِ</strong> للمثنّى المؤنث: <em>نجحت اللتانِ درستا</em>.</li>
+        <li><strong>الذين / اللاتي / اللواتي</strong> للجمع: <em>سلمتُ على الذين فازوا</em>.</li>
       </ul>
 
       <h4>ثانيًا: الأسماء الموصولة الخاصة</h4>
-      <p>تتغيّر حسب التذكير والتأنيث والإفراد والتثنية والجمع:</p>
       <ul>
-        <li>
-          للمذكر:
-          <strong>الذي، اللذانِ، اللذين، الذين</strong>.
-        </li>
-        <li>
-          للمؤنث:
-          <strong>التي، اللتانِ، اللتين، اللاتي، اللائي، اللواتي</strong>.
-        </li>
+        <li><strong>من</strong> للعاقل: <em>أحب من يحترم الآخرين</em>.</li>
+        <li><strong>ما</strong> لغير العاقل: <em>أعجبني ما قرأت</em>.</li>
+        <li><strong>أيّ</strong> بحسب ما تُضاف إليه: <em>أكرم أيَّ طالبٍ يجتهد</em>.</li>
       </ul>
 
       <p>
-        صلة الموصول تكون جملة اسمية أو فعلية، ولا محلّ لها من الإعراب،
-        لكنها تُتمّم معنى الاسم الموصول وتحدّد المقصود به.
+        يجب أن تتضمن جملة الصلة <strong>ضميرًا عائدًا</strong> إلى الاسم الموصول
+        يناسبه في التذكير والتأنيث والعدد.
       </p>
     `,
     quiz: [
       {
         id: 'rel-q1',
-        question: 'في جملة "نجحَ مَنِ اجتهدَ"، كلمة "مَن" هي:',
-        options: ['اسم استفهام', 'اسم موصول مشترك', 'اسم شرط', 'ضمير'],
+        question: 'أيُّ اسم موصول يناسب جملة: _____ فاز في المسابقة؟',
+        options: ['التي', 'الذي', 'اللتانِ', 'ما'],
         correctIndex: 1,
-        explanation: '"مَن" هنا اسم موصول مشترك يُستخدم للعاقل.'
+        explanation: 'الموصول المناسب للمفرد المذكر: الذي.'
       },
       {
         id: 'rel-q2',
-        question: 'أيُّ جملة تحوي اسمًا موصولًا خاصًّا للمذكر المفرد؟',
-        options: [
-          'أكرمْ أيَّهم أنشطُ',
-          'جاء الذي فازَ بالمسابقةِ',
-          'نجح من اجتهد',
-          'هذا ما أُحبّ'
-        ],
+        question: 'ما اسم الموصول المناسب لغير العاقل؟',
+        options: ['من', 'ما', 'التي', 'الذين'],
         correctIndex: 1,
-        explanation: '"الذي" اسم موصول خاصّ للمذكر المفرد.'
+        explanation: 'ما يُستخدم لغير العاقل.'
       },
       {
         id: 'rel-q3',
-        question: 'في جملة "قرأتُ ما ينفعني"، نوع "ما" هو:',
-        options: ['اسم استفهام', 'اسم موصول لغير العاقل', 'حرف نفي', 'حرف جر'],
-        correctIndex: 1,
-        explanation: '"ما" هنا اسم موصول لغير العاقل.'
+        question: 'أيٌّ من التالي موصول للمثنّى المؤنث؟',
+        options: ['اللتانِ', 'اللذانِ', 'التي', 'اللائي'],
+        correctIndex: 0,
+        explanation: 'اللتانِ موصول للمثنّى المؤنث.'
       },
       {
         id: 'rel-q4',
-        question: 'الجملة التي تصلح أن تكون صلة موصول هي:',
-        options: [
-          'في المدرسةِ',
-          'الذي فازَ',
-          'حضرَ مبكرًا',
-          'منذُ زمنٍ بعيدٍ'
-        ],
-        correctIndex: 2,
-        explanation: 'صلة الموصول جملة تامة: فعل وفاعل مثلاً "حضرَ مبكرًا".'
+        question: 'يجب أن تحتوي صلة الموصول على:',
+        options: ['مفعول به', 'ضمير يعود على الموصول', 'حرف جر', 'جملة استفهامية'],
+        correctIndex: 1,
+        explanation: 'لابد أن يضمّن ضميرًا يعود على الموصول.'
       },
       {
         id: 'rel-q5',
-        question: 'أيُّ الأسماء التالية من الأسماء الموصولة الخاصة للمؤنث؟',
-        options: ['من', 'ما', 'التي', 'أيّ'],
+        question: 'أيُّ الجمل الآتية تحتوي اسمًا موصولًا للجمع؟',
+        options: [
+          'جاء الذي نجح',
+          'سلمت على التي فازت',
+          'أكرمتُ الذين تفوقوا',
+          'أكرمتُ اللتانِ اجتهدتا'
+        ],
         correctIndex: 2,
-        explanation: '"التي" من الأسماء الموصولة الخاصة بالمفرد المؤنث.'
+        explanation: 'الذين موصول جمع للمذكر.'
       }
     ]
   },
 
-  // الأسماء الخمسة
+  // الضمير
+  pronoun: {
+    id: 'pronoun',
+    title: 'الضمير',
+    categoryId: 'built-nouns',
+    videos: [
+      {
+        title: 'الضمائر',
+        url: 'https://youtu.be/TTu2bCv8B5E?si=tZC-81EDN9LDazUj'
+      }
+    ],
+    images: [
+      'lessons/الضمائر/الضمائر.docx',
+      'lessons/الضمائر/الضمائر.jpg'
+    ],
+    contentHtml: `
+      <p>
+        الضمير اسم مبني يدل على متكلم أو مخاطَب أو غائب
+        ويُستغنى به عن الاسم الظاهر.
+      </p>
+      <ul>
+        <li><strong>ضمائر الرفع:</strong> مثل: أنا، نحن، أنتَ، هو.</li>
+        <li><strong>ضمائر النصب:</strong> مثل: إيّاي، إيّاكِ، إيّاه.</li>
+        <li><strong>ضمائر الجر:</strong> مثل: بي، لك، له.</li>
+      </ul>
+    `,
+    quiz: []
+  },
+
+  // ضمائر الخطاب
+  'address-pronouns': {
+    id: 'address-pronouns',
+    title: 'ضمائر الخطاب',
+    categoryId: 'built-nouns',
+    videos: [],
+    images: ['lessons/القسم%20السابع%20ضمائر%20الخطاب/ضمائر%20الخطاب.docx'],
+    contentHtml: `
+      <p>
+        ضمائر الخطاب تُستخدم لمخاطبة الشخص مباشرة مثل:
+        <strong>أنتَ، أنتِ، أنتما، أنتم، أنتنَّ</strong>.
+      </p>
+    `,
+    quiz: []
+  },
+
+  // ضمائر الغائب
+  'absent-pronouns': {
+    id: 'absent-pronouns',
+    title: 'ضمائر الغائب',
+    categoryId: 'built-nouns',
+    videos: [],
+    images: [
+      'lessons/القسم%20الثامن%20ضمائر%20الغائب/ضمائر%20الغائب.docx'
+    ],
+    contentHtml: `
+      <p>ضمائر الغائب تشير إلى شخص غير حاضر مثل: <strong>هو، هي، هم، هنَّ</strong>.</p>
+    `,
+    quiz: []
+  },
+
+  // ضمائر المتكلم
+  'speaker-pronouns': {
+    id: 'speaker-pronouns',
+    title: 'ضمائر المتكلم',
+    categoryId: 'built-nouns',
+    videos: [],
+    images: [
+      'lessons/القسم%20التاسع%20ضمائر%20المتكلم/ضمائر%20المتكلم.docx'
+    ],
+    contentHtml: `
+      <p>ضمائر المتكلم هي التي تدل على المتحدث نفسه: <strong>أنا، نحن</strong>.</p>
+    `,
+    quiz: []
+  },
+
+  // =========================
+  // علامات الإعراب الفرعية
+  // =========================
   'five-nouns': {
     id: 'five-nouns',
     title: 'الأسماء الخمسة',
-    categoryId: 'nouns',
-    videos: [
-      {
-        title: 'الأسماء الخمسة',
-        url: 'https://youtu.be/Ao6gfEK177o?si=IO3W-EWf7nZHpn41'
-      }
-    ],
+    categoryId: 'secondary-signs',
+    videos: [],
     images: [
       'lessons/الأسماء الخمسة/الأسماء الخمسة.jpg',
       'lessons/الأسماء الخمسة/الأسماء الخمسة 1.jpg'
@@ -567,83 +741,248 @@ const LESSONS = {
     ]
   },
 
-  // =========================
-  // الأساليب النحوية
-  // =========================
+  dual: {
+    id: 'dual',
+    title: 'المثنى',
+    categoryId: 'secondary-signs',
+    videos: [],
+    images: [],
+    contentHtml: `
+      <p>
+        يدل المثنى على اثنين بزيادة الألف والنون في حالة الرفع،
+        والياء والنون في حالتي النصب والجر مثل: <em>كتابانِ، كتابَيْنِ</em>.
+      </p>
+    `,
+    quiz: []
+  },
+  'masculine-sound-plural': {
+    id: 'masculine-sound-plural',
+    title: 'جمع مذكر سالم',
+    categoryId: 'secondary-signs',
+    videos: [],
+    images: [],
+    contentHtml: `
+      <p>
+        يرفع جمع المذكر السالم بالواو، وينصب ويجر بالياء،
+        ويصاغ بزيادة واو ونون أو ياء ونون على مفرده مثل: <em>مهندسون، مهندسين</em>.
+      </p>
+    `,
+    quiz: []
+  },
+  'feminine-sound-plural': {
+    id: 'feminine-sound-plural',
+    title: 'جمع مؤنث سالم',
+    categoryId: 'secondary-signs',
+    videos: [],
+    images: [],
+    contentHtml: `
+      <p>
+        يرفع جمع المؤنث السالم بالضمة، وينصب ويجر بالكسرة،
+        ويصاغ بزيادة ألف وتاء على المفرد مثل: <em>معلمات، طالبات</em>.
+      </p>
+    `,
+    quiz: []
+  },
 
-  // أسلوب الاستفهام / أدوات الاستفهام
-  interrogatives: {
-    id: 'interrogatives',
-    title: 'أدوات الاستفهام',
-    categoryId: 'styles',
-    videos: [
-      {
-        title: 'أدوات الاستفهام',
-        url: 'https://youtu.be/fY-y8LqX6Bk?si=LU1wqp5iTMB_YQOB'
-      }
-    ],
+  kana: {
+    id: 'kana',
+    title: 'كان وأخواتها',
+    categoryId: 'nawasekh',
+    videos: [],
+    images: ['lessons/كان%20وأخواتها/كان%20وأخواتها.docx'],
+    contentHtml: `
+      <p>
+        تدخل كان وأخواتها على الجملة الاسمية فترفع المبتدأ ويسمى اسمها،
+        وتنصب الخبر ويسمى خبرها مثل: <em>كان الجوُّ معتدلًا</em>.
+      </p>
+    `,
+    quiz: []
+  },
+  kada: {
+    id: 'kada',
+    title: 'كاد وأخواتها',
+    categoryId: 'nawasekh',
+    videos: [],
+    images: ['lessons/كاد%20وأخواتها/كاد%20وأخواتها.jpg'],
+    contentHtml: `
+      <p>
+        أفعال المقاربة مثل كاد وأوشك تفيد قرب حدوث الفعل،
+        ويأتي خبرها جملة فعلية فعلها مضارع مثل: <em>كاد المطرُ يهطل</em>.
+      </p>
+    `,
+    quiz: []
+  },
+  dhanna: {
+    id: 'dhanna',
+    title: 'ظن وأخواتها',
+    categoryId: 'nawasekh',
+    videos: [],
+    images: ['lessons/ظن%20وأخواتها/ظن%20وأخواتها.jpg'],
+    contentHtml: `
+      <p>
+        أفعال الظن تعمل عمل ظن فتنصب مفعولين أصلهما المبتدأ والخبر مثل:
+        <em>ظننتُ الطالبَ مجتهدًا</em>.
+      </p>
+    `,
+    quiz: []
+  },
+  inna: {
+    id: 'inna',
+    title: 'إن وأخواتها',
+    categoryId: 'nawasekh',
+    videos: [],
+    images: ['lessons/إن%20وأخواتها/إن%20وأخواتها.jpg'],
+    contentHtml: `
+      <p>
+        إن وأخواتها حروف ناسخة تنصب المبتدأ وترفع الخبر لتأكيد المعنى مثل:
+        <em>إنَّ العلمَ نورٌ</em>.
+      </p>
+    `,
+    quiz: []
+  },
+
+  object: {
+    id: 'object',
+    title: 'المفعول به',
+    categoryId: 'mansubat',
+    videos: [],
     images: [
-      'lessons/أسلوب الاستفهام/أدوات الاستفهام.jpg'
+      'lessons/المفعول%20به/المفعول%20به.jpg',
+      'lessons/المفعول%20به/المفعول%20به%201.jpg'
     ],
     contentHtml: `
       <p>
-        <strong>أسلوب الاستفهام</strong> يُستعمل لطلب الفهم أو الاستعلام عن شيء مجهول
-        عند المتكلّم، ولكل أداة منه معنى خاص ونوع معيّن من السؤال.
+        المفعول به اسم منصوب يدل على من وقع عليه فعل الفاعل مثل: <em>قرأ الطالبُ الكتابَ</em>.
       </p>
-
-      <h4>أهم أدوات الاستفهام ومعانيها</h4>
-      <ul>
-        <li><strong>مَن</strong> – للسؤال عن <strong>العاقل</strong>:
-          <em>مَن آخرُ الخلفاءِ الراشدين؟</em></li>
-        <li><strong>ما / ماذا</strong> – للسؤال عن <strong>غير العاقل</strong> أو الأشياء:
-          <em>ما أحبُّ العلومِ إليك؟</em></li>
-        <li><strong>متى</strong> – للسؤال عن <strong>الزمان</strong>:
-          <em>متى رجعت؟</em></li>
-        <li><strong>أيان</strong> – للزمان المستقبل:
-          <em>أيان تُسافر؟</em></li>
-        <li><strong>أين</strong> – للسؤال عن <strong>المكان</strong>:
-          <em>أين أخوك؟</em></li>
-        <li><strong>كيف</strong> – للسؤال عن <strong>الحال</strong> أو الهيئة:
-          <em>كيف حالُك؟</em></li>
-        <li><strong>كم</strong> – للسؤال عن <strong>العدد</strong>:
-          <em>كم كتابًا قرأت؟</em></li>
-        <li><strong>أيُّ</strong> – للسؤال عن <strong>تعيين</strong> واحد من مجموعة:
-          <em>أيُّ رجلٍ أتى؟</em></li>
-      </ul>
-
+    `,
+    quiz: []
+  },
+  haal: {
+    id: 'haal',
+    title: 'الحال',
+    categoryId: 'mansubat',
+    videos: [],
+    images: ['lessons/الحال/الحال%20(2).jpg'],
+    contentHtml: `
       <p>
-        اختيار أداة الاستفهام المناسبة يعطي سؤالك دقةً ووضوحًا،
-        ويساعدك على فهم النصوص القرآنية واللغوية فهمًا أفضل.
+        الحال وصف منصوب يبين هيئة صاحبه وقت وقوع الفعل مثل:
+        <em>عاد المسافرُ مبتسمًا</em>.
       </p>
+    `,
+    quiz: []
+  },
+
+  naat: {
+    id: 'naat',
+    title: 'النعت',
+    categoryId: 'tawabi',
+    videos: [],
+    images: ['lessons/النعت.jpg'],
+    contentHtml: `
+      <p>النعت تابع يصف المنعوت ويتبعه في الإعراب والتعريف والتنكير.</p>
+    `,
+    quiz: []
+  },
+  badal: {
+    id: 'badal',
+    title: 'البدل',
+    categoryId: 'tawabi',
+    videos: [],
+    images: ['lessons/البدل.jpg'],
+    contentHtml: `
+      <p>البدل تابع يذكر بعد اسم قبله ليوضحه أو يؤكده ويطابقه في الإعراب.</p>
+    `,
+    quiz: []
+  },
+  atf: {
+    id: 'atf',
+    title: 'العطف',
+    categoryId: 'tawabi',
+    videos: [],
+    images: ['lessons/العطف.jpg'],
+    contentHtml: `
+      <p>العطف تابع يسبقه حرف عطف يشارك المعطوف عليه في الإعراب.</p>
+    `,
+    quiz: []
+  },
+  tawkeed: {
+    id: 'tawkeed',
+    title: 'التوكيد',
+    categoryId: 'tawabi',
+    videos: [],
+    images: ['lessons/التوكيد%20(1).jpg'],
+    contentHtml: `
+      <p>التوكيد تابع يذكر لإزالة التردد أو الشك ويتبع المؤكَّد في الإعراب.</p>
+    `,
+    quiz: []
+  },
+
+  'huruf-jar': {
+    id: 'huruf-jar',
+    title: 'حروف الجر',
+    categoryId: 'majroorat',
+    videos: [],
+    images: ['lessons/حروف%20الجر/حروف%20الجر.docx'],
+    contentHtml: `
+      <p>حروف الجر تدخل على الأسماء فتجرّها مثل: <strong>من، إلى، على، في، عن، الباء، الكاف، اللام</strong>.</p>
+    `,
+    quiz: []
+  },
+  'ism-majrur': {
+    id: 'ism-majrur',
+    title: 'الاسم المجرور',
+    categoryId: 'majroorat',
+    videos: [],
+    images: ['lessons/الاسم%20المجرور/الاسم%20المجرور.docx'],
+    contentHtml: `
+      <p>الاسم المجرور هو الاسم الذي يسبقه حرف جر أو يُضاف إلى اسم قبله، وعلامة جره الأصلية الكسرة.</p>
+    `,
+    quiz: []
+  },
+  'mudaf-ilayh': {
+    id: 'mudaf-ilayh',
+    title: 'المضاف إليه',
+    categoryId: 'majroorat',
+    videos: [],
+    images: ['lessons/المضاف%20إليه/المضاف%20إليه.docx'],
+    contentHtml: `
+      <p>المضاف إليه اسم مجرور يُذكر بعد اسم قبله لتخصيصه أو تعريفه مثل: <em>كتابُ الطالبِ</em>.</p>
+    `,
+    quiz: []
+  },
+
+  interrogatives: {
+    id: 'interrogatives',
+    title: 'أسلوب الاستفهام',
+    categoryId: 'istifham',
+    videos: [],
+    images: ['lessons/القسم%20السابع%20أسلوب%20الاستفهام/أسلوب%20الاستفهام.docx'],
+    contentHtml: `
+      <p>أسلوب الاستفهام يُستخدم لطلب الفهم أو الاستعلام بأدوات مثل: <strong>هل، ما، ماذا، أين، متى، كيف، كم</strong>.</p>
     `,
     quiz: [
       {
         id: 'int-q1',
-        question: 'أيُّ أداة استفهام تُستخدم للسؤال عن العاقل؟',
-        options: ['ما', 'أين', 'مَن', 'كم'],
-        correctIndex: 2,
-        explanation: 'تستعمل "مَن" للسؤال عن العاقل.'
+        question: 'أيُّ أداة استفهام تُستخدم للسؤال عن الزمان؟',
+        options: ['أين', 'متى', 'كيف', 'ماذا'],
+        correctIndex: 1,
+        explanation: '"متى" تسأل عن الزمان.'
       },
       {
         id: 'int-q2',
-        question: 'السؤال المناسب عن الزمان هو:',
-        options: [
-          'أين تدرس؟',
-          'متى تبدأُ الحصةُ؟',
-          'كيف حالُك؟',
-          'كم كتابًا قرأت؟'
-        ],
-        correctIndex: 1,
-        explanation: '"متى" تختص بالسؤال عن الزمان.'
+        question: 'تُستخدم "كيف" للسؤال عن:',
+        options: ['العدد', 'الزمان', 'الحال أو الهيئة', 'المكان'],
+        correctIndex: 2,
+        explanation: '"كيف" للسؤال عن الحال أو الهيئة.'
       },
       {
         id: 'int-q3',
-        question: 'أيُّ سؤالٍ يستخدم أداة استفهام عن المكان؟',
+        question: 'أيُّ سؤالٍ يناسب: "أين تسكن؟"؟',
         options: [
-          'متى رجعت؟',
-          'أين تسكن؟',
-          'كم طالبًا في الصف؟',
-          'كيف وصلت؟'
+          'سؤال عن الزمان',
+          'سؤال عن المكان',
+          'سؤال عن العدد',
+          'سؤال عن السبب'
         ],
         correctIndex: 1,
         explanation: '"أين تسكن؟" سؤال عن المكان.'
@@ -676,7 +1015,7 @@ const LESSONS = {
   tamyeez: {
     id: 'tamyeez',
     title: 'التمييز',
-    categoryId: 'tawabi',
+    categoryId: 'mansubat',
     videos: [],
     images: [
       'lessons/التمييز/التمييز.jpg'
@@ -763,6 +1102,105 @@ const LESSONS = {
 
   // … يمكنك إضافة بقية الدروس هنا بنفس البنية إن أحببت …
 };
+
+
+// =============================
+// 2) التصنيفات CATEGORIES
+// =============================
+
+const CATEGORIES = [
+  {
+    id: 'parts-of-speech',
+    title: 'أقسام الكلام',
+    color: '#dcfce7',
+    lessonIds: ['types-of-word']
+  },
+  {
+    id: 'sentence-types',
+    title: 'أقسام الجملة',
+    color: '#fef3c7',
+    lessonIds: [
+      'present-raf',
+      'present-nasb',
+      'present-jazm',
+      'subject',
+      'naib-fael',
+      'five-verbs'
+    ]
+  },
+  {
+    id: 'built-nouns',
+    title: 'الأسماء المبنية',
+    color: '#e0f2fe',
+    lessonIds: [
+      'demonstratives',
+      'relative-pronouns',
+      'pronoun',
+      'address-pronouns',
+      'absent-pronouns',
+      'speaker-pronouns'
+    ]
+  },
+  {
+    id: 'secondary-signs',
+    title: 'علامات الإعراب الفرعية',
+    color: '#fef9c3',
+    lessonIds: [
+      'five-nouns',
+      'dual',
+      'masculine-sound-plural',
+      'feminine-sound-plural'
+    ]
+  },
+  {
+    id: 'nawasekh',
+    title: 'النواسخ',
+    color: '#fee2e2',
+    lessonIds: ['kana', 'kada', 'dhanna', 'inna']
+  },
+  {
+    id: 'mansubat',
+    title: 'المنصوبات',
+    color: '#fae8ff',
+    lessonIds: ['object', 'haal', 'tamyeez']
+  },
+  {
+    id: 'tawabi',
+    title: 'التوابع',
+    color: '#ecfeff',
+    lessonIds: ['naat', 'badal', 'atf', 'tawkeed']
+  },
+  {
+    id: 'majroorat',
+    title: 'المجرورات',
+    color: '#e0f2fe',
+    lessonIds: ['huruf-jar', 'ism-majrur', 'mudaf-ilayh']
+  },
+  {
+    id: 'istifham',
+    title: 'أسلوب الاستفهام',
+    color: '#dcfce7',
+    lessonIds: ['interrogatives']
+  },
+  {
+    id: 'i3rab-steps',
+    title: 'خطوات الإعراب',
+    color: '#f3e8ff',
+    lessonIds: ['i3rab-steps']
+  },
+  {
+    id: 'fixed-rules',
+    title: 'ثوابت إعرابية',
+    color: '#fef3c7',
+    lessonIds: ['fixed-rules']
+  },
+  {
+    id: 'i3rab-examples',
+    title: 'نماذج إعرابية',
+    color: '#fee2e2',
+    lessonIds: ['i3rab-examples']
+  }
+];
 
 
 // =============================
