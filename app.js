@@ -2122,6 +2122,38 @@ Object.keys(LESSONS).forEach((id) => {
 });
 
 // =============================
+// عبارات صوتية تشجيعية
+// =============================
+
+const VOICE_FEEDBACKS = {
+  correct: [
+    'إجابة صحيحة!',
+    'تهانينا! لقد حصلت على علامة جديدة.',
+    'لقد ارتقيت إلى مستوى جديد!',
+    'استمر! أنت تحافظ على تقدمك.'
+  ],
+  wrong: ['حاول مرة أخرى.'],
+  finished: [
+    'أحسنت! لقد أتممت الدرس.',
+    'لا تنس مراجعة دروسك اليوم.',
+    'استمر! أنت تحافظ على تقدمك.'
+  ]
+};
+
+function speakFeedback(type) {
+  if (typeof window === 'undefined' || !('speechSynthesis' in window)) return;
+  const phrases = VOICE_FEEDBACKS[type];
+  if (!phrases || !phrases.length) return;
+
+  const text = phrases[Math.floor(Math.random() * phrases.length)];
+  const utterance = new SpeechSynthesisUtterance(text);
+  utterance.lang = 'ar';
+
+  window.speechSynthesis.cancel();
+  window.speechSynthesis.speak(utterance);
+}
+
+// =============================
 // 4) حالة التطبيق (تقدّم + ملاحظات + مفضلة + نتائج اختبارات)
 // =============================
 
@@ -2510,9 +2542,11 @@ function setupQuizHandlers(lessonId) {
         correctCount++;
         feedbackEl.textContent = 'إجابة صحيحة 👏';
         feedbackEl.className = 'quiz-feedback correct';
+        speakFeedback('correct');
       } else {
         feedbackEl.textContent = 'إجابة خاطئة، جرّب في السؤال التالي 🙂';
         feedbackEl.className = 'quiz-feedback wrong';
+        speakFeedback('wrong');
       }
 
       setTimeout(() => {
@@ -2549,6 +2583,8 @@ function setupQuizHandlers(lessonId) {
     });
     appState.points += Math.round(percent / 20); // مكافأة بسيطة حسب النتيجة
     saveState();
+
+    speakFeedback('finished');
 
     const retryBtn = document.getElementById('quiz-retry');
     if (retryBtn) {
