@@ -1,6 +1,4 @@
 // Auto-generated lessons data with full content
-import { BookOpen, GraduationCap, FileText, Brain, Users, Zap, Award, Target, Star } from "lucide-react";
-
 export const APP_TITLE = "النحو ببساطة";
 export const APP_LOGO = "/icon-192.png";
 
@@ -89,7 +87,7 @@ export const LESSONS: Lesson[] = [
       explanation: "أحسنت!"
     }
   ],
-    category: "الأساليب النحوية"
+    category: "أسلوب الاستفهام"
   },
   {
     id: 2,
@@ -155,7 +153,7 @@ export const LESSONS: Lesson[] = [
       explanation: "أحسنت!"
     }
   ],
-    category: "إعراب الجمل"
+    category: "النواسخ"
   },
   {
     id: 3,
@@ -229,7 +227,7 @@ export const LESSONS: Lesson[] = [
       explanation: "أحسنت!"
     }
   ],
-    category: "الأسماء"
+    category: "الأسماء المبنية"
   },
   {
     id: 4,
@@ -295,7 +293,7 @@ export const LESSONS: Lesson[] = [
       explanation: "أحسنت!"
     }
   ],
-    category: "الأسماء"
+    category: "الأسماء المبنية"
   },
   {
     id: 5,
@@ -333,7 +331,7 @@ export const LESSONS: Lesson[] = [
       explanation: "أحسنت!"
     }
   ],
-    category: "الأسماء"
+    category: "علامات الإعراب الفرعية"
   },
   {
     id: 6,
@@ -387,7 +385,7 @@ export const LESSONS: Lesson[] = [
       explanation: "أحسنت!"
     }
   ],
-    category: "الأسماء"
+    category: "المنصوبات"
   },
   {
     id: 7,
@@ -433,7 +431,7 @@ export const LESSONS: Lesson[] = [
       explanation: "أحسنت!"
     }
   ],
-    category: "الأسماء"
+    category: "المنصوبات"
   },
   {
     id: 8,
@@ -479,7 +477,7 @@ export const LESSONS: Lesson[] = [
       explanation: "أحسنت!"
     }
   ],
-    category: "الأسماء"
+    category: "الأسماء المبنية"
   },
   {
     id: 9,
@@ -532,13 +530,13 @@ export const LESSONS: Lesson[] = [
       explanation: "أحسنت!"
     }
   ],
-    category: "الجمل"
+    category: "أقسام الجملة"
   },
   {
     id: 10,
-    title: "أنواع الكلمة",
-    description: "درس شامل عن أنواع الكلمة",
-    content: `أَنْوَاعُ الكَلِمَةِ
+    title: "أنواع الكلام",
+    description: "درس شامل عن أنواع الكلام",
+    content: `أَنْوَاعُ الكَلَامِ
 تَنْقَسِمُ الكَلِمَةُ إِلَى ثَلاَثَةِ أَنْوَاعِ اسْمِ وَفِعْلٍ وَحَرْفٍ.
 الاسْمُ: كَلِمَةٌ دَلَّتْ عَلَى مَعنِّى فِي نَفْسِهَا، وَلَمْ تقترن بزمن وينقسم إلى: -
 إنسان: مثل محمد عُمَرُ، طَالِبٌ، عَائِشَةُ عَبْدُ الله، رَجُلٌ
@@ -556,7 +554,7 @@ export const LESSONS: Lesson[] = [
 الحَرْفُ: كَلِمَةٌ دَلتْ عَلَى مَعَنِّى فِي غَيْرِهَا مِثْلُ: مِنْ فَإِنَّ هَذَا اللُّفْظَ كَلِمَةٌ دَلَّتْ عَلَى معنى - وَهُوَ الْإِبْتِدَاءُ - وَهَذَا المَعْنَى لا يَتِمُ حَتَّى تَضُمُ إِلَى هَذِهِ الكَلِمَةِ غَيْرَهَا ، فَتَقُولُ مَثَلاً ذَهَبْتُ مِنَ البَيْتِ.
 أَمْثَلَةُ لِلْحَرْفِ: مِنْ، أَنْ، لَنْ، إِلَى، بَلى، مَا ،عَنْ ،بَلْ ،إِنْ ،عَلَىَ، قَدْ، ثُمٌ، إٍلا ،حَتٌى   أًو، لَكِنْ، لَمْ ، فِي ، إٍن، لا (اللام) ،لك (الكافُ)
 
-أنواع الكلمة`,
+أنواع الكلام`,
     videoUrl: "https://youtu.be/46MwuNDrdlo?si=yHVbvc0IS1QbtRft",
     additionalVideos: [],
     images: ["/lessons/القسم الأول أنواع الكلمة/أنواع الكلمة.jpg"],
@@ -578,7 +576,7 @@ export const LESSONS: Lesson[] = [
       explanation: "أحسنت!"
     }
   ],
-    category: "تعريف النحو"
+    category: "أقسام الكلام"
   },
   {
     id: 11,
@@ -617,7 +615,7 @@ export const LESSONS: Lesson[] = [
       explanation: "أحسنت!"
     }
   ],
-    category: "الجمل"
+    category: "أقسام الجملة"
   },
   {
     id: 12,
@@ -663,7 +661,7 @@ export const LESSONS: Lesson[] = [
       explanation: "أحسنت!"
     }
   ],
-    category: "الأفعال"
+    category: "أقسام الجملة"
   },
   {
     id: 13,
@@ -723,7 +721,7 @@ export const LESSONS: Lesson[] = [
       explanation: "أحسنت!"
     }
   ],
-    category: "تعريف النحو"
+    category: "أقسام الكلام"
   },
   {
     id: 14,
@@ -753,7 +751,7 @@ export const LESSONS: Lesson[] = [
       explanation: "أحسنت!"
     }
   ],
-    category: "الأفعال"
+    category: "أقسام الجملة"
   },
   {
     id: 15,
@@ -788,7 +786,7 @@ export const LESSONS: Lesson[] = [
       explanation: "أحسنت!"
     }
   ],
-    category: "الأفعال"
+    category: "أقسام الكلام"
   },
   {
     id: 16,
@@ -850,7 +848,7 @@ export const LESSONS: Lesson[] = [
       explanation: "أحسنت!"
     }
   ],
-    category: "الأفعال"
+    category: "أقسام الجملة"
   },
   {
     id: 17,
@@ -921,7 +919,7 @@ export const LESSONS: Lesson[] = [
       explanation: "أحسنت!"
     }
   ],
-    category: "الأفعال"
+    category: "أقسام الجملة"
   },
   {
     id: 18,
@@ -953,7 +951,7 @@ https://youtu.be/PiAOOQJzi9M?feature=shared
       explanation: "أحسنت!"
     }
   ],
-    category: "الجمل"
+    category: "أقسام الجملة"
   },
   {
     id: 19,
@@ -1033,7 +1031,7 @@ https://youtu.be/PiAOOQJzi9M?feature=shared
       explanation: "أحسنت!"
     }
   ],
-    category: "الأسماء"
+    category: "المجرورات"
   },
   {
     id: 20,
@@ -1086,7 +1084,7 @@ https://youtu.be/PiAOOQJzi9M?feature=shared
       explanation: "أحسنت!"
     }
   ],
-    category: "الجمل"
+    category: "المنصوبات"
   },
   {
     id: 21,
@@ -1136,12 +1134,12 @@ https://youtu.be/PiAOOQJzi9M?feature=shared
       explanation: "أحسنت!"
     }
   ],
-    category: "الأسماء"
+    category: "أقسام الكلام"
   },
   {
     id: 22,
-    title: "جر الاسم",
-    description: "درس شامل عن جر الاسم",
+    title: "الاسم المجرور",
+    description: "درس شامل عن الاسم المجرور",
     content: `جَــرٌ الاسْمِ 
 الْإِسْمُ يُجَرُّ إِذَا كَانَ مَسْبُوقًا بِحَزِفٍ مِنْ حُرُوفِ الجَرِّ أَوْ كَانَ مُضَافًا إِلَيْهِ.
 حُرُوفُ الجَرِّ هِيَ:
@@ -1203,7 +1201,7 @@ https://youtu.be/PiAOOQJzi9M?feature=shared
 مَطْلَعِ
 ملحوظة: هذه الحُرُوفُ تَكُونُ لِمَعَانِ كَثِيرَةِ وَهَذَا الْمَشْهُورُ مِنْهَا فَقط
 
-جر الاسم`,
+الاسم المجرور`,
     videoUrl: "https://youtu.be/yJ60Yy-_FDg?si=lHCN7SUE-r5eLx9Z",
     additionalVideos: [],
     images: ["/lessons/جر الاسم/جر الاسم.jpg"],
@@ -1225,7 +1223,7 @@ https://youtu.be/PiAOOQJzi9M?feature=shared
       explanation: "أحسنت!"
     }
   ],
-    category: "الأسماء"
+    category: "المجرورات"
   },
   {
     id: 23,
@@ -1273,7 +1271,7 @@ https://youtu.be/PiAOOQJzi9M?feature=shared
       explanation: "أحسنت!"
     }
   ],
-    category: "الأسماء"
+    category: "الأسماء المبنية"
   },
   {
     id: 24,
@@ -1329,7 +1327,7 @@ https://youtu.be/PiAOOQJzi9M?feature=shared
       explanation: "أحسنت!"
     }
   ],
-    category: "الأسماء"
+    category: "الأسماء المبنية"
   },
   {
     id: 25,
@@ -1359,7 +1357,7 @@ https://youtu.be/PiAOOQJzi9M?feature=shared
       explanation: "أحسنت!"
     }
   ],
-    category: "الأسماء"
+    category: "الأسماء المبنية"
   },
   {
     id: 26,
@@ -1389,7 +1387,7 @@ https://youtu.be/PiAOOQJzi9M?feature=shared
       explanation: "أحسنت!"
     }
   ],
-    category: "إعراب الجمل"
+    category: "النواسخ"
   },
   {
     id: 27,
@@ -1419,7 +1417,7 @@ https://youtu.be/PiAOOQJzi9M?feature=shared
       explanation: "أحسنت!"
     }
   ],
-    category: "إعراب الجمل"
+    category: "النواسخ"
   },
   {
     id: 28,
@@ -1449,72 +1447,93 @@ https://youtu.be/PiAOOQJzi9M?feature=shared
       explanation: "أحسنت!"
     }
   ],
-    category: "إعراب الجمل"
+    category: "النواسخ"
   },
 ];
 
 export const LESSON_CATEGORIES: LessonCategory[] = [
   {
     id: 1,
-    title: "تعريف النحو",
-    icon: BookOpen,
+    title: "أقسام الكلام",
+    icon: "BookOpen",
     color: "emerald",
-    lessons: LESSONS.filter(l => l.category === "تعريف النحو")
+    lessons: LESSONS.filter((l) => l.category === "أقسام الكلام"),
   },
   {
     id: 2,
-    title: "منهج التطبيق",
-    icon: Target,
+    title: "أقسام الجملة",
+    icon: "Layers",
     color: "blue",
-    lessons: []
+    lessons: LESSONS.filter((l) => l.category === "أقسام الجملة"),
   },
   {
     id: 3,
-    title: "خريطة النحو",
-    icon: Brain,
+    title: "الأسماء المبنية",
+    icon: "Type",
     color: "purple",
-    lessons: []
+    lessons: LESSONS.filter((l) => l.category === "الأسماء المبنية"),
   },
   {
     id: 4,
-    title: "الجمل",
-    icon: FileText,
-    color: "orange",
-    lessons: LESSONS.filter(l => l.category === "الجمل")
+    title: "علامات الإعراب الفرعية",
+    icon: "Lightbulb",
+    color: "yellow",
+    lessons: LESSONS.filter((l) => l.category === "علامات الإعراب الفرعية"),
   },
   {
     id: 5,
-    title: "حروف المعاني",
-    icon: Zap,
-    color: "pink",
-    lessons: []
+    title: "النواسخ",
+    icon: "BookMarked",
+    color: "orange",
+    lessons: LESSONS.filter((l) => l.category === "النواسخ"),
   },
   {
     id: 6,
-    title: "الأفعال",
-    icon: GraduationCap,
+    title: "المنصوبات",
+    icon: "Sparkles",
     color: "red",
-    lessons: LESSONS.filter(l => l.category === "الأفعال")
+    lessons: LESSONS.filter((l) => l.category === "المنصوبات"),
   },
   {
     id: 7,
-    title: "الأسماء",
-    icon: Users,
+    title: "التوابع",
+    icon: "Map",
     color: "cyan",
-    lessons: LESSONS.filter(l => l.category === "الأسماء")
+    lessons: LESSONS.filter((l) => l.category === "التوابع"),
   },
   {
     id: 8,
-    title: "إعراب الجمل",
-    icon: Award,
+    title: "المجرورات",
+    icon: "Zap",
     color: "indigo",
-    lessons: LESSONS.filter(l => l.category === "إعراب الجمل")
+    lessons: LESSONS.filter((l) => l.category === "المجرورات"),
   },
   {
     id: 9,
-    title: "الأساليب النحوية",
-    icon: Star,
-    color: "yellow",
-    lessons: LESSONS.filter(l => l.category === "الأساليب النحوية")
-  }
+    title: "أسلوب الاستفهام",
+    icon: "Star",
+    color: "pink",
+    lessons: LESSONS.filter((l) => l.category === "أسلوب الاستفهام"),
+  },
+  {
+    id: 10,
+    title: "خطوات الإعراب",
+    icon: "Target",
+    color: "emerald",
+    lessons: LESSONS.filter((l) => l.category === "خطوات الإعراب"),
+  },
+  {
+    id: 11,
+    title: "ثوابت إعرابية",
+    icon: "Award",
+    color: "blue",
+    lessons: LESSONS.filter((l) => l.category === "ثوابت إعرابية"),
+  },
+  {
+    id: 12,
+    title: "نماذج إعرابية",
+    icon: "Brain",
+    color: "purple",
+    lessons: LESSONS.filter((l) => l.category === "نماذج إعرابية"),
+  },
 ];

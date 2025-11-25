@@ -32,8 +32,8 @@ const LESSONS = {
   // =========================
   'types-of-word': {
     id: 'types-of-word',
-    title: 'أنواع الكلمة',
-    categoryId: 'intro',
+    title: 'أنواع الكلام',
+    categoryId: 'parts-of-speech',
     videos: [
       {
         title: 'أنواع الكلمة',
@@ -145,7 +145,7 @@ const LESSONS = {
   'nahw-definition-2': {
     id: 'nahw-definition-2',
     title: 'درس تمهيدي إضافي',
-    categoryId: 'intro',
+    categoryId: 'parts-of-speech',
     videos: [],
     images: [],
     contentHtml: `
@@ -160,7 +160,7 @@ const LESSONS = {
   sentence: {
     id: 'sentence',
     title: 'الجملة',
-    categoryId: 'sentences',
+    categoryId: 'sentence-parts',
     videos: [
       {
         title: 'الجملة',
@@ -284,7 +284,7 @@ const LESSONS = {
   demonstratives: {
     id: 'demonstratives',
     title: 'أسماء الإشارة',
-    categoryId: 'nouns',
+    categoryId: 'built-nouns',
     videos: [
       {
         title: 'أسماء الإشارة',
@@ -389,7 +389,7 @@ const LESSONS = {
   'relative-pronouns': {
     id: 'relative-pronouns',
     title: 'الأسماء الموصولة',
-    categoryId: 'nouns',
+    categoryId: 'built-nouns',
     videos: [
       {
         title: 'الأسماء الموصولة',
@@ -486,7 +486,7 @@ const LESSONS = {
   'five-nouns': {
     id: 'five-nouns',
     title: 'الأسماء الخمسة',
-    categoryId: 'nouns',
+    categoryId: 'secondary-case-signs',
     videos: [
       {
         title: 'الأسماء الخمسة',
@@ -574,8 +574,8 @@ const LESSONS = {
   // أسلوب الاستفهام / أدوات الاستفهام
   interrogatives: {
     id: 'interrogatives',
-    title: 'أدوات الاستفهام',
-    categoryId: 'styles',
+    title: 'أسلوب الاستفهام',
+    categoryId: 'interrogative-style',
     videos: [
       {
         title: 'أدوات الاستفهام',
@@ -676,7 +676,7 @@ const LESSONS = {
   tamyeez: {
     id: 'tamyeez',
     title: 'التمييز',
-    categoryId: 'tawabi',
+    categoryId: 'mansubat',
     videos: [],
     images: [
       'lessons/التمييز/التمييز.jpg'
@@ -759,6 +759,381 @@ const LESSONS = {
         explanation: '"علمًا" تمييز ملحوظ يوضح نوع الزيادة.'
       }
     ]
+  },
+
+  // =========================
+  // أقسام الجملة (رفع/نصب/جزم المضارع، الفاعل، نائب الفاعل، الأفعال الخمسة)
+  // =========================
+  'present-raf': {
+    id: 'present-raf',
+    title: 'رفع الفعل المضارع',
+    categoryId: 'sentence-parts',
+    videos: [],
+    images: [],
+    contentHtml: `
+      <p>
+        يُرفع الفعل المضارع إذا خلا من الناصب والجازم،
+        وعلامة رفعه الضمة الظاهرة أو المقدرة،
+        أو ثبوت النون في الأفعال الخمسة.
+      </p>
+    `,
+    quiz: []
+  },
+  'present-nasb': {
+    id: 'present-nasb',
+    title: 'نصب الفعل المضارع',
+    categoryId: 'sentence-parts',
+    videos: [],
+    images: [],
+    contentHtml: `
+      <p>
+        ينصب المضارع بأدوات النصب مثل: أن، لن، كي، حتى.
+        علامة نصبه الفتحة الظاهرة أو المقدرة،
+        أو حذف النون في الأفعال الخمسة.
+      </p>
+    `,
+    quiz: []
+  },
+  'present-jazm': {
+    id: 'present-jazm',
+    title: 'جزم الفعل المضارع',
+    categoryId: 'sentence-parts',
+    videos: [],
+    images: [],
+    contentHtml: `
+      <p>
+        يجزم المضارع بأدوات الجزم مثل: لم، لما، لام الأمر، لا الناهية.
+        علامة جزمه السكون، أو حذف حرف العلة،
+        أو حذف النون في الأفعال الخمسة.
+      </p>
+    `,
+    quiz: []
+  },
+  subject: {
+    id: 'subject',
+    title: 'الفاعل',
+    categoryId: 'sentence-parts',
+    videos: [],
+    images: [],
+    contentHtml: `
+      <p>
+        الفاعل اسم مرفوع يدل على من قام بالفعل أو اتصف به،
+        ويأتي بعد الفعل مباشرةً غالبًا.
+      </p>
+    `,
+    quiz: []
+  },
+  'deputy-subject': {
+    id: 'deputy-subject',
+    title: 'نائب الفاعل',
+    categoryId: 'sentence-parts',
+    videos: [],
+    images: [],
+    contentHtml: `
+      <p>
+        نائب الفاعل اسم مرفوع يحل محل الفاعل عند بناء الفعل للمجهول،
+        مثل: <em>كُتِبَ الدرسُ</em>.
+      </p>
+    `,
+    quiz: []
+  },
+  'five-verbs': {
+    id: 'five-verbs',
+    title: 'الأفعال الخمسة',
+    categoryId: 'sentence-parts',
+    videos: [],
+    images: [],
+    contentHtml: `
+      <p>
+        الأفعال الخمسة هي كل مضارع اتصلت به ألف الاثنين أو واو الجماعة أو ياء المخاطبة.
+        تُرفع بثبوت النون، وتنصب وتجزم بحذفها.
+      </p>
+    `,
+    quiz: []
+  },
+
+  // =========================
+  // الأسماء المبنية والضمائر
+  // =========================
+  pronouns: {
+    id: 'pronouns',
+    title: 'الضمير',
+    categoryId: 'built-nouns',
+    videos: [],
+    images: [],
+    contentHtml: `
+      <p>
+        الضمير اسم مبني يدل على المتكلم أو المخاطب أو الغائب،
+        ويستعمل اختصارًا وتجنبًا للتكرار.
+      </p>
+    `,
+    quiz: []
+  },
+  'address-pronouns': {
+    id: 'address-pronouns',
+    title: 'ضمائر الخطاب',
+    categoryId: 'built-nouns',
+    videos: [],
+    images: [],
+    contentHtml: `
+      <p>ضمائر الخطاب تشير إلى المخاطَب مثل: أنتَ، أنتِ، أنتما، أنتم، أنتن.</p>
+    `,
+    quiz: []
+  },
+  'absent-pronouns': {
+    id: 'absent-pronouns',
+    title: 'ضمائر الغائب',
+    categoryId: 'built-nouns',
+    videos: [],
+    images: [],
+    contentHtml: `
+      <p>ضمائر الغائب تشير إلى غير الحاضر مثل: هو، هي، هما، هم، هن.</p>
+    `,
+    quiz: []
+  },
+  'speaker-pronouns': {
+    id: 'speaker-pronouns',
+    title: 'ضمائر المتكلم',
+    categoryId: 'built-nouns',
+    videos: [],
+    images: [],
+    contentHtml: `
+      <p>ضمائر المتكلم تشير للمتكلم نفسه مثل: أنا، نحن.</p>
+    `,
+    quiz: []
+  },
+
+  // =========================
+  // علامات الإعراب الفرعية
+  // =========================
+  dual: {
+    id: 'dual',
+    title: 'المثنى',
+    categoryId: 'secondary-case-signs',
+    videos: [],
+    images: [],
+    contentHtml: `
+      <p>المثنى اسم يدل على اثنين، يرفع بالألف وينصب ويجر بالياء.</p>
+    `,
+    quiz: []
+  },
+  'masculine-sound-plural': {
+    id: 'masculine-sound-plural',
+    title: 'جمع مذكر سالم',
+    categoryId: 'secondary-case-signs',
+    videos: [],
+    images: [],
+    contentHtml: `
+      <p>جمع المذكر السالم يرفع بالواو وينصب ويجر بالياء، ويصاغ بزيادة واو ونون أو ياء ونون.</p>
+    `,
+    quiz: []
+  },
+  'feminine-sound-plural': {
+    id: 'feminine-sound-plural',
+    title: 'جمع مؤنث سالم',
+    categoryId: 'secondary-case-signs',
+    videos: [],
+    images: [],
+    contentHtml: `
+      <p>جمع المؤنث السالم يرفع بالضمة وينصب ويجر بالكسرة، ويصاغ بزيادة ألف وتاء.</p>
+    `,
+    quiz: []
+  },
+
+  // =========================
+  // النواسخ
+  // =========================
+  kana: {
+    id: 'kana',
+    title: 'كان وأخواتها',
+    categoryId: 'nawasikh',
+    videos: [],
+    images: [],
+    contentHtml: `
+      <p>تدخل كان وأخواتها على الجملة الاسمية فترفع المبتدأ اسمًا لها وتنصب الخبر خبرًا لها.</p>
+    `,
+    quiz: []
+  },
+  kada: {
+    id: 'kada',
+    title: 'كاد وأخواتها',
+    categoryId: 'nawasikh',
+    videos: [],
+    images: [],
+    contentHtml: `
+      <p>أفعال المقاربة مثل كاد وأوشك تعمل عمل كان لكن خبرها يكون جملة فعلية مضارعة.</p>
+    `,
+    quiz: []
+  },
+  dhanna: {
+    id: 'dhanna',
+    title: 'ظن وأخواتها',
+    categoryId: 'nawasikh',
+    videos: [],
+    images: [],
+    contentHtml: `
+      <p>تدخل أفعال الظن على الجملة الاسمية فتنصب المبتدأ والخبر مفعولين لها.</p>
+    `,
+    quiz: []
+  },
+  inna: {
+    id: 'inna',
+    title: 'إن وأخواتها',
+    categoryId: 'nawasikh',
+    videos: [],
+    images: [],
+    contentHtml: `
+      <p>حروف إن وأخواتها تنصب المبتدأ وترفع الخبر، وتفيد معاني التأكيد أو التمني وغيرها.</p>
+    `,
+    quiz: []
+  },
+
+  // =========================
+  // المنصوبات
+  // =========================
+  object: {
+    id: 'object',
+    title: 'المفعول به',
+    categoryId: 'mansubat',
+    videos: [],
+    images: [],
+    contentHtml: `
+      <p>المفعول به اسم منصوب يدل على من وقع عليه فعل الفاعل.</p>
+    `,
+    quiz: []
+  },
+  haal: {
+    id: 'haal',
+    title: 'الحال',
+    categoryId: 'mansubat',
+    videos: [],
+    images: [],
+    contentHtml: `
+      <p>الحال اسم منصوب يبين هيئة صاحبه وقت وقوع الفعل.</p>
+    `,
+    quiz: []
+  },
+
+  // =========================
+  // التوابع
+  // =========================
+  naat: {
+    id: 'naat',
+    title: 'النعت',
+    categoryId: 'tawabi',
+    videos: [],
+    images: [],
+    contentHtml: `
+      <p>النعت تابع يصف المنعوت ويتبعه في الإعراب.</p>
+    `,
+    quiz: []
+  },
+  badal: {
+    id: 'badal',
+    title: 'البدل',
+    categoryId: 'tawabi',
+    videos: [],
+    images: [],
+    contentHtml: `
+      <p>البدل تابع يوضح المقصود من المتبوع أو يستدركه.</p>
+    `,
+    quiz: []
+  },
+  atf: {
+    id: 'atf',
+    title: 'العطف',
+    categoryId: 'tawabi',
+    videos: [],
+    images: [],
+    contentHtml: `
+      <p>العطف تابع يتوسط بينه وبين متبوعه حرف عطف، ويتبعه في الإعراب.</p>
+    `,
+    quiz: []
+  },
+  tawkeed: {
+    id: 'tawkeed',
+    title: 'التوكيد',
+    categoryId: 'tawabi',
+    videos: [],
+    images: [],
+    contentHtml: `
+      <p>التوكيد تابع يقرر المعنى ويدفع الشك باستخدام ألفاظ مثل نفس وكل أو ألفاظ معنوية.</p>
+    `,
+    quiz: []
+  },
+
+  // =========================
+  // المجرورات
+  // =========================
+  'huruf-jar': {
+    id: 'huruf-jar',
+    title: 'حروف الجر',
+    categoryId: 'majrurat',
+    videos: [],
+    images: [],
+    contentHtml: `
+      <p>حروف الجر تخفض الاسم بعدها وتربط بينه وبين ما قبله دلالةً ومعنىً.</p>
+    `,
+    quiz: []
+  },
+  'ism-majrur': {
+    id: 'ism-majrur',
+    title: 'الاسم المجرور',
+    categoryId: 'majrurat',
+    videos: [],
+    images: [],
+    contentHtml: `
+      <p>الاسم المجرور هو الاسم الذي سبقه حرف جر أو أضيف إلى اسم آخر، وعلامته الكسرة أو ما ينوب عنها.</p>
+    `,
+    quiz: []
+  },
+  'mudaf-ilayh': {
+    id: 'mudaf-ilayh',
+    title: 'المضاف إليه',
+    categoryId: 'majrurat',
+    videos: [],
+    images: [],
+    contentHtml: `
+      <p>المضاف إليه اسم مجرور يبيّن ملكية أو تخصيصًا لما قبله ويأتي بعد اسم مضاف.</p>
+    `,
+    quiz: []
+  },
+
+  // =========================
+  // خطوات وثوابت ونماذج الإعراب
+  // =========================
+  'i3rab-steps': {
+    id: 'i3rab-steps',
+    title: 'خطوات الإعراب',
+    categoryId: 'i3rab-steps',
+    videos: [],
+    images: [],
+    contentHtml: `
+      <p>خطوات الإعراب تتضمن تحديد نوع الكلمة، وعلامة الإعراب، وسببها، وموضعها في الجملة.</p>
+    `,
+    quiz: []
+  },
+  'i3rab-constants': {
+    id: 'i3rab-constants',
+    title: 'ثوابت إعرابية',
+    categoryId: 'i3rab-constants',
+    videos: [],
+    images: [],
+    contentHtml: `
+      <p>ثوابت الإعراب هي قواعد لا تتغير مثل بناء الحروف وبعض الأسماء المبنية.</p>
+    `,
+    quiz: []
+  },
+  'i3rab-models': {
+    id: 'i3rab-models',
+    title: 'نماذج إعرابية',
+    categoryId: 'i3rab-models',
+    videos: [],
+    images: [],
+    contentHtml: `
+      <p>نماذج إعرابية مختصرة لآيات وأمثلة تطبيقية تساعد على ترسيخ القواعد.</p>
+    `,
+    quiz: []
   }
 
   // … يمكنك إضافة بقية الدروس هنا بنفس البنية إن أحببت …
@@ -771,82 +1146,90 @@ const LESSONS = {
 
 const CATEGORIES = [
   {
-    id: 'intro',
-    title: 'تعريف النحو',
+    id: 'parts-of-speech',
+    title: 'أقسام الكلام',
     color: '#dcfce7',
-    lessonIds: ['types-of-word', 'kinds-of-noun']
+    lessonIds: ['types-of-word']
   },
   {
-    id: 'sentences',
-    title: 'الجمل',
+    id: 'sentence-parts',
+    title: 'أقسام الجملة',
     color: '#fef3c7',
-    lessonIds: ['sentence']
-  },
-  {
-    id: 'verbs',
-    title: 'الأفعال',
-    color: '#fee2e2',
     lessonIds: [
-      'verb-types',
       'present-raf',
       'present-nasb',
       'present-jazm',
+      'subject',
+      'deputy-subject',
       'five-verbs'
     ]
   },
   {
-    id: 'fael',
-    title: 'الفاعل ونائب الفاعل',
+    id: 'built-nouns',
+    title: 'الأسماء المبنية',
     color: '#e0f2fe',
-    lessonIds: ['subject', 'naib-fael']
-  },
-  {
-    id: 'objects',
-    title: 'المفاعيل',
-    color: '#fef9c3',
-    lessonIds: ['object']
-  },
-  {
-    id: 'pronouns',
-    title: 'الضمائر',
-    color: '#f3e8ff',
     lessonIds: [
-      'pronoun',
+      'demonstratives',
+      'relative-pronouns',
+      'pronouns',
       'address-pronouns',
       'absent-pronouns',
       'speaker-pronouns'
     ]
   },
   {
-    id: 'nouns',
-    title: 'الأسماء وأنواعها',
-    color: '#e0f2fe',
-    lessonIds: [
-      'demonstratives',
-      'relative-pronouns',
-      'five-nouns',
-      'nakira',
-      'jar-ism',
-      'mudaf-ilayh'
-    ]
+    id: 'secondary-case-signs',
+    title: 'علامات الإعراب الفرعية',
+    color: '#fef9c3',
+    lessonIds: ['five-nouns', 'dual', 'masculine-sound-plural', 'feminine-sound-plural']
   },
   {
-    id: 'sentence-grammar',
-    title: 'إعراب الجمل والأفعال الناسخة',
+    id: 'nawasikh',
+    title: 'النواسخ',
     color: '#fee2e2',
-    lessonIds: ['kana', 'kada', 'inna', 'dhanna']
+    lessonIds: ['kana', 'kada', 'dhanna', 'inna']
+  },
+  {
+    id: 'mansubat',
+    title: 'المنصوبات',
+    color: '#fde68a',
+    lessonIds: ['object', 'haal', 'tamyeez']
   },
   {
     id: 'tawabi',
-    title: 'التوابع، الحال، التمييز',
+    title: 'التوابع',
     color: '#fae8ff',
-    lessonIds: ['tawabi', 'naat', 'atf', 'tawkeed', 'badal', 'haal', 'tamyeez']
+    lessonIds: ['naat', 'badal', 'atf', 'tawkeed']
   },
   {
-    id: 'styles',
-    title: 'الأساليب النحوية',
-    color: '#ecfeff',
+    id: 'majrurat',
+    title: 'المجرورات',
+    color: '#cffafe',
+    lessonIds: ['huruf-jar', 'ism-majrur', 'mudaf-ilayh']
+  },
+  {
+    id: 'interrogative-style',
+    title: 'أسلوب الاستفهام',
+    color: '#e0f2fe',
     lessonIds: ['interrogatives']
+  },
+  {
+    id: 'i3rab-steps',
+    title: 'خطوات الإعراب',
+    color: '#dcfce7',
+    lessonIds: ['i3rab-steps']
+  },
+  {
+    id: 'i3rab-constants',
+    title: 'ثوابت إعرابية',
+    color: '#e9d5ff',
+    lessonIds: ['i3rab-constants']
+  },
+  {
+    id: 'i3rab-models',
+    title: 'نماذج إعرابية',
+    color: '#f3e8ff',
+    lessonIds: ['i3rab-models']
   }
 ];
 

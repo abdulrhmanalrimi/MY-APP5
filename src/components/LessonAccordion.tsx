@@ -37,6 +37,10 @@ const LessonAccordion = ({ categories, favorites, onToggleFavorite }: LessonAcco
       Type: <Icons.Type className="w-5 h-5" />,
       Lightbulb: <Icons.Lightbulb className="w-5 h-5" />,
       Sparkles: <Icons.Sparkles className="w-5 h-5" />,
+      Star: <Icons.Star className="w-5 h-5" />,
+      Target: <Icons.Target className="w-5 h-5" />,
+      Award: <Icons.Award className="w-5 h-5" />,
+      Brain: <Icons.Brain className="w-5 h-5" />,
     };
     return iconMap[iconName] || <Icons.BookOpen className="w-5 h-5" />;
   };
