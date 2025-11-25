@@ -5,6 +5,13 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="application-name" content="النحو ببساطة" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="النحو ببساطة" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="msapplication-navbutton-color" content="#16a34a" />
+    <meta name="msapplication-starturl" content="./" />
     <meta
       name="description"
       content="تطبيق النحو ببساطة يوفر دروسًا تفاعلية وتمارين واختبارات في النحو العربي"
@@ -44,6 +51,10 @@
 
         <button id="start-learning" class="primary-btn">
           ✨ ابدأ التعلّم
+        </button>
+
+        <button id="install-app" class="secondary-btn hidden" type="button">
+          📲 ثبّت التطبيق على جهازك
         </button>
 
         <p class="landing-footnote">
@@ -117,16 +128,6 @@
 
     <!-- سكربت التطبيق -->
     <script src="app.js"></script>
-
-    <!-- تسجيل الـ Service Worker للـ PWA -->
-    <script>
-      if ("serviceWorker" in navigator) {
-        window.addEventListener("load", () => {
-          navigator.serviceWorker
-            .register("sw.js")
-            .catch((err) => console.log("SW registration failed", err));
-        });
-      }
-    </script>
+    <script src="pwa.js"></script>
   </body>
 </html>
