@@ -2446,25 +2446,27 @@ function setupQuizHandlers(lessonId) {
     selectedIndex = null;
 
     container.innerHTML = `
-      <div class="quiz-header">
-        <p class="quiz-counter">السؤال ${currentIndex + 1} من ${
+      <div class="quiz-card">
+        <div class="quiz-header">
+          <p class="quiz-counter">السؤال ${currentIndex + 1} من ${
       quiz.questions.length
     }</p>
-        <p class="quiz-text">${q.text}</p>
+          <p class="quiz-text">${q.text}</p>
+        </div>
+        <div class="quiz-options">
+          ${q.options
+            .map(
+              (opt, i) => `
+            <button class="quiz-option" data-index="${i}">${opt}</button>
+          `
+            )
+            .join('')}
+        </div>
+        <button class="primary-btn quiz-confirm" id="quiz-confirm">
+          تأكيد الإجابة
+        </button>
+        <p class="quiz-feedback" id="quiz-feedback"></p>
       </div>
-      <div class="quiz-options">
-        ${q.options
-          .map(
-            (opt, i) => `
-          <button class="quiz-option" data-index="${i}">${opt}</button>
-        `
-          )
-          .join('')}
-      </div>
-      <button class="primary-btn quiz-confirm" id="quiz-confirm">
-        تأكيد الإجابة
-      </button>
-      <p class="quiz-feedback" id="quiz-feedback"></p>
     `;
 
     container.querySelectorAll('.quiz-option').forEach((btn) => {
@@ -2511,9 +2513,11 @@ function setupQuizHandlers(lessonId) {
     const percent = Math.round((correctCount / total) * 100);
 
     container.innerHTML = `
-      <p>انتهى الاختبار! ✨</p>
-      <p>نتيجتك: <strong>${correctCount}</strong> من <strong>${total}</strong> (${percent}٪)</p>
-      <button class="primary-btn" id="quiz-retry">إعادة المحاولة</button>
+      <div class="quiz-card quiz-result">
+        <p class="quiz-text">انتهى الاختبار! ✨</p>
+        <p class="quiz-score">نتيجتك: <strong>${correctCount}</strong> من <strong>${total}</strong> (${percent}٪)</p>
+        <button class="primary-btn quiz-confirm" id="quiz-retry">إعادة المحاولة</button>
+      </div>
     `;
 
     // حفظ النتيجة في الإحصائيات
