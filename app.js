@@ -141,6 +141,54 @@ const LESSONS = {
     ]
   },
 
+  'noun-types': {
+    id: 'noun-types',
+    title: 'أقسام الاسم',
+    categoryId: 'parts-of-speech',
+    videos: [
+      {
+        title: 'أقسام الاسم',
+        url: 'https://youtu.be/gd6oBVpED1U?si=3-PD1pHIJPDtI6uF'
+      }
+    ],
+    images: [],
+    contentHtml: `
+      <p>
+        يتنوع الاسم في العربية إلى معارف ونكرات، ويتأثر بالتذكير والتأنيث والإفراد والتثنية والجمع.
+      </p>
+      <p>هذا الدرس يقدّم تمهيدًا سريعًا، وسيتم إثراؤه بتفاصيل إضافية لاحقًا.</p>
+    `,
+    quiz: []
+  },
+
+  'verb-sections': {
+    id: 'verb-sections',
+    title: 'أقسام الفعل',
+    categoryId: 'parts-of-speech',
+    videos: [
+      {
+        title: 'أقسام الفعل (الفعل الصحيح والمعتل)',
+        url: 'https://youtu.be/OBPXE1K1NOE?si=Y4VAxXMM0YM4-3RP'
+      },
+      {
+        title: 'أقسام الفعل (الفعل المجرد والمزيد)',
+        url: 'https://youtu.be/dpQz0U4x3t8?si=tkbmy7kR3sQtKWTR'
+      },
+      {
+        title: 'أقسام الفعل (الفعل اللازم والمتعدي)',
+        url: 'https://youtu.be/GP7z8T5B5_0?si=R5UfITqhPUP0oK67'
+      }
+    ],
+    images: [],
+    contentHtml: `
+      <p>
+        يستعرض هذا الدرس تقسيمات الأفعال بحسب الصحة والاعتلال، والتجريد والزيادة، واللزوم والتعدي.
+      </p>
+      <p>يمكن الرجوع إلى الفيديوهات للمشاهدة التفصيلية لكل تقسيم.</p>
+    `,
+    quiz: []
+  },
+
   // مثال لدرس تمهيدي آخر إن احتجته
   'nahw-definition-2': {
     id: 'nahw-definition-2',
@@ -281,7 +329,12 @@ const LESSONS = {
     id: 'present-raf',
     title: 'رفع الفعل المضارع',
     categoryId: 'sentence-types',
-    videos: [],
+    videos: [
+      {
+        title: 'رفع الفعل المضارع',
+        url: 'https://youtu.be/63dRKoaxLh4?si=zSjX0oOGj0ujR6n7'
+      }
+    ],
     images: [
       'lessons/القسم%20الخامس%20رفع%20الفعل%20المضارع/رفع%20الفعل%20المضارع.jpg'
     ],
@@ -391,7 +444,12 @@ const LESSONS = {
     id: 'present-nasb',
     title: 'نصب الفعل المضارع',
     categoryId: 'sentence-types',
-    videos: [],
+    videos: [
+      {
+        title: 'نصب الفعل المضارع',
+        url: 'https://youtu.be/OH8e6y1Elow?si=HAStLo7C7DoK8iTu'
+      }
+    ],
     images: [
       'lessons/القسم%20السادس%20نصب%20الفعل%20المضارع/نصب%20الفعل%20المضارع.jpg'
     ],
@@ -410,7 +468,12 @@ const LESSONS = {
     id: 'present-jazm',
     title: 'جزم الفعل المضارع',
     categoryId: 'sentence-types',
-    videos: [],
+    videos: [
+      {
+        title: 'جزم الفعل المضارع',
+        url: 'https://youtu.be/9CCiiFMsUyU?si=PpRYerP40K8nOwij'
+      }
+    ],
     images: [
       'lessons/القسم%20السابع%20جزم%20الفعل%20المضارع/جزم%20الفعل%20المضارع%20.docx'
     ],
@@ -429,7 +492,16 @@ const LESSONS = {
     id: 'subject',
     title: 'الفاعل',
     categoryId: 'sentence-types',
-    videos: [],
+    videos: [
+      {
+        title: 'الفاعل (شرح 1)',
+        url: 'https://youtu.be/cWs98q2K7sc?feature=shared'
+      },
+      {
+        title: 'الفاعل (شرح 2)',
+        url: 'https://youtu.be/GeoiDO3Y6ls?si=mkLO2JaER52opXow'
+      }
+    ],
     images: ['lessons/الفاعل/الفاعل.docx'],
     contentHtml: `
       <p>
@@ -444,7 +516,16 @@ const LESSONS = {
     id: 'naib-fael',
     title: 'نائب الفاعل',
     categoryId: 'sentence-types',
-    videos: [],
+    videos: [
+      {
+        title: 'نائب الفاعل (شرح 1)',
+        url: 'https://youtu.be/2tLJA0MfiJA?si=cC5U9tgim3MYx0yR'
+      },
+      {
+        title: 'نائب الفاعل (شرح 2)',
+        url: 'https://youtu.be/PiAOOQJzi9M?feature=shared'
+      }
+    ],
     images: ['lessons/القسم%20العاشر%20نائب%20الفاعل/نائب%20الفاعل.docx'],
     contentHtml: `
       <p>
@@ -461,7 +542,16 @@ const LESSONS = {
     id: 'five-verbs',
     title: 'الأفعال الخمسة',
     categoryId: 'sentence-types',
-    videos: [],
+    videos: [
+      {
+        title: 'الأفعال الخمسة (شرح 1)',
+        url: 'https://youtu.be/GqM1QhxMsK4?si=cObgFffyyQNCVku1'
+      },
+      {
+        title: 'الأفعال الخمسة (شرح 2)',
+        url: 'https://youtu.be/5Dy3vwxvptw?feature=shared'
+      }
+    ],
     images: [
       'lessons/القسم%20الثامن%20%20الأفعال%20الخمسة/الأفعال%20الخمسة%20.docx',
       'lessons/الأفعال%20الخمسة.jpg'
@@ -678,7 +768,12 @@ const LESSONS = {
     id: 'pronoun',
     title: 'الضمير',
     categoryId: 'built-nouns',
-    videos: [],
+    videos: [
+      {
+        title: 'الضمير',
+        url: 'https://youtu.be/cGxdW8XgiOs?si=dan-xmlnrHCNMYSG'
+      }
+    ],
     images: [
       'lessons/الضمير/الضمير.docx',
       'lessons/الضمير/الضمائر%201.jpg'
@@ -698,7 +793,12 @@ const LESSONS = {
     id: 'address-pronouns',
     title: 'ضمائر الخطاب',
     categoryId: 'built-nouns',
-    videos: [],
+    videos: [
+      {
+        title: 'ضمائر الخطاب',
+        url: 'https://youtu.be/aYnw3u2ChRI?si=C01Y6-zYlPunF-jF'
+      }
+    ],
     images: ['lessons/ضمائر%20الخطاب/ضمائر%20الخطاب.jpg'],
     contentHtml: `
       <p>
@@ -714,7 +814,12 @@ const LESSONS = {
     id: 'absent-pronouns',
     title: 'ضمائر الغائب',
     categoryId: 'built-nouns',
-    videos: [],
+    videos: [
+      {
+        title: 'ضمائر الغائب',
+        url: 'https://youtu.be/aYnw3u2ChRI?si=C01Y6-zYlPunF-jF'
+      }
+    ],
     images: ['lessons/ضمائر%20الغائب/ضمائر%20الغائب.jpg'],
     contentHtml: `
       <p>
@@ -730,7 +835,12 @@ const LESSONS = {
     id: 'speaker-pronouns',
     title: 'ضمائر المتكلم',
     categoryId: 'built-nouns',
-    videos: [],
+    videos: [
+      {
+        title: 'ضمائر المتكلم',
+        url: 'https://youtu.be/aYnw3u2ChRI?si=C01Y6-zYlPunF-jF'
+      }
+    ],
     images: ['lessons/ضمائر%20المتكلم/ضمائر%20المتكلم.jpg'],
     contentHtml: `
       <p>
@@ -793,7 +903,12 @@ const LESSONS = {
     id: 'absent-pronouns',
     title: 'ضمائر الغائب',
     categoryId: 'built-nouns',
-    videos: [],
+    videos: [
+      {
+        title: 'ضمائر الغائب',
+        url: 'https://youtu.be/aYnw3u2ChRI?si=C01Y6-zYlPunF-jF'
+      }
+    ],
     images: [
       'lessons/القسم%20الثامن%20ضمائر%20الغائب/ضمائر%20الغائب.docx'
     ],
@@ -808,7 +923,12 @@ const LESSONS = {
     id: 'speaker-pronouns',
     title: 'ضمائر المتكلم',
     categoryId: 'built-nouns',
-    videos: [],
+    videos: [
+      {
+        title: 'ضمائر المتكلم',
+        url: 'https://youtu.be/aYnw3u2ChRI?si=C01Y6-zYlPunF-jF'
+      }
+    ],
     images: [
       'lessons/القسم%20التاسع%20ضمائر%20المتكلم/ضمائر%20المتكلم.docx'
     ],
@@ -825,7 +945,12 @@ const LESSONS = {
     id: 'five-nouns',
     title: 'الأسماء الخمسة',
     categoryId: 'secondary-signs',
-    videos: [],
+    videos: [
+      {
+        title: 'الأسماء الخمسة',
+        url: 'https://youtu.be/Ao6gfEK177o?si=IO3W-EWf7nZHpn41'
+      }
+    ],
     images: [
       'lessons/الأسماء الخمسة/الأسماء الخمسة.jpg',
       'lessons/الأسماء الخمسة/الأسماء الخمسة 1.jpg'
@@ -947,7 +1072,12 @@ const LESSONS = {
     id: 'kana',
     title: 'كان وأخواتها',
     categoryId: 'nawasekh',
-    videos: [],
+    videos: [
+      {
+        title: 'كان وأخواتها',
+        url: 'https://youtu.be/ARmVdKlDwxA?si=V2DWQVPL9cPBqnVU'
+      }
+    ],
     images: ['lessons/كان%20وأخواتها/كان%20وأخواتها.docx'],
     contentHtml: `
       <p>
@@ -961,7 +1091,12 @@ const LESSONS = {
     id: 'kada',
     title: 'كاد وأخواتها',
     categoryId: 'nawasekh',
-    videos: [],
+    videos: [
+      {
+        title: 'كاد وأخواتها',
+        url: 'https://youtu.be/IQL4DXk2vig?feature=shared'
+      }
+    ],
     images: ['lessons/كاد%20وأخواتها/كاد%20وأخواتها.jpg'],
     contentHtml: `
       <p>
@@ -975,7 +1110,12 @@ const LESSONS = {
     id: 'dhanna',
     title: 'ظن وأخواتها',
     categoryId: 'nawasekh',
-    videos: [],
+    videos: [
+      {
+        title: 'ظن وأخواتها',
+        url: 'https://youtu.be/fVSvZHFsrpI?feature=shared'
+      }
+    ],
     images: ['lessons/ظن%20وأخواتها/ظن%20وأخواتها.jpg'],
     contentHtml: `
       <p>
@@ -989,7 +1129,12 @@ const LESSONS = {
     id: 'inna',
     title: 'إن وأخواتها',
     categoryId: 'nawasekh',
-    videos: [],
+    videos: [
+      {
+        title: 'إن وأخواتها',
+        url: 'https://youtu.be/6exrOOT9chw?si=-xbF_TblqbNCaXG8'
+      }
+    ],
     images: ['lessons/إن%20وأخواتها/إن%20وأخواتها.jpg'],
     contentHtml: `
       <p>
@@ -1004,7 +1149,12 @@ const LESSONS = {
     id: 'object',
     title: 'المفعول به',
     categoryId: 'mansubat',
-    videos: [],
+    videos: [
+      {
+        title: 'المفعول به',
+        url: 'https://youtu.be/-sSadKciHjA?si=J7aYxgFml5Pq0fFP'
+      }
+    ],
     images: [
       'lessons/المفعول%20به/المفعول%20به.jpg',
       'lessons/المفعول%20به/المفعول%20به%201.jpg'
@@ -1020,7 +1170,12 @@ const LESSONS = {
     id: 'haal',
     title: 'الحال',
     categoryId: 'mansubat',
-    videos: [],
+    videos: [
+      {
+        title: 'الحال',
+        url: 'https://youtu.be/7JxHhdJGMYE?si=weJ9Hz5R7yappj-8'
+      }
+    ],
     images: ['lessons/الحال/الحال%20(2).jpg'],
     contentHtml: `
       <p>
@@ -1035,7 +1190,12 @@ const LESSONS = {
     id: 'naat',
     title: 'النعت',
     categoryId: 'tawabi',
-    videos: [],
+    videos: [
+      {
+        title: 'النعت',
+        url: 'https://youtu.be/Cu6xb3CgW8U?si=KsmLqlNz2oddtzFz'
+      }
+    ],
     images: ['lessons/النعت.jpg'],
     contentHtml: `
       <p>النعت تابع يصف المنعوت ويتبعه في الإعراب والتعريف والتنكير.</p>
@@ -1046,7 +1206,12 @@ const LESSONS = {
     id: 'badal',
     title: 'البدل',
     categoryId: 'tawabi',
-    videos: [],
+    videos: [
+      {
+        title: 'البدل',
+        url: 'https://youtu.be/1Qg0zSoIFLg?si=B_rElnDxyXjKCYDn'
+      }
+    ],
     images: ['lessons/البدل.jpg'],
     contentHtml: `
       <p>البدل تابع يذكر بعد اسم قبله ليوضحه أو يؤكده ويطابقه في الإعراب.</p>
@@ -1057,7 +1222,12 @@ const LESSONS = {
     id: 'atf',
     title: 'العطف',
     categoryId: 'tawabi',
-    videos: [],
+    videos: [
+      {
+        title: 'العطف',
+        url: 'https://youtu.be/5V-uGR2ZL4M?si=-rFW0xHc4uhVlqhO'
+      }
+    ],
     images: ['lessons/العطف.jpg'],
     contentHtml: `
       <p>العطف تابع يسبقه حرف عطف يشارك المعطوف عليه في الإعراب.</p>
@@ -1068,7 +1238,12 @@ const LESSONS = {
     id: 'tawkeed',
     title: 'التوكيد',
     categoryId: 'tawabi',
-    videos: [],
+    videos: [
+      {
+        title: 'التوكيد',
+        url: 'https://youtu.be/PJJ4dXlYuxw?si=Sqk1UKiN-NJUvSL4'
+      }
+    ],
     images: ['lessons/التوكيد%20(1).jpg'],
     contentHtml: `
       <p>التوكيد تابع يزيل الشك ويؤكد المعنى، ويأتي لفظيًا أو معنويًا.</p>
@@ -1091,7 +1266,12 @@ const LESSONS = {
     id: 'ism-majrur',
     title: 'الاسم المجرور',
     categoryId: 'majroorat',
-    videos: [],
+    videos: [
+      {
+        title: 'جر الاسم',
+        url: 'https://youtu.be/yJ60Yy-_FDg?si=lHCN7SUE-r5eLx9Z'
+      }
+    ],
     images: ['lessons/جر%20الاسم/جر%20الاسم.jpg'],
     contentHtml: `
       <p>يأتي الاسم المجرور بعد حرف جر أو مضافًا إليه، وعلامته الأصلية الكسرة.</p>
@@ -1102,7 +1282,12 @@ const LESSONS = {
     id: 'mudaf-ilayh',
     title: 'المضاف إليه',
     categoryId: 'majroorat',
-    videos: [],
+    videos: [
+      {
+        title: 'المضاف إليه',
+        url: 'https://youtu.be/vFBGO9pF3Ew?si=daXcyxkMSYbYZmjL'
+      }
+    ],
     images: [
       'lessons/المضاف%20إليه%20(2).jpg',
       'lessons/المضاف%20إليه/المضاف%20إليه%20(1).jpg',
@@ -1292,6 +1477,23 @@ const LESSONS = {
     `,
     quiz: []
   },
+
+  nakira: {
+    id: 'nakira',
+    title: 'النكرة',
+    categoryId: 'majroorat',
+    videos: [
+      {
+        title: 'النكرة',
+        url: 'https://youtu.be/RQ0t11gzZHA?feature=shared'
+      }
+    ],
+    images: [],
+    contentHtml: `
+      <p>النكرة اسم يدل على غير معين مثل: كتابٌ، قلمٌ، طالبٌ. يقابله المعرفة التي تدل على شيء محدد.</p>
+    `,
+    quiz: []
+  },
   haal: {
     id: 'haal',
     title: 'الحال',
@@ -1311,7 +1513,12 @@ const LESSONS = {
     id: 'naat',
     title: 'النعت',
     categoryId: 'tawabi',
-    videos: [],
+    videos: [
+      {
+        title: 'النعت',
+        url: 'https://youtu.be/Cu6xb3CgW8U?si=KsmLqlNz2oddtzFz'
+      }
+    ],
     images: ['lessons/النعت.jpg'],
     contentHtml: `
       <p>النعت تابع يصف المنعوت ويتبعه في الإعراب والتعريف والتنكير.</p>
@@ -1322,7 +1529,12 @@ const LESSONS = {
     id: 'badal',
     title: 'البدل',
     categoryId: 'tawabi',
-    videos: [],
+    videos: [
+      {
+        title: 'البدل',
+        url: 'https://youtu.be/1Qg0zSoIFLg?si=B_rElnDxyXjKCYDn'
+      }
+    ],
     images: ['lessons/البدل.jpg'],
     contentHtml: `
       <p>البدل تابع يذكر بعد اسم قبله ليوضحه أو يؤكده ويطابقه في الإعراب.</p>
@@ -1333,7 +1545,12 @@ const LESSONS = {
     id: 'atf',
     title: 'العطف',
     categoryId: 'tawabi',
-    videos: [],
+    videos: [
+      {
+        title: 'العطف',
+        url: 'https://youtu.be/5V-uGR2ZL4M?si=-rFW0xHc4uhVlqhO'
+      }
+    ],
     images: ['lessons/العطف.jpg'],
     contentHtml: `
       <p>العطف تابع يسبقه حرف عطف يشارك المعطوف عليه في الإعراب.</p>
@@ -1344,7 +1561,12 @@ const LESSONS = {
     id: 'tawkeed',
     title: 'التوكيد',
     categoryId: 'tawabi',
-    videos: [],
+    videos: [
+      {
+        title: 'التوكيد',
+        url: 'https://youtu.be/PJJ4dXlYuxw?si=Sqk1UKiN-NJUvSL4'
+      }
+    ],
     images: ['lessons/التوكيد%20(1).jpg'],
     contentHtml: `
       <p>التوكيد تابع يذكر لإزالة التردد أو الشك ويتبع المؤكَّد في الإعراب.</p>
@@ -1367,7 +1589,12 @@ const LESSONS = {
     id: 'ism-majrur',
     title: 'الاسم المجرور',
     categoryId: 'majroorat',
-    videos: [],
+    videos: [
+      {
+        title: 'جر الاسم',
+        url: 'https://youtu.be/yJ60Yy-_FDg?si=lHCN7SUE-r5eLx9Z'
+      }
+    ],
     images: ['lessons/الاسم%20المجرور/الاسم%20المجرور.docx'],
     contentHtml: `
       <p>الاسم المجرور هو الاسم الذي يسبقه حرف جر أو يُضاف إلى اسم قبله، وعلامة جره الأصلية الكسرة.</p>
@@ -1378,7 +1605,12 @@ const LESSONS = {
     id: 'mudaf-ilayh',
     title: 'المضاف إليه',
     categoryId: 'majroorat',
-    videos: [],
+    videos: [
+      {
+        title: 'المضاف إليه',
+        url: 'https://youtu.be/vFBGO9pF3Ew?si=daXcyxkMSYbYZmjL'
+      }
+    ],
     images: ['lessons/المضاف%20إليه/المضاف%20إليه.docx'],
     contentHtml: `
       <p>المضاف إليه اسم مجرور يُذكر بعد اسم قبله لتخصيصه أو تعريفه مثل: <em>كتابُ الطالبِ</em>.</p>
@@ -1390,7 +1622,12 @@ const LESSONS = {
     id: 'interrogatives',
     title: 'أسلوب الاستفهام',
     categoryId: 'istifham',
-    videos: [],
+    videos: [
+      {
+        title: 'أدوات الاستفهام',
+        url: 'https://youtu.be/fY-y8LqX6Bk?si=LU1wqp5iTMB_YQOB'
+      }
+    ],
     images: ['lessons/القسم%20السابع%20أسلوب%20الاستفهام/أسلوب%20الاستفهام.docx'],
     contentHtml: `
       <p>أسلوب الاستفهام يُستخدم لطلب الفهم أو الاستعلام بأدوات مثل: <strong>هل، ما، ماذا، أين، متى، كيف، كم</strong>.</p>
@@ -1447,11 +1684,32 @@ const LESSONS = {
   // =========================
   // التوابع / أحكام أخرى
   // =========================
+  'tawabi-overview': {
+    id: 'tawabi-overview',
+    title: 'التوابع',
+    categoryId: 'tawabi',
+    videos: [
+      {
+        title: 'التوابع',
+        url: 'https://youtu.be/miXr0AI-qBc?si=moLUWnx536LRHUSW'
+      }
+    ],
+    images: [],
+    contentHtml: `
+      <p>التوابع هي ألفاظ تتبع ما قبلها في الإعراب وتشمل النعت، والبدل، والعطف، والتوكيد.</p>
+    `,
+    quiz: []
+  },
   tamyeez: {
     id: 'tamyeez',
     title: 'التمييز',
     categoryId: 'mansubat',
-    videos: [],
+    videos: [
+      {
+        title: 'التمييز',
+        url: 'https://youtu.be/Z3VulRoUu1I?si=n_GvQ71SSf6Q6OMa'
+      }
+    ],
     images: [
       'lessons/التمييز/التمييز.jpg'
     ],
@@ -1548,7 +1806,7 @@ const CATEGORIES = [
     id: 'parts-of-speech',
     title: 'أقسام الكلام',
     color: '#dcfce7',
-    lessonIds: ['types-of-word']
+    lessonIds: ['types-of-word', 'noun-types', 'verb-sections']
   },
   {
     id: 'sentence-types',
@@ -1604,13 +1862,13 @@ const CATEGORIES = [
     id: 'tawabi',
     title: 'التوابع',
     color: '#ecfeff',
-    lessonIds: ['naat', 'badal', 'atf', 'tawkeed']
+    lessonIds: ['tawabi-overview', 'naat', 'badal', 'atf', 'tawkeed']
   },
   {
     id: 'majroorat',
     title: 'المجرورات',
     color: '#e0f2fe',
-    lessonIds: ['huruf-jar', 'ism-majrur', 'mudaf-ilayh']
+    lessonIds: ['huruf-jar', 'ism-majrur', 'mudaf-ilayh', 'nakira']
   },
   {
     id: 'istifham',
