@@ -2132,7 +2132,8 @@ let appState = {
   notes: {}, // lessonId: 'text'
   favorites: {}, // lessonId: true
   points: 0,
-  quizResults: [] // مصفوفة نتائج الاختبارات (0-100)
+  quizResults: [], // مصفوفة نتائج الاختبارات (0-100)
+  quizHistory: [] // [{ lessonId, score, timestamp }]
 };
 
 function loadState() {
@@ -2145,8 +2146,25 @@ function loadState() {
     if (parsed.favorites) appState.favorites = parsed.favorites;
     if (typeof parsed.points === 'number') appState.points = parsed.points;
     if (Array.isArray(parsed.quizResults)) appState.quizResults = parsed.quizResults;
+    if (Array.isArray(parsed.quizHistory)) appState.quizHistory = parsed.quizHistory;
   } catch (err) {
     console.warn('تعذر قراءة الحالة من التخزين', err);
+  }
+
+  // ترحيل بيانات الاختبارات القديمة إلى سجل مفصل بالتواريخ
+  if (!Array.isArray(appState.quizHistory) || !appState.quizHistory.length) {
+    appState.quizHistory = [];
+    if (Array.isArray(appState.quizResults) && appState.quizResults.length) {
+      const now = Date.now();
+      const day = 1000 * 60 * 60 * 24;
+      appState.quizResults.forEach((score, idx) => {
+        appState.quizHistory.push({
+          lessonId: null,
+          score,
+          timestamp: now - (appState.quizResults.length - idx) * day
+        });
+      });
+    }
   }
 }
 
@@ -2523,6 +2541,12 @@ function setupQuizHandlers(lessonId) {
     // حفظ النتيجة في الإحصائيات
     if (!Array.isArray(appState.quizResults)) appState.quizResults = [];
     appState.quizResults.push(percent);
+    if (!Array.isArray(appState.quizHistory)) appState.quizHistory = [];
+    appState.quizHistory.push({
+      lessonId,
+      score: percent,
+      timestamp: Date.now()
+    });
     appState.points += Math.round(percent / 20); // مكافأة بسيطة حسب النتيجة
     saveState();
 
@@ -2812,6 +2836,132 @@ function getBadges(overall, percent) {
   ];
 }
 
+function formatShortDate(timestamp) {
+  const d = new Date(timestamp || Date.now());
+  return d.toLocaleDateString('ar-EG', { month: 'short', day: 'numeric' });
+}
+
+function getQuizHistory() {
+  if (!Array.isArray(appState.quizHistory)) return [];
+  return appState.quizHistory
+    .filter((item) => typeof item.score === 'number')
+    .sort((a, b) => (a.timestamp || 0) - (b.timestamp || 0));
+}
+
+function getProgressTimeline() {
+  const history = getQuizHistory();
+  if (!history.length) return [];
+
+  const rewards = history.map((h) => Math.round((h.score || 0) / 20));
+  const totalRewards = rewards.reduce((s, v) => s + v, 0);
+  let basePoints = Math.max(appState.points - totalRewards, 0);
+
+  const lastEntries = history.slice(-8);
+  const prefixRewards = rewards
+    .slice(0, history.length - lastEntries.length)
+    .reduce((s, v) => s + v, 0);
+  let running = basePoints + prefixRewards;
+
+  return lastEntries.map((entry, idx) => {
+    running += rewards[history.length - lastEntries.length + idx] || 0;
+    return {
+      label: formatShortDate(entry.timestamp || Date.now()),
+      score: entry.score,
+      points: running,
+      lessonId: entry.lessonId
+    };
+  });
+}
+
+function getLessonsNeedingReview() {
+  const grouped = {};
+  getQuizHistory().forEach((item) => {
+    if (!item.lessonId) return;
+    if (!grouped[item.lessonId]) grouped[item.lessonId] = [];
+    grouped[item.lessonId].push(item.score);
+  });
+
+  return Object.keys(grouped)
+    .map((lessonId) => {
+      const scores = grouped[lessonId];
+      const avg = Math.round(
+        scores.reduce((s, v) => s + v, 0) / Math.max(scores.length, 1)
+      );
+      return {
+        lessonId,
+        lessonTitle: LESSONS[lessonId]?.title || 'درس غير محدد',
+        attempts: scores.length,
+        avg
+      };
+    })
+    .filter((item) => item.avg < 80)
+    .sort((a, b) => a.avg - b.avg);
+}
+
+function estimateLessonTime(lessonId) {
+  const base = LESSONS[lessonId]?.quiz?.length || 4;
+  const seed = lessonId
+    .split('')
+    .reduce((s, ch) => s + ch.charCodeAt(0), 0);
+  return Math.round(4 + base * 0.8 + (seed % 5) * 0.4);
+}
+
+function getLessonStatsList() {
+  const history = getQuizHistory();
+  const grouped = {};
+  history.forEach((item) => {
+    if (!item.lessonId) return;
+    if (!grouped[item.lessonId]) grouped[item.lessonId] = [];
+    grouped[item.lessonId].push(item.score);
+  });
+
+  return Object.keys(LESSONS).slice(0, 8).map((lessonId) => {
+    const scores = grouped[lessonId] || [];
+    const avg = scores.length
+      ? Math.round(scores.reduce((s, v) => s + v, 0) / scores.length)
+      : appState.completedLessons[lessonId]
+        ? 100
+        : 0;
+    return {
+      lessonId,
+      title: LESSONS[lessonId].title,
+      avg,
+      time: estimateLessonTime(lessonId)
+    };
+  });
+}
+
+function getMonthlyReport() {
+  const history = getQuizHistory();
+  const monthsMap = new Map();
+  history.forEach((item) => {
+    const d = new Date(item.timestamp || Date.now());
+    const key = `${d.getFullYear()}-${d.getMonth()}`;
+    if (!monthsMap.has(key)) {
+      monthsMap.set(key, {
+        key,
+        label: d.toLocaleDateString('ar-EG', { month: 'long', year: 'numeric' }),
+        attempts: 0,
+        totalScore: 0,
+        pointsEarned: 0
+      });
+    }
+    const record = monthsMap.get(key);
+    record.attempts += 1;
+    record.totalScore += item.score || 0;
+    record.pointsEarned += Math.round((item.score || 0) / 20);
+  });
+
+  const sorted = Array.from(monthsMap.values()).sort((a, b) =>
+    a.key < b.key ? 1 : -1
+  );
+
+  return sorted.slice(0, 3).map((item) => ({
+    ...item,
+    avgScore: item.attempts ? Math.round(item.totalScore / item.attempts) : 0
+  }));
+}
+
 // =============================
 // 11) صفحة الإحصائيات المتقدمة
 // =============================
@@ -2828,6 +2978,42 @@ function renderStatsView() {
   const badges = getBadges({ completed, total }, percent);
   const unlockedBadges = badges.filter((b) => b.unlocked).length;
 
+  const timeline = getProgressTimeline();
+  const lessonsToReview = getLessonsNeedingReview();
+  const lessonStats = getLessonStatsList();
+  const monthlyReport = getMonthlyReport();
+  const currentLevel = Math.min(10, Math.floor(percent / 10) + 1);
+
+  const pointsMax = timeline.length
+    ? Math.max(...timeline.map((t) => t.points), 10)
+    : 0;
+  const sparkPoints = timeline.length
+    ? timeline
+        .map(
+          (item) => `
+          <div class="spark-bar" style="height:${
+            Math.max((item.points / pointsMax) * 100, 8)
+          }%" title="${item.label}: ${item.points} نقطة"></div>
+        `
+        )
+        .join('')
+    : '<p class="muted">لم تُسجَّل نقاط حتى الآن.</p>';
+
+  const scoresMax = timeline.length
+    ? Math.max(...timeline.map((t) => t.score || 0), 100)
+    : 0;
+  const sparkScores = timeline.length
+    ? timeline
+        .map(
+          (item) => `
+          <div class="spark-bar score" style="height:${
+            Math.max(((item.score || 0) / scoresMax) * 100, 8)
+          }%" title="${item.label}: ${item.score}٪"></div>
+        `
+        )
+        .join('')
+    : '<p class="muted">لا توجد نتائج اختبارات بعد.</p>';
+
   const canDownloadCertificate = percent >= 60; // النسبة المطلوبة للشهادة
 
   view.innerHTML = `
@@ -2836,22 +3022,93 @@ function renderStatsView() {
       <p>تابع تقدّمك في تعلّم النحو من خلال هذه اللوحة التفاعلية.</p>
     </header>
 
-    <!-- التقدم العام -->
-    <section class="card">
-      <h3>التقدّم العام</h3>
-      <p>الدروس المكتملة: <strong>${completed}</strong> من <strong>${total}</strong> (${percent}٪)</p>
-      <p>النقاط المكتسبة: <strong>${appState.points}</strong></p>
-      <p>متوسط نتائج الاختبارات:
-        <strong>${
-          avgScore === null ? 'لا توجد نتائج للاختبارات بعد.' : avgScore + '٪'
-        }</strong>
-      </p>
-      <div class="progress-bar">
-        <span style="width:${percent}%;"></span>
+    <section class="card stats-highlight">
+      <div class="stat-pill">
+        <p class="stat-label">الدروس المكتملة</p>
+        <p class="stat-value">${completed}/${total}</p>
+        <div class="mini-progress"><span style="width:${percent}%"></span></div>
+      </div>
+      <div class="stat-pill">
+        <p class="stat-label">النقاط الحالية</p>
+        <p class="stat-value">${appState.points} نقطة</p>
+        <p class="stat-note">المستوى ${currentLevel}</p>
+      </div>
+      <div class="stat-pill">
+        <p class="stat-label">متوسط الاختبارات</p>
+        <p class="stat-value">${avgScore === null ? '—' : avgScore + '٪'}</p>
+        <p class="stat-note">من ${appState.quizHistory?.length || 0} محاولة</p>
       </div>
     </section>
 
-    <!-- الرسوم البيانية حسب التصنيف -->
+    <section class="card chart-card">
+      <div class="chart-grid">
+        <div>
+          <div class="chart-header">
+            <div>
+              <p class="chart-label">تطور النقاط</p>
+              <h3 class="chart-title">الرحلة نحو الإتقان</h3>
+            </div>
+            <span class="chip">آخر ${Math.max(timeline.length, 1)} محاولات</span>
+          </div>
+          <div class="sparkline">${sparkPoints}</div>
+        </div>
+        <div>
+          <div class="chart-header">
+            <div>
+              <p class="chart-label">نتائج الاختبارات</p>
+              <h3 class="chart-title">مستوى الدقة</h3>
+            </div>
+            <span class="chip">هدفنا 80٪+</span>
+          </div>
+          <div class="sparkline">${sparkScores}</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="card">
+      <h3>تحليل الأداء</h3>
+      <p class="muted">يتم اقتراح الدروس التي تحتاج مراجعة بناءً على اختباراتك السابقة.</p>
+      ${
+        lessonsToReview.length
+          ? `<ul class="review-list">${lessonsToReview
+              .map(
+                (item) => `
+              <li>
+                <div>
+                  <strong>${item.lessonTitle}</strong>
+                  <p class="muted">عدد المحاولات: ${item.attempts}</p>
+                </div>
+                <span class="review-score">${item.avg}٪</span>
+              </li>
+            `
+              )
+              .join('')}</ul>`
+          : '<p class="muted">أكمل بعض الاختبارات لنتمكن من تحليل أدائك واقتراح الدروس المهمة لك.</p>'
+      }
+    </section>
+
+    <section class="card">
+      <h3>إحصائيات الدروس</h3>
+      <div class="lesson-stats-list">
+        ${lessonStats
+          .map(
+            (item) => `
+            <div class="lesson-stat-row">
+              <div>
+                <p class="lesson-title">${item.title}</p>
+                <p class="muted">متوسط الوقت: ${item.time} دقائق</p>
+              </div>
+              <div class="lesson-progress">
+                <div class="progress-bar mini"><span style="width:${item.avg}%"></span></div>
+                <span class="lesson-score">${item.avg}٪</span>
+              </div>
+            </div>
+          `
+          )
+          .join('')}
+      </div>
+    </section>
+
     <section class="card">
       <h3>التقدّم حسب التصنيف</h3>
       <div class="stats-bars">
@@ -2871,6 +3128,27 @@ function renderStatsView() {
           )
           .join('')}
       </div>
+    </section>
+
+    <section class="card">
+      <h3>تقارير شهرية</h3>
+      <p class="muted">نلخّص آخر الشهور لتتبع التحسّن المستمر.</p>
+      ${
+        monthlyReport.length
+          ? `<div class="monthly-grid">${monthlyReport
+              .map(
+                (month) => `
+              <div class="month-card">
+                <p class="month-label">${month.label}</p>
+                <p class="month-score">متوسط ${month.avgScore}٪</p>
+                <p class="month-meta">اختبارات: ${month.attempts}</p>
+                <p class="month-meta">نقاط مكتسبة: ${month.pointsEarned}</p>
+              </div>
+            `
+              )
+              .join('')}</div>`
+          : '<p class="muted">ابدأ أول اختبار لتحصل على تقرير شهري.</p>'
+      }
     </section>
 
     <!-- الشارات -->
@@ -3146,22 +3424,106 @@ function renderLeadersView() {
   const { completed, total } = getProgress();
   const percent = total ? Math.round((completed / total) * 100) : 0;
 
+  const profile = loadUserProfile() || {};
+  const currentTimeline = getProgressTimeline();
+  const lastAttempt = currentTimeline.length
+    ? currentTimeline[currentTimeline.length - 1]
+    : null;
+
+  const mockLeaders = [
+    { name: 'سارة النحوية', points: 240, completion: 92, streak: 12 },
+    { name: 'فهد المتقن', points: 210, completion: 88, streak: 9 },
+    { name: 'ريم الباحثة', points: 180, completion: 75, streak: 6 },
+    { name: 'طارق المجتهد', points: 150, completion: 64, streak: 4 }
+  ];
+
+  const merged = [
+    ...mockLeaders,
+    {
+      name: profile.name || 'أنت',
+      points: appState.points,
+      completion: percent,
+      streak: Math.min(appState.quizHistory?.length || 0, 14),
+      isCurrent: true
+    }
+  ]
+    .sort((a, b) => b.points - a.points)
+    .map((item, idx) => ({ ...item, rank: idx + 1 }));
+
+  const topThree = merged.slice(0, 3);
+
   view.innerHTML = `
     <header class="app-header">
       <h2>المتصدرون</h2>
       <p>
-        مستقبلًا يمكن ربط هذه الصفحة بقاعدة بيانات لعرض متعلّمين حقيقيين.
-        حاليًا نعرض تقدّمك أنت كتجربة محلية.
+        لوحة متصدرين محلية تُبرز تقدمك مقارنةً بمتعلّمين افتراضيين. اجمع نقاطًا
+        أكثر لتحجز مركزًا أعلى.
       </p>
     </header>
 
+    <section class="card leaderboard-hero">
+      <div>
+        <p class="chart-label">مركزك الحالي</p>
+        <h3 class="chart-title">المرتبة ${
+          merged.find((m) => m.isCurrent)?.rank || merged.length
+        } من ${merged.length}</h3>
+        <p class="muted">آخر محاولة: ${
+          lastAttempt ? `${lastAttempt.score}٪ في ${lastAttempt.label}` : 'لم تبدأ بعد'
+        }</p>
+      </div>
+      <div class="hero-metrics">
+        <div class="stat-pill">
+          <p class="stat-label">النقاط</p>
+          <p class="stat-value">${appState.points}</p>
+          <p class="stat-note">تكافئ تقدمك في الاختبارات</p>
+        </div>
+        <div class="stat-pill">
+          <p class="stat-label">نسبة الإكمال</p>
+          <p class="stat-value">${percent}٪</p>
+          <p class="stat-note">${completed} درسًا مكتملًا</p>
+        </div>
+      </div>
+    </section>
+
     <section class="card">
-      <h3>مركزك الحالي (محليًا)</h3>
-      <p>نسبة الإكمال: ${percent}٪</p>
-      <p>النقاط: ${appState.points}</p>
-      <p class="muted">
-        كلما أكملت دروسًا أكثر ورفعت نقاطك، ارتفع مركزك بين المتعلمين 😊
-      </p>
+      <h3>المراكز الأولى</h3>
+      <div class="top-grid">
+        ${topThree
+          .map(
+            (item) => `
+          <div class="top-card ${item.isCurrent ? 'is-current' : ''}">
+            <div class="top-rank">${item.rank}</div>
+            <p class="top-name">${item.name}</p>
+            <p class="top-points">${item.points} نقطة</p>
+            <p class="muted">اكتمال ${item.completion}٪ · سلسلة ${item.streak} أيام</p>
+          </div>
+        `
+          )
+          .join('')}
+      </div>
+    </section>
+
+    <section class="card">
+      <h3>ترتيب مفصّل</h3>
+      <ul class="leaders-list rich">
+        ${merged
+          .map(
+            (item) => `
+          <li class="leader-row ${item.isCurrent ? 'current' : ''}">
+            <div class="leader-rank">#${item.rank}</div>
+            <div class="leader-meta">
+              <strong>${item.name}</strong>
+              <p class="muted">اكتمال ${item.completion}٪ · سلسلة ${item.streak} أيام</p>
+            </div>
+            <div class="leader-progress">
+              <div class="progress-bar mini"><span style="width:${item.completion}%"></span></div>
+              <span class="leader-points">${item.points} نقطة</span>
+            </div>
+          </li>
+        `
+          )
+          .join('')}
+      </ul>
     </section>
   `;
 }
