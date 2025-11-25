@@ -307,7 +307,7 @@ const LESSONS = {
     ],
     contentHtml: `
       <p>
-        يُنصب الفعل المضارع إذا بقته أداة نصب مثل: <strong>أن، لن، كي، حتى</strong>،
+        يُنصب الفعل المضارع إذا سبقته أداة نصب مثل: <strong>أن، لن، كي، حتى</strong>،
         وتكون علامة النصب الفتحة أو حذف النون في الأفعال الخمسة.
       </p>
       <p>
@@ -584,11 +584,80 @@ const LESSONS = {
     ]
   },
 
-  // الضمير
   pronoun: {
     id: 'pronoun',
     title: 'الضمير',
     categoryId: 'built-nouns',
+    videos: [],
+    images: [
+      'lessons/الضمير/الضمير.docx',
+      'lessons/الضمير/الضمائر%201.jpg'
+    ],
+    contentHtml: `
+      <p>
+        الضمير اسم مبني يدل على متكلم أو مخاطَب أو غائب،
+        ويعود على اسم مذكور أو مفهوم من السياق.
+      </p>
+      <p>
+        ينقسم الضمير إلى متصل ومنفصل ومستتر بحسب موقعه في الجملة.
+      </p>
+    `,
+    quiz: []
+  },
+  'address-pronouns': {
+    id: 'address-pronouns',
+    title: 'ضمائر الخطاب',
+    categoryId: 'built-nouns',
+    videos: [],
+    images: ['lessons/ضمائر%20الخطاب/ضمائر%20الخطاب.jpg'],
+    contentHtml: `
+      <p>
+        ضمائر الخطاب تُستخدم لمخاطبة شخص أو أكثر مثل: أنتَ، أنتما، أنتم، أنتنَّ.
+      </p>
+      <p>
+        تظهر مرفوعة أو منصوبة أو مجرورة بحسب موقعها واتصالها بالفعل أو الاسم.
+      </p>
+    `,
+    quiz: []
+  },
+  'absent-pronouns': {
+    id: 'absent-pronouns',
+    title: 'ضمائر الغائب',
+    categoryId: 'built-nouns',
+    videos: [],
+    images: ['lessons/ضمائر%20الغائب/ضمائر%20الغائب.jpg'],
+    contentHtml: `
+      <p>
+        تشير ضمائر الغائب إلى من ليس حاضرًا: هو، هي، هما، هم، هنَّ.
+      </p>
+      <p>
+        قد تأتي متصلة بالفعل أو منفصلة بحسب التركيب، وتظل مبنية دائمًا.
+      </p>
+    `,
+    quiz: []
+  },
+  'speaker-pronouns': {
+    id: 'speaker-pronouns',
+    title: 'ضمائر المتكلم',
+    categoryId: 'built-nouns',
+    videos: [],
+    images: ['lessons/ضمائر%20المتكلم/ضمائر%20المتكلم.jpg'],
+    contentHtml: `
+      <p>
+        يستخدم المتكلم الضمائر للإشارة إلى نفسه مفردًا أو مع غيره مثل: أنا، نحن.
+      </p>
+      <p>
+        تتصل هذه الضمائر بالأفعال أو الأسماء أو الحروف وتظل مبنية لا تتغير حركتها.
+      </p>
+    `,
+    quiz: []
+  },
+
+  // الأسماء الخمسة
+  'five-nouns': {
+    id: 'five-nouns',
+    title: 'الأسماء الخمسة',
+    categoryId: 'secondary-signs',
     videos: [
       {
         title: 'الضمائر',
@@ -846,6 +915,163 @@ const LESSONS = {
     title: 'المفعول به',
     categoryId: 'mansubat',
     videos: [],
+    images: [
+      'lessons/المفعول%20به/المفعول%20به.jpg',
+      'lessons/المفعول%20به/المفعول%20به%201.jpg'
+    ],
+    contentHtml: `
+      <p>
+        المفعول به اسم منصوب يدل على من وقع عليه فعل الفاعل مثل: <em>قرأ الطالبُ الكتابَ</em>.
+      </p>
+    `,
+    quiz: []
+  },
+  haal: {
+    id: 'haal',
+    title: 'الحال',
+    categoryId: 'mansubat',
+    videos: [],
+    images: ['lessons/الحال/الحال%20(2).jpg'],
+    contentHtml: `
+      <p>
+        الحال وصف منصوب يبين هيئة صاحبه وقت وقوع الفعل مثل:
+        <em>عاد المسافرُ مبتسمًا</em>.
+      </p>
+    `,
+    quiz: []
+  },
+
+  naat: {
+    id: 'naat',
+    title: 'النعت',
+    categoryId: 'tawabi',
+    videos: [],
+    images: ['lessons/النعت.jpg'],
+    contentHtml: `
+      <p>النعت تابع يصف المنعوت ويتبعه في الإعراب والتعريف والتنكير.</p>
+    `,
+    quiz: []
+  },
+  badal: {
+    id: 'badal',
+    title: 'البدل',
+    categoryId: 'tawabi',
+    videos: [],
+    images: ['lessons/البدل.jpg'],
+    contentHtml: `
+      <p>البدل تابع يذكر بعد اسم قبله ليوضحه أو يؤكده ويطابقه في الإعراب.</p>
+    `,
+    quiz: []
+  },
+  atf: {
+    id: 'atf',
+    title: 'العطف',
+    categoryId: 'tawabi',
+    videos: [],
+    images: ['lessons/العطف.jpg'],
+    contentHtml: `
+      <p>العطف تابع يسبقه حرف عطف يشارك المعطوف عليه في الإعراب.</p>
+    `,
+    quiz: []
+  },
+  tawkeed: {
+    id: 'tawkeed',
+    title: 'التوكيد',
+    categoryId: 'tawabi',
+    videos: [],
+    images: ['lessons/التوكيد%20(1).jpg'],
+    contentHtml: `
+      <p>التوكيد تابع يزيل الشك ويؤكد المعنى، ويأتي لفظيًا أو معنويًا.</p>
+    `,
+    quiz: []
+  },
+
+  'huruf-jar': {
+    id: 'huruf-jar',
+    title: 'حروف الجر',
+    categoryId: 'majroorat',
+    videos: [],
+    images: ['lessons/جر%20الاسم/جر%20الاسم.jpg'],
+    contentHtml: `
+      <p>حروف الجر تجر الأسماء بعدها وتضيف لها معنى مثل: من، إلى، على، في.</p>
+    `,
+    quiz: []
+  },
+  'ism-majrur': {
+    id: 'ism-majrur',
+    title: 'الاسم المجرور',
+    categoryId: 'majroorat',
+    videos: [],
+    images: ['lessons/جر%20الاسم/جر%20الاسم.jpg'],
+    contentHtml: `
+      <p>يأتي الاسم المجرور بعد حرف جر أو مضافًا إليه، وعلامته الأصلية الكسرة.</p>
+    `,
+    quiz: []
+  },
+  'mudaf-ilayh': {
+    id: 'mudaf-ilayh',
+    title: 'المضاف إليه',
+    categoryId: 'majroorat',
+    videos: [],
+    images: ['lessons/المضاف%20إليه/المضاف%20إليه%20(2).jpg'],
+    contentHtml: `
+      <p>المضاف إليه اسم مجرور يوضح المضاف قبله مثل: <em>كتابُ الطالبِ</em>.</p>
+    `,
+    quiz: []
+  },
+
+  'i3rab-steps': {
+    id: 'i3rab-steps',
+    title: 'خطوات الإعراب',
+    categoryId: 'i3rab-steps',
+    videos: [],
+    images: [
+      'lessons/الاعراب/القسم%20الثالث%20خطوات%20تعلم%20الاعراب/خطوات%20الاعراب%201.jpg',
+      'lessons/الاعراب/القسم%20الثالث%20خطوات%20تعلم%20الاعراب/خطوات%20الاعراب%202.jpg'
+    ],
+    contentHtml: `
+      <p>خطوات منهجية تساعدك على تحليل الجملة وتحديد مواقع الكلمات قبل ضبط الإعراب.</p>
+    `,
+    quiz: []
+  },
+  'fixed-rules': {
+    id: 'fixed-rules',
+    title: 'ثوابت إعرابية',
+    categoryId: 'fixed-rules',
+    videos: [],
+    images: ['lessons/الاعراب/القسم%20الرابع%20مفاتيح%20إعرابية/فوائد%20نحوية.jpg'],
+    contentHtml: `
+      <p>قواعد ثابتة تعين على سرعة إعراب التراكيب المتكررة وتجنب الأخطاء الشائعة.</p>
+    `,
+    quiz: []
+  },
+  'i3rab-examples': {
+    id: 'i3rab-examples',
+    title: 'نماذج إعرابية',
+    categoryId: 'i3rab-examples',
+    videos: [],
+    images: ['lessons/الاعراب/القسم%20الخامس%20نماذج%20اعربية/نماذج%20اعرابية.docx'],
+    contentHtml: `
+      <p>أمثلة محلولة توضح كيفية تطبيق خطوات الإعراب على جمل متنوعة.</p>
+    `,
+    quiz: []
+  },
+
+  // =========================
+  // الأساليب النحوية
+  // =========================
+
+  // أسلوب الاستفهام / أدوات الاستفهام
+  interrogatives: {
+    id: 'interrogatives',
+    title: 'أسلوب الاستفهام',
+    categoryId: 'istifham',
+    videos: [
+      {
+        title: 'أدوات الاستفهام',
+        url: 'https://youtu.be/fY-y8LqX6Bk?si=LU1wqp5iTMB_YQOB'
+      }
+    ],
     images: [
       'lessons/المفعول%20به/المفعول%20به.jpg',
       'lessons/المفعول%20به/المفعول%20به%201.jpg'
@@ -1202,92 +1428,6 @@ const CATEGORIES = [
   }
 ];
 
-
-// =============================
-// 2) التصنيفات CATEGORIES
-// =============================
-
-const CATEGORIES = [
-  {
-    id: 'intro',
-    title: 'تعريف النحو',
-    color: '#dcfce7',
-    lessonIds: ['types-of-word', 'kinds-of-noun']
-  },
-  {
-    id: 'sentences',
-    title: 'الجمل',
-    color: '#fef3c7',
-    lessonIds: ['sentence']
-  },
-  {
-    id: 'verbs',
-    title: 'الأفعال',
-    color: '#fee2e2',
-    lessonIds: [
-      'verb-types',
-      'present-raf',
-      'present-nasb',
-      'present-jazm',
-      'five-verbs'
-    ]
-  },
-  {
-    id: 'fael',
-    title: 'الفاعل ونائب الفاعل',
-    color: '#e0f2fe',
-    lessonIds: ['subject', 'naib-fael']
-  },
-  {
-    id: 'objects',
-    title: 'المفاعيل',
-    color: '#fef9c3',
-    lessonIds: ['object']
-  },
-  {
-    id: 'pronouns',
-    title: 'الضمائر',
-    color: '#f3e8ff',
-    lessonIds: [
-      'pronoun',
-      'address-pronouns',
-      'absent-pronouns',
-      'speaker-pronouns'
-    ]
-  },
-  {
-    id: 'nouns',
-    title: 'الأسماء وأنواعها',
-    color: '#e0f2fe',
-    lessonIds: [
-      'demonstratives',
-      'relative-pronouns',
-      'five-nouns',
-      'nakira',
-      'jar-ism',
-      'mudaf-ilayh'
-    ]
-  },
-  {
-    id: 'sentence-grammar',
-    title: 'إعراب الجمل والأفعال الناسخة',
-    color: '#fee2e2',
-    lessonIds: ['kana', 'kada', 'inna', 'dhanna']
-  },
-  {
-    id: 'tawabi',
-    title: 'التوابع، الحال، التمييز',
-    color: '#fae8ff',
-    lessonIds: ['tawabi', 'naat', 'atf', 'tawkeed', 'badal', 'haal', 'tamyeez']
-  },
-  {
-    id: 'styles',
-    title: 'الأساليب النحوية',
-    color: '#ecfeff',
-    lessonIds: ['interrogatives']
-  }
-];
-
 // =============================
 // 3) أسئلة نهاية كل درس QUIZZES
 // =============================
@@ -1347,7 +1487,11 @@ function saveState() {
 }
 
 function getProgress() {
-  const allIds = Object.keys(LESSONS);
+  const allIds = Array.from(
+    new Set(
+      CATEGORIES.flatMap((cat) => cat.lessonIds).filter((id) => LESSONS[id])
+    )
+  );
   let completed = 0;
   allIds.forEach((id) => {
     if (appState.completedLessons[id]) completed++;
