@@ -1436,6 +1436,7 @@ const CATEGORIES = [
     title: 'أقسام الجملة',
     color: '#fef3c7',
     lessonIds: [
+      'sentence',
       'present-raf',
       'present-nasb',
       'present-jazm',
