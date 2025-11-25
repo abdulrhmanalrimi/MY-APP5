@@ -32,7 +32,7 @@ const LESSONS = {
   // =========================
   'types-of-word': {
     id: 'types-of-word',
-    title: 'أنواع الكلمة',
+    title: 'أنواع الكلام',
     categoryId: 'parts-of-speech',
     videos: [
       {
