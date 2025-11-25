@@ -578,6 +578,28 @@ body {
    7) صفحة الدرس
 ============================ */
 
+.lesson-detail-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  margin-bottom: 0.8rem;
+}
+
+.lesson-detail-nav-actions {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.lesson-detail-nav .secondary-btn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
 .lesson-content {
   font-size: calc(1rem * var(--lesson-font-scale));
   line-height: 1.9;

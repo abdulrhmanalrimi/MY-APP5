@@ -2603,6 +2603,22 @@ function setupQuizHandlers(lessonId) {
 // 9) صفحة تفاصيل الدرس
 // =============================
 
+function getAdjacentLessons(lessonId) {
+  for (const cat of CATEGORIES) {
+    const validIds = cat.lessonIds.filter((id) => LESSONS[id]);
+    const index = validIds.indexOf(lessonId);
+
+    if (index !== -1) {
+      return {
+        prevLessonId: index > 0 ? validIds[index - 1] : null,
+        nextLessonId: index < validIds.length - 1 ? validIds[index + 1] : null
+      };
+    }
+  }
+
+  return { prevLessonId: null, nextLessonId: null };
+}
+
 function renderLessonDetail(lessonId) {
   const lesson = LESSONS[lessonId];
   const view = document.getElementById('view-lessons');
@@ -2611,6 +2627,7 @@ function renderLessonDetail(lessonId) {
   const isCompleted = !!appState.completedLessons[lessonId];
   const notes = appState.notes[lessonId] || '';
   const isFavorite = !!appState.favorites[lessonId];
+  const { prevLessonId, nextLessonId } = getAdjacentLessons(lessonId);
 
   let imagesHtml = '';
   if (lesson.images && lesson.images.length) {
@@ -2654,9 +2671,19 @@ function renderLessonDetail(lessonId) {
   const quizHtml = getQuizHtmlForLesson(lessonId);
 
   view.innerHTML = `
-    <button class="primary-btn" id="back-to-lessons" style="margin-bottom:0.8rem;">
-      ← العودة إلى الدروس
-    </button>
+    <div class="lesson-detail-nav">
+      <button class="primary-btn" id="back-to-lessons">
+        ← العودة إلى الدروس
+      </button>
+      <div class="lesson-detail-nav-actions">
+        <button class="secondary-btn" id="prev-lesson" ${prevLessonId ? '' : 'disabled'}>
+          ← الدرس السابق
+        </button>
+        <button class="secondary-btn" id="next-lesson" ${nextLessonId ? '' : 'disabled'}>
+          الدرس التالي →
+        </button>
+      </div>
+    </div>
 
     <section class="card">
       <div class="lesson-detail-header" style="display:flex;align-items:center;justify-content:space-between;gap:0.5rem;">
@@ -2721,6 +2748,16 @@ function renderLessonDetail(lessonId) {
         renderLessonsHome();
       });
     });
+
+  const prevBtn = document.getElementById('prev-lesson');
+  if (prevBtn && prevLessonId) {
+    prevBtn.addEventListener('click', () => renderLessonDetail(prevLessonId));
+  }
+
+  const nextBtn = document.getElementById('next-lesson');
+  if (nextBtn && nextLessonId) {
+    nextBtn.addEventListener('click', () => renderLessonDetail(nextLessonId));
+  }
 
   // حفظ الملاحظات
   document.getElementById('save-notes').addEventListener('click', () => {
