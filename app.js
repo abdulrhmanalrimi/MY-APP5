@@ -1608,7 +1608,9 @@ function attachShellEvents() {
 
 function switchView(viewId) {
   document.querySelectorAll('.view').forEach((view) => {
+    const isActive = view.id === 'view-' + viewId;
     view.classList.toggle('active', view.id === 'view-' + viewId);
+    view.classList.toggle('hidden', !isActive);
   });
 
   document.querySelectorAll('.bottombar .tab-btn').forEach((btn) => {
@@ -2554,6 +2556,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
   if (!landing || !startBtn || !appRoot) return;
 
+  function getViewFromHash() {
+    const hash = (window.location.hash || '').replace('#', '').trim();
+    switch (hash) {
+      case 'lessons':
+      case 'stats':
+      case 'ask-teacher':
+      case 'leaders':
+        return hash === 'ask-teacher' ? 'ask' : hash;
+      default:
+        return null;
+    }
+  }
+
   function buildShellIfNeeded() {
     if (!appRoot.dataset.shellBuilt) {
       buildAppShell();
@@ -2561,11 +2576,14 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  function goToLessonsView() {
+  function goToLessonsView(targetView) {
+    const viewToOpen = targetView || getViewFromHash() || 'lessons';
     landing.classList.add('hidden');
     appRoot.classList.remove('hidden');
     buildShellIfNeeded();
-    switchView('lessons');
+    appRoot.dataset.lastHash = window.location.hash || '';
+    appRoot.dataset.currentView = viewToOpen;
+    switchView(viewToOpen);
   }
 
   function openProfileModal() {
@@ -2582,12 +2600,14 @@ document.addEventListener('DOMContentLoaded', () => {
     if (modal) modal.classList.add('hidden');
   }
 
+  const resolveTargetView = () => getViewFromHash() || 'lessons';
+
   // عند الضغط على "ابدأ التعلّم"
   startBtn.addEventListener('click', () => {
     const existing = loadUserProfile();
     if (existing && existing.name && existing.grade) {
       // عنده بيانات محفوظة مسبقًا → ادخل مباشرة
-      goToLessonsView();
+      goToLessonsView(resolveTargetView());
     } else {
       // أول مرة → افتح نافذة البيانات
       openProfileModal();
@@ -2617,9 +2637,26 @@ document.addEventListener('DOMContentLoaded', () => {
       });
 
       closeProfileModal();
-      goToLessonsView();
+      goToLessonsView(resolveTargetView());
     });
   }
+
+  // إذا فتح المستخدم التطبيق من اختصار (هاش) ومعه بيانات محفوظة، انتقل مباشرة
+  function handleDeepLinkFromHash() {
+    const target = getViewFromHash();
+    if (!target) return;
+
+    const profile = loadUserProfile();
+    if (profile && profile.name && profile.grade) {
+      goToLessonsView(target);
+    } else {
+      openProfileModal();
+    }
+  }
+
+  // دعم فتح التطبيق مباشرة من اختصارات PWA أو روابط الهاش
+  window.addEventListener('hashchange', handleDeepLinkFromHash);
+  handleDeepLinkFromHash();
 
   // زر إغلاق المودال
   if (closeBtn) {
